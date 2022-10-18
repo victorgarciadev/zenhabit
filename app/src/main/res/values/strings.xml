@@ -2,4 +2,31 @@
     <string name="app_name">ZenHabit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<!--  JARDÍ  -->
+    <string name="jardi">Jardí</string>
+    <string name="Planta1">Planta1</string>
+    <string name="Planta2">Planta2</string>
+    <string name="Planta3">Planta3</string>
+    <string name="DescripcionPlanta">DescPlanta1</string>
+
+<!--  TASQUES  -->
+    <string name="boton">+</string>
+    <string name="objdiari">ObjDiari</string>
+    <string name="descobdiari">DescObDiari</string>
+    <string name="aconseguides">Aconseguides</string>
+    <string name="reptes_diaris">Reptes Diaris</string>
+    <string name="tasques">Tasques</string>
+    <string name="tasca">Tasca</string>
+    <string name="_10_00pm">10:00pm</string>
+    <string name="veure">veure</string>
+
+<!--  Diari  -->
+    <string name="progres">Progrés</string>
+    <string name="pendents">Pendents</string>
+    <string name="habits_aconseguits">Habits aconseguits</string>
+    <string name="tasques_aconseguides">Tasques Aconseguides</string>
+
+<!--  Nuevo  -->
+
+
 </resources>
