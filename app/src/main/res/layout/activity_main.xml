@@ -10,10 +10,10 @@
 
     <LinearLayout
         android:id="@+id/btn_diari"
-        android:background="@drawable/rounded_corner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:background="@drawable/rounded_corner"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208">
+        app:layout_constraintVertical_bias="0.256">
 
         <ImageView
             android:layout_width="50dp"
@@ -42,18 +42,18 @@
 
     <LinearLayout
         android:id="@+id/btn_jardi"
-        android:background="@drawable/rounded_corner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:background="@drawable/rounded_corner"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045">
+        app:layout_constraintVertical_bias="0.101">
 
         <ImageView
             android:layout_width="50dp"
@@ -74,10 +74,10 @@
 
     <LinearLayout
         android:id="@+id/btn_tasques"
-        android:background="@drawable/rounded_corner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:background="@drawable/rounded_corner"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369">
+        app:layout_constraintVertical_bias="0.419">
 
         <ImageView
             android:layout_width="50dp"
@@ -146,8 +146,8 @@
             android:id="@+id/TitolLayoutProgres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="45dp"
             android:text="Progrés"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -156,50 +156,50 @@
             android:id="@+id/text_pendents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="15dp"
             android:text="Pendents"
-            android:textColor="@color/white"
+            android:textColor="#8798a1"
             android:textSize="15sp"
             />
         <View
             android:id="@+id/percent_pendents"
             android:layout_width="300dp"
-            android:layout_marginLeft="55dp"
-            android:layout_height="3dp"
-            android:background="#BDBDBD" />
+            android:layout_marginLeft="45dp"
+            android:layout_height="5dp"
+            android:background="#ffc542" />
         <TextView
             android:id="@+id/text_habits_complets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="15dp"
             android:text="Hàbits complets"
-            android:textColor="@color/white"
+            android:textColor="#8798a1"
             android:textSize="15sp"
             />
         <View
             android:id="@+id/percent_habits"
             android:layout_width="120dp"
-            android:layout_marginLeft="55dp"
-            android:layout_height="3dp"
-            android:background="#BDBDBD" />
+            android:layout_marginLeft="45dp"
+            android:layout_height="5dp"
+            android:background="#ff575f" />
         <TextView
             android:id="@+id/text_tasques_completes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="45dp"
             android:layout_marginTop="15dp"
             android:text="Tasques complertes"
-            android:textColor="@color/white"
+            android:textColor="#8798a1"
             android:textSize="15sp"
             />
         <View
             android:id="@+id/percent_tasques"
             android:layout_width="180dp"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="45dp"
             android:layout_height="3dp"
-            android:background="#BDBDBD" />
+            android:background="#3dd598" />
 
     </LinearLayout>
 
