@@ -19,25 +19,27 @@ tools:context=".Fragments.CreateEditHabitFragment">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="270dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteX="-33dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:id="@+id/taskNameTextView"
+            android:id="@+id/txt_TascaEdit"
             android:layout_width="180dp"
             android:layout_height="57dp"
+            android:layout_marginBottom="29dp"
+            android:fontFamily="@font/open_sans_bold"
             android:text="Tasca 1"
             android:textColor="#FFF"
             android:textSize="45sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txt_input_DescripcioTasca"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.102" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/taskDescriptionTextView"
+            android:id="@+id/txt_input_DescripcioTasca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -63,9 +65,10 @@ tools:context=".Fragments.CreateEditHabitFragment">
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/taskCategoryIdTextView"
+            android:id="@+id/txt_selectorCategoriaTasca"
             android:layout_width="122dp"
             android:layout_height="25dp"
+            android:layout_marginTop="16dp"
             android:text="    Categoria"
             android:textColor="#FFF"
             android:textSize="16sp"
@@ -73,19 +76,19 @@ tools:context=".Fragments.CreateEditHabitFragment">
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.321" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioTasca"
+            app:layout_constraintVertical_bias="0.008" />
 
         <Button
-            android:id="@+id/taskButton"
+            android:id="@+id/btn_crearEditarTasca"
             android:layout_width="100dp"
             android:layout_height="110dp"
             android:backgroundTint="#FF565E"
             android:drawableTop="@drawable/ic_tasca"
-            android:textColor="#FFF"
             android:padding="10dp"
             android:text="Tasca"
             android:textAllCaps="false"
+            android:textColor="#FFF"
 
             android:textSize="18sp"
             app:cornerRadius="15dp"
@@ -97,18 +100,18 @@ tools:context=".Fragments.CreateEditHabitFragment">
             app:layout_constraintVertical_bias="0.45" />
 
         <Button
-            android:id="@+id/habitButton"
+            android:id="@+id/btn_crearEditarHabit"
             android:layout_width="100dp"
             android:layout_height="110dp"
             android:backgroundTint="#7A414A"
             android:drawableTop="@drawable/ic_baseline_calendar_zen"
             android:drawableTint="#7A858A"
-            android:textColor="#7A858A"
             android:padding="15dp"
             android:shadowColor="#000000"
             android:shadowDy="10"
             android:text="Hàbit"
             android:textAllCaps="false"
+            android:textColor="#7A858A"
 
             android:textSize="18sp"
             app:cornerRadius="15dp"
@@ -120,7 +123,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
             app:layout_constraintVertical_bias="0.45" />
 
         <Button
-            android:id="@+id/habitButton3"
+            android:id="@+id/btn_guardarCrearEditarTasca"
             android:layout_width="200dp"
             android:layout_height="75dp"
             android:backgroundTint="#1DBD7D"
@@ -130,12 +133,9 @@ tools:context=".Fragments.CreateEditHabitFragment">
             android:textColor="#FFF"
             android:textSize="18sp"
             app:cornerRadius="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            tools:layout_editor_absoluteX="105dp"
+            tools:layout_editor_absoluteY="563dp"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:layout_width="409dp"
@@ -154,7 +154,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txt_dataLimitCrearEditarTasca2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -169,12 +169,12 @@ tools:context=".Fragments.CreateEditHabitFragment">
                     app:layout_constraintVertical_bias="0.513" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/img_rellotgeCrearEditarTasca2"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@drawable/WatchIcon"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_dataLimitCrearEditarTasca2"
                     app:layout_constraintHorizontal_bias="0.777"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -182,7 +182,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
 
 
                 <EditText
-                    android:id="@+id/editTextDate"
+                    android:id="@+id/txt_input_dataLimitCrearEditarTasca2"
                     android:layout_width="169dp"
                     android:layout_height="40dp"
                     android:ems="10"
@@ -194,7 +194,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btn_seleccionarDataCrearEditarTasca2"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -215,6 +215,89 @@ tools:context=".Fragments.CreateEditHabitFragment">
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.63">
+
+        </LinearLayout>
+
+        <!-- Mising constraint en la siguiente línia para hacer push -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            tools:layout_editor_absoluteX="-2dp"
+            tools:layout_editor_absoluteY="492dp"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/txt_dataLimitCrearEditarTasca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Data límit"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.264"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.513" />
+
+            <ImageView
+                android:id="@+id/img_rellotgeCrearEditarTasca"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/WatchIcon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_dataLimitCrearEditarTasca"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+
+            <EditText
+                android:id="@+id/txt_input_dataLimitCrearEditarTasca"
+                android:layout_width="169dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.737"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_seleccionarDataCrearEditarTasca"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#30444E"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:foregroundTint="#30444E"
+                android:shadowColor="#30444E"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
