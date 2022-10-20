@@ -1,14 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/taskhabitbackground"
+tools:context=".Fragments.CreateEditHabitFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CreateEditHabitFragment">
+    android:background="@drawable/taskhabitbackground"
+    android:translationZ="0dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:translationZ="270dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/txt_HabitEdit"
+            android:layout_width="180dp"
+            android:layout_height="57dp"
+            android:layout_marginBottom="29dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Hàbit 1"
+            android:textColor="#FFF"
+            android:textSize="45sp"
+            app:layout_constraintBottom_toTopOf="@+id/txt_input_DescripcioHabit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.138"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_input_DescripcioHabit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="#22343C"
+            android:backgroundTint="#22343C"
+            android:hint="Descripció (opcional)"
+            android:textColorHint="#FFF"
+            app:hintTextColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.23000002">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#22343C"
+                android:fontFamily="@font/open_sans"
+                android:textColor="#FFF"
+                android:textColorHint="#FFF" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_selectorCategoriaHabit"
+            android:layout_width="122dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans"
+            android:text="    Categoria"
+            android:textColor="#FFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit"
+            app:layout_constraintVertical_bias="0.008" />
+
+        <Button
+            android:id="@+id/btn_crearEditarTasca"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:backgroundTint="#7A414A"
+            android:drawableTop="@drawable/ic_tasca"
+            android:fontFamily="@font/open_sans"
+            android:padding="10dp"
+            android:text="Tasca"
+            android:textAllCaps="false"
+            android:drawableTint="#7A858A"
+            android:textColor="#7A858A"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
+
+        <Button
+            android:id="@+id/btn_crearEditarHabit"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:backgroundTint="#FF565E"
+            android:drawableTop="@drawable/ic_baseline_calendar_zen"
+            android:fontFamily="@font/open_sans"
+            android:padding="15dp"
+            android:shadowColor="#000000"
+            android:shadowDy="10"
+            android:text="Hàbit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
+
+        <Button
+            android:id="@+id/btn_guardarCrearEditarTasca"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="200dp"
+            android:backgroundTint="#1DBD7D"
+            android:padding="15dp"
+            android:text="GUARDAR"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+            tools:ignore="MissingConstraints" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutRepeticio"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.631"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/img_repeticioCrearEditarHabit"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/img_btn_repeticioHabit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_repeticioHabit"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <TextView
+                android:id="@+id/txt_repeticioHabit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Repetició"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.217"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.567" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="11dp"
+                app:layout_constraintHorizontal_bias="0.73"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:id="@+id/txt_input_RepeticioCrearEditarHabit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#30444E"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_seleccionarRepeticioCrearEditarHabit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#30444E"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:foregroundTint="#30444E"
+                android:shadowColor="#30444E"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="168dp"
+            android:layout_weight="1"
+            android:background="#30444E"
+            android:backgroundTint="#30444E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutRepeticio"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/img_rellotgeHorariCrearEditarHabit"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/WatchIcon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tzt_horariHabit"
+                app:layout_constraintHorizontal_bias="0.823"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <TextView
+                android:id="@+id/tzt_horariHabit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Horari"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.217"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.567" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_HorariHabit"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.73"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="11dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_input_HorariCrearEditarHabit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#30444E"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_seleccionarHorariCrearEditarHabit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#30444E"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:foregroundTint="#30444E"
+                android:shadowColor="#30444E"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="#30444E"
+            android:backgroundTint="#30444E"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/txt_dataLimitCrearEditarHabit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans"
+                android:text="Data límit"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.264"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.513" />
+
+            <ImageView
+                android:id="@+id/img_rellotgeDataLimitCrearEditarHabit"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/WatchIcon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_dataLimitCrearEditarHabit"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <EditText
+                android:id="@+id/txt_input_dataLimitCrearEditarHabit"
+                android:layout_width="169dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:inputType="date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.737"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_seleccionarDataCrearEditarHabit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#30444E"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:foregroundTint="#30444E"
+                android:shadowColor="#30444E"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Mising constraint en la siguiente línia para hacer push -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
