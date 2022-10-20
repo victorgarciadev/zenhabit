@@ -1,14 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#22343C"
     tools:context=".Fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/FrameLayout_headerBg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="200dp"
+        android:background="#1D2C32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:scaleX=".3"
+            android:scaleY=".3"
+            android:translationY="-120px"
+            app:srcCompat="@drawable/logo_light_m" />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView_configTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Configuracions"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_labelUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Canvia el teu nom d'usuari"
+            android:textColor="#999999"
+            android:textDirection="ltr"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <ImageView
+            android:id="@+id/imageView_userIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/input_changeUserName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelUserName"
+            app:srcCompat="@drawable/user_small" />
+
+        <EditText
+            android:id="@+id/input_changeUserName"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="@string/nom_d_usuari_a"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHint="#999999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_userIcon"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelUserName" />
+
+        <TextView
+            android:id="@+id/textView_labelEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Canvia el teu correu electrònic"
+            android:textColor="#999999"
+            android:textDirection="ltr"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_userIcon" />
+
+        <ImageView
+            android:id="@+id/imageView_iconEmail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/input_changeEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelEmail"
+            app:srcCompat="@drawable/mail_small" />
+
+        <EditText
+            android:id="@+id/input_changeEmail"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="#999999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelEmail" />
+
+        <TextView
+            android:id="@+id/textView_labelPsw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Canvia la teva contrasenya"
+            android:textColor="#999999"
+            android:textDirection="ltr"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail" />
+
+        <ImageView
+            android:id="@+id/imageView_pswIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/input_changePsw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelPsw"
+            app:srcCompat="@drawable/psw_small" />
+
+        <EditText
+            android:id="@+id/input_changePsw"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="Crear contrasenya"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="#999999"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_pswIcon"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelPsw" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="165dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="#1DBE7D"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@string/registrar_se"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_changePsw" />
+
+        <TextView
+            android:id="@+id/textView_labelLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Idioma de l'aplicació"
+            android:textColor="#999999"
+            android:textDirection="ltr"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_configTitle" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:textAlignment="center"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">
+
+            <RadioButton
+                android:id="@+id/rb_cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="Català"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Castellano"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_eng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="English"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
