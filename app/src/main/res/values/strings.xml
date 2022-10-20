@@ -25,8 +25,11 @@
     <string name="pendents">Pendents</string>
     <string name="habits_aconseguits">Habits aconseguits</string>
     <string name="tasques_aconseguides">Tasques Aconseguides</string>
+    <string name="seguiment">SEGUIMENT</string>
+    <string name="complerts">Complerts</string>
+    <string name="x">X</string>
 
-<!--  Nuevo  -->
+    <!--  Nuevo  -->
 
 
 </resources>

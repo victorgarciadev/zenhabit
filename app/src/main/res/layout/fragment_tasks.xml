@@ -18,161 +18,51 @@
         <!-- TODO: Update blank fragment layout -->
 
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="367dp"
-            android:layout_height="253dp"
-            android:background="#4CAF50"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/verde"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.054">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="254dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="33dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="33dp">
-
-                    <TextView
-                        android:id="@+id/ReptesDiaris"
-                        android:layout_width="198dp"
-                        android:layout_height="44dp"
-                        android:text="@string/reptes_diaris"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.075"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:ignore="TextContrastCheck" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="#1D2C32">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="@string/descobdiari"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <CheckBox
-                            android:id="@+id/checkBox"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/textView2"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
-                            tools:ignore="DuplicateSpeakableTextCheck" />
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/objdiari"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/textView2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.521" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="345dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginTop="32dp"
-                    android:background="#1D2C32">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="@string/objdiari"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/textView4"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:text="@string/descobdiari"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.523" />
-
-                        <CheckBox
-                            android:id="@+id/checkBox2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/textView4"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/ReptesDiaris"
+                    android:layout_width="198dp"
+                    android:layout_height="44dp"
+                    android:text="@string/reptes_diaris"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.071"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.076"
+                    tools:ignore="TextContrastCheck" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="#1D2C32">
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#324B55"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -224,46 +114,163 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
-        </ScrollView>
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#324B55"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/objdiari"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textView4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:layout_margin="5dp"
+                            android:text="@string/descobdiari"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/textView4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#324B55"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                    app:layout_constraintStart_toStartOf="parent">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="@string/descobdiari"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:ignore="DuplicateSpeakableTextCheck" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/objdiari"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textView2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.521" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
 
         <TextView
 
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="156dp"
+            android:layout_margin="5dp"
             android:text="@string/tasques"
             android:textColor="@color/white"
             android:textSize="40sp"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintHorizontal_bias="0.096"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintVertical_bias="0.442"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.423"
             tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/button"
-            style="@style/Test"
-            android:layout_width="40dp"
-            android:layout_height="44dp"
+            style="@style/button_addTasck"
+            android:layout_margin="5dp"
             android:text="@string/boton"
             app:cornerRadius="100dp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.872"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintVertical_bias="0.444"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintHorizontal_bias="0.734"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            app:layout_constraintVertical_bias="0.476"
+            tools:ignore="TextContrastCheck,TextContrastCheck">
+
+        </Button>
 
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="368dp"
             android:layout_height="249dp"
-            android:background="#324B55"
+            android:layout_margin="25dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#324B55"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.511"
@@ -276,7 +283,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#1D2C32"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/fondo"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -290,9 +298,27 @@
                         android:layout_height="match_parent">
 
                         <Button
+                            android:id="@+id/eliminar1"
+                            android:layout_width="37dp"
+                            android:layout_height="44dp"
+                            android:backgroundTint="#F44336"
+                            android:text="@string/x"
+                            android:textSize="8sp"
+                            app:cornerRadius="50dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/button3"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,DuplicateClickableBoundsCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+                        <Button
+                            android:background="@drawable/rounded_corner"
                             android:id="@+id/button3"
                             android:layout_width="94dp"
                             android:layout_height="48dp"
+                            android:layout_marginEnd="40dp"
+                            android:gravity="center"
                             android:text="@string/veure"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -308,6 +334,7 @@
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/button3"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/Tasca1"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.52" />
@@ -339,13 +366,32 @@
                         android:layout_height="match_parent">
 
                         <Button
+                            android:id="@+id/eliminar"
+                            android:layout_width="37dp"
+                            android:layout_height="44dp"
+                            android:backgroundTint="#F44336"
+                            android:text="@string/x"
+                            android:textSize="8sp"
+                            app:cornerRadius="50dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+
+                            app:layout_constraintStart_toEndOf="@+id/button4"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,DuplicateClickableBoundsCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+                        <Button
+                            android:background="@drawable/rounded_corner"
                             android:id="@+id/button4"
                             android:layout_width="94dp"
                             android:layout_height="48dp"
+                            android:layout_marginEnd="40dp"
                             android:text="@string/veure"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="1.0"
                             tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
 
                         <TextView
@@ -357,6 +403,7 @@
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/button4"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/textView11"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.52" />
@@ -388,9 +435,26 @@
                         android:layout_height="match_parent">
 
                         <Button
+                            android:id="@+id/eliminar2"
+                            android:layout_width="37dp"
+                            android:layout_height="44dp"
+                            android:backgroundTint="#F44336"
+                            android:text="@string/x"
+                            android:textSize="8sp"
+                            app:cornerRadius="50dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/button2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,DuplicateClickableBoundsCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+                        <Button
+                            android:background="@drawable/rounded_corner"
                             android:id="@+id/button2"
                             android:layout_width="92dp"
                             android:layout_height="50dp"
+                            android:layout_marginEnd="40dp"
                             android:text="@string/veure"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -403,9 +467,12 @@
                             android:text="@string/_10_00pm"
                             android:textColor="@color/white"
                             android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/button2"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/textView7"
-                            tools:layout_editor_absoluteY="16dp" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.483" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -417,6 +484,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -427,12 +495,99 @@
         <FrameLayout
             android:layout_width="355dp"
             android:layout_height="86dp"
-            android:background="#324B55"
+            android:layout_margin="25dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#324B55"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.975">
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="108dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="20"
+                    android:progressTint="#FFEB3B"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seguiment"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.694"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.238" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="11dp"
+                    android:layout_height="3dp"
+                    android:background="#E91E63"
+                    app:circularflow_defaultRadius="20dp"
+                    app:circularflow_radiusInDP="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintCircleRadius="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView13"
+                    app:layout_constraintHorizontal_bias="0.885"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.638" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="11dp"
+                    android:layout_height="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#FFEB3B"
+                    app:circularflow_defaultRadius="20dp"
+                    app:circularflow_radiusInDP="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintCircleRadius="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView14"
+                    app:layout_constraintHorizontal_bias="0.884"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="60dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="228dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@string/pendents"
+                    android:textColor="#E8E8E8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="228dp"
+                    android:layout_marginTop="48dp"
+                    android:text="@string/complerts"
+                    android:textColor="#E8E8E8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
 

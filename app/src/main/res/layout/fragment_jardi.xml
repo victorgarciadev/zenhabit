@@ -46,7 +46,10 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="344dp"
             android:layout_height="208dp"
-            android:background="#8A334D57"
+            android:backgroundTint="#8A334D57"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
@@ -57,18 +60,21 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="#6C6C6C"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#6C6C6C"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/Planta1"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/Planta1"
                         android:textColor="#E0F2F1" />
@@ -77,6 +83,7 @@
                         android:id="@+id/DescPlanta1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/DescripcionPlanta"
                         android:textColor="#E0F2F1" />
 
@@ -93,13 +100,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="#8BC34A"
+                    android:background="@drawable/rounded_corner"
+                    android:gravity="center"
+                    android:backgroundTint="#8BC34A"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/Planta4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/Planta1"
                         android:textColor="#37474F" />
 
@@ -107,11 +117,13 @@
                         android:id="@+id/DescPlanta4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/DescripcionPlanta"
                         android:textColor="#37474F" />
 
                     <ImageView
                         android:id="@+id/imageView4"
+                        android:gravity="center"
                         android:layout_width="94dp"
                         android:layout_height="102dp"
                         android:contentDescription="@string/DescripcionPlanta"
@@ -123,7 +135,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="#604AC3"
+                    android:backgroundTint="#604AC3"
+                    android:background="@drawable/rounded_corner"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -131,14 +145,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Planta2"
-                        android:textColor="#BBDEFB" />
+                        android:gravity="center"
+                        android:textColor="#ffffff" />
 
                     <TextView
                         android:id="@+id/DescPlanta2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/DescripcionPlanta"
-                        android:textColor="#37474F"
+                        android:textColor="#ffffff"
+                        android:gravity="center"
                         tools:ignore="TextContrastCheck" />
 
                     <ImageView
@@ -155,7 +171,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:background="#C34A6C"
+                    android:backgroundTint="#C34A6C"
+                    android:background="@drawable/rounded_corner"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -163,14 +181,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Planta1"
-                        android:textColor="#37474F" />
+                        android:textColor="#37474F"
+                        android:gravity="center"/>
 
                     <TextView
                         android:id="@+id/DescPlanta3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/DescripcionPlanta"
-                        android:textColor="#37474F" />
+                        android:textColor="#37474F"
+                        android:gravity="center"/>
 
                     <ImageView
                         android:id="@+id/imageView3"
@@ -178,17 +198,20 @@
                         android:layout_height="102dp"
                         android:contentDescription="@string/DescripcionPlanta"
                         tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars" />
+                        tools:src="@tools:sample/avatars"
+                        android:gravity="center" />
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
         <ScrollView
             android:id="@+id/back"
+
             android:layout_width="336dp"
             android:layout_height="151dp"
             android:layout_marginTop="28dp"
-            android:background="#293E46"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#293E46"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.471"
             app:layout_constraintStart_toStartOf="parent"
@@ -197,13 +220,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="5dp">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#CC5F5F"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#CC5F5F"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -211,7 +238,7 @@
                         android:layout_width="15dp"
                         android:layout_height="43dp"
                         android:layout_weight="1"
-                        android:contentDescription=""
+                        android:contentDescription="TODO"
                         tools:ignore="ImageContrastCheck"
                         tools:src="@tools:sample/avatars" />
 
@@ -239,7 +266,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#673AB7"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#673AB7"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -247,7 +277,7 @@
                         android:layout_width="18dp"
                         android:layout_height="43dp"
                         android:layout_weight="1"
-                        android:contentDescription=""
+                        android:contentDescription="TODO"
                         tools:src="@tools:sample/avatars" />
 
                     <TextView
@@ -272,7 +302,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#E91E63"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#E91E63"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -280,7 +313,7 @@
                         android:layout_width="18dp"
                         android:layout_height="43dp"
                         android:layout_weight="1"
-                        android:contentDescription=""
+                        android:contentDescription="TODO"
                         tools:src="@tools:sample/avatars" />
 
                     <TextView
@@ -305,7 +338,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#9C27B0"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#9C27B0"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -313,7 +349,7 @@
                         android:layout_width="18dp"
                         android:layout_height="43dp"
                         android:layout_weight="1"
-                        android:contentDescription=""
+                        android:contentDescription="TODO"
                         tools:src="@tools:sample/avatars" />
 
                     <TextView
