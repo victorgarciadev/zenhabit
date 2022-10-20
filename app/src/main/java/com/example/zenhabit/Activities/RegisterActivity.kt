@@ -1,12 +1,12 @@
-package com.example.zenhabit
+package com.example.zenhabit.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.zenhabit.R
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //prueba Víctor
+        setContentView(R.layout.activity_register)
     }
 }
