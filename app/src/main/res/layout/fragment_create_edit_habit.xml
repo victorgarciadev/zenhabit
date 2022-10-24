@@ -391,7 +391,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Mising constraint en la siguiente línia para hacer push -->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
