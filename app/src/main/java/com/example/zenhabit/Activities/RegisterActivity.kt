@@ -36,13 +36,6 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonRegister.setOnClickListener {
-            crearUsuari(
-                bin.inputCreateEmail.text.toString(),
-                bin.inputCreatePsw.text.toString(),
-                bin.inputCreateUserName.text.toString()
-            )
-        }
 
 
 

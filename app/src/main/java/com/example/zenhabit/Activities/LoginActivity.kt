@@ -21,10 +21,5 @@ class LoginActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        bin.btnEne.setOnClickListener {
-            IdentificarUsuari(
-                bin.inputEmail.text.toString(),
-                bin.inputPsw.text.toString())
-        }
     }
 }
