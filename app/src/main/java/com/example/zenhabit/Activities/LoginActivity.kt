@@ -1,7 +1,10 @@
 package com.example.zenhabit.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.ActivityLoginBinding
 import com.example.zenhabit.databinding.ActivityRegisterBinding
