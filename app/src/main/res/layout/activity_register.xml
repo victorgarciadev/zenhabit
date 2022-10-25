@@ -54,7 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toEndOf="@+id/btn_cancel"
-        app:layout_constraintTop_toBottomOf="@+id/input_createPsw" />
+        app:layout_constraintTop_toBottomOf="@+id/input_createPsw"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btn_cancel"
@@ -150,7 +151,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_userIcon"
-        app:srcCompat="@drawable/mail_small" />
+        app:srcCompat="@drawable/mail_small"
+        tools:ignore="ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView_userIcon"
@@ -170,7 +172,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
-        app:srcCompat="@drawable/psw_small" />
+        app:srcCompat="@drawable/psw_small"
+        tools:ignore="ImageContrastCheck" />
 
     <CheckBox
         android:id="@+id/checkBox_registerTerms"
