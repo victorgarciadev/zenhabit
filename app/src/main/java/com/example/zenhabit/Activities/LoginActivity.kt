@@ -36,8 +36,8 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.textViewRegisterLink.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+           // val intent = Intent(this, RegisterActivity::class.java)
+           // startActivity(intent)
         }
     }
 
@@ -47,16 +47,16 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            binding.btnEnter.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+            //binding.btnEnter.setOnClickListener {
+            //   val intent = Intent(this, MainActivity::class.java)
+            //   startActivity(intent)
+            //}
         }
     }
 
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]
-        if (email != null || password != null) {
+        if (email != "" || password != "") {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -80,8 +80,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             // [END sign_in_with_email]
+        } else {
+            Toast.makeText(
+                baseContext, "Campo vacio",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
-
 
 }
