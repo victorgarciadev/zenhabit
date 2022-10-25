@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">ZenHabit</string>
+
+    <!-- Valors provisionals: DropdownMenu items (Categories) -->
+    <string-array name="categories">
+        <item>Aprenentatge</item>
+        <item>Productivitat</item>
+        <item>Salut</item>
+        <item><a href="#">Crear nova categoria...</a></item>
+    </string-array>
+
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
@@ -9,6 +18,7 @@
     <string name="benvingut_da">Benvingut/da!</string>
     <!-- TEXTES -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="categoria">Categoria</string>
 
 <!--  JARDÍ  -->
     <string name="jardi">Jardí</string>
