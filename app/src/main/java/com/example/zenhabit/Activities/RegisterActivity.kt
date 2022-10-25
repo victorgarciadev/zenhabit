@@ -67,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun posaNomUser( nom: String ) { //canvia el perfil de l'usuari
+    private fun posaNomUser( nom: String ) {
         val profileUpdates = userProfileChangeRequest {
             displayName = nom
         }
@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "User profile updated.")
-                } //es podria fer alguna cosa si donés error al canviar
+                }
             }
     }
 }
