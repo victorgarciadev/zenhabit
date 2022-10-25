@@ -56,8 +56,13 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
+                    Toast.makeText(baseContext, "Usuari creat correctament.", Toast.LENGTH_SHORT).show()
+                    val buttonRegister: Button = findViewById(R.id.btn_register)
+                    buttonRegister.setText("Tornar enrere")
+                    buttonRegister.setOnClickListener {
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
                     if( nom.length > 1 ) posaNomUser( nom )
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
