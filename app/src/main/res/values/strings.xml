@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">ZenHabit</string>
+    <!-- BOTONS -->
+    <string name="entrar">ENTRAR</string>
+    <string name="cancel_lar">CANCEL·LAR</string>
+    <string name="registrar_se">REGISTRAR-SE</string>
+    <!-- TITULARS -->
+    <string name="hola">Hola!</string>
+    <string name="benvingut_da">Benvingut/da!</string>
+    <!-- TEXTES -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--  JARDÍ  -->
+    <string name="jardi">Jardí</string>
+    <string name="Planta1">Planta1</string>
+    <string name="Planta2">Planta2</string>
+    <string name="Planta3">Planta3</string>
+    <string name="DescripcionPlanta">DescPlanta1</string>
+
+<!--  TASQUES  -->
+    <string name="boton">+</string>
+    <string name="objdiari">ObjDiari</string>
+    <string name="descobdiari">DescObDiari</string>
+    <string name="aconseguides">Aconseguides</string>
+    <string name="reptes_diaris">Reptes Diaris</string>
+    <string name="tasques">Tasques</string>
+    <string name="tasca">Tasca</string>
+    <string name="_10_00pm">10:00pm</string>
+    <string name="veure">veure</string>
+
+<!--  Diari  -->
+    <string name="progres">Progrés</string>
+    <string name="pendents">Pendents</string>
+    <string name="habits_aconseguits">Habits aconseguits</string>
+    <string name="tasques_aconseguides">Tasques Aconseguides</string>
+    <string name="seguiment">SEGUIMENT</string>
+    <string name="complerts">Complerts</string>
+    <string name="x">X</string>
+
+    <string name="contrasenya">Contrasenya</string>
+    <string name="inicia_sessi_per_continuar">Inicia sessió per continuar</string>
+    <string name="email">Correu electrònic</string>
+    <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
+    <string name="completa_el_teu_perfil">Completa el teu perfil</string>
+    <string name="nom_d_usuari_a">Nom d\'usuari/a</string>
+    <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
+    <string name="crear_contrasenya">Crear contrasenya</string>
 </resources>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout_BG"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#22343C"
+    tools:context=".Activities.RegisterActivity">
+
+    <FrameLayout
+        android:id="@+id/FrameLayout_headerBg"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:background="#1D2C32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:scaleX=".5"
+            android:scaleY=".5"
+            app:srcCompat="@drawable/logo_light_m" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView_greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/hola"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FrameLayout_headerBg" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#1DBE7D"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/registrar_se"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/input_createPsw" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#FF565E"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@string/cancel_lar"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_createPsw" />
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/completa_el_teu_perfil"
+        android:textColor="#999999"
+        android:textDirection="ltr"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:typeface="sans"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_greeting" />
+
+    <EditText
+        android:id="@+id/input_createUserName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="@string/nom_d_usuari_a"
+        android:inputType="textPersonName"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_userIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+    <EditText
+        android:id="@+id/input_createEmail"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
+        app:layout_constraintTop_toBottomOf="@+id/input_createUserName" />
+
+    <EditText
+        android:id="@+id/input_createPsw"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="@string/crear_contrasenya"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_iconPsw"
+        app:layout_constraintTop_toBottomOf="@+id/input_createEmail" />
+
+    <ImageView
+        android:id="@+id/imageView_iconEmail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_userIcon"
+        app:srcCompat="@drawable/mail_small" />
+
+    <ImageView
+        android:id="@+id/imageView_userIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description"
+        app:srcCompat="@drawable/user_small" />
+
+    <ImageView
+        android:id="@+id/imageView_iconPsw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
+        app:srcCompat="@drawable/psw_small" />
+
+    <CheckBox
+        android:id="@+id/checkBox_registerTerms"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="27dp"
+        android:buttonTint="#FFFFFF"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/termes_i_condicions"
+        android:textColor="#999999"
+        android:textColorLink="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
