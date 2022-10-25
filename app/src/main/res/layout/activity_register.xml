@@ -100,6 +100,7 @@
         android:fontFamily="@font/open_sans"
         android:hint="@string/nom_d_usuari_a"
         android:inputType="textPersonName"
+        android:textColor="@color/white"
         android:textColorHint="#999999"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView_userIcon"
