@@ -62,19 +62,37 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/txt_selectorCategoriaHabit"
-                android:layout_width="122dp"
-                android:layout_height="25dp"
-                android:text="    Categoria"
-                android:textColor="#FFF"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropDwnMenu_categoriesTasca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxCollapsedPaddingTop="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconTint="#757575"
+                app:hintTextColor="#757575"
+                app:startIconDrawable="@drawable/ic_category"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.11"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.321" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/categoria"
+                    android:inputType="none"
+                    android:textColorHint="#757575" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_crearEditarTasca"
@@ -82,17 +100,17 @@
                 android:layout_height="110dp"
                 android:backgroundTint="#FF565E"
                 android:drawableTop="@drawable/ic_tasca"
-                android:textColor="#FFF"
                 android:padding="10dp"
                 android:text="Tasca"
                 android:textAllCaps="false"
+                android:textColor="#FFF"
                 android:textSize="18sp"
                 app:cornerRadius="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.257"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca"
                 app:layout_constraintVertical_bias="0.45" />
 
             <Button
@@ -102,19 +120,19 @@
                 android:backgroundTint="#7A414A"
                 android:drawableTop="@drawable/ic_baseline_calendar_zen"
                 android:drawableTint="#7A858A"
-                android:textColor="#7A858A"
                 android:padding="15dp"
                 android:shadowColor="#000000"
                 android:shadowDy="10"
                 android:text="Hàbit"
                 android:textAllCaps="false"
+                android:textColor="#7A858A"
                 android:textSize="18sp"
                 app:cornerRadius="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca"
                 app:layout_constraintVertical_bias="0.45" />
 
             <Button
@@ -166,7 +184,7 @@
                         android:id="@+id/img_rellotgeCrearEditarTasca"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/watch_icon"
+                        android:src="@drawable/img_btn_watch_icon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/txt_dataLimitCrearEditarTasca"
                         app:layout_constraintHorizontal_bias="0.777"
@@ -178,20 +196,21 @@
                     <EditText
                         android:id="@+id/txt_input_dataLimitCrearEditarTasca"
                         android:layout_width="169dp"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:ems="10"
                         android:inputType="date"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.737"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <Button
                         android:id="@+id/btn_seleccionarDataCrearEditarTasca"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:backgroundTint="#30444E"
                         android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
                         android:foregroundTint="#30444E"
@@ -203,7 +222,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.937"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
