@@ -58,36 +58,33 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String) {
-        // [START sign_in_with_email]
+//verificació d’errors de camps de text. Mostra errors en Toast
         if (!validateForm()) {
             return
         }
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+//si tot és correcte es comprova al firebase
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+//si troba usuari cambia la pantalla i mostra el home
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
+                    // Login correcte, mostrem que tot ha anat correcte
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     Toast.makeText(
-                        baseContext, "Benvingut",
-                        Toast.LENGTH_SHORT
+                        baseContext, "Benvingut.", Toast.LENGTH_SHORT
                     ).show()
-                    //cambiar pantalla
+//cambiar pantalla
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-
-                    // If sign in fails, display a message to the user.
+// Si falla, mostrem l’error o errors
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
-                        baseContext, "Usuario o contraseña incorrectos",
-                        Toast.LENGTH_SHORT
+                        baseContext, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-        // [END sign_in_with_email]
-
     }
+
 
     private fun validateForm(): Boolean {
         var valid = true
@@ -109,8 +106,7 @@ class LoginActivity : AppCompatActivity() {
         }
         if (!valid) {
             Toast.makeText(
-                baseContext, "Campo vacio",
-                Toast.LENGTH_SHORT
+                baseContext, "Campo vacio", Toast.LENGTH_SHORT
             ).show()
         }
         return valid
