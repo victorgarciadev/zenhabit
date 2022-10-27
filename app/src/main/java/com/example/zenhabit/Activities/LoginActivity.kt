@@ -4,8 +4,10 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +31,9 @@ class LoginActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.hide()
+
         // Intent cap a la pantalla principal 'Home' si l'usuari no està loguejat
         binding.btnEnter.setOnClickListener {
             signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
@@ -36,8 +41,8 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.textViewRegisterLink.setOnClickListener {
-           // val intent = Intent(this, RegisterActivity::class.java)
-           // startActivity(intent)
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -47,45 +52,68 @@ class LoginActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            //binding.btnEnter.setOnClickListener {
-            //   val intent = Intent(this, MainActivity::class.java)
-            //   startActivity(intent)
-            //}
+
+//startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
     private fun signIn(email: String, password: String) {
         // [START sign_in_with_email]
-        if (email != "" || password != "") {
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        Toast.makeText(
-                            baseContext, "Authentication complete.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        //cambiar pantalla
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+        if (!validateForm()) {
+            return
+        }
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = auth.currentUser
+                    Toast.makeText(
+                        baseContext, "Benvingut",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    //cambiar pantalla
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext, "Usuario o contraseña incorrectos",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            // [END sign_in_with_email]
+            }
+        // [END sign_in_with_email]
+
+    }
+
+    private fun validateForm(): Boolean {
+        var valid = true
+
+        val email = binding.inputEmail.text.toString().trim()
+        if (TextUtils.isEmpty(email)) {
+            binding.inputEmail.error = "Camp obligatori"
+            valid = false
         } else {
+            binding.inputEmail.error = null
+        }
+
+        val password = binding.inputPsw.text.toString().trim()
+        if (TextUtils.isEmpty(password)) {
+            binding.inputPsw.error = "Camp obligatori"
+            valid = false
+        } else {
+            binding.inputPsw.error = null
+        }
+        if (!valid) {
             Toast.makeText(
                 baseContext, "Campo vacio",
                 Toast.LENGTH_SHORT
             ).show()
         }
+        return valid
     }
 
 }
