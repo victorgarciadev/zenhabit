@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.example.zenhabit.R
+import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +24,10 @@ class CreateEditHabitFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    // View Binding (Fragment)
+    private var _binding: FragmentCreateEditHabitBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +40,26 @@ class CreateEditHabitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_edit_habit, container, false)
+        // Inflate the layout for this fragment (View Binding)
+        _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // Carregar dades XML + crear adaptador pel Dropdown Menu (Categories)
+        val categories = resources.getStringArray(R.array.categories)
+        val adapter = activity?.let {
+            ArrayAdapter(
+                it,
+                R.layout.list_item, // Carrego layout per mostrar els ítems
+                categories
+            )
+        }
+
+        with(binding.autoCompleteTextView){
+            setAdapter(adapter)
+        }
     }
 
     companion object {
@@ -57,4 +81,5 @@ class CreateEditHabitFragment : Fragment() {
                 }
             }
     }
+
 }
