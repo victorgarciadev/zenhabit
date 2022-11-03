@@ -1,7 +1,5 @@
 package com.example.zenhabit.Activities
 
-import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -18,35 +16,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-
-    // Declarar variable pel View Binding
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        // Inicialitzar View Binding (Activity)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Initialize Firebase Auth
-        auth = Firebase.auth
-
-        val actionBar: ActionBar? = supportActionBar
-        actionBar?.hide()
-
-        // Intent cap a la pantalla principal 'Home' si l'usuari no està loguejat
-        binding.btnEnter.setOnClickListener {
-            signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
-        }
-
-
-        binding.textViewRegisterLink.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_login)
     }
 
     // Comprovar si usuari ja està loguejat
