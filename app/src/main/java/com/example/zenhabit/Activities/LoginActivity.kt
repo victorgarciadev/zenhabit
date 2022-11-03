@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.MainActivity
+import com.example.zenhabit.R
 import com.example.zenhabit.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -69,18 +72,14 @@ class LoginActivity : AppCompatActivity() {
                     // Login correcte, mostrem que tot ha anat correcte
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
-                    Toast.makeText(
-                        baseContext, "Benvingut.", Toast.LENGTH_SHORT
-                    ).show()
+                    Toast(this).showCustomToast("Benvingut", this)
 //cambiar pantalla
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
 // Si falla, mostrem l’error o errors
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT
-                    ).show()
+                    Toast(this).showCustomToast("Usuari o contrasenya incorrectes", this)
                 }
             }
     }
@@ -105,11 +104,27 @@ class LoginActivity : AppCompatActivity() {
             binding.inputPsw.error = null
         }
         if (!valid) {
-            Toast.makeText(
-                baseContext, "Campo vacio", Toast.LENGTH_SHORT
-            ).show()
+            Toast(this).showCustomToast("Camp buit", this)
         }
         return valid
+    }
+
+    private fun Toast.showCustomToast(message: String, activity: LoginActivity)
+    {
+        val layout = activity.layoutInflater.inflate (
+            R.layout.toast_layout,
+            activity.findViewById(R.id.toast_container)
+        )
+
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+        this.apply {
+            setGravity(Gravity.CENTER, 0, 700)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
+        }
     }
 
 }
