@@ -78,7 +78,6 @@ class LoginActivity : AppCompatActivity() {
         if (!valid) {
             Toast(this).showCustomToast("Camp buit", this)
         }
-        return valid
     }
 
     private fun Toast.showCustomToast(message: String, activity: LoginActivity)
