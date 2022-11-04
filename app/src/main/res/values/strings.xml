@@ -55,4 +55,12 @@
     <string name="nom_d_usuari_a">Nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
+    <string name="nom_habit">Nom Hàbit</string>
+    <string name="descripcio_opcional">Descripció (opcional)</string>
+    <string name="tasca_txt_btn">Tasca</string>
+    <string name="habit_txt_btn">Hàbit</string>
+    <string name="repeticio">Repetició</string>
+    <string name="horari">Horari</string>
+    <string name="data_limit">Data límit</string>
+    <string name="desar">DESAR</string>
 </resources>
