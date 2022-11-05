@@ -87,5 +87,6 @@
     <string name="credits">Desenvolupat per:</string>
     <string name="pablo_morante">Pablo Morante</string>
     <string name="configuracions_titol_perfil">Perfil d\'usuari</string>
+    <string name="Copyright">© 2022, ZenHabit.</string>
 
 </resources>
