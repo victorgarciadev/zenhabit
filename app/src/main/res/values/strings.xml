@@ -50,7 +50,8 @@
     <string name="x">X</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
-    <string name="userName">Paula Demo</string>
+    <string name="settings_title">Configuracions</string>
+    <string name="configuracions_titol_perfil">Perfil d\'usuari</string>
     <string name="configuracions_crear_contrasenya">Crear contrasenya</string>
     <string name="configs_canviar_contrasenya">Canviar contrasenya</string>
     <string name="configs_canviar_nom_usuari">Canviar nom</string>
@@ -80,13 +81,16 @@
     <string name="horari">Horari</string>
     <string name="data_limit">Data límit</string>
     <string name="desar">DESAR</string>
-    <string name="credits_about_titular">(Versió 1.0)</string>
+
+    <!-- DIÀLEG 'ABOUT' -->
+    <string name="about_versio">(Versió 1.0)</string>
     <string name="txell_llanas">Txell Llanas</string>
     <string name="izan_jimenez">Izan Jiménez</string>
     <string name="victor_garcia">Víctor García</string>
-    <string name="credits">Desenvolupat per:</string>
+    <string name="about_credits">Desenvolupat per:</string>
     <string name="pablo_morante">Pablo Morante</string>
-    <string name="configuracions_titol_perfil">Perfil d\'usuari</string>
     <string name="Copyright">© 2022, ZenHabit.</string>
+    <string name="descripcio_ing_logo">Logotip ZenHabit</string>
+    <string name="logotip_zenhabit">Logotip ZenHabit</string>
 
 </resources>
