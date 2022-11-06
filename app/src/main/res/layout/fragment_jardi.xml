@@ -8,9 +8,6 @@
     app:barrierMargin="10dp"
     tools:context=".Fragments.TasksFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -141,14 +138,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/Planta2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Planta2"
-                        android:gravity="center"
-                        android:textColor="#ffffff" />
-
-                    <TextView
                         android:id="@+id/DescPlanta2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -156,6 +145,14 @@
                         android:textColor="#ffffff"
                         android:gravity="center"
                         tools:ignore="TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/Planta2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/Planta2"
+                        android:textColor="#ffffff" />
 
                     <ImageView
                         android:id="@+id/imageView2"

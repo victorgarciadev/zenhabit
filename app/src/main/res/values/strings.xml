@@ -55,4 +55,7 @@
     <string name="nom_d_usuari_a">Nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
+    <string name="nom_de_la_tasca">NOM DE LA TASCA</string>
+    <string name="tipustasca">tipusTasca</string>
+    <string name="hora">hora</string>
 </resources>
