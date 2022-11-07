@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bin = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bin.root)
-
-        findViewById<LinearLayout>(R.id.btn_tasques).setOnClickListener {
+        findViewById<LinearLayout>(R.id.btn_veureHabitTasca).setOnClickListener {
             setContentView(R.layout.fragment_tasks)
         }
+
+        bin = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bin.root)
 
         val actionBar: ActionBar? = supportActionBar
         actionBar?.hide()

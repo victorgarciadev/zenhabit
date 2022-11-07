@@ -30,15 +30,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageView_logo"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerInside"
-                        android:scaleX=".5"
-                        android:scaleY=".5"
-                        app:srcCompat="@drawable/logo_light_m"
-                        android:contentDescription="@string/logotip_zenhabit" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/descripcio_ing_logo"
+                            android:scaleType="centerInside"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/logo_light" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,13 +59,15 @@
 
                 <TextView
                     android:id="@+id/textView_greeting"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/hola"
-                    android:textColor="@color/white"
-                    android:textSize="48sp"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ddd"
+                    android:textSize="34sp"
                     app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,9 +78,9 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/completa_el_teu_perfil"
-                    android:textColor="#999999"
+                    android:textColor="#999"
                     android:textDirection="ltr"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="normal"
                     android:typeface="sans"
                     android:visibility="visible"
@@ -95,7 +107,7 @@
                     android:autofillHints=""
                     android:ems="10"
                     android:fontFamily="@font/open_sans"
-                    android:hint="@string/nom_d_usuari_a"
+                    android:hint="@string/nom_usuari"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHint="#999999"

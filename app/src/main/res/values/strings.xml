@@ -92,8 +92,5 @@
     <string name="Copyright">© 2022, ZenHabit.</string>
     <string name="descripcio_ing_logo">Logotip ZenHabit</string>
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
-    <string name="nnom_de_la_tasca">Nnom De La Tasca</string>
-    <string name="nom_de_la_tasca">nom_de_la_tasca</string>
-    <string name="hora">hora</string>
 
 </resources>
