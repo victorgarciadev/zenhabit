@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.util.Log
-import android.widget.LinearLayout
+import android.widget.Button
 import com.example.zenhabit.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.hide()
 
-        val btnJardi: LinearLayout = bin.btnJardi
+        val btnJardi: Button = bin.btnVeureJardi
         btnJardi.setOnClickListener{
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentJardi,JardiFragment())
