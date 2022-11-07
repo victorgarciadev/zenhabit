@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.widget.Button
@@ -53,9 +54,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun crearUsuari(email: String, password: String, nom: String) {
-        if (email == "" || password == "" || nom == "") {
-            Toast(this).showCustomToast("Falten camps per completar. Torna a provar", this)
-        } else {
+        if (!validateForm()) {
+            return
+        }
+        else {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -81,6 +83,38 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d(TAG, "User profile updated.")
                 }
             }
+    }
+
+    private fun validateForm(): Boolean {
+        var valid = true
+        val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}\$".toRegex()
+
+        val email = bin.inputCreateEmail.text.toString().trim()
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            bin.inputCreateEmail.error = "El format d'email és incorrecte."
+            valid = false
+        } else {
+            bin.inputCreateEmail.error = null
+        }
+
+        val password = bin.inputCreatePsw.text.toString().trim()
+        if (!password.matches(PASSWORD_REGEX)) {
+             bin.inputCreatePsw.error = "La contrasenya com a mínim ha de tenir 8 caràcters i un número."
+            valid = false
+        } else {
+            bin.inputCreatePsw.error = null
+        }
+
+        val nom = bin.inputCreateUserName.text.toString().trim()
+        if (nom.length >= 10) {
+            bin.inputCreateUserName.error = "El nom ha de tenir un máxim de 10 caràcters."
+        } else {
+            bin.inputCreateUserName.error = null
+        }
+        //if (!valid) {
+        //Toast(this).showCustomToast("Camp buit", this)
+        //}
+        return valid
     }
 
     private fun Toast.showCustomToast(message: String, activity: RegisterActivity)
