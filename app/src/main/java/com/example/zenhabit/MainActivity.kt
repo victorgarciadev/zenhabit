@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.util.Log
 import android.widget.Button
+import android.widget.LinearLayout
 import com.example.zenhabit.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<LinearLayout>(R.id.btn_veureHabitTasca).setOnClickListener {
+            setContentView(R.layout.fragment_tasks)
+        }
 
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
