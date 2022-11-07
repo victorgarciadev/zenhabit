@@ -26,8 +26,23 @@ class MainActivity : AppCompatActivity() {
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
 
-        //val actionBar: ActionBar? = supportActionBar
-        //actionBar?.hide()
+//        val actionBar: ActionBar? = supportActionBar
+//        actionBar?.hide()
+
+        val btnJardi: Button = bin.btnVeureJardi
+        btnJardi.setOnClickListener{
+
+            Log.d(ContentValues.TAG, "button clicked.")
+            val myFragment = JardiFragment()
+            val fragment : Fragment? =
+                supportFragmentManager.findFragmentByTag(JardiFragment::class.java.simpleName)
+            if (fragment !is JardiFragment) {
+                Log.d(ContentValues.TAG, "if entered.")
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.fragmentJardi, myFragment, JardiFragment::class.java.simpleName)
+                    .commit()
+            }
+        }
     }
 
     // Mostrar menú more (Action Bar)
@@ -51,25 +66,6 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
-        val actionBar: ActionBar? = supportActionBar
-        actionBar?.hide()
-
-        val btnJardi: Button = bin.btnVeureJardi
-        btnJardi.setOnClickListener{
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentJardi,JardiFragment())
-                commit()
-            }
-//            Log.d(ContentValues.TAG, "button clicked.")
-//            val myFragment = JardiFragment()
-//            val fragment : Fragment? =
-//                supportFragmentManager.findFragmentByTag(JardiFragment::class.java.simpleName)
-//            if (fragment !is JardiFragment) {
-//                Log.d(ContentValues.TAG, "if entered.")
-//                supportFragmentManager.beginTransaction()
-//                    .add(R.id.fragmentJardi, myFragment, JardiFragment::class.java.simpleName)
-//                    .commit()
-//            }
-        }
     }
-}
+
+    }
