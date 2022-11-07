@@ -17,30 +17,62 @@
             android:background="#22343C">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/titolConfiguracions"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="32dp">
+                android:layout_height="180dp">
+
+                <LinearLayout
+                    android:id="@+id/graphic_bgGreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/layout_bg"
+                    android:backgroundTint="#30434e"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/graphic_bgGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/layout_bg"
+                    android:backgroundTint="#22343C"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
                 <TextView
                     android:id="@+id/textView_settings"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="238dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/settings_title"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
                     android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="32dp">
 
                 <!-- IDIOMES -->
                 <TextView
                     android:id="@+id/textView_labelLanguage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/configuracions_titol_idioma_aplicacio"
@@ -51,7 +83,7 @@
                     android:typeface="sans"
                     app:drawableStartCompat="@drawable/ic_language_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_settings" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- IDIOMES RADIO BUTTONS -->
                 <LinearLayout
@@ -175,7 +207,7 @@
                             android:autofillHints="Username"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="@string/nom_d_usuari_a"
+                            android:hint="@string/nom_usuari"
                             android:inputType="textPersonName"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -185,6 +217,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
+
                 <!-- CANVIAR EMAIL -->
                 <LinearLayout
                     android:id="@+id/graphic_bloc_mail_usuari"

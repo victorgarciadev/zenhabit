@@ -31,16 +31,27 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageView_logo"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/descripcio_ing_logo"
-                        android:scaleType="centerInside"
-                        android:scaleX=".5"
-                        android:scaleY=".5"
-                        app:srcCompat="@drawable/logo_light_m" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/descripcio_ing_logo"
+                            android:scaleType="centerInside"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/logo_light" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </FrameLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,11 +62,11 @@
                 <TextView
                     android:id="@+id/textView_welcomeText"
                     android:layout_width="0dp"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/benvingut_da"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/white"
+                    android:textColor="#ddd"
                     android:textSize="34sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -69,9 +80,9 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/inicia_sessi_per_continuar"
-                    android:textColor="#999999"
+                    android:textColor="#999"
                     android:textDirection="ltr"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="normal"
                     android:typeface="sans"
                     android:visibility="visible"
@@ -102,7 +113,9 @@
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/white"
+                    android:textColorHighlight="#00a2e7"
                     android:textColorHint="#999999"
+                    android:textColorLink="#00a2e7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
                     app:layout_constraintTop_toBottomOf="@+id/textView_tagline" />
