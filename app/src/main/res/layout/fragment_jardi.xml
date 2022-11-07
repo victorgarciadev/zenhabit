@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
+    android:backgroundTint="#1D2C32"
     app:barrierMargin="10dp"
     tools:context=".Fragments.TasksFragment">
 
@@ -19,6 +20,7 @@
             android:id="@+id/Progrés"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:text="@string/jardi"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -34,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/open_sans"
             android:text="@string/aconseguides"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -46,8 +49,8 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="344dp"
             android:layout_height="208dp"
-            android:backgroundTint="#8A334D57"
             android:background="@drawable/rounded_corner"
+            android:backgroundTint="#8A334D57"
             android:gravity="center"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,8 +63,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -101,8 +104,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corner"
-                    android:gravity="center"
                     android:backgroundTint="#8BC34A"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -123,10 +126,10 @@
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:gravity="center"
                         android:layout_width="94dp"
                         android:layout_height="102dp"
                         android:contentDescription="@string/DescripcionPlanta"
+                        android:gravity="center"
                         tools:ignore="ImageContrastCheck"
                         tools:src="@tools:sample/avatars" />
                 </LinearLayout>
@@ -135,8 +138,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:backgroundTint="#604AC3"
                     android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#604AC3"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -144,17 +147,17 @@
                         android:id="@+id/Planta2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Planta2"
                         android:gravity="center"
+                        android:text="@string/Planta2"
                         android:textColor="#ffffff" />
 
                     <TextView
                         android:id="@+id/DescPlanta2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/DescripcionPlanta"
                         android:textColor="#ffffff"
-                        android:gravity="center"
                         tools:ignore="TextContrastCheck" />
 
                     <ImageView
@@ -171,8 +174,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:backgroundTint="#C34A6C"
                     android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#C34A6C"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -180,26 +183,26 @@
                         android:id="@+id/Planta3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/Planta1"
-                        android:textColor="#37474F"
-                        android:gravity="center"/>
+                        android:textColor="#37474F" />
 
                     <TextView
                         android:id="@+id/DescPlanta3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/DescripcionPlanta"
-                        android:textColor="#37474F"
-                        android:gravity="center"/>
+                        android:textColor="#37474F" />
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="94dp"
                         android:layout_height="102dp"
                         android:contentDescription="@string/DescripcionPlanta"
+                        android:gravity="center"
                         tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars"
-                        android:gravity="center" />
+                        tools:src="@tools:sample/avatars" />
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
@@ -224,20 +227,21 @@
                 android:padding="5dp">
 
 
-
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginBottom="5dp"
+                    app:cardBackgroundColor="#1D2C32"
                     app:cardCornerRadius="18dp"
                     tools:visibility="visible">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#286053"
-                        android:backgroundTint="#286053">
+                        android:alpha="0.5"
+                        android:background="@drawable/shape_listshapejardi"
+                        android:backgroundTint="@color/ic_rightArrowButton_background"
+                        android:backgroundTintMode="add">
 
                         <TextView
                             android:id="@+id/txt_ArbresObtinguts"
@@ -415,8 +419,8 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
-                        android:background="#353854"
-                        android:backgroundTint="#353854">
+                        android:background="#146080"
+                        android:backgroundTint="#146080">
 
                         <TextView
                             android:id="@+id/txt_FlorsObtingudes"
@@ -425,7 +429,7 @@
                             android:layout_marginStart="32dp"
                             android:fontFamily="@font/open_sans"
                             android:text="Has obtingut: 6"
-                            android:textColor="#74A0F1"
+                            android:textColor="#00A2E7"
                             android:textSize="11sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -439,7 +443,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans"
                             android:text="Flors"
-                            android:textColor="#74A0F1"
+                            android:textColor="#00A2E7"
                             android:textSize="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -452,7 +456,7 @@
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:background="@drawable/shape_jardi_verticalscrollview_img"
-                            android:backgroundTint="#74A0F1"
+                            android:backgroundTint="#00A2E7"
                             android:src="@drawable/ic_button_jardi"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/txt_FlorsTitle"
