@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                 // Login correcte, mostrem que tot ha anat correcte
                 Log.d(TAG, "signInWithEmail:success")
                 val user = auth.currentUser
-                Toast(this).showCustomToast("Benvingut", this)
+                Toast(this).showCustomToast("Hola, ${user?.displayName} !", this)
                 //canviar pantalla
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -100,9 +100,9 @@ class LoginActivity : AppCompatActivity() {
         } else {
             binding.inputPsw.error = null
         }
-        if (!valid) {
-            Toast(this).showCustomToast("Camp buit", this)
-        }
+        //if (!valid) {
+            //Toast(this).showCustomToast("Camp buit", this)
+        //}
         return valid
     }
 
