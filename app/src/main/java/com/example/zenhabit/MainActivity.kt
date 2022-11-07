@@ -1,9 +1,9 @@
 package com.example.zenhabit
 
-import android.app.PendingIntent.getActivity
-import android.content.Intent
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import com.example.zenhabit.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBar
@@ -26,15 +26,19 @@ class MainActivity : AppCompatActivity() {
 
         val btnJardi: LinearLayout = bin.btnJardi
         btnJardi.setOnClickListener{
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentJardi,JardiFragment())
+                commit()
+            }
+//            Log.d(ContentValues.TAG, "button clicked.")
 //            val myFragment = JardiFragment()
 //            val fragment : Fragment? =
-//                supportFragmentManager.findFragmentByTag(myFragment::class.java.simpleName)
-
-            var jardiFragment = JardiFragment()
-            supportFragmentManager.beginTransaction().add(R.id.fragmentJardi, jardiFragment).commit()
-//            supportFragmentManager.beginTransaction()
-//                .add(R.id.constraintLayout, myFragment, myFragment::class.java.simpleName)
-//                .commit()
+//                supportFragmentManager.findFragmentByTag(JardiFragment::class.java.simpleName)
+//            if (fragment !is JardiFragment) {
+//                Log.d(ContentValues.TAG, "if entered.")
+//                supportFragmentManager.beginTransaction()
+//                    .add(R.id.fragmentJardi, myFragment, JardiFragment::class.java.simpleName)
+//                    .commit()
 //            }
         }
     }

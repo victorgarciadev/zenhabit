@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/fondo"
     app:barrierMargin="10dp"
-    tools:context=".Fragments.TasksFragment">
+    tools:context=".Fragments.TasksFragment"
+    android:id="@+id/fragmentJardi">
 
     <!-- TODO: Update blank fragment layout -->
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fragmentJardi"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
