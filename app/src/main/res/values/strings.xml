@@ -71,7 +71,7 @@
     <string name="email">Correu electrònic</string>
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
-    <string name="nom_d_usuari_a">Nom d\'usuari/a</string>
+    <string name="nom_usuari">Nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
     <string name="descripcio_opcional">Descripció (opcional)</string>
@@ -89,8 +89,18 @@
     <string name="victor_garcia">Víctor García</string>
     <string name="about_credits">Desenvolupat per:</string>
     <string name="pablo_morante">Pablo Morante</string>
-    <string name="Copyright">© 2022, ZenHabit.</string>
+    <string name="copyright">&#169; 2022 ZenHabit</string>
     <string name="descripcio_ing_logo">Logotip ZenHabit</string>
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
+    <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
+    <string name="credits">Crèdits</string>
+    <string name="icona_campana">icona campana</string>
+    <string name="tasques_pendents">Tens (x) tasques pendents</string>
+    <string name="btn_home_jardi">JARDÍ</string>
+    <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
+    <string name="titol_home_progres">PROGRÉS</string>
+    <string name="label_home_pendents">Pendents</string>
+    <string name="label_home_complerts">Hàbits complets</string>
+    <string name="label_home_tasques_complertes">Tasques complertes</string>
 
 </resources>
