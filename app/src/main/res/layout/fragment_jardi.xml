@@ -44,10 +44,12 @@
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
-            android:layout_width="344dp"
+            android:layout_width="0dp"
             android:layout_height="208dp"
-            android:backgroundTint="#8A334D57"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_corner"
+            android:backgroundTint="#8A334D57"
             android:gravity="center"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,8 +62,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -299,10 +301,12 @@
             android:id="@+id/back"
 
             android:layout_width="337dp"
-            android:layout_height="227dp"
+            android:layout_height="0dp"
             android:layout_marginTop="28dp"
+            android:layout_marginBottom="120dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="#293E46"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.471"
             app:layout_constraintStart_toStartOf="parent"
@@ -313,8 +317,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="5dp">
-
-
 
 
                 <androidx.cardview.widget.CardView
