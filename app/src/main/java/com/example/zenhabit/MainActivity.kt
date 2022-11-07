@@ -31,17 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         val btnJardi: Button = bin.btnVeureJardi
         btnJardi.setOnClickListener{
-
-            Log.d(ContentValues.TAG, "button clicked.")
-            val myFragment = JardiFragment()
-            val fragment : Fragment? =
-                supportFragmentManager.findFragmentByTag(JardiFragment::class.java.simpleName)
-            if (fragment !is JardiFragment) {
-                Log.d(ContentValues.TAG, "if entered.")
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.fragmentJardi, myFragment, JardiFragment::class.java.simpleName)
-                    .commit()
-            }
+            setContentView(R.layout.fragment_jardi)
+        }
+        val btnTasques: Button = bin.btnVeureHabitTasca
+        btnTasques.setOnClickListener{
+            setContentView(R.layout.fragment_tasks)
         }
     }
 
