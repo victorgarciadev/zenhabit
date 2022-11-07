@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
-    android:backgroundTint="#1D2C32"
     app:barrierMargin="10dp"
     tools:context=".Fragments.TasksFragment">
 
@@ -20,7 +19,6 @@
             android:id="@+id/Progrés"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
             android:text="@string/jardi"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -36,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/open_sans"
             android:text="@string/aconseguides"
             android:textColor="@color/white"
             android:textSize="48sp"
@@ -49,8 +46,8 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="344dp"
             android:layout_height="208dp"
-            android:background="@drawable/rounded_corner"
             android:backgroundTint="#8A334D57"
+            android:background="@drawable/rounded_corner"
             android:gravity="center"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,147 +60,238 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rounded_corner"
-                    android:backgroundTint="#6C6C6C"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#293E46">
 
-                    <TextView
-                        android:id="@+id/Planta1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Planta1"
-                        android:textColor="#E0F2F1" />
-
-                    <TextView
-                        android:id="@+id/DescPlanta1"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/DescripcionPlanta"
-                        android:textColor="#E0F2F1" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_jardi_upper_card_background"
+                        android:backgroundTint="#286053">
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="94dp"
-                        android:layout_height="102dp"
-                        android:contentDescription="@string/DescripcionPlanta"
-                        tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/txt_upperCardTitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/Planta1"
+                            android:textColor="#3DD396"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.
+" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/txt_upperCardDescription1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/DescripcionPlanta"
+                            android:textColor="#3DD396"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_upperCardTitle1"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/img_upperCard1"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="@drawable/shape_jardi_upper_card_image_background"
+                            android:backgroundTint="#3DD497"
+                            android:src="@drawable/ic_button_jardi"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.8" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rounded_corner"
-                    android:backgroundTint="#8BC34A"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#293E46">
 
-                    <TextView
-                        android:id="@+id/Planta4"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Planta1"
-                        android:textColor="#37474F" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_jardi_upper_card_background"
+                        android:backgroundTint="#625B39">
 
-                    <TextView
-                        android:id="@+id/DescPlanta4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/DescripcionPlanta"
-                        android:textColor="#37474F" />
+                        <TextView
+                            android:id="@+id/txt_upperCardTitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/Planta1"
+                            android:textColor="#FEC442"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0." />
 
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="94dp"
-                        android:layout_height="102dp"
-                        android:contentDescription="@string/DescripcionPlanta"
-                        android:gravity="center"
-                        tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/txt_upperCardDescription2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/DescripcionPlanta"
+                            android:textColor="#FEC442"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_upperCardTitle2"
+                            app:layout_constraintVertical_bias="0.0" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/img_upperCard2"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="@drawable/shape_jardi_upper_card_image_background"
+                            android:backgroundTint="#FEC442"
+                            android:src="@drawable/ic_button_jardi"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.8" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rounded_corner"
-                    android:backgroundTint="#604AC3"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#293E46">
 
-                    <TextView
-                        android:id="@+id/Planta2"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Planta2"
-                        android:textColor="#ffffff" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_jardi_upper_card_background"
+                        android:backgroundTint="#603941">
 
-                    <TextView
-                        android:id="@+id/DescPlanta2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/DescripcionPlanta"
-                        android:textColor="#ffffff"
-                        tools:ignore="TextContrastCheck" />
+                        <TextView
+                            android:id="@+id/txt_upperCardTitle3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/Planta1"
+                            android:textColor="#FE565E"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.222" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="94dp"
-                        android:layout_height="102dp"
-                        android:contentDescription="@string/DescripcionPlanta"
-                        tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars" />
+                        <TextView
+                            android:id="@+id/txt_upperCardDescription3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/DescripcionPlanta"
+                            android:textColor="#FE565E"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_upperCardTitle3"
+                            app:layout_constraintVertical_bias="0.0" />
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/img_upperCard3"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="@drawable/shape_jardi_upper_card_image_background"
+                            android:backgroundTint="#FD565E"
+                            android:src="@drawable/ic_button_jardi"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.8" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/rounded_corner"
-                    android:backgroundTint="#C34A6C"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginRight="10dp"
+                    app:cardBackgroundColor="#293E46">
 
-                    <TextView
-                        android:id="@+id/Planta3"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Planta1"
-                        android:textColor="#37474F" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_jardi_upper_card_background"
+                        android:backgroundTint="#14607F">
 
-                    <TextView
-                        android:id="@+id/DescPlanta3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/DescripcionPlanta"
-                        android:textColor="#37474F" />
+                        <TextView
+                            android:id="@+id/txt_upperCardTitle4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/Planta1"
+                            android:textColor="#00A1E6"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard4"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.507"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.222" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="94dp"
-                        android:layout_height="102dp"
-                        android:contentDescription="@string/DescripcionPlanta"
-                        android:gravity="center"
-                        tools:ignore="ImageContrastCheck"
-                        tools:src="@tools:sample/avatars" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/txt_upperCardDescription4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/DescripcionPlanta"
+                            android:textColor="#00A1E6"
+                            app:layout_constraintBottom_toTopOf="@+id/img_upperCard4"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_upperCardTitle4"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/img_upperCard4"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:background="@drawable/shape_jardi_upper_card_image_background"
+                            android:backgroundTint="#00A0E5"
+                            android:src="@drawable/ic_button_jardi"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.8" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -227,21 +315,20 @@
                 android:padding="5dp">
 
 
+
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_marginBottom="5dp"
-                    app:cardBackgroundColor="#1D2C32"
                     app:cardCornerRadius="18dp"
                     tools:visibility="visible">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.5"
-                        android:background="@drawable/shape_listshapejardi"
-                        android:backgroundTint="@color/ic_rightArrowButton_background"
-                        android:backgroundTintMode="add">
+                        android:background="#286053"
+                        android:backgroundTint="#286053">
 
                         <TextView
                             android:id="@+id/txt_ArbresObtinguts"
@@ -262,7 +349,7 @@
                             android:id="@+id/txt_ArbresTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
+                            android:fontFamily="@font/open_sans_bold"
                             android:text="Arbres"
                             android:textColor="#3dd598"
                             android:textSize="20dp"
@@ -322,7 +409,7 @@
                             android:id="@+id/txt_ArbustsTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
+                            android:fontFamily="@font/open_sans_bold"
                             android:text="Arbusts"
                             android:textColor="#FFC542"
                             android:textSize="20dp"
@@ -382,7 +469,7 @@
                             android:id="@+id/txt_PlantesTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
+                            android:fontFamily="@font/open_sans_bold"
                             android:text="Plantes"
                             android:textColor="#FF565E"
                             android:textSize="20dp"
@@ -441,7 +528,7 @@
                             android:id="@+id/txt_FlorsTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans"
+                            android:fontFamily="@font/open_sans_bold"
                             android:text="Flors"
                             android:textColor="#00A2E7"
                             android:textSize="20dp"
