@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@drawable/taskhabitbackground"
-tools:context=".Fragments.CreateEditHabitFragment">
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/taskhabitbackground"
-    android:translationZ="0dp">
+    android:background="#22343C"
+    tools:context=".Fragments.CreateEditHabitFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,38 +20,61 @@ tools:context=".Fragments.CreateEditHabitFragment">
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <LinearLayout
+            android:id="@+id/graphic_bgGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/layout_bg"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/graphic_bgGray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/layout_bg"
+            android:backgroundTint="#22343C"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
+
         <TextView
             android:id="@+id/txt_HabitEdit"
-            android:layout_width="180dp"
-            android:layout_height="57dp"
-            android:layout_marginBottom="29dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="32dp"
             android:fontFamily="@font/open_sans"
-            android:text="Hàbit 1"
+            android:text="@string/nom_habit"
+            android:textAlignment="textStart"
             android:textColor="#FFF"
-            android:textSize="45sp"
-            app:layout_constraintBottom_toTopOf="@+id/txt_input_DescripcioHabit"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txt_input_DescripcioHabit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="32dp"
             android:background="#22343C"
             android:backgroundTint="#22343C"
-            android:hint="Descripció (opcional)"
+            android:hint="@string/descripcio_opcional"
             android:textColorHint="#FFF"
             app:hintTextColor="#FFF"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23000002">
+            app:layout_constraintTop_toTopOf="@+id/graphic_bgGray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -74,7 +91,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             app:boxBackgroundColor="@color/white"
             app:boxCollapsedPaddingTop="8dp"
@@ -86,10 +103,10 @@ tools:context=".Fragments.CreateEditHabitFragment">
             app:boxStrokeWidthFocused="0dp"
             app:endIconTint="#757575"
             app:hintTextColor="#757575"
-            app:startIconDrawable="@drawable/ic_category"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit">
+            app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit"
+            app:startIconDrawable="@drawable/ic_category">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextView"
@@ -110,17 +127,15 @@ tools:context=".Fragments.CreateEditHabitFragment">
             android:drawableTint="#7A858A"
             android:fontFamily="@font/open_sans"
             android:padding="10dp"
-            android:text="Tasca"
+            android:text="@string/tasca_txt_btn"
             android:textAllCaps="false"
             android:textColor="#7A858A"
             android:textSize="18sp"
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayoutRepeticio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintEnd_toStartOf="@+id/btn_crearEditarHabit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit" />
 
         <Button
             android:id="@+id/btn_crearEditarHabit"
@@ -132,61 +147,38 @@ tools:context=".Fragments.CreateEditHabitFragment">
             android:padding="15dp"
             android:shadowColor="#000000"
             android:shadowDy="10"
-            android:text="Hàbit"
+            android:text="@string/habit_txt_btn"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:cornerRadius="15dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayoutRepeticio"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
-            app:layout_constraintVertical_bias="0.45" />
-
-        <Button
-            android:id="@+id/btn_guardarCrearEditarTasca"
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="200dp"
-            android:backgroundTint="#1DBD7D"
-            android:padding="15dp"
-            android:text="GUARDAR"
-            android:textAllCaps="false"
-            android:textColor="#FFF"
-            android:textSize="18sp"
-            app:cornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-            tools:ignore="MissingConstraints" />
-
+            app:layout_constraintStart_toEndOf="@+id/btn_crearEditarTasca"
+            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutRepeticio"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginTop="180dp"
             android:layout_weight="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="32dp"
+            android:background="#30444E">
 
             <ImageView
                 android:id="@+id/img_repeticioCrearEditarHabit"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_btn_repeticio_habit"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txt_repeticioHabit"
-                app:layout_constraintHorizontal_bias="0.84"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52" />
+                app:layout_constraintVertical_bias="0.52"
+                android:contentDescription="icona de repetició" />
 
             <TextView
                 android:id="@+id/txt_repeticioHabit"
@@ -194,29 +186,27 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Repetició"
+                android:text="@string/repeticio"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.217"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.567" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="180dp"
+                android:id="@+id/textInputLayout2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.73"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarRepeticioCrearEditarHabit"
+                app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-
                     android:id="@+id/txt_input_RepeticioCrearEditarHabit"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -224,6 +214,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -231,6 +222,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="#30444E"
                 android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
                 android:foregroundTint="#30444E"
@@ -240,41 +232,34 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:shadowRadius="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.937"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="168dp"
             android:layout_weight="1"
             android:background="#30444E"
-            android:backgroundTint="#30444E"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutRepeticio"
-            app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/img_rellotgeHorariCrearEditarHabit"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_btn_watch_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tzt_horariHabit"
-                app:layout_constraintHorizontal_bias="0.823"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52" />
+                android:contentDescription="icona d'un rellotge" />
 
             <TextView
                 android:id="@+id/tzt_horariHabit"
@@ -282,26 +267,24 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Horari"
+                android:text="@string/horari"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.217"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.567" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_HorariHabit"
-                android:layout_width="180dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.73"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarHorariCrearEditarHabit"
+                app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -312,6 +295,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -319,6 +303,7 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="#30444E"
                 android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
                 android:foregroundTint="#30444E"
@@ -328,8 +313,6 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:shadowRadius="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.937"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.52"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -356,15 +339,14 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:id="@+id/txt_dataLimitCrearEditarHabit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/open_sans"
-                android:text="Data límit"
+                android:text="@string/data_limit"
                 android:textColor="#FFFFFF"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.264"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.513" />
 
@@ -372,25 +354,25 @@ tools:context=".Fragments.CreateEditHabitFragment">
                 android:id="@+id/img_rellotgeDataLimitCrearEditarHabit"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="32dp"
                 android:src="@drawable/img_btn_watch_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txt_dataLimitCrearEditarHabit"
-                app:layout_constraintHorizontal_bias="0.777"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52" />
+                app:layout_constraintVertical_bias="0.52"
+                android:contentDescription="icona d'un rellotge" />
 
             <EditText
                 android:id="@+id/txt_input_dataLimitCrearEditarHabit"
                 android:layout_width="169dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="100dp"
+                android:autofillHints="00/00/0000"
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
                 android:inputType="date"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.737"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -415,9 +397,25 @@ tools:context=".Fragments.CreateEditHabitFragment">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Mising constraint en la siguiente línia para hacer push -->
+        <Button
+            android:id="@+id/btn_guardarCrearEditarTasca"
+            android:layout_width="200dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#1DBD7D"
+            android:padding="15dp"
+            android:text="@string/desar"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>

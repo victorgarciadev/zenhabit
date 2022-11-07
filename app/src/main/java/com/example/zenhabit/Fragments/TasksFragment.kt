@@ -34,8 +34,10 @@ class TasksFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
-/*
+
+    /*
         val rvTasca = view?.findViewById<RecyclerView>(R.id.rvTasques)
         rvTasca?.layoutManager = LinearLayoutManager(Fragment().context)
 
@@ -62,12 +64,16 @@ class TasksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = LinearLayoutManager(context)
+
+        recyclerView = view.findViewById(R.id.rvTasques)
+        recyclerView.adapter = AdapterTasques(getTasquesList())
+
+        /*val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.rvTasques)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
         adapterTareas = AdapterTasques(getTasquesList())
-        recyclerView.adapter = adapterTareas
+        recyclerView.adapter = adapterTareas*/
     }
 
     private fun getTasquesList(): ArrayList<Tasca> {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,140 +9,163 @@
     android:background="#22343C"
     tools:context=".Activities.LoginActivity">
 
-    <FrameLayout
-        android:id="@+id/FrameLayout_headerBg"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:background="#1D2C32"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView_logo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            android:scaleX=".5"
-            android:scaleY=".5"
-            app:srcCompat="@drawable/logo_light_m" />
-    </FrameLayout>
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView_welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/benvingut_da"
-        android:textColor="@color/white"
-        android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FrameLayout_headerBg" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/input_email"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHint="#999999"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
-        app:layout_constraintTop_toBottomOf="@+id/textView_tagline" />
+                <FrameLayout
+                    android:id="@+id/FrameLayout_headerBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="#1D2C32"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/input_psw"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:hint="@string/contrasenya"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="#999999"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView_iconPsw"
-        app:layout_constraintTop_toBottomOf="@+id/input_email" />
+                    <ImageView
+                        android:id="@+id/imageView_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/descripcio_ing_logo"
+                        android:scaleType="centerInside"
+                        android:scaleX=".5"
+                        android:scaleY=".5"
+                        app:srcCompat="@drawable/logo_light_m" />
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView_iconEmail"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/input_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_tagline"
-        app:srcCompat="@drawable/mail_small" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="32dp">
 
-    <ImageView
-        android:id="@+id/imageView_iconPsw"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/input_psw"
-        app:layout_constraintHorizontal_bias="0.69"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
-        app:srcCompat="@drawable/psw_small" />
+                <TextView
+                    android:id="@+id/textView_welcomeText"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/benvingut_da"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_enter"
-        android:layout_width="250dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#1DBE7D"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/entrar"
-        android:textSize="20sp"
-        app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_iconPsw" />
+                <TextView
+                    android:id="@+id/textView_tagline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/inicia_sessi_per_continuar"
+                    android:textColor="#999999"
+                    android:textDirection="ltr"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    android:typeface="sans"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_welcomeText" />
 
-    <TextView
-        android:id="@+id/textView_tagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/inicia_sessi_per_continuar"
-        android:textColor="#999999"
-        android:textDirection="ltr"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        android:typeface="sans"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_welcomeText" />
+                <ImageView
+                    android:id="@+id/imageView_iconEmail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="48dp"
+                    android:contentDescription="@string/icona_sobre_de_correu"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_tagline"
+                    app:srcCompat="@drawable/mail_small"
+                    tools:ignore="ImageContrastCheck" />
 
-    <TextView
-        android:id="@+id/textView_registerLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/no_tens_compte_registrar_se"
-        android:textColor="#999999"
-        android:textColorLink="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_enter" />
+                <EditText
+                    android:id="@+id/input_email"
+                    style="@style/Widget.AppCompat.EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="@string/email"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="#999999"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_tagline" />
+
+                <EditText
+                    android:id="@+id/input_psw"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="@string/contrasenya"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="#999999"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_iconPsw"
+                    app:layout_constraintTop_toBottomOf="@+id/input_email" />
+
+                <TextView
+                    android:id="@+id/textView_registerLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/no_tens_compte_registrar_se"
+                    android:textColor="#999999"
+                    android:textColorLink="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_enter" />
+
+                <ImageView
+                    android:id="@+id/imageView_iconPsw"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="48dp"
+                    android:contentDescription="@string/icona_en_forma_de_candau"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
+                    app:srcCompat="@drawable/psw_small"
+                    tools:ignore="ImageContrastCheck" />
+
+                <Button
+                    android:id="@+id/btn_enter"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="48dp"
+                    android:backgroundTint="#1DBE7D"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/entrar"
+                    android:textSize="20sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_psw"
+                    tools:ignore="TextContrastCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
