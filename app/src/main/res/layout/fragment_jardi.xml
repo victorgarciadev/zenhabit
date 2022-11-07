@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/fondo"
     app:barrierMargin="10dp"
-    tools:context=".Fragments.TasksFragment">
+    tools:context=".Fragments.TasksFragment"
+    android:id="@+id/fragmentJardi">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
