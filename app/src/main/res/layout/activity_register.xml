@@ -10,7 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#22343C">
+        android:fillViewport="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,40 +19,30 @@
             android:background="#22343C"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
                 <FrameLayout
                     android:id="@+id/FrameLayout_headerBg"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="#1D2C32"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <ImageView
+                        android:id="@+id/imageView_logo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/imageView_logo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@string/descripcio_ing_logo"
-                            android:scaleType="centerInside"
-                            android:scaleX=".6"
-                            android:scaleY=".6"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/logo_light" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/descripcio_ing_logo"
+                        android:scaleType="centerInside"
+                        android:scaleX=".6"
+                        android:scaleY=".6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/logo_light" />
 
                 </FrameLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -199,18 +190,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
-                <CheckBox
-                    android:id="@+id/checkBox_registerTerms"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:buttonTint="#FFFFFF"
+                <TextView
+                    android:id="@+id/textView_termsAndConditions"
+                    android:layout_width="301dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/termes_i_condicions"
                     android:textColor="#999999"
                     android:textColorLink="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_termsAndConditions"
+                    android:layout_width="44dp"
+                    android:layout_height="43dp"
+                    android:layout_marginTop="40dp"
+                    android:buttonTint="@color/white"
+                    android:textColor="#999999"
+                    android:textColorLink="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/textView_termsAndConditions"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />
 
