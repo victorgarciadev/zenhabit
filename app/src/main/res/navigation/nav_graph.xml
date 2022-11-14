@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home2">
+    app:startDestination="@id/homeActivity">
     <fragment
         android:id="@+id/tasksFragment2"
         android:name="com.example.zenhabit.Fragments.TasksFragment"
@@ -38,7 +38,7 @@
             app:destination="@id/createEditHabitFragment" />
     </fragment>
     <fragment
-        android:id="@+id/home2"
+        android:id="@+id/homeActivity"
         android:name="com.example.zenhabit.Fragments.home"
         android:label="home"
         tools:layout="@layout/fragment_home">
