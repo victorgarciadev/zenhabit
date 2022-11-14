@@ -5,5 +5,4 @@ class Tasca(name: String, time: String, taskHabit: String) {
     var hora: String? = time
     var tascaHabit: String? = taskHabit
 
-    var tascaHabit2: String? = taskHabit
 }
