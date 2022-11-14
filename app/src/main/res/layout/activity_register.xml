@@ -190,31 +190,34 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
-                <TextView
-                    android:id="@+id/textView_termsAndConditions"
-                    android:layout_width="301dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="@font/open_sans"
-                    android:text="@string/termes_i_condicions"
-                    android:textColor="#999999"
-                    android:textColorLink="@color/white"
-                    android:textSize="16sp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />
-
-                <CheckBox
-                    android:id="@+id/checkBox_termsAndConditions"
-                    android:layout_width="44dp"
-                    android:layout_height="43dp"
-                    android:layout_marginTop="40dp"
-                    android:buttonTint="@color/white"
-                    android:textColor="#999999"
-                    android:textColorLink="@color/white"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_termsAndConditions"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel" />
+                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/checkBox_termsAndConditions"
+                        android:layout_width="44dp"
+                        android:layout_height="50dp"
+                        android:buttonTint="@color/white"
+                        android:textColor="#999999"
+                        android:textColorLink="@color/white" />
+
+                    <TextView
+                        android:id="@+id/textView_termsAndConditions"
+                        android:layout_width="301dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/termes_i_condicions"
+                        android:textColor="#999999"
+                        android:textColorLink="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
