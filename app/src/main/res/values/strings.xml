@@ -102,5 +102,7 @@
     <string name="label_home_pendents">Pendents</string>
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
+    <string name="nom_de_la_tasca">nom_de_la_tasca</string>
+    <string name="hora">hora</string>
 
 </resources>
