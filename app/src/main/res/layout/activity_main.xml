@@ -12,6 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        app:navGraph="@navigation/nav_graph" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_bottom_nav_bar"
+        app:backgroundTint="#30444E"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="#8697A0"
+        app:itemIconSize="33dp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/nav_host_fragment"
+        app:menu="@menu/bottom_nav_menu" />
 </FrameLayout>
