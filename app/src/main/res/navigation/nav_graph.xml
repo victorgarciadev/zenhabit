@@ -27,7 +27,11 @@
         android:id="@+id/createEditHabitFragment"
         android:name="com.example.zenhabit.Fragments.CreateEditHabitFragment"
         android:label="fragment_create_edit_habit"
-        tools:layout="@layout/fragment_create_edit_habit" />
+        tools:layout="@layout/fragment_create_edit_habit" >
+        <action
+            android:id="@+id/action_createEditHabitFragment_to_createEditTaskFragment"
+            app:destination="@id/createEditTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createEditTaskFragment"
         android:name="com.example.zenhabit.Fragments.CreateEditTaskFragment"
