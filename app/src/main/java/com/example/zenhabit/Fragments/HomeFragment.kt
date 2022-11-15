@@ -38,7 +38,7 @@ class home : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.btnVeureJardi.setOnClickListener{
-            findNavController().navigate(R.id.action_home2_to_jardiFragment)
+            findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn
         }
         binding.btnVeureHabitTasca.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_tasksFragment2)
