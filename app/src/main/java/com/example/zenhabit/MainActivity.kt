@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        findViewById<LinearLayout>(R.id.btn_veureHabitTasca).setOnClickListener {
-            setContentView(R.layout.fragment_tasks)
-        }
-
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
 
