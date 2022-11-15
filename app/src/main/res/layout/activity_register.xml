@@ -190,34 +190,41 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="64dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_cancel">
 
-                    <CheckBox
-                        android:id="@+id/checkBox_termsAndConditions"
-                        android:layout_width="44dp"
-                        android:layout_height="50dp"
-                        android:buttonTint="@color/white"
-                        android:textColor="#999999"
-                        android:textColorLink="@color/white" />
-
                     <TextView
                         android:id="@+id/textView_termsAndConditions"
-                        android:layout_width="301dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:fontFamily="@font/open_sans"
                         android:text="@string/termes_i_condicions"
                         android:textColor="#999999"
                         android:textColorLink="@color/white"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.042"
+                        app:layout_constraintStart_toEndOf="@+id/checkBox_termsAndConditions"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_termsAndConditions"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:buttonTint="@color/white"
+                        android:textColor="#999999"
+                        android:textColorLink="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
