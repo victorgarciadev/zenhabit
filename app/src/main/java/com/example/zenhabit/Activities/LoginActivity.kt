@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 // Si falla, mostrem l’error o errors
-                Log.w(TAG, "signInWithEmail:failure", task.exception)
+                Log.w(TAG, "signInWithEmail:fail", task.exception)
                 Toast(this).showCustomToast("Usuari o contrasenya incorrectes", this)
             }
         }
