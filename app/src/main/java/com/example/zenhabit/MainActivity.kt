@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.util.Log
 import android.widget.Button
+import android.widget.LinearLayout
 import com.example.zenhabit.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
