@@ -35,12 +35,12 @@ class CreateEditHabitFragment : Fragment() {
         _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarTasca'
+        // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarTasca.setOnClickListener {
             findNavController().navigate(R.id.action_createEditHabitFragment_to_createEditTaskFragment)
         }
-        binding.btnGuardarCrearEditarTasca.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_tasksFragment2)
+        binding.btnGuardarCrearEditarHabit.setOnClickListener {
+            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
 
         return view

@@ -40,7 +40,7 @@ class CreateEditTaskFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditTaskFragment_to_createEditHabitFragment)
         }
         binding.btnGuardarCrearEditarTasca.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_tasksFragment2)
+            findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
         }
 
         return view

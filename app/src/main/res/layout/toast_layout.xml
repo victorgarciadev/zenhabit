@@ -7,14 +7,12 @@
     android:id="@+id/toast_container">
 
     <RelativeLayout
-        android:id="@+id/button_parent"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/button_card_parent"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_centerHorizontal="true"
@@ -25,7 +23,6 @@
             app:cardCornerRadius="15dp">
 
             <RelativeLayout
-                android:id="@+id/button_click_parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#1D2C32"
@@ -33,7 +30,6 @@
                 android:focusable="true">
 
                 <FrameLayout
-                    android:id="@+id/button_accent_border"
                     android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:background="#1DBE7D" />

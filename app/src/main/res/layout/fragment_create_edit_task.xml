@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,23 @@
     android:background="#22343C"
     tools:context=".Fragments.CreateEditTaskFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="270dp"
@@ -44,7 +58,6 @@
             app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
         <TextView
-            android:id="@+id/txt_TascaEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
@@ -87,6 +100,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:id="@+id/dropDwnMenu_categoriesTasca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,43 +136,42 @@
             android:id="@+id/btn_crearEditarTasca"
             android:layout_width="100dp"
             android:layout_height="110dp"
+            android:alpha="1"
             android:backgroundTint="#FF565E"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:drawableTop="@drawable/ic_tasca"
+            android:fontFamily="@font/open_sans"
             android:padding="10dp"
             android:text="@string/tasca_txt_btn"
             android:textAllCaps="false"
-            android:textColor="#FFF"
-            android:textSize="18sp"
             app:cornerRadius="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_rowDataLimit"
             app:layout_constraintEnd_toStartOf="@+id/btn_crearEditarHabit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca" />
 
         <Button
             android:id="@+id/btn_crearEditarHabit"
             android:layout_width="100dp"
             android:layout_height="110dp"
-            android:backgroundTint="#7A414A"
+            android:alpha="0.3"
+            android:backgroundTint="#FF565E"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:drawableTop="@drawable/ic_baseline_calendar_zen"
-            android:drawableTint="#7A858A"
-            android:padding="15dp"
-            android:shadowColor="#000000"
-            android:shadowDy="10"
+            android:fontFamily="@font/open_sans"
+            android:padding="10dp"
             android:text="@string/habit_txt_btn"
             android:textAllCaps="false"
-            android:textColor="#7A858A"
-            android:textSize="18sp"
             app:cornerRadius="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout_rowDataLimit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_crearEditarTasca"
-            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesTasca"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/constraintLayout_rowDataLimit"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="180dp"
@@ -172,7 +185,6 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/txt_dataLimitCrearEditarHabit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -191,7 +203,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="32dp"
-                android:contentDescription="icona d'un rellotge"
+                android:contentDescription="@string/icona_rellotge"
                 android:src="@drawable/img_btn_watch_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -199,15 +211,16 @@
                 app:layout_constraintVertical_bias="0.52" />
 
             <EditText
-                android:id="@+id/txt_input_dataLimitCrearEditarHabit"
                 android:layout_width="169dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="100dp"
+                android:layout_marginEnd="3dp"
                 android:autofillHints="00/00/0000"
                 android:ems="10"
                 android:fontFamily="@font/open_sans"
                 android:inputType="date"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarDataCrearEditarHabit"
                 app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -217,6 +230,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
                 android:backgroundTint="#30444E"
                 android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
                 android:foregroundTint="#30444E"
@@ -226,8 +240,6 @@
                 android:shadowRadius="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.937"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -242,9 +254,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
-
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowDataLimit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+    </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
