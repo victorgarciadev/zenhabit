@@ -1,6 +1,8 @@
 package com.example.zenhabit.Fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,9 @@ import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterTasques
 import com.example.zenhabit.databinding.FragmentHomeBinding
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.databinding.ShimmerLayoutBinding
 import com.example.zenhabit.models.Tasca
+import com.facebook.shimmer.ShimmerFrameLayout
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +31,8 @@ class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding!!
+
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +51,22 @@ class TasksFragment : Fragment() {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
 
-        // Replace 'android.R.id.list' with the 'id' of your RecyclerView
+
+        // RecyclerView
         var mRecyclerView = binding.rvTasques;
         var mLayoutManager = LinearLayoutManager(this.getActivity());
+
+        shimmerFrameLayout = binding.shimmer
+        shimmerFrameLayout.startShimmer()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.rvTasques.visibility = View.VISIBLE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.INVISIBLE
+
+
+        }, 5000)
+
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         var mAdapter = AdapterTasques(dataInicialize());
