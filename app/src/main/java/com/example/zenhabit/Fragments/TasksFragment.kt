@@ -67,7 +67,7 @@ class TasksFragment : Fragment() {
             shimmerFrameLayout.visibility = View.INVISIBLE
 
 
-        }, 5000)
+        }, 2500)
 
         mRecyclerView.setLayoutManager(mLayoutManager);
 
