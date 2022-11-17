@@ -54,10 +54,6 @@ class TasksFragment : Fragment() {
 
         var mAdapter = AdapterTasques(dataInicialize());
         mRecyclerView.setAdapter(mAdapter);
-        return view;
-
-
-
 
 
 
