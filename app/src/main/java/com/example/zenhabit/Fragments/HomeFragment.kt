@@ -1,15 +1,16 @@
 package com.example.zenhabit.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +37,8 @@ class home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("ZenHabit")
+        val csActivity = activity as MainActivity
         val view = binding.root
         binding.btnVeureJardi.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn

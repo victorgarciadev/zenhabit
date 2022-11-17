@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
@@ -33,6 +34,7 @@ class CreateEditHabitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear hàbit")
         val view = binding.root
 
         // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarHabit'
