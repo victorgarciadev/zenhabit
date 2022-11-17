@@ -1,8 +1,13 @@
 package com.example.zenhabit
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.LinearLayout
 import com.example.zenhabit.databinding.ActivityMainBinding
@@ -52,11 +57,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Mostrar menú more (Action Bar)
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+ //   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 //        menuInflater.inflate(R.menu.menu_action_bar, menu)     // Inicialitzar el menú
 //        return true
 //    }
-//    // Accions pels ítems del menú more (Action Bar)
+    // Accions pels ítems del menú more (Action Bar)
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        if (item.itemId == R.id.about) {
 //            //val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity, R.style.CustomDialog)
@@ -70,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 //            dialog.show()
 //
 //            return true
-//        }
+//       }
 //        return super.onOptionsItemSelected(item)
 //    }
 

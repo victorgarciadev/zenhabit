@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/homeActivity">
     <fragment
         android:id="@+id/tasksFragment2"
@@ -31,6 +30,9 @@
         <action
             android:id="@+id/action_createEditHabitFragment_to_createEditTaskFragment"
             app:destination="@id/createEditTaskFragment" />
+        <action
+            android:id="@+id/action_createEditHabitFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
     </fragment>
     <fragment
         android:id="@+id/createEditTaskFragment"
@@ -40,6 +42,9 @@
         <action
             android:id="@+id/action_createEditTaskFragment_to_createEditHabitFragment"
             app:destination="@id/createEditHabitFragment" />
+        <action
+            android:id="@+id/action_createEditTaskFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
     </fragment>
     <fragment
         android:id="@+id/homeActivity"
