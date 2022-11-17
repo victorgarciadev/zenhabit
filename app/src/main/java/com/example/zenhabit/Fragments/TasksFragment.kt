@@ -41,35 +41,29 @@ class TasksFragment : Fragment() {
 
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
         val view = binding.root
-        _binding.addTasc.setOnClickListener{
+        _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
+
+        // Replace 'android.R.id.list' with the 'id' of your RecyclerView
+        var mRecyclerView = binding.rvTasques;
+        var mLayoutManager = LinearLayoutManager(this.getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        var mAdapter = AdapterTasques(dataInicialize());
+        mRecyclerView.setAdapter(mAdapter);
+        return view;
+
+
+
+
+
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //RECICLERVIEW
-
-//        val recyclerView: RecyclerView = bin.rvTasques
-//        recyclerView.setHasFixedSize(true)
-//        recyclerView?.layoutManager = LinearLayoutManager(context)
-//        recyclerView.adapter = AdapterTasques(dataInicialize())
-//        recyclerView.setHasFixedSize(true)
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-
-
-
-//        val recyclerView = bin.rvTasques
-//        val manager = LinearLayoutManager(this.context)
-//        recyclerView.setLayoutManager(manager)
-//        recyclerView.setHasFixedSize(true)
-//        val adapter = AdapterTasques(dataInicialize())
-//        recyclerView.setAdapter(adapter)
-
-
 
     }
 
