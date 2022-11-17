@@ -33,6 +33,8 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         //return inflater.inflate(R.layout.fragment_settings, container, false)
 
+        activity?.actionBar?.show()
+
         binding.btnCancel.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)

@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
 
         val actionBar: ActionBar? = supportActionBar
-        //actionBar?.setDisplayShowCustomEnabled(true)
-        //actionBar?.setCustomView(R.menu.menu_action_bar)
+        actionBar?.setCustomView(R.menu.menu_action_bar)
         actionBar?.hide()
 
         bottomNavigation = bin.bottomNavigationView as BottomNavigationView
