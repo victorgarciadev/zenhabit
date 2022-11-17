@@ -1,22 +1,13 @@
 package com.example.zenhabit
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
-import android.widget.LinearLayout
-import com.example.zenhabit.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBar
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.zenhabit.Fragments.JardiFragment
+import com.example.zenhabit.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -39,9 +30,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
 
         val actionBar: ActionBar? = supportActionBar
-        actionBar?.setCustomView(R.menu.menu_action_bar)
-        actionBar?.hide()
-
+        actionBar?.setTitle("ZenHabit")
+        //actionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+        //actionBar?.setCustomView(R.menu.menu_action_bar)
+        //menuInflater.inflate(R.menu.menu_action_bar, )
+        //actionBar?.setCustomView(R.menu.menu_action_bar)
+        //actionBar?.setDisplayShowCustomEnabled(true)
         bottomNavigation = bin.bottomNavigationView as BottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
@@ -50,6 +44,12 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_action_bar, menu)
+        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

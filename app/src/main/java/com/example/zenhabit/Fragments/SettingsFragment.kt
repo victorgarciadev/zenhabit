@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.databinding.FragmentSettingsBinding
 
@@ -21,8 +22,7 @@ class SettingsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+            super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -31,10 +31,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        //return inflater.inflate(R.layout.fragment_settings, container, false)
-
-        activity?.actionBar?.show()
-
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Configuració")
         binding.btnCancel.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
