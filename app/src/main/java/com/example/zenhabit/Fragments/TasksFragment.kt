@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,7 @@ class TasksFragment : Fragment() {
         // Inflate the layout for this fragment
 
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Tasques")
         val view = binding.root
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
