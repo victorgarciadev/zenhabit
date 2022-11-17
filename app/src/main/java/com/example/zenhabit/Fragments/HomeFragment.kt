@@ -35,6 +35,7 @@ class home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        activity?.actionBar?.show()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.btnVeureJardi.setOnClickListener{
