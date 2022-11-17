@@ -13,7 +13,17 @@ import com.example.zenhabit.models.Tasca
 class AdapterTasques(val listaTasques: ArrayList<Tasca>) :
     RecyclerView.Adapter<AdapterTasques.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private lateinit var mListener : onItemClickListener
+
+    interface onItemClickListener{
+        fun onItemClick (position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
+        mListener = listener
+    }
+
+    class ViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         val tvTasca: TextView = itemView.findViewById(R.id.txtNomTasca)
         val tvHora: TextView = itemView.findViewById(R.id.txtHora)
@@ -23,6 +33,12 @@ class AdapterTasques(val listaTasques: ArrayList<Tasca>) :
             tvTasca.text = tasca
             tvHora.text = hora
         }
+
+        init {
+            itemView.setOnClickListener{
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     // Returns a new ViewHolder
@@ -30,7 +46,7 @@ class AdapterTasques(val listaTasques: ArrayList<Tasca>) :
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_class, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(view,mListener)
     }
 
     // Returns size of data list
