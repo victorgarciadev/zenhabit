@@ -72,10 +72,6 @@ class TasksFragment : Fragment() {
         data = dataInicialize() as MutableList<Tasca>
         mAdapter = AdapterTasques(data) { index -> deleteItem(index) };
         mRecyclerView.setAdapter(mAdapter);
-        return view;
-
-
-
 
 
 

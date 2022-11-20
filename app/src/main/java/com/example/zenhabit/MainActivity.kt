@@ -1,7 +1,11 @@
 package com.example.zenhabit
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         //menuInflater.inflate(R.menu.menu_action_bar, )
         //actionBar?.setCustomView(R.menu.menu_action_bar)
         //actionBar?.setDisplayShowCustomEnabled(true)
-        bottomNavigation = bin.bottomNavigationView as BottomNavigationView
+        bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
                 R.id.home -> navController.navigate(R.id.homeActivity)
@@ -57,26 +61,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Mostrar menú more (Action Bar)
- //   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 //        menuInflater.inflate(R.menu.menu_action_bar, menu)     // Inicialitzar el menú
 //        return true
 //    }
+
     // Accions pels ítems del menú more (Action Bar)
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.about) {
-//            //val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity, R.style.CustomDialog)
-//            //builder.setView(R.layout.about_dialog)
-//            //builder.show()
-//
-//            // Codi OK per tornar transparent el fons de l'XML
-//            val dialog = Dialog(this@MainActivity)
-//            dialog.setContentView(R.layout.about_dialog)
-//            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//
-//            return true
-//       }
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.about) {
+
+            // Codi per tornar transparent el fons de l'XML
+            val dialog = Dialog(this@MainActivity)
+            dialog.setContentView(R.layout.about_dialog)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+            return true
+       }
+        return super.onOptionsItemSelected(item)
+    }
 
     }
