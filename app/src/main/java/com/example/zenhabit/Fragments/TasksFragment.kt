@@ -7,16 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterTasques
-import com.example.zenhabit.databinding.FragmentHomeBinding
 import com.example.zenhabit.databinding.FragmentTasksBinding
-import com.example.zenhabit.databinding.ShimmerLayoutBinding
 import com.example.zenhabit.models.Tasca
 import com.facebook.shimmer.ShimmerFrameLayout
 
@@ -31,8 +27,10 @@ class TasksFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var _binding: FragmentTasksBinding
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
+    private lateinit var data: MutableList<Tasca>
+    private lateinit var mAdapter: AdapterTasques
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,24 +52,25 @@ class TasksFragment : Fragment() {
         }
 
 
-        // RecyclerView
-        var mRecyclerView = binding.rvTasques;
-        var mLayoutManager = LinearLayoutManager(this.getActivity());
+//      RecyclerView shimmer
+        val mRecyclerView = binding.rvTasques
+        val mLayoutManager = LinearLayoutManager(this.getActivity())
 
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
 
+//        cargar
         Handler(Looper.getMainLooper()).postDelayed({
             binding.rvTasques.visibility = View.VISIBLE
             shimmerFrameLayout.stopShimmer()
             shimmerFrameLayout.visibility = View.INVISIBLE
-
-
         }, 2500)
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        var mAdapter = AdapterTasques(dataInicialize());
+//        cargar recyclerview
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        data = dataInicialize() as MutableList<Tasca>
+        mAdapter = AdapterTasques(data) { index -> deleteItem(index) };
         mRecyclerView.setAdapter(mAdapter);
         return view;
 
@@ -81,6 +80,13 @@ class TasksFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun deleteItem(index: Int) {
+        if (::data.isInitialized) {
+            data.removeAt(index)
+            mAdapter.setItems(data)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
