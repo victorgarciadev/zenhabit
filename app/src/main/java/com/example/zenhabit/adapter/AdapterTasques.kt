@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ExpandableListView.OnChildClickListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Tasca
 
 
-class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> Unit) :
+class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> Unit, val clickListener: (String,String) -> Unit) :
     RecyclerView.Adapter<AdapterTasques.ViewHolder>() {
 
     var listData = listaTasques
@@ -29,7 +30,7 @@ class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> 
             tvHora.text = tasca.hora
 
             button.setOnClickListener { onClickDelete(index) }
-
+            tvTasca.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
         }
     }
 

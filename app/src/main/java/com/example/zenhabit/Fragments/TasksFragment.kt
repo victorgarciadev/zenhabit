@@ -3,10 +3,12 @@ package com.example.zenhabit.Fragments
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,12 +72,17 @@ class TasksFragment : Fragment() {
 //        cargar recyclerview
         mRecyclerView.setLayoutManager(mLayoutManager);
         data = dataInicialize() as MutableList<Tasca>
-        mAdapter = AdapterTasques(data) { index -> deleteItem(index) };
+        mAdapter = AdapterTasques(data, { index -> deleteItem(index)} , { nom, hora -> sendItem(nom, hora)} );
         mRecyclerView.setAdapter(mAdapter)
 
 
 
         return view
+    }
+
+    private fun sendItem(nom: String, hora: String) {
+        val action = TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
+        findNavController().navigate(action)
     }
 
     private fun deleteItem(index: Int) {

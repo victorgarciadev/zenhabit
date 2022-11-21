@@ -1,6 +1,7 @@
 package com.example.zenhabit.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,10 @@ class CreateEditTaskFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear tasca")
         val view = binding.root
 
+        val name = arguments?.get("Name")
+        if (name != null) {
+            binding.nomTascaEdit.text = name as CharSequence?
+        }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarHabit.setOnClickListener {
             findNavController().navigate(R.id.action_createEditTaskFragment_to_createEditHabitFragment)
