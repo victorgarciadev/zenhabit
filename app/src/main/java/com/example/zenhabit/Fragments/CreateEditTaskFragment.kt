@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
@@ -41,6 +42,8 @@ class CreateEditTaskFragment : Fragment() {
         val name = arguments?.get("Name")
         if (name != null) {
             binding.nomTascaEdit.text = name as CharSequence?
+            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
+            binding.btnCrearEditarHabit.isVisible = false
         }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarHabit.setOnClickListener {
