@@ -60,9 +60,6 @@
         <argument
             android:name="time"
             app:argType="string" />
-        <argument
-            android:name="taskHabit"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/homeActivity"

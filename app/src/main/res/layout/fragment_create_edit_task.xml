@@ -67,6 +67,7 @@
                     android:textAlignment="textStart"
                     android:textColor="#FFF"
                     android:textSize="32sp"
+                    android:id="@+id/nomTascaEdit"
                     app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

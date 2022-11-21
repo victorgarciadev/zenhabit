@@ -3,6 +3,7 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
@@ -44,6 +46,12 @@ class CreateEditTaskFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear tasca")
         val view = binding.root
 
+        val name = arguments?.get("Name")
+        if (name != null) {
+            binding.nomTascaEdit.text = name as CharSequence?
+            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
+            binding.btnCrearEditarHabit.isVisible = false
+        }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarHabit.setOnClickListener {
             findNavController().navigate(R.id.action_createEditTaskFragment_to_createEditHabitFragment)
@@ -67,7 +75,7 @@ class CreateEditTaskFragment : Fragment() {
             )
         }
 
-        with(binding.autoCompleteTextView) {
+        with(binding.autoCompleteTextView){
             setAdapter(adapter)
         }
 
