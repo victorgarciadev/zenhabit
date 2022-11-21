@@ -5,4 +5,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fondo">#1d2c32</color>
     <color name="verde">#4CAF50</color>
+    <color name="shimmer_color">#bfbdbd</color>
 </resources>
