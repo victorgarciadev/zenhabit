@@ -2,13 +2,20 @@ package com.example.zenhabit.Fragments
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
@@ -16,6 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -67,12 +76,13 @@ class CreateEditHabitFragment : Fragment() {
             )
         }
 
-        with(binding.autoCompleteTextView){
+        with(binding.autoCompleteTextView) {
             setAdapter(adapter)
         }
 //--------------------------------------------CALENDARI--------------------------------------------
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
+        val supportFragmentManager = requireActivity().supportFragmentManager
 
         var initialYear = -1
         if (initialYear == -1)
@@ -89,7 +99,6 @@ class CreateEditHabitFragment : Fragment() {
             etPlannedDate.setOnClickListener {
                 // create new instance of DatePickerFragment
                 val datePickerFragment = DatePickerFragment()
-                val supportFragmentManager = requireActivity().supportFragmentManager
 
                 // we have to implement setFragmentResultListener
                 supportFragmentManager.setFragmentResultListener(
@@ -106,8 +115,25 @@ class CreateEditHabitFragment : Fragment() {
                 datePickerFragment.show(supportFragmentManager, "DatePickerFragment")
             }
         }
-//--------------------------------------------CALENDARI--------------------------------------------
+//--------------------------------------------END CALENDARI--------------------------------------------
 
+        binding.etPlannedHour.setOnClickListener {
+
+            // create new instance of DatePickerFragment
+            val datePickerFragment = DatePickerFragment()
+
+            // we have to implement setFragmentResultListener
+            supportFragmentManager.setFragmentResultListener(
+                "REQUEST_KEY",
+                viewLifecycleOwner
+            ) { resultKey, bundle ->
+                if (resultKey == "REQUEST_KEY") {
+                    val hour = bundle.getString("SELECTED_HOUR")
+                    binding.etPlannedHour.hint = hour
+                }
+            }
+            TimePickerFragment().show(supportFragmentManager, "timePicker")
+        }
     }
 
 
@@ -138,4 +164,33 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
+    class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            // Use the current time as the default values for the picker
+            val c = Calendar.getInstance()
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            // Create a new instance of TimePickerDialog and return it
+            return TimePickerDialog(
+                activity,
+                this,
+                hour,
+                minute,
+                DateFormat.is24HourFormat(activity)
+            )
+        }
+
+
+        override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
+            // Do something with the time chosen by the user
+
+            val selectedDateBundle = Bundle()
+            selectedDateBundle.putString("SELECTED_HOUR", "$hourOfDay:$minute")
+
+            setFragmentResult("REQUEST_KEY", selectedDateBundle)
+
+        }
+    }
 }
