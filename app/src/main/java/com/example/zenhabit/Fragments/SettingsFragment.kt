@@ -2,14 +2,16 @@ package com.example.zenhabit.Fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.databinding.FragmentSettingsBinding
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
+
 
 /**
  * A simple [Fragment] subclass.
@@ -29,6 +31,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val user = FirebaseAuth.getInstance().currentUser
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Configuració")
@@ -37,6 +40,10 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
         binding.btnSave.setOnClickListener {
+            val newUsername = binding.inputChangeUserName.text
+            if (!newUsername.isEmpty()) {
+
+            }
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
