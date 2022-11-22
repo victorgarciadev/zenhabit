@@ -35,11 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
-        //actionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
-        //actionBar?.setCustomView(R.menu.menu_action_bar)
-        //menuInflater.inflate(R.menu.menu_action_bar, )
-        //actionBar?.setCustomView(R.menu.menu_action_bar)
-        //actionBar?.setDisplayShowCustomEnabled(true)
+
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
@@ -48,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
+        bottomNavigation.itemIconTintList = null;
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
