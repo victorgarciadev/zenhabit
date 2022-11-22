@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/fondo">
+        android:backgroundTint="@color/fondo"
+        android:id="@+id/itemRecyclerView">
 
 
         <TextView

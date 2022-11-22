@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ExpandableListView.OnChildClickListener
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Tasca
@@ -24,13 +25,15 @@ class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> 
         val tvTasca: TextView = itemView.findViewById(R.id.txtNomTasca)
         val tvHora: TextView = itemView.findViewById(R.id.txtHora)
         val button = itemView.findViewById<Button>(R.id.eliminar)
+        val bigItem: ConstraintLayout = itemView.findViewById(R.id.itemRecyclerView)
 
         fun bind(tasca: Tasca, index: Int) {
             tvTasca.text = tasca.nom
             tvHora.text = tasca.hora
 
             button.setOnClickListener { onClickDelete(index) }
-            tvTasca.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
+            // tvTasca.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
+            bigItem.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
         }
     }
 
