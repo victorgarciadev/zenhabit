@@ -277,45 +277,26 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.567" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="100dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarHorariCrearEditarHabit"
-                        app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:background="#30444E"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/btn_seleccionarHorariCrearEditarHabit"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="24dp"
-                        android:backgroundTint="#30444E"
-                        android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
-                        android:foregroundTint="#30444E"
-                        android:shadowColor="#30444E"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="0"
+                    <EditText
+                        android:id="@+id/etPlannedHour"
+                        android:layout_width="222dp"
+                        android:layout_height="53dp"
+                        android:allowClickWhenDisabled="true"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:gravity="center"
+                        android:hint="00:00"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.883"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.52"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:layout_constraintVertical_bias="0.571" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -360,36 +341,26 @@
                         app:layout_constraintVertical_bias="0.52" />
 
                     <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="100dp"
-                        android:autofillHints="00/00/0000"
-                        android:ems="10"
-                        android:fontFamily="@font/open_sans"
+                        android:id="@+id/etPlannedDate"
+                        android:layout_width="222dp"
+                        android:layout_height="53dp"
+                        android:allowClickWhenDisabled="true"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:gravity="center"
+                        android:hint="00/00/00"
                         android:inputType="date"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarDataCrearEditarHabit"
-                        app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/btn_seleccionarDataCrearEditarHabit"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="24dp"
-                        android:backgroundTint="#30444E"
-                        android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
-                        android:foregroundTint="#30444E"
-                        android:shadowColor="#30444E"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="0"
+                        android:maxLines="1"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.883"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:layout_constraintVertical_bias="0.571" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

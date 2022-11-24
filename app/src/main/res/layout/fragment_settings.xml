@@ -25,7 +25,7 @@
                     android:id="@+id/graphic_bgGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/layout_bg"
                     android:backgroundTint="#30434e"
                     android:orientation="horizontal"
@@ -65,7 +65,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="32dp">
+                android:padding="32dp"
+                android:layout_marginTop="-80dp">
 
                 <!-- IDIOMES -->
                 <TextView
@@ -93,7 +94,8 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:padding="32dp"
+                    android:paddingVertical="24dp"
+                    android:paddingHorizontal="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">
 
@@ -110,7 +112,10 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans"
                             android:text="@string/configuracions_idioma_catala"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:buttonTint="@color/white"
+                            android:textSize="16.5sp"
+                            android:paddingStart="7dp"/>
 
                         <RadioButton
                             android:layout_width="match_parent"
@@ -119,14 +124,20 @@
                             android:layout_marginRight="0dp"
                             android:fontFamily="@font/open_sans"
                             android:text="@string/configuracions_idioma_castellano"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:buttonTint="@color/white"
+                            android:textSize="16.5sp"
+                            android:paddingStart="7dp"/>
 
                         <RadioButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans"
                             android:text="@string/configuracions_idioma_english"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:buttonTint="@color/white"
+                            android:textSize="16.5sp"
+                            android:paddingStart="7dp"/>
 
                     </RadioGroup>
                 </LinearLayout>
@@ -158,7 +169,8 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:padding="32dp"
+                    android:paddingVertical="24dp"
+                    android:paddingHorizontal="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,6 +222,21 @@
                             app:layout_constraintStart_toEndOf="@+id/imageView_userIcon"
                             app:layout_constraintTop_toBottomOf="@+id/textView_labelUserName" />
 
+                        <Button
+                            android:id="@+id/btn_saveEmail"
+                            android:layout_width="150dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="24dp"
+                            android:backgroundTint="#1DBE7D"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/desar"
+                            android:textSize="18sp"
+                            app:cornerRadius="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/input_changeUserName"
+                            tools:ignore="TextContrastCheck" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -222,7 +249,8 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:padding="32dp"
+                    android:paddingVertical="24dp"
+                    android:paddingHorizontal="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_nom_usuari">
@@ -267,7 +295,7 @@
                             android:autofillHints="Email"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="@string/email"
+                            android:hint="Nou correu electrònic"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -275,6 +303,51 @@
                             app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
                             app:layout_constraintTop_toBottomOf="@+id/textView_labelEmail" />
 
+                        <ImageView
+                            android:id="@+id/imageView_pswIconEmail"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="16dp"
+                            android:contentDescription="@string/icona_en_forma_de_candau"
+                            app:layout_constraintEnd_toStartOf="@+id/input_changeEmail"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
+                            app:srcCompat="@drawable/psw_small"
+                            tools:ignore="ImageContrastCheck" />
+
+                        <EditText
+                            android:id="@+id/input_actualPswEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="16dp"
+                            android:autofillHints="Password"
+                            android:ems="10"
+                            android:fontFamily="@font/open_sans"
+                            android:hint="Contrasenya actual"
+                            android:inputType="textPassword"
+                            android:textColor="@color/white"
+                            android:textColorHint="#999999"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView_pswIconEmail"
+                            app:layout_constraintTop_toBottomOf="@+id/input_changeEmail" />
+
+
+                        <Button
+                            android:id="@+id/btn_saveNom"
+                            android:layout_width="150dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="24dp"
+                            android:backgroundTint="#1DBE7D"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/desar"
+                            android:textSize="18sp"
+                            app:cornerRadius="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/input_actualPswEmail"
+                            tools:ignore="TextContrastCheck" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
                 <!-- CANVIAR CONTRASENYA -->
@@ -286,7 +359,8 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:padding="32dp"
+                    android:paddingVertical="24dp"
+                    android:paddingHorizontal="32dp"
                     app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_mail_usuari">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -366,38 +440,24 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView_pswIcon2"
                             app:layout_constraintTop_toBottomOf="@+id/textView_labelPsw" />
+
+                        <Button
+                            android:id="@+id/btn_saveNewPsw"
+                            android:layout_width="150dp"
+                            android:layout_height="64dp"
+                            android:layout_marginTop="24dp"
+                            android:backgroundTint="#1DBE7D"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="@string/desar"
+                            android:textSize="18sp"
+                            app:cornerRadius="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/input_changePsw"
+                            tools:ignore="TextContrastCheck" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_save"
-                    android:layout_width="250dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="24dp"
-                    android:backgroundTint="#1DBE7D"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/desar"
-                    android:textSize="20sp"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_psw_usuari"
-                    tools:ignore="TextContrastCheck" />
-
-                <Button
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="250dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="#FF565E"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/cancel_lar"
-                    android:textSize="20sp"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_save" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
