@@ -83,7 +83,7 @@
     <string name="logout">Logout</string>
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
-    <string name="credits">Crèdits</string>
+    <string name="credits">&#160;Crèdits</string>
     <string name="icona_campana">icona campana</string>
     <string name="tasques_pendents">Tens (x) tasques pendents</string>
     <string name="btn_home_jardi">JARDÍ</string>
