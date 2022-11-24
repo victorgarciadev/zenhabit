@@ -1,10 +1,12 @@
 package com.example.zenhabit
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
@@ -14,8 +16,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
+import com.example.zenhabit.models.Planta
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
         bottomNavigation.itemIconTintList = null;
+        FirebaseUtils()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -85,6 +91,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    class FirebaseUtils {
+        val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
+        val db = FirebaseFirestore.getInstance().collection("Plantes")
+            .document("pi").set(planta)
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
     }
