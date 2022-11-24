@@ -80,6 +80,7 @@
     <string name="about_credits">Desenvolupat per:</string>
     <string name="pablo_morante">Pablo Morante</string>
     <string name="copyright">&#169; 2022 ZenHabit</string>
+    <string name="logout">Logout</string>
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">Crèdits</string>
