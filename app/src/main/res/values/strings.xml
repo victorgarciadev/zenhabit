@@ -61,7 +61,7 @@
     <string name="email">Correu electrònic</string>
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
-    <string name="nom_usuari">Nom d\'usuari/a</string>
+    <string name="nom_usuari">Nou nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
     <string name="descripcio_opcional">Descripció (opcional)</string>

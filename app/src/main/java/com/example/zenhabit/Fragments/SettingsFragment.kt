@@ -32,14 +32,6 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Configuració")
-        binding.btnCancel.setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnSave.setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         activity?.actionBar?.show()
 
