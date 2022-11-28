@@ -1,8 +1,13 @@
 package com.example.zenhabit.models
 
-class Tasca(name: String, time: String, taskHabit: String) {
-    var nom: String = name
-    var hora: String = time
-    var tascaHabit: String? = taskHabit
+import com.google.type.Date
 
+class Tasca(name: String, time: String, tipus: String /*descripcio: String?, categoria: CategoriaTipusHabit?, complert: Boolean?, dataAconseguit: Date?*/) {
+    val nom = name
+    val hora = time
+    val tipus = tipus
+//    val descripcio = descripcio
+//    val categoria = categoria
+//    val complert = complert
+//    val dataAconseguit = dataAconseguit
 }
