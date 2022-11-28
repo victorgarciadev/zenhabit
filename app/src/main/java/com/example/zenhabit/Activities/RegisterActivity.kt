@@ -13,9 +13,11 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.ActivityRegisterBinding
+import com.example.zenhabit.models.Usuari
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
@@ -68,6 +70,11 @@ private fun crearUsuari(email: String, password: String, nom: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val usuari = Usuari(nom, email, null, null, null, null)
+                    val db = FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(Firebase.auth.currentUser!!.uid).set(usuari)
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
                     Toast(this).showCustomToast("Usuari creat correctament", this)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
