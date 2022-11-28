@@ -94,8 +94,9 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:paddingVertical="24dp"
                     android:paddingHorizontal="32dp"
+                    android:paddingVertical="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">
 
@@ -110,34 +111,34 @@
                         <RadioButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/white"
                             android:fontFamily="@font/open_sans"
+                            android:paddingStart="7dp"
                             android:text="@string/configuracions_idioma_catala"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:textSize="16.5sp"
-                            android:paddingStart="7dp"/>
+                            android:textSize="16.5sp" />
 
                         <RadioButton
                             android:layout_width="match_parent"
                             android:layout_height="64dp"
                             android:layout_marginLeft="0dp"
                             android:layout_marginRight="0dp"
+                            android:buttonTint="@color/white"
                             android:fontFamily="@font/open_sans"
+                            android:paddingStart="7dp"
                             android:text="@string/configuracions_idioma_castellano"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:textSize="16.5sp"
-                            android:paddingStart="7dp"/>
+                            android:textSize="16.5sp" />
 
                         <RadioButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/white"
                             android:fontFamily="@font/open_sans"
+                            android:paddingStart="7dp"
                             android:text="@string/configuracions_idioma_english"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:textSize="16.5sp"
-                            android:paddingStart="7dp"/>
+                            android:textSize="16.5sp" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -249,8 +250,8 @@
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:paddingVertical="24dp"
                     android:paddingHorizontal="32dp"
+                    android:paddingVertical="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_nom_usuari">
@@ -356,11 +357,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#142024"
                     android:orientation="horizontal"
-                    android:paddingVertical="24dp"
                     android:paddingHorizontal="32dp"
+                    android:paddingVertical="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_mail_usuari">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
