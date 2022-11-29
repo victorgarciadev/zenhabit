@@ -100,10 +100,11 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
+                                    android:text=""
+                                    android:id="@+id/titolRepte1"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:layout_marginStart="16dp"
-                                    android:text="@string/objdiari"
                                     android:textColor="@color/white"
                                     android:textSize="20sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -133,10 +134,11 @@
                                 android:layout_height="match_parent">
 
                                 <TextView
+                                    android:id="@+id/titolRepte2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text=""
                                     android:layout_margin="5dp"
-                                    android:text="@string/objdiari"
                                     android:textColor="@color/white"
                                     android:textSize="20sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -200,12 +202,13 @@
                                     tools:ignore="DuplicateSpeakableTextCheck" />
 
                                 <TextView
+                                    android:id="@+id/titolRepte3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:layout_marginStart="16dp"
                                     android:gravity="center"
-                                    android:text="@string/objdiari"
+                                    android:text=""
                                     android:textColor="@color/white"
                                     android:textSize="20sp"
                                     app:layout_constraintBottom_toBottomOf="parent"

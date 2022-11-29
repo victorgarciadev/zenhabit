@@ -286,7 +286,7 @@
                         android:focusable="false"
                         android:gravity="center"
                         android:hint="00:00"
-                        android:inputType="date"
+                        android:inputType="time"
                         android:maxLines="1"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#FFFFFF"
