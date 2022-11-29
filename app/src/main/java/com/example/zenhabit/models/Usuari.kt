@@ -1,6 +1,6 @@
 package com.example.zenhabit.models
 
-class Usuari(nom: String, email: String, llistaReptes: List<RepteUsuari>?, llistaPlantes: List<PlantaUsuari>?, llistaTasques: List<Tasca>?, llistaHabits: List<Habit>?) {
+class Usuari(nom: String, email: String, llistaReptes: ArrayList<RepteUsuari>?, llistaPlantes: ArrayList<PlantaUsuari>?, llistaTasques: ArrayList<Tasca>?, llistaHabits: ArrayList<Habit>?) {
     val nom = nom
     val email = email
     val llistaReptes = llistaReptes

@@ -15,8 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterTasques
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Repte
 import com.example.zenhabit.models.Tasca
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 /**
  * A simple [Fragment] subclass.
@@ -52,7 +57,23 @@ class TasksFragment : Fragment() {
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
+        for (i in 1..3) {
+            val document = FirebaseFirestore.getInstance().collection("Reptes")
+                .document(i.toString()).get()
+                .addOnSuccessListener { result ->
+                    val titol = result.get("titol")
+                    if (i == 1) {
+                        binding.titolRepte1.text = titol.toString()
+                    }
+                    if (i == 2) {
+                        binding.titolRepte2.text = titol.toString()
+                    }
+                    if (i == 3) {
+                        binding.titolRepte3.text = titol.toString()
+                    }
 
+                }
+        }
 
 //      RecyclerView shimmer
         val mRecyclerView = binding.rvTasques
