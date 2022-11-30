@@ -56,22 +56,35 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="32dp"
-                    android:fontFamily="@font/open_sans"
-                    android:text="@string/nom_tasca"
-                    android:textAlignment="textStart"
-                    android:textColor="#FFF"
-                    android:textSize="32sp"
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nomTascaEdit"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="false"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    android:outlineAmbientShadowColor="@android:color/transparent"
                     app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
+                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen"
+                    app:layout_constraintVertical_bias="0.71000004">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nom de la tasca"
+                        android:textColor="@color/white"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        android:textColorHint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="30sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_input_DescripcioTasca"
