@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.ActivityRegisterBinding
-import com.example.zenhabit.models.Usuari
+import com.example.zenhabit.models.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -70,7 +70,7 @@ private fun crearUsuari(email: String, password: String, nom: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val usuari = Usuari(nom, email, null, null, null, null)
+                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Tasca>(), ArrayList<Habit>())
                     val db = FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
