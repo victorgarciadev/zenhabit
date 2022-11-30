@@ -10,6 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
+import com.example.zenhabit.models.Tasca
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,6 +48,17 @@ class home : Fragment() {
         binding.btnVeureJardi.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn
         }
+        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                    val patata = result.get("llistaTasques") as ArrayList<Tasca>
+                    val numeroPatatas = patata.count()
+                    if (numeroPatatas == 1) {
+                        binding.tasquesPendents.text = "Tens 1 tasca pendent"
+                    } else {
+                        binding.tasquesPendents.text = "Tens $numeroPatatas tasques pendents"
+                    }
+            }
         binding.btnVeureHabitTasca.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_tasksFragment2)
         }
