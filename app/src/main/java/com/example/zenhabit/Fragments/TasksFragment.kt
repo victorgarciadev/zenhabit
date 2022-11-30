@@ -1,0 +1,146 @@
+package com.example.zenhabit.Fragments
+
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.zenhabit.R
+import com.example.zenhabit.adapter.AdapterTasques
+import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Repte
+import com.example.zenhabit.models.Tasca
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [TasksFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class TasksFragment : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+
+    private lateinit var _binding: FragmentTasksBinding
+    private val binding get() = _binding
+
+    private lateinit var data: MutableList<Tasca>
+    private lateinit var mAdapter: AdapterTasques
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+
+        _binding = FragmentTasksBinding.inflate(inflater, container, false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Tasques")
+        val view = binding.root
+        _binding.addTasc.setOnClickListener {
+            findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
+        }
+        for (i in 1..3) {
+            val document = FirebaseFirestore.getInstance().collection("Reptes")
+                .document(i.toString()).get()
+                .addOnSuccessListener { result ->
+                    val titol = result.get("titol")
+                    if (i == 1) {
+                        binding.titolRepte1.text = titol.toString()
+                    }
+                    if (i == 2) {
+                        binding.titolRepte2.text = titol.toString()
+                    }
+                    if (i == 3) {
+                        binding.titolRepte3.text = titol.toString()
+                    }
+
+                }
+        }
+
+//      RecyclerView shimmer
+        val mRecyclerView = binding.rvTasques
+        val mLayoutManager = LinearLayoutManager(this.getActivity())
+
+        shimmerFrameLayout = binding.shimmer
+        shimmerFrameLayout.startShimmer()
+
+//        cargar
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.rvTasques.visibility = View.VISIBLE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.INVISIBLE
+        }, 2500)
+
+
+//        cargar recyclerview
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        data = dataInicialize() as MutableList<Tasca>
+        mAdapter = AdapterTasques(data, { index -> deleteItem(index)} , { nom, hora -> sendItem(nom, hora)} );
+        mRecyclerView.setAdapter(mAdapter)
+
+
+
+        return view
+    }
+
+    private fun sendItem(nom: String, hora: String) {
+        val action = TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
+        findNavController().navigate(action)
+    }
+
+    private fun deleteItem(index: Int) {
+        if (::data.isInitialized) {
+            data.removeAt(index)
+            mAdapter.setItems(data)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    private fun dataInicialize(): ArrayList<Tasca> {
+
+        val tasquesList: ArrayList<Tasca> = ArrayList()
+
+
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+
+        return tasquesList
+
+    }
+
+}

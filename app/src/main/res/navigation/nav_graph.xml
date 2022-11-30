@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeActivity">
+    <fragment
+        android:id="@+id/tasksFragment2"
+        android:name="com.example.zenhabit.Fragments.TasksFragment"
+        android:label="fragment_tasks"
+        tools:layout="@layout/fragment_tasks" >
+        <action
+            android:id="@+id/action_tasksFragment2_to_createEditTaskFragment"
+            app:destination="@id/createEditTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.zenhabit.Fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/jardiFragment"
+        android:name="com.example.zenhabit.Fragments.JardiFragment"
+        android:label="JardiFragment"
+        tools:layout="@layout/fragment_jardi"/>
+    <fragment
+        android:id="@+id/createEditHabitFragment"
+        android:name="com.example.zenhabit.Fragments.CreateEditHabitFragment"
+        android:label="fragment_create_edit_habit"
+        tools:layout="@layout/fragment_create_edit_habit" >
+        <action
+            android:id="@+id/action_createEditHabitFragment_to_createEditTaskFragment"
+            app:destination="@id/createEditTaskFragment" />
+        <action
+            android:id="@+id/action_createEditHabitFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
+        <argument
+            android:name="Name"
+            app:argType="string" />
+        <argument
+            android:name="Time"
+            app:argType="string" />
+        <argument
+            android:name="taskHabit"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEditTaskFragment"
+        android:name="com.example.zenhabit.Fragments.CreateEditTaskFragment"
+        android:label="fragment_create_edit_task"
+        tools:layout="@layout/fragment_create_edit_task" >
+        <action
+            android:id="@+id/action_createEditTaskFragment_to_createEditHabitFragment"
+            app:destination="@id/createEditHabitFragment" />
+        <action
+            android:id="@+id/action_createEditTaskFragment_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
+        <argument
+            android:name="Name"
+            app:argType="string" />
+        <argument
+            android:name="time"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeActivity"
+        android:name="com.example.zenhabit.Fragments.home"
+        android:label="home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home2_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_home2_to_tasksFragment2"
+            app:destination="@id/tasksFragment2" />
+        <action
+            android:id="@+id/action_home2_to_jardiFragment"
+            app:destination="@id/jardiFragment" />
+    </fragment>
+</navigation>

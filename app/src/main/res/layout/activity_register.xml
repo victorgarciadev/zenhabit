@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#22343C">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#22343C"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="#1D2C32"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="center"
+                            android:scaleX=".8"
+                            android:scaleY=".8"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/logo_light"
+                            android:contentDescription="@string/logotip_zenhabit" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="32dp">
+
+                <TextView
+                    android:id="@+id/textView_greeting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/hola"
+                    android:textAlignment="viewStart"
+                    android:textColor="#ddd"
+                    android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/completa_el_teu_perfil"
+                    android:textColor="#999"
+                    android:textDirection="ltr"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:typeface="sans"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/textView_greeting"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_greeting" />
+
+                <ImageView
+                    android:id="@+id/imageView_userIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="48dp"
+                    android:contentDescription="@string/icona_usuari"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_description"
+                    app:srcCompat="@drawable/user_small" />
+
+                <EditText
+                    android:id="@+id/input_createUserName"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="@string/nom_usuari"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHint="#999999"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_userIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+                <ImageView
+                    android:id="@+id/imageView_iconEmail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="48dp"
+                    android:contentDescription="@string/icona_sobre_de_correu"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_userIcon"
+                    app:srcCompat="@drawable/mail_small" />
+
+                <EditText
+                    android:id="@+id/input_createEmail"
+                    style="@style/Widget.AppCompat.EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="#999999"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_iconEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/input_createUserName" />
+
+                <ImageView
+                    android:id="@+id/imageView_iconPsw"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="48dp"
+                    android:contentDescription="@string/icona_en_forma_de_candau"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_iconEmail"
+                    app:srcCompat="@drawable/psw_small" />
+
+                <EditText
+                    android:id="@+id/input_createPsw"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="48dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="@font/open_sans"
+                    android:hint="@string/crear_contrasenya"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="#999999"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_iconPsw"
+                    app:layout_constraintTop_toBottomOf="@+id/input_createEmail" />
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="48dp"
+                    android:backgroundTint="#1DBE7D"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/registrar_se"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_createPsw" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="#FF565E"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/cancel_lar"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel">
+
+                    <TextView
+                        android:id="@+id/textView_termsAndConditions"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/termes_i_condicions"
+                        android:textColor="#999999"
+                        android:textColorLink="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.042"
+                        app:layout_constraintStart_toEndOf="@+id/checkBox_termsAndConditions"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox_termsAndConditions"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:buttonTint="@color/white"
+                        android:textColor="#999999"
+                        android:textColorLink="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
