@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var passwordTry: Int = 0
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,7 +47,11 @@ class LoginActivity : AppCompatActivity() {
 
         // Intent cap a la pantalla principal 'Home' si l'usuari no està loguejat
         binding.btnEnter.setOnClickListener {
-            signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
+            if (!isOnline(this)) {
+                startActivity(Intent(this, NoInternetActivity::class.java))
+            } else {
+                signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
+            }
         }
 
         binding.textViewRegisterLink.setOnClickListener {
