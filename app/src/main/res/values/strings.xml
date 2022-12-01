@@ -12,10 +12,12 @@
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
+    <string name="sortir">SORTIR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
+    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
 
