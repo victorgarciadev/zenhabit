@@ -25,12 +25,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#1D2C32"
+                android:background="#30444E"
                 android:clickable="true"
                 android:focusable="true">
 
                 <FrameLayout
-                    android:layout_width="7dp"
+                    android:layout_width="12dp"
                     android:layout_height="match_parent"
                     android:background="#1DBE7D" />
 
@@ -43,7 +43,7 @@
                     android:ellipsize="end"
                     android:lines="2"
                     android:text=""
-                    android:textColor="#999999"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
             </RelativeLayout>

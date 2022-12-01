@@ -90,6 +90,7 @@
                                 <CheckBox
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
+                                    android:buttonTint="@color/white"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="1.0"
@@ -160,8 +161,9 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <CheckBox
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:buttonTint="@color/white"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="1.0"
@@ -190,9 +192,10 @@
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
                                     android:layout_marginStart="40dp"
+                                    android:buttonTint="@color/white"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="1.0"
