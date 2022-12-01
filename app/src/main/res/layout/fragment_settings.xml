@@ -400,7 +400,7 @@
                             tools:ignore="ImageContrastCheck" />
 
                         <EditText
-                            android:id="@+id/input_actualPsw"
+                            android:id="@+id/input_changePsw"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:layout_marginStart="20dp"
@@ -408,7 +408,7 @@
                             android:autofillHints="Password"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Contrasenya actual"
+                            android:hint="Nova contrasenya"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -430,7 +430,7 @@
                             tools:ignore="ImageContrastCheck" />
 
                         <EditText
-                            android:id="@+id/input_changePsw"
+                            android:id="@+id/input_actualPsw"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
                             android:layout_marginStart="20dp"
@@ -438,7 +438,7 @@
                             android:autofillHints="Password"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Nova contrasenya"
+                            android:hint="Contrasenya actual"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -458,7 +458,7 @@
                             app:cornerRadius="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/input_changePsw"
+                            app:layout_constraintTop_toBottomOf="@id/input_actualPsw"
                             tools:ignore="TextContrastCheck" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
