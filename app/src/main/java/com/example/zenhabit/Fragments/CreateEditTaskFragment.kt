@@ -46,9 +46,9 @@ class CreateEditTaskFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear tasca")
         val view = binding.root
 
-        val name = arguments?.get("Name")
+        val name = arguments?.get("Name").toString()
         if (name != null) {
-            binding.nomTascaEdit.text = name as CharSequence?
+            binding.nomTascaEdit.setText(name)
             (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
             binding.btnCrearEditarHabit.isVisible = false
         }
