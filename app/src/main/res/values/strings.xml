@@ -12,10 +12,12 @@
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
+    <string name="sortir">SORTIR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
+    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
 
@@ -86,7 +88,7 @@
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
     <string name="icona_campana">icona campana</string>
-    <string name="tasques_pendents">Tens (x) tasques pendents</string>
+    <string name="tasques_pendents">Tens ...</string>
     <string name="btn_home_jardi">JARDÍ</string>
     <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
     <string name="titol_home_progres">PROGRÉS</string>
