@@ -15,8 +15,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentSettingsBinding
+import com.example.zenhabit.models.Habit
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -76,6 +82,21 @@ class SettingsFragment : Fragment() {
                         }
                     }
                 }
+            }
+        }
+
+        binding.btnSaveNom.setOnClickListener {
+            val messi = binding.inputChangeUserName.text.toString()
+            if (messi.length <= 10 && messi.length >= 3) {
+                val actualUser = FirebaseAuth.getInstance().currentUser
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = binding.inputChangeUserName.text.toString()
+                }
+                actualUser!!.updateProfile(profileUpdates)
+                val document = FirebaseFirestore.getInstance().collection("Usuaris")
+                    .document(actualUser.uid).update("nom", binding.inputChangeUserName.text.toString())
+            } else {
+                Toast(activity).showCustomToast("El nom d'usuari ha de ser d'entre 3 i 10 caràcters.")
             }
         }
 

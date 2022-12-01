@@ -52,7 +52,7 @@ class CreateEditTaskFragment : Fragment() {
             (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
             binding.btnCrearEditarHabit.isVisible = false
         } else {
-            binding.nomTascaEdit.setText("Nom de la tasca")
+            binding.nomTascaEdit.setText("")
             binding.btnCrearEditarHabit.isVisible = true
         }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
