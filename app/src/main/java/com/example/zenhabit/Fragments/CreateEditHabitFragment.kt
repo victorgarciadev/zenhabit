@@ -3,28 +3,28 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.os.Build
+import android.content.ContentValues
 import android.os.Bundle
 import android.text.format.DateFormat
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.TimePicker
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
+import com.example.zenhabit.models.Habit
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -58,6 +58,25 @@ class CreateEditHabitFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditHabitFragment_to_createEditTaskFragment)
         }
         binding.btnGuardarCrearEditarHabit.setOnClickListener {
+            val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
+            val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
+            val horari = binding.etPlannedHour.hint.toString()
+
+            val data = binding.etPlannedDate.hint.toString()
+
+            val habit = Habit("Nom",descripcio,categoria,null,data,horari, false, null)
+//            val db = FirebaseFirestore.getInstance().collection("Habits")
+//                .document("idTemp").set(habit)
+//                .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }
+//                .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error writing document", e) }
+            val document = FirebaseFirestore.getInstance().collection("Usuaris")
+                .document(Firebase.auth.currentUser!!.uid).get()
+                .addOnSuccessListener { result ->
+                        val patata: ArrayList<Habit> = result.get("llistaHabits") as ArrayList<Habit>
+                        patata.add(habit)
+                        val db2 = FirebaseFirestore.getInstance().collection("Usuaris")
+                            .document(Firebase.auth.currentUser!!.uid).update( "llistaHabits",patata)
+                }
             findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
 

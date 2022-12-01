@@ -103,6 +103,8 @@
                                 <TextView
                                     android:id="@+id/titolRepte1"
                                     android:layout_width="wrap_content"
+                                    android:text=""
+                                    android:id="@+id/titolRepte1"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:layout_marginStart="16dp"
@@ -138,6 +140,7 @@
                                     android:id="@+id/titolRepte2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text=""
                                     android:layout_margin="5dp"
                                     android:text=""
                                     android:textColor="@color/white"

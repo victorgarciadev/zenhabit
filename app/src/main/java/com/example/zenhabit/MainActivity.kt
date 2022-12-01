@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Planta
+import com.example.zenhabit.models.Repte
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
         bottomNavigation.itemIconTintList = null;
-        FirebaseUtils()
+        //FirebaseUtils()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -94,9 +95,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     class FirebaseUtils {
-        val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
-        val db = FirebaseFirestore.getInstance().collection("Plantes")
-            .document("pi").set(planta)
+        val reto = Repte(3,"Escriure't una nota positiva","Nota")
+        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
+        val db = FirebaseFirestore.getInstance().collection("Reptes")
+            .document(reto.idRepte.toString()).set(reto)
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }

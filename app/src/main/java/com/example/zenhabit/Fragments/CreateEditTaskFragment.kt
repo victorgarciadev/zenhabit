@@ -47,10 +47,13 @@ class CreateEditTaskFragment : Fragment() {
         val view = binding.root
 
         val name = arguments?.get("Name").toString()
-        if (name != null) {
+        if (name != "null") {
             binding.nomTascaEdit.setText(name)
             (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
             binding.btnCrearEditarHabit.isVisible = false
+        } else {
+            binding.nomTascaEdit.setText("Nom de la tasca")
+            binding.btnCrearEditarHabit.isVisible = true
         }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarHabit.setOnClickListener {
