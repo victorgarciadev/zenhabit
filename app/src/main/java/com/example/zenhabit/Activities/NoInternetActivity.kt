@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.ActivityNoInternetBinding
+import kotlin.system.exitProcess
 
 class NoInternetActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNoInternetBinding
@@ -15,7 +16,7 @@ class NoInternetActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnCancel.setOnClickListener {
-            finishAndRemoveTask()
+            finishAffinity()
         }
         }
     }
