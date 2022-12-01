@@ -57,7 +57,6 @@
                     app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nomTascaEdit"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,6 +73,7 @@
                     app:layout_constraintVertical_bias="0.71000004">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nomTascaEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nom de la tasca"
