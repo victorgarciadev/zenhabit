@@ -87,7 +87,7 @@ class TasksFragment : Fragment() {
             binding.rvTasques.visibility = View.VISIBLE
             shimmerFrameLayout.stopShimmer()
             shimmerFrameLayout.visibility = View.INVISIBLE
-        }, 2500)
+        }, 1000)
 
 
 //        cargar recyclerview
