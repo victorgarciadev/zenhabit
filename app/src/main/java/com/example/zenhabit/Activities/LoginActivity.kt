@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     // Declarar variable pel View Binding
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private var passwordTry: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,9 +77,21 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
+                passwordTry++
                 // Si falla, mostrem l’error o errors
                 Log.w(TAG, "signInWithEmail:fail", task.exception)
                 Toast(this).showCustomToast("Usuari o contrasenya incorrectes", this)
+                if (passwordTry >= 3) {
+                    binding.forgotPassword.visibility = View.VISIBLE
+                    binding.forgotPassword.setOnClickListener {
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast(this).showCustomToast("Email per restaurar contrasenya enviat.", this)
+                                }
+                            }
+                    }
+                }
             }
         }
     }

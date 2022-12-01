@@ -60,6 +60,7 @@
     <string name="inicia_sessi_per_continuar">Inicia sessió per continuar</string>
     <string name="email">Correu electrònic</string>
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
+    <string name="oblidat_contrasenya">Has oblidat la teva contrasenya? <a href="#">Restableix-la</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
     <string name="nom_usuari">Nou nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
