@@ -95,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                 passwordTry++
                 // Si falla, mostrem l’error o errors
                 Log.w(TAG, "signInWithEmail:fail", task.exception)
-                Toast(this).showCustomToast("Usuari o contrasenya incorrectes", this)
+                Toast(this).showCustomToast("Email o contrasenya incorrectes", this)
                 if (passwordTry >= 3) {
                     binding.forgotPassword.visibility = View.VISIBLE
                     binding.forgotPassword.setOnClickListener {
@@ -103,6 +103,8 @@ class LoginActivity : AppCompatActivity() {
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Toast(this).showCustomToast("Email per restaurar contrasenya enviat.", this)
+                                } else {
+                                    Toast(this).showCustomToast("L'email introduit no té associat un compte d'usuari.", this)
                                 }
                             }
                     }
