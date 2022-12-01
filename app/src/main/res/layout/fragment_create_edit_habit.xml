@@ -4,27 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22343C"
     tools:context=".Fragments.CreateEditHabitFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/fondo"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -42,7 +34,7 @@
                         android:alpha="1"
                         android:backgroundTint="#FEC442"
                         android:drawableTop="@drawable/ic_baseline_calendar_zen"
-                        android:fontFamily="@font/open_sans"
+                        android:fontFamily="@font/open_sans_bold"
                         android:padding="10dp"
                         android:text="@string/habit_txt_btn"
                         android:textAllCaps="false"
@@ -62,11 +54,11 @@
                         android:alpha="0.3"
                         android:backgroundTint="#00A2E7"
                         android:drawableTop="@drawable/ic_tasca"
-                        android:fontFamily="@font/open_sans"
+                        android:fontFamily="@font/open_sans_bold"
                         android:padding="10dp"
                         android:text="@string/tasca_txt_btn"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="#000000"
                         android:textSize="18sp"
                         app:cornerRadius="15dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,336 +67,343 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/graphic_bgGreen"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="200dp"
-                    android:background="@drawable/layout_bg"
-                    android:backgroundTint="#FEC442"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <LinearLayout
-                    android:id="@+id/graphic_bgGray"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:background="@drawable/layout_bg"
-                    android:backgroundTint="#22343C"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginStart="24dp"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    android:outlineAmbientShadowColor="@android:color/transparent"
-                    app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen"
-                    app:layout_constraintVertical_bias="0.71000004">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nomHabitEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/open_sans"
-                        android:hint="Nom de l'hàbit"
-                        android:textColor="@color/fondo"
-                        android:textColorHint="@color/fondo"
-                        android:textSize="30sp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txt_input_DescripcioHabit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="#22343C"
-                    android:backgroundTint="#22343C"
-                    android:hint="@string/descripcio_opcional"
-                    android:textColorHint="#FFF"
-                    app:hintTextColor="#FFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/graphic_bgGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#22343C"
-                        android:fontFamily="@font/open_sans"
-                        android:textColor="#FFF"
-                        android:textColorHint="#FFF" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dropDwnMenu_categoriesHabit"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxCollapsedPaddingTop="8dp"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:endIconTint="#757575"
-                    app:hintTextColor="#757575"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit"
-                    app:startIconDrawable="@drawable/ic_category">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/categoria"
-                        android:inputType="none"
-                        android:textColorHint="#757575" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_rowRepeticio"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_weight="1"
-                    android:background="#30444E"
-                    app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="32dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-250dp"
+                    android:layout_marginBottom="40dp">
 
-                    <ImageView
-                        android:id="@+id/img_repeticioCrearEditarHabit"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="32dp"
-                        android:contentDescription="@string/icona_repeticio"
-                        android:src="@drawable/img_btn_repeticio_habit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.52"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/graphic_bgGreen"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="@string/repeticio"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.567" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="100dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarRepeticioCrearEditarHabit"
-                        app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:background="#30444E"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/btn_seleccionarRepeticioCrearEditarHabit"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="24dp"
-                        android:backgroundTint="#30444E"
-                        android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
-                        android:foregroundTint="#30444E"
-                        android:shadowColor="#30444E"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="0"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="200dp"
+                        android:background="@drawable/layout_bg"
+                        android:backgroundTint="#FEC442"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_rowHorari"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:background="#30444E"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowRepeticio"
-                    tools:ignore="MissingConstraints">
-
-                    <ImageView
-                        android:id="@+id/img_rellotgeHorariCrearEditarHabit"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="32dp"
-                        android:contentDescription="@string/icona_rellotge"
-                        android:src="@drawable/img_btn_watch_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/graphic_bgGray"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/open_sans"
-                        android:text="@string/horari"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.567" />
-
-                    <EditText
-                        android:id="@+id/etPlannedHour"
-                        android:layout_width="222dp"
-                        android:layout_height="53dp"
-                        android:allowClickWhenDisabled="true"
-                        android:clickable="true"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:hint="00:00"
-                        android:inputType="time"
-                        android:maxLines="1"
-                        android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="80dp"
+                        android:background="@drawable/layout_bg"
+                        android:backgroundTint="#22343C"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.883"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.571" />
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout_rowDataLimit"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:background="#30444E"
-                    android:backgroundTint="#30444E"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowHorari"
-                    tools:ignore="MissingConstraints">
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/open_sans"
-                        android:text="@string/data_limit"
-                        android:textColor="#FFFFFF"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.513" />
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:outlineAmbientShadowColor="@android:color/transparent"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen"
+                        app:layout_constraintVertical_bias="0.71000004">
 
-                    <ImageView
-                        android:id="@+id/img_rellotgeDataLimitCrearEditarHabit"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nomHabitEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:hint="Nom de l'hàbit"
+                            android:textColor="@color/fondo"
+                            android:textColorHint="@color/fondo"
+                            android:textSize="30sp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txt_input_DescripcioHabit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
-                        android:contentDescription="@string/icona_rellotge"
-                        android:src="@drawable/img_btn_watch_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.52" />
-
-                    <EditText
-                        android:id="@+id/etPlannedDate"
-                        android:layout_width="222dp"
-                        android:layout_height="53dp"
-                        android:allowClickWhenDisabled="true"
-                        android:clickable="true"
-                        android:focusable="false"
-                        android:gravity="center"
-                        android:hint="00/00/00"
-                        android:inputType="date"
-                        android:maxLines="1"
-                        android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="#22343C"
+                        android:backgroundTint="#22343C"
+                        android:hint="@string/descripcio_opcional"
+                        android:textColorHint="#FFF"
+                        app:hintTextColor="#FFF"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.883"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.571" />
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGray">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#22343C"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="#FFF"
+                            android:textColorHint="#FFF" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dropDwnMenu_categoriesHabit"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCollapsedPaddingTop="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconTint="#757575"
+                        app:hintTextColor="#757575"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit"
+                        app:startIconDrawable="@drawable/ic_category">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/categoria"
+                            android:inputType="none"
+                            android:textColorHint="#757575" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout_rowRepeticio"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_weight="1"
+                        android:background="#30444E"
+                        app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="32dp">
 
-                <Button
-                    android:id="@+id/btn_guardarCrearEditarHabit"
-                    android:layout_width="200dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="32dp"
-                    android:backgroundTint="#1DBD7D"
-                    android:padding="15dp"
-                    android:text="@string/desar"
-                    android:textAllCaps="false"
-                    android:textColor="#FFF"
-                    android:textSize="18sp"
-                    app:cornerRadius="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowDataLimit" />
+                        <ImageView
+                            android:id="@+id/img_repeticioCrearEditarHabit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="32dp"
+                            android:contentDescription="@string/icona_repeticio"
+                            android:src="@drawable/img_btn_repeticio_habit"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.52"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/repeticio"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.567" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="100dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarRepeticioCrearEditarHabit"
+                            app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:background="#30444E"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/white"
+                                tools:ignore="SpeakableTextPresentCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_seleccionarRepeticioCrearEditarHabit"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="24dp"
+                            android:backgroundTint="#30444E"
+                            android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
+                            android:foregroundTint="#30444E"
+                            android:shadowColor="#30444E"
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="0"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout_rowHorari"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:background="#30444E"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowRepeticio"
+                        tools:ignore="MissingConstraints">
+
+                        <ImageView
+                            android:id="@+id/img_rellotgeHorariCrearEditarHabit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="32dp"
+                            android:contentDescription="@string/icona_rellotge"
+                            android:src="@drawable/img_btn_watch_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/horari"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.567" />
+
+                        <EditText
+                            android:id="@+id/etPlannedHour"
+                            android:layout_width="222dp"
+                            android:layout_height="53dp"
+                            android:allowClickWhenDisabled="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="00:00"
+                            android:inputType="time"
+                            android:maxLines="1"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.883"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.571" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout_rowDataLimit"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:background="#30444E"
+                        android:backgroundTint="#30444E"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowHorari"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/open_sans"
+                            android:text="@string/data_limit"
+                            android:textColor="#FFFFFF"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.513" />
+
+                        <ImageView
+                            android:id="@+id/img_rellotgeDataLimitCrearEditarHabit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="32dp"
+                            android:contentDescription="@string/icona_rellotge"
+                            android:src="@drawable/img_btn_watch_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.52" />
+
+                        <EditText
+                            android:id="@+id/etPlannedDate"
+                            android:layout_width="222dp"
+                            android:layout_height="53dp"
+                            android:allowClickWhenDisabled="true"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="00/00/00"
+                            android:inputType="date"
+                            android:maxLines="1"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.883"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.571" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Button
+                        android:id="@+id/btn_guardarCrearEditarHabit"
+                        android:layout_width="200dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="32dp"
+                        android:backgroundTint="#1DBD7D"
+                        android:padding="15dp"
+                        android:text="@string/desar"
+                        android:textAllCaps="false"
+                        android:textColor="#FFF"
+                        android:textSize="22sp"
+                        app:cornerRadius="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowDataLimit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
