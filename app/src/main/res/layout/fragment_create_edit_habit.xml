@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondo"
     tools:context=".Fragments.CreateEditHabitFragment">
 
     <ScrollView
@@ -399,7 +400,7 @@
                         android:text="@string/desar"
                         android:textAllCaps="false"
                         android:textColor="#FFF"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         app:cornerRadius="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
