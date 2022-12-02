@@ -1,8 +1,6 @@
 package com.example.zenhabit.models
 
-import com.google.type.Date
-
-class RepteUsuari(repte: Repte, dataAconseguit: Date?) {
+class RepteUsuari(repte: Repte, aconseguit: Boolean) {
     var repte = repte
-    var dataAconseguit = dataAconseguit
+    var acosneguit = aconseguit
 }

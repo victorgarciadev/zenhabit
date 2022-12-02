@@ -6,16 +6,17 @@
         <item>Aprenentatge</item>
         <item>Productivitat</item>
         <item>Salut</item>
-        <item><a href="#">Crear nova categoria...</a></item>
     </string-array>
 
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
+    <string name="sortir">SORTIR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
+    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
 
@@ -29,7 +30,7 @@
     <string name="objdiari">ObjDiari</string>
     <string name="descobdiari">DescObDiari</string>
     <string name="aconseguides">Aconseguides</string>
-    <string name="reptes_diaris">Reptes Diaris</string>
+    <string name="reptes_diaris">Reptes diaris</string>
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
@@ -60,6 +61,7 @@
     <string name="inicia_sessi_per_continuar">Inicia sessió per continuar</string>
     <string name="email">Correu electrònic</string>
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
+    <string name="oblidat_contrasenya">Has oblidat la teva contrasenya? <a href="#">Restableix-la</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
     <string name="nom_usuari">Nou nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
@@ -85,7 +87,7 @@
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
     <string name="icona_campana">icona campana</string>
-    <string name="tasques_pendents">Tens (x) tasques pendents</string>
+    <string name="tasques_pendents">Tens ...</string>
     <string name="btn_home_jardi">JARDÍ</string>
     <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
     <string name="titol_home_progres">PROGRÉS</string>

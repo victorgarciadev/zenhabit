@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22343c"
+    android:background="@color/fondo"
     tools:context=".Fragments.home">
 
 
@@ -44,6 +44,7 @@
                         android:contentDescription="@string/icona_campana" />
 
                     <TextView
+                        android:id="@+id/tasquesPendents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
