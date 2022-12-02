@@ -50,7 +50,7 @@ class CreateEditHabitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear hàbit")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_habit))
         val view = binding.root
 
         // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarHabit'

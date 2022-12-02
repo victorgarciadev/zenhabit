@@ -75,12 +75,12 @@ private fun crearUsuari(email: String, password: String, nom: String) {
                         .document(Firebase.auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-                    Toast(this).showCustomToast("Usuari creat correctament", this)
+                    Toast(this).showCustomToast(getString(R.string.user_created), this)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
                     if (nom.length > 1) posaNomUser(nom)
                 } else {
-                    Toast(this).showCustomToast("L'autentificació ha fallat", this)
+                    Toast(this).showCustomToast(getString(R.string.error_user_created), this)
                 }
             }
     }
@@ -105,7 +105,7 @@ private fun validateForm(): Boolean {
 
     val email = bin.inputCreateEmail.text.toString().trim()
     if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-        bin.inputCreateEmail.error = "El format d'email és incorrecte."
+        bin.inputCreateEmail.error = getString(R.string.error_email_created)
         valid = false
     } else {
         bin.inputCreateEmail.error = null
@@ -113,15 +113,16 @@ private fun validateForm(): Boolean {
 
     val password = bin.inputCreatePsw.text.toString().trim()
     if (!password.matches(PASSWORD_REGEX)) {
-        bin.inputCreatePsw.error = "La contrasenya com a mínim ha de tenir 8 caràcters i un número."
+        bin.inputCreatePsw.error = getString(R.string.error_password_created)
         valid = false
     } else {
         bin.inputCreatePsw.error = null
     }
 
     val nom = bin.inputCreateUserName.text.toString().trim()
-    if (nom.length >= 10) {
-        bin.inputCreateUserName.error = "El nom ha de tenir un máxim de 10 caràcters."
+    if (nom.length > 15) {
+        bin.inputCreateUserName.error = getString(R.string.error_username_created)
+        valid = false
     } else {
         bin.inputCreateUserName.error = null
     }

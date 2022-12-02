@@ -87,7 +87,6 @@
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
     <string name="icona_campana">icona campana</string>
-    <string name="tasques_pendents">Tens ...</string>
     <string name="btn_home_jardi">JARDÍ</string>
     <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
     <string name="titol_home_progres">PROGRÉS</string>
@@ -99,4 +98,33 @@
     <string name="icona_repeticio">icona de repetició</string>
     <string name="icona_rellotge">icona d\'un rellotge</string>
 
+    <!-- HOME TASQUES PENDENTS -->
+    <string name="tasques_pendents">Tens ...</string>
+    <string name="pendents_primera">Tens</string>
+    <string name="pendents_segona_singular">tasca i</string>
+    <string name="pendents_segona_plural">tasques i</string>
+    <string name="pendents_tercera_singular"> hàbit pendents.</string>
+    <string name="pendents_tercera_plural"> hàbits pendents.</string>
+
+    <!-- TITOLS ACTIONBAR -->
+    <string name="create_habit">Crear hàbit</string>
+    <string name="edit_habit">Editar hàbit</string>
+    <string name="create_task">Crear tasca</string>
+    <string name="edit_task">Editar tasca</string>
+    <string name="config_title">Configuració</string>
+    <string name="tasks_title">Tasques</string>
+    <string name="garden_title">Jardí</string>
+
+    <!-- TOASTS / ERRORS -->
+    <string name="mandatory_camp">Camp obligatori.</string>
+    <string name="signIn_fail">Email o contrasenya incorrectes.</string>
+    <string name="send_email">Email per restaurar contrasenya enviat.</string>
+    <string name="error_send_email">L\'email introduit no té associat un compte d\'usuari.</string>
+    <string name="user_created">Usuari creat correctament.</string>
+    <string name="error_user_created">L\'autentificació ha fallat.</string>
+    <string name="error_email_created">El format d\'email és incorrecte.</string>
+    <string name="error_password_created">La contrasenya com a mínim ha de tenir 8 caràcters i un número.</string>
+    <string name="error_username_created">El nom d\'usuari ha de ser d\'entre 3 i 15 caràcters.</string>
+    <string name="toast_change_password">Contrasenya canviada correctament.</string>
+    <string name="toast_change_email">Email canviat correctament.</string>
 </resources>
