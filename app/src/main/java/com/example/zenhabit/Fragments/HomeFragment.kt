@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
+import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Tasca
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,11 +53,17 @@ class home : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     val patata = result.get("llistaTasques") as ArrayList<Tasca>
+                    val tomate = result.get("llistaHabits") as ArrayList<Habit>
                     val numeroPatatas = patata.count()
-                    if (numeroPatatas == 1) {
-                        binding.tasquesPendents.text = "Tens 1 tasca pendent"
+                    val numeroTomates = tomate.count()
+                    if (numeroPatatas == 1 && numeroTomates == 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    } else if (numeroPatatas == 1 && numeroTomates != 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                    } else if (numeroPatatas != 1 && numeroTomates == 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
                     } else {
-                        binding.tasquesPendents.text = "Tens $numeroPatatas tasques pendents"
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
                     }
             }
         binding.btnVeureHabitTasca.setOnClickListener{
