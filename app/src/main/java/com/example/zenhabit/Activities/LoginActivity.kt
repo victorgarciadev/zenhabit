@@ -1,7 +1,11 @@
 package com.example.zenhabit.Activities
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,6 +14,7 @@ import android.view.Gravity
 import android.widget.TextView
 import android.widget.Toast
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
@@ -25,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var passwordTry: Int = 0
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,7 +47,11 @@ class LoginActivity : AppCompatActivity() {
 
         // Intent cap a la pantalla principal 'Home' si l'usuari no està loguejat
         binding.btnEnter.setOnClickListener {
-            signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
+            if (!isOnline(this)) {
+                startActivity(Intent(this, NoInternetActivity::class.java))
+            } else {
+                signIn(binding.inputEmail.text.toString(), binding.inputPsw.text.toString())
+            }
         }
 
         binding.textViewRegisterLink.setOnClickListener {
@@ -51,12 +61,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Comprovar si usuari ja està loguejat
+    @RequiresApi(Build.VERSION_CODES.M)
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+        if (!isOnline(this)) {
+            startActivity(Intent(this, NoInternetActivity::class.java))
+        } else {
+            // Check if user is signed in (non-null) and update UI accordingly.
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
     }
 
@@ -80,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                 passwordTry++
                 // Si falla, mostrem l’error o errors
                 Log.w(TAG, "signInWithEmail:fail", task.exception)
-                Toast(this).showCustomToast("Usuari o contrasenya incorrectes", this)
+                Toast(this).showCustomToast("Email o contrasenya incorrectes", this)
                 if (passwordTry >= 3) {
                     binding.forgotPassword.visibility = View.VISIBLE
                     binding.forgotPassword.setOnClickListener {
@@ -88,6 +103,8 @@ class LoginActivity : AppCompatActivity() {
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Toast(this).showCustomToast("Email per restaurar contrasenya enviat.", this)
+                                } else {
+                                    Toast(this).showCustomToast("L'email introduit no té associat un compte d'usuari.", this)
                                 }
                             }
                     }
@@ -136,6 +153,29 @@ class LoginActivity : AppCompatActivity() {
             view = layout
             show()
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
     }
 
 }

@@ -6,16 +6,17 @@
         <item>Aprenentatge</item>
         <item>Productivitat</item>
         <item>Salut</item>
-        <item><a href="#">Crear nova categoria...</a></item>
     </string-array>
 
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
+    <string name="sortir">SORTIR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
+    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
 
@@ -29,7 +30,7 @@
     <string name="objdiari">ObjDiari</string>
     <string name="descobdiari">DescObDiari</string>
     <string name="aconseguides">Aconseguides</string>
-    <string name="reptes_diaris">Reptes Diaris</string>
+    <string name="reptes_diaris">Reptes diaris</string>
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
