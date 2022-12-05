@@ -59,6 +59,17 @@
     <string name="hora">hora</string>
     <string name="icona_repeticio">icona de repetició</string>
     <string name="icona_rellotge">icona d\'un rellotge</string>
+    <string name="nom_de_habit">Nom de l\'hàbit</string>
+    <string name="dilluns">Dilluns</string>
+    <string name="dimarts">Dimarts</string>
+    <string name="dimecres">Dimecres</string>
+    <string name="dijous">Dijous</string>
+    <string name="divendres">Divendres</string>
+    <string name="dissabte">Dissabte</string>
+    <string name="diumenge">Diumenge</string>
+    <string name="hora_limit">Hora límit</string>
+    <string name="_hora0000">00:00</string>
+    <string name="data000000">00/00/00</string>
 
     <!--  TASQUES  -->
     <string name="boton">+</string>
