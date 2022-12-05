@@ -68,12 +68,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    // Mostrar menú more (Action Bar)
-//   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_action_bar, menu)     // Inicialitzar el menú
-//        return true
-//    }
-
     // Accions pels ítems del menú more (Action Bar)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.about) {

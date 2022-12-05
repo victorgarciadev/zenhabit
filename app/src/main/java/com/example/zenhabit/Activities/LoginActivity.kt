@@ -133,9 +133,6 @@ class LoginActivity : AppCompatActivity() {
         } else {
             binding.inputPsw.error = null
         }
-        //if (!valid) {
-        //Toast(this).showCustomToast("Camp buit", this)
-        //}
         return valid
     }
 

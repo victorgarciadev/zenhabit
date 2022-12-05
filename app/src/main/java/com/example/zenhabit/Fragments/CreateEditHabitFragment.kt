@@ -66,10 +66,6 @@ class CreateEditHabitFragment : Fragment() {
             val data = binding.etPlannedDate.hint.toString()
 
             val habit = Habit(nom,descripcio,categoria,null,data,horari, false, null)
-//            val db = FirebaseFirestore.getInstance().collection("Habits")
-//                .document("idTemp").set(habit)
-//                .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }
-//                .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error writing document", e) }
             val document = FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
