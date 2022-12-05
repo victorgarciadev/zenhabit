@@ -43,16 +43,16 @@ class CreateEditTaskFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditTaskBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear tasca")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_task))
         val view = binding.root
 
         val name = arguments?.get("Name").toString()
         if (name != "null") {
             binding.nomTascaEdit.setText(name)
-            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Editar tasca")
+            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.edit_task))
             binding.btnCrearEditarHabit.isVisible = false
         } else {
-            binding.nomTascaEdit.setText("Nom de la tasca")
+            binding.nomTascaEdit.setText("")
             binding.btnCrearEditarHabit.isVisible = true
         }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'

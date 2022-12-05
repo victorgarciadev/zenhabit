@@ -260,6 +260,7 @@
                     android:layout_height="64dp"
                     android:layout_margin="5dp"
                     android:layout_marginBottom="16dp"
+                    android:backgroundTint="#D99600"
                     android:text="@string/boton"
                     app:cornerRadius="100dp"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
@@ -284,7 +285,9 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp">
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/shimmer"

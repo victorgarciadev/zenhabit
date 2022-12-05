@@ -10,6 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
+import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Tasca
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,6 +49,23 @@ class home : Fragment() {
         binding.btnVeureJardi.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn
         }
+        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                    val patata = result.get("llistaTasques") as ArrayList<Tasca>
+                    val tomate = result.get("llistaHabits") as ArrayList<Habit>
+                    val numeroPatatas = patata.count()
+                    val numeroTomates = tomate.count()
+                    if (numeroPatatas == 1 && numeroTomates == 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    } else if (numeroPatatas == 1 && numeroTomates != 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                    } else if (numeroPatatas != 1 && numeroTomates == 1) {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    } else {
+                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                    }
+            }
         binding.btnVeureHabitTasca.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_tasksFragment2)
         }

@@ -27,7 +27,7 @@ class JardiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Jardí")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.garden_title))
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_jardi, container, false)
     }

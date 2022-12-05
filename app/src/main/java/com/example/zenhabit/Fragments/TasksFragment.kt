@@ -52,7 +52,7 @@ class TasksFragment : Fragment() {
         // Inflate the layout for this fragment
 
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Tasques")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.tasks_title))
         val view = binding.root
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
@@ -87,7 +87,7 @@ class TasksFragment : Fragment() {
             binding.rvTasques.visibility = View.VISIBLE
             shimmerFrameLayout.stopShimmer()
             shimmerFrameLayout.visibility = View.INVISIBLE
-        }, 2500)
+        }, 1000)
 
 
 //        cargar recyclerview

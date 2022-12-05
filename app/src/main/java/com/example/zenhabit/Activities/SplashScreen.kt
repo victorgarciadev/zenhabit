@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.ActionBar
-import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 
 class SplashScreen : AppCompatActivity() {

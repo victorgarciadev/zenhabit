@@ -50,7 +50,7 @@ class CreateEditHabitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Crear hàbit")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_habit))
         val view = binding.root
 
         // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarHabit'
@@ -58,13 +58,14 @@ class CreateEditHabitFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditHabitFragment_to_createEditTaskFragment)
         }
         binding.btnGuardarCrearEditarHabit.setOnClickListener {
+            val nom = binding.nomHabitEdit.editableText.toString()
             val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
             val horari = binding.etPlannedHour.hint.toString()
 
             val data = binding.etPlannedDate.hint.toString()
 
-            val habit = Habit("Nom",descripcio,categoria,null,data,horari, false, null)
+            val habit = Habit(nom,descripcio,categoria,null,data,horari, false, null)
 //            val db = FirebaseFirestore.getInstance().collection("Habits")
 //                .document("idTemp").set(habit)
 //                .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!") }

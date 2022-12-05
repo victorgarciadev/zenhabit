@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22343c"
+    android:background="@color/fondo"
     tools:context=".Fragments.home">
 
 
@@ -34,8 +34,8 @@
 
                     <ImageView
                         android:id="@+id/img_notification"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:src="@drawable/ic_baseline_notification_important_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -44,13 +44,14 @@
                         android:contentDescription="@string/icona_campana" />
 
                     <TextView
+                        android:id="@+id/tasquesPendents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:gravity="center"
                         android:text="@string/tasques_pendents"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         app:autoSizeTextType="uniform"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
