@@ -32,7 +32,6 @@ class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> 
             tvHora.text = tasca.hora
 
             button.setOnClickListener { onClickDelete(index) }
-            // tvTasca.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
             bigItem.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
         }
     }

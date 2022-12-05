@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.ActionBar
-import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 
 class SplashScreen : AppCompatActivity() {
@@ -16,7 +16,7 @@ class SplashScreen : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.hide()
 
-        Handler().postDelayed(Runnable {
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
             startActivity(Intent(this@SplashScreen, LoginActivity::class.java))
             finish()
         }, 4000)

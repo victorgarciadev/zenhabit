@@ -285,7 +285,9 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp">
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/shimmer"

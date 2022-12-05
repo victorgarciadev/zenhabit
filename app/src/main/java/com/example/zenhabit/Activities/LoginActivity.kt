@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     public override fun onStart() {
         super.onStart()
+        // check if user has internet connection
         if (!isOnline(this)) {
             startActivity(Intent(this, NoInternetActivity::class.java))
         } else {
@@ -87,24 +88,25 @@ class LoginActivity : AppCompatActivity() {
                 // Login correcte, mostrem que tot ha anat correcte
                 Log.d(TAG, "signInWithEmail:success")
                 val user = auth.currentUser
-                Toast(this).showCustomToast("Hola, ${user?.displayName} !", this)
+                Toast(this).showCustomToast("Hola, ${user?.displayName}!", this)
                 //canviar pantalla
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
+                binding.inputPsw.setText("")
                 passwordTry++
                 // Si falla, mostrem l’error o errors
                 Log.w(TAG, "signInWithEmail:fail", task.exception)
-                Toast(this).showCustomToast("Email o contrasenya incorrectes", this)
+                Toast(this).showCustomToast(getString(R.string.signIn_fail), this)
                 if (passwordTry >= 3) {
                     binding.forgotPassword.visibility = View.VISIBLE
                     binding.forgotPassword.setOnClickListener {
                         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast(this).showCustomToast("Email per restaurar contrasenya enviat.", this)
+                                    Toast(this).showCustomToast(getString(R.string.send_email), this)
                                 } else {
-                                    Toast(this).showCustomToast("L'email introduit no té associat un compte d'usuari.", this)
+                                    Toast(this).showCustomToast(getString(R.string.error_send_email), this)
                                 }
                             }
                     }
@@ -118,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
 
         val email = binding.inputEmail.text.toString().trim()
         if (TextUtils.isEmpty(email)) {
-            binding.inputEmail.error = "Camp obligatori"
+            binding.inputEmail.error = getString(R.string.mandatory_camp)
             valid = false
         } else {
             binding.inputEmail.error = null
@@ -126,14 +128,11 @@ class LoginActivity : AppCompatActivity() {
 
         val password = binding.inputPsw.text.toString().trim()
         if (TextUtils.isEmpty(password)) {
-            binding.inputPsw.error = "Camp obligatori"
+            binding.inputPsw.error = getString(R.string.mandatory_camp)
             valid = false
         } else {
             binding.inputPsw.error = null
         }
-        //if (!valid) {
-        //Toast(this).showCustomToast("Camp buit", this)
-        //}
         return valid
     }
 

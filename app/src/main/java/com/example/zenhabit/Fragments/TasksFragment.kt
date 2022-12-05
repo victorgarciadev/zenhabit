@@ -29,9 +29,6 @@ import com.google.firebase.ktx.Firebase
  * create an instance of this fragment.
  */
 class TasksFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding
@@ -52,7 +49,7 @@ class TasksFragment : Fragment() {
         // Inflate the layout for this fragment
 
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("Tasques")
+        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.tasks_title))
         val view = binding.root
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
