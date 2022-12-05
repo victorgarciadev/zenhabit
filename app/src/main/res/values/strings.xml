@@ -1,28 +1,60 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZenHabit</string>
 
-    <!-- Valors provisionals: DropdownMenu items (Categories) -->
+    <!-- Valors DropdownMenu items (Categories) -->
     <string-array name="categories">
         <item>Aprenentatge</item>
         <item>Productivitat</item>
         <item>Salut</item>
-        <item><a href="#">Crear nova categoria...</a></item>
     </string-array>
 
     <!-- BOTONS -->
     <string name="entrar">ENTRAR</string>
     <string name="cancel_lar">CANCEL·LAR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
+    <string name="desar">DESAR</string>
+    <string name="btn_home_jardi">JARDÍ</string>
+    <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
+
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
+    <string name="titol_home_progres">PROGRÉS</string>
+    <string name="titol_jardi">Jardí</string>
+
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
+    <string name="label_home_pendents">Pendents</string>
+    <string name="label_home_complerts">Hàbits complets</string>
+    <string name="label_home_tasques_complertes">Tasques complertes</string>
+    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
+    <string name="label_jardi_items_obtinguts">Obtinguts/des: x</string>
 
     <!--  JARDÍ  -->
-    <string name="jardi">Jardí</string>
-    <string name="Planta1" tools:ignore="Typos">Planta1</string>
-    <string name="DescripcionPlanta" tools:ignore="Typos">DescPlanta1</string>
+    <string name="avet">Avet</string>
+    <string name="palmera">Palmera</string>
+    <string name="olivera">Olivera</string>
+    <string name="girasol">Girasol</string>
+    <string name="rosa">Rosa</string>
+    <string name="lavanda">Lavanda</string>
+    <string name="aloe_vera">Aloe Vera</string>
+    <string name="bambu">Bambú</string>
+    <string name="cactus">Cactus</string>
+    <string name="icona_avet">Icona d\'un Avet</string>
+    <string name="icona_palmera">Icona d\'una Palmera</string>
+    <string name="icona_olivera">Icona d\'una Olivera</string>
+    <string name="icona_girasol">Icona d\'un Girasol</string>
+    <string name="icona_rosa">Icona d\'una Rosa</string>
+    <string name="icona_lavanda">Icona d\'una planta de Lavanda</string>
+    <string name="icona_aloe_vera">Icona d\'una planta d\'Aloe Vera</string>
+    <string name="icona_bambu">Icona d\'una planta de Bambú</string>
+    <string name="icona_cactus">Icona d\'un Cactus</string>
+
+    <!-- HÀBITS -->
+    <string name="nom_de_la_tasca">nom_de_la_tasca</string>
+    <string name="hora">hora</string>
+    <string name="icona_repeticio">icona de repetició</string>
+    <string name="icona_rellotge">icona d\'un rellotge</string>
 
     <!--  TASQUES  -->
     <string name="boton">+</string>
@@ -33,12 +65,6 @@
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
-
-    <!--  Diari  -->
-    <string name="pendents">Pendents</string>
-    <string name="seguiment">SEGUIMENT</string>
-    <string name="complerts">Complerts</string>
-    <string name="x">X</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -71,7 +97,9 @@
     <string name="repeticio">Repetició</string>
     <string name="horari">Horari</string>
     <string name="data_limit">Data límit</string>
-    <string name="desar">DESAR</string>
+    <string name="icona_campana">icona campana</string>
+    <string name="tasques_pendents">Tens (x) tasques pendents</string>
+
 
     <!-- DIÀLEG 'ABOUT' -->
     <string name="about_versio">(Versió 1.0)</string>
@@ -85,17 +113,5 @@
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
-    <string name="icona_campana">icona campana</string>
-    <string name="tasques_pendents">Tens (x) tasques pendents</string>
-    <string name="btn_home_jardi">JARDÍ</string>
-    <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
-    <string name="titol_home_progres">PROGRÉS</string>
-    <string name="label_home_pendents">Pendents</string>
-    <string name="label_home_complerts">Hàbits complets</string>
-    <string name="label_home_tasques_complertes">Tasques complertes</string>
-    <string name="nom_de_la_tasca">nom_de_la_tasca</string>
-    <string name="hora">hora</string>
-    <string name="icona_repeticio">icona de repetició</string>
-    <string name="icona_rellotge">icona d\'un rellotge</string>
 
 </resources>
