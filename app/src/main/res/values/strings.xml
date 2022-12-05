@@ -13,17 +13,52 @@
     <string name="cancel_lar">CANCEL·LAR</string>
     <string name="sortir">SORTIR</string>
     <string name="registrar_se">REGISTRAR-SE</string>
+    <string name="desar">DESAR</string>
+    <string name="btn_home_jardi">JARDÍ</string>
+    <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
+
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
-    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
+    <string name="titol_home_progres">PROGRÉS</string>
+    <string name="titol_jardi">Jardí</string>
+
     <!-- TEXTES -->
     <string name="categoria">Categoria</string>
+    <string name="noInternet">No tens connexió a internet. Torna a provar.</string>
+    <string name="label_home_pendents">Pendents</string>
+    <string name="label_home_complerts">Hàbits complets</string>
+    <string name="label_home_tasques_complertes">Tasques complertes</string>
+    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
+    <string name="label_jardi_items_obtinguts">Obtinguts/des: x</string>
+    <string name="nom_canal">Notificacions Zenhabit</string>
+    <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
     <!--  JARDÍ  -->
-    <string name="jardi">Jardí</string>
-    <string name="Planta1" tools:ignore="Typos">Planta1</string>
-    <string name="DescripcionPlanta" tools:ignore="Typos">DescPlanta1</string>
+    <string name="avet">Avet</string>
+    <string name="palmera">Palmera</string>
+    <string name="olivera">Olivera</string>
+    <string name="girasol">Girasol</string>
+    <string name="rosa">Rosa</string>
+    <string name="lavanda">Lavanda</string>
+    <string name="aloe_vera">Aloe Vera</string>
+    <string name="bambu">Bambú</string>
+    <string name="cactus">Cactus</string>
+    <string name="icona_avet">Icona d\'un Avet</string>
+    <string name="icona_palmera">Icona d\'una Palmera</string>
+    <string name="icona_olivera">Icona d\'una Olivera</string>
+    <string name="icona_girasol">Icona d\'un Girasol</string>
+    <string name="icona_rosa">Icona d\'una Rosa</string>
+    <string name="icona_lavanda">Icona d\'una planta de Lavanda</string>
+    <string name="icona_aloe_vera">Icona d\'una planta d\'Aloe Vera</string>
+    <string name="icona_bambu">Icona d\'una planta de Bambú</string>
+    <string name="icona_cactus">Icona d\'un Cactus</string>
+
+    <!-- HÀBITS -->
+    <string name="nom_de_la_tasca">Nom tasca</string>
+    <string name="hora">hora</string>
+    <string name="icona_repeticio">icona de repetició</string>
+    <string name="icona_rellotge">icona d\'un rellotge</string>
 
     <!--  TASQUES  -->
     <string name="boton">+</string>
@@ -34,12 +69,6 @@
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
-
-    <!--  Diari  -->
-    <string name="pendents">Pendents</string>
-    <string name="seguiment">SEGUIMENT</string>
-    <string name="complerts">Complerts</string>
-    <string name="x">X</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -72,7 +101,6 @@
     <string name="repeticio">Repetició</string>
     <string name="horari">Horari</string>
     <string name="data_limit">Data límit</string>
-    <string name="desar">DESAR</string>
 
     <!-- DIÀLEG 'ABOUT' -->
     <string name="about_versio">(Versió 1.0)</string>
@@ -86,17 +114,6 @@
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
-    <string name="icona_campana">icona campana</string>
-    <string name="btn_home_jardi">JARDÍ</string>
-    <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
-    <string name="titol_home_progres">PROGRÉS</string>
-    <string name="label_home_pendents">Pendents</string>
-    <string name="label_home_complerts">Hàbits complets</string>
-    <string name="label_home_tasques_complertes">Tasques complertes</string>
-    <string name="nom_de_la_tasca">nom_de_la_tasca</string>
-    <string name="hora">hora</string>
-    <string name="icona_repeticio">icona de repetició</string>
-    <string name="icona_rellotge">icona d\'un rellotge</string>
 
     <!-- HOME TASQUES PENDENTS -->
     <string name="tasques_pendents">Tens ...</string>
@@ -105,6 +122,10 @@
     <string name="pendents_segona_plural">tasques i</string>
     <string name="pendents_tercera_singular"> hàbit pendents.</string>
     <string name="pendents_tercera_plural"> hàbits pendents.</string>
+    <string name="icona_campana">icona campana</string>
+    <string name="pendents">Pendents</string>
+    <string name="seguiment">SEGUIMENT</string>
+    <string name="complerts">Complerts</string>
 
     <!-- TITOLS ACTIONBAR -->
     <string name="create_habit">Crear hàbit</string>
@@ -127,4 +148,9 @@
     <string name="error_username_created">El nom d\'usuari ha de ser d\'entre 3 i 15 caràcters.</string>
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
+
+    <!-- NOTIFICACIONS -->
+    <string name="label_notificacio_jardi">El teu jardí creix!</string>
+    <string name="label_notificacio_getNewItem">Tens x Roses noves!!!</string>
+
 </resources>
