@@ -126,9 +126,6 @@ private fun validateForm(): Boolean {
     } else {
         bin.inputCreateUserName.error = null
     }
-    //if (!valid) {
-    //Toast(this).showCustomToast("Camp buit", this)
-    //}
     return valid
 }
 
