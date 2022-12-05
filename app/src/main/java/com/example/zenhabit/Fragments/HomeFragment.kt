@@ -1,10 +1,12 @@
 package com.example.zenhabit.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -54,19 +56,26 @@ class home : Fragment() {
         val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
+                    shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
                     val patata = result.get("llistaTasques") as ArrayList<Tasca>
                     val tomate = result.get("llistaHabits") as ArrayList<Habit>
                     val numeroPatatas = patata.count()
                     val numeroTomates = tomate.count()
-                    if (numeroPatatas == 1 && numeroTomates == 1) {
-                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
-                    } else if (numeroPatatas == 1 && numeroTomates != 1) {
-                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
-                    } else if (numeroPatatas != 1 && numeroTomates == 1) {
-                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
-                    } else {
-                        binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                if (numeroPatatas == 1 && numeroTomates == 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    binding.imgNotification.startAnimation(shake)
+                } else if (numeroPatatas == 1 && numeroTomates != 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                    binding.imgNotification.startAnimation(shake)
+                } else if (numeroPatatas != 1 && numeroTomates == 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    binding.imgNotification.startAnimation(shake)
+                } else {
+                    if(numeroPatatas != 0 || numeroTomates != 0){
+                        binding.imgNotification.startAnimation(shake)
                     }
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                }
             }
         binding.btnVeureHabitTasca.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_tasksFragment2)
