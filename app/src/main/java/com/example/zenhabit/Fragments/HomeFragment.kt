@@ -20,17 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [home.newInstance] factory method to
- * create an instance of this fragment.
- */
 class home : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -38,7 +27,6 @@ class home : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -48,7 +36,6 @@ class home : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("ZenHabit")
-        val csActivity = activity as MainActivity
         val view = binding.root
         binding.btnVeureJardi.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn

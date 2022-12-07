@@ -21,11 +21,6 @@ import com.example.zenhabit.databinding.FragmentCreateEditTaskBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateEditTaskFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateEditTaskFragment : Fragment() {
 
     // View Binding (Fragment)
@@ -34,7 +29,6 @@ class CreateEditTaskFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
