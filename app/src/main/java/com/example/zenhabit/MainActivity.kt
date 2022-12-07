@@ -11,6 +11,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -24,12 +26,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.Fragments.JardiFragment
 import com.example.zenhabit.databinding.ActivityMainBinding
+import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Planta
 import com.example.zenhabit.models.Repte
+import com.example.zenhabit.models.Tasca
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.sql.Time
+import java.sql.Timestamp
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
+
+        resetNotification()  // comprova si ja ha pasat un dia des de la última notificacio
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -70,40 +81,26 @@ class MainActivity : AppCompatActivity() {
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
         bottomNavigation.itemIconTintList = null;
         //FirebaseUtils()
-
-
-
-        //*** NOTIFICACIONS ***
-        // fonts: https://developer.android.com/develop/ui/views/notifications/build-notification
-        // youtube: https://www.youtube.com/watch?v=Zt00P509v10
-        createNotificationChannel()
-
-        //3. Definir què fer quan s'obre la notificació 'ITEMS ACONSEGUITS (JARDÍ)' -> Crear un intent explícit o navigation a un fragment
-        navController.navigate(R.id.jardiFragment)
-            // val intent = Intent(this, JardiFragment::class.java).apply {
-            //flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        //}
-
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
-        // 1. Crear constructor per mostrar la notificació
-        val builder = NotificationCompat.Builder(this, canalID)
-            .setSmallIcon(R.drawable.ic_notificacio)
-            .setContentTitle(getString(R.string.label_notificacio_jardi))
-            .setContentText(getString(R.string.label_notificacio_getNewItem))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            // Especificar l'intent que s'executarà quan l'usuari toqui la notificació
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-        // 2. Fer que la notificació aparegui (especificar trigger...) PENDENT!!!
-        with(NotificationManagerCompat.from(this)) {
-            notify(notificacio_jardi_ID, builder.build())
-        }
-        //*** FI NOTIFICACIONS ***
-
-
     }
+
+    override fun onStop() {
+        // l'aplicació entra aqui quan l'usuari ja no la veu
+        super.onStop()
+        // checkeja a la bbdd si ja ha vist la notifiació avui o o no
+        val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val vist = result.get("vist") as Boolean
+                if (!vist) {
+                    val update = FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(Firebase.auth.currentUser!!.uid).update( "vist",true)
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
+                    }, 3000)
+                }
+            }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -164,4 +161,60 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun launchNotification() {
+        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val tasca = result.get("llistaTasques") as ArrayList<Tasca>
+                val habit = result.get("llistaHabits") as ArrayList<Habit>
+                val numeroPendents = tasca.count() + habit.count()
+                var text = ""
+                if (numeroPendents > 0) {
+                    createNotificationChannel()
+                    val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+                    if (numeroPendents == 1) {
+                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
+                    } else {
+                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
+                    }
+                    // 1. Crear constructor per mostrar la notificació
+                    val builder = NotificationCompat.Builder(this, canalID)
+                        .setSmallIcon(R.drawable.ic_notificacio)
+                        .setContentTitle(getString(R.string.label_notificacio_jardi))
+                        .setContentText(text)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        // Especificar l'intent que s'executarà quan l'usuari toqui la notificació
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+
+                    // 2. Fer que la notificació aparegui (especificar trigger...) PENDENT!!!
+                    with(NotificationManagerCompat.from(this)) {
+                        notify(notificacio_jardi_ID, builder.build())
+                    }
+                    val flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+            }
     }
+    private fun resetNotification() {
+        val actualDay = Calendar.getInstance().getTime()// dia i hora actual
+        val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val lastDay = result.getTimestamp("lastDate")!!.toDate() // dia i hora que es va llençar l'última notificació
+                    val difference: Long = actualDay.time - lastDay.time
+                    val seconds = difference / 1000
+                    val minutes = seconds / 60
+                    val hours = minutes / 60
+                    val days = hours / 24
+                    if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
+                        val update = FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(Firebase.auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
+                    }
+            }
+    }
+
+
+    //*** FI NOTIFICACIONS ***
+
+
+}
