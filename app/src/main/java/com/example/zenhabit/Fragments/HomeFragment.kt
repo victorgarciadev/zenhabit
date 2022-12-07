@@ -57,24 +57,24 @@ class home : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
-                    val patata = result.get("llistaTasques") as ArrayList<Tasca>
-                    val tomate = result.get("llistaHabits") as ArrayList<Habit>
-                    val numeroPatatas = patata.count()
-                    val numeroTomates = tomate.count()
-                if (numeroPatatas == 1 && numeroTomates == 1) {
+                    val tasques = result.get("llistaTasques") as ArrayList<Tasca>
+                    val habits = result.get("llistaHabits") as ArrayList<Habit>
+                    val numeroTasques = tasques.count()
+                    val numeroHabits = habits.count()
+                if (numeroTasques == 1 && numeroHabits == 1) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
                     binding.imgNotification.startAnimation(shake)
-                } else if (numeroPatatas == 1 && numeroTomates != 1) {
-                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                } else if (numeroTasques == 1 && numeroHabits != 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " $numeroHabits " + getString(R.string.pendents_tercera_plural)
                     binding.imgNotification.startAnimation(shake)
-                } else if (numeroPatatas != 1 && numeroTomates == 1) {
-                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
+                } else if (numeroTasques != 1 && numeroHabits == 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroTasques " + getString(R.string.pendents_segona_plural) + " 1 " + getString(R.string.pendents_tercera_singular)
                     binding.imgNotification.startAnimation(shake)
                 } else {
-                    if(numeroPatatas != 0 || numeroTomates != 0){
+                    if(numeroTasques != 0 || numeroHabits != 0){
                         binding.imgNotification.startAnimation(shake)
                     }
-                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroPatatas " + getString(R.string.pendents_segona_plural) + " $numeroTomates " + getString(R.string.pendents_tercera_plural)
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroTasques " + getString(R.string.pendents_segona_plural) + " $numeroHabits " + getString(R.string.pendents_tercera_plural)
                 }
             }
         binding.btnVeureHabitTasca.setOnClickListener{
