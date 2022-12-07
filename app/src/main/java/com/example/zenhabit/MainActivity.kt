@@ -14,20 +14,18 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
-import com.example.zenhabit.Fragments.JardiFragment
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
-import com.example.zenhabit.models.Planta
 import com.example.zenhabit.models.Repte
 import com.example.zenhabit.models.Tasca
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,10 +33,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Time
-import java.sql.Timestamp
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,10 +66,12 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
 
+        hideSystemUI() // esconde la bottomnavigation de android
+
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.home -> navController.navigate(R.id.homeActivity)
+                R.id.home -> navController.popBackStack(R.id.homeActivity, false)
                 R.id.settings -> navController.navigate(R.id.settingsFragment)
             }
             true
@@ -101,7 +99,16 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    class FirebaseUtils {
+        val reto = Repte(3,"Escriure't una nota positiva","Nota")
+        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
+        val db = FirebaseFirestore.getInstance().collection("Reptes")
+            .document(reto.idRepte.toString()).set(reto)
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+    }
 
+    //*** INICI NAVBAR ***
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_action_bar, menu)
@@ -111,6 +118,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+    //*** FI NAVBAR ***
 
     // Accions pels ítems del menú more (Action Bar)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -132,17 +140,8 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    class FirebaseUtils {
-        val reto = Repte(3,"Escriure't una nota positiva","Nota")
-        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
-        val db = FirebaseFirestore.getInstance().collection("Reptes")
-            .document(reto.idRepte.toString()).set(reto)
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-    }
-
-    // Mètodes *** NOTIFICACIONS ***
-    // 1. Crea el canal per gestionar totes les notificacions
+    // INICI *** NOTIFICACIONS ***
+    // Crea el canal per gestionar totes les notificacions
     private fun createNotificationChannel() {
         // Crea el NotificationChannel, però només per API 26+ perquè aquesta és una Classe nova no present a les llibreries de suport estàndards
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -160,7 +159,6 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
     }
-
     private fun launchNotification() {
         val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get()
@@ -215,6 +213,20 @@ class MainActivity : AppCompatActivity() {
 
 
     //*** FI NOTIFICACIONS ***
+
+    private fun hideSystemUI() {
+        // comprobar si la SDK es superior o inferior a 30
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false)
+            if (window.insetsController != null) {
+                window.insetsController!!.hide(WindowInsets.Type.navigationBars()) // esconde la navegacion inferior
+                window.insetsController!!.systemBarsBehavior =
+                    WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE // la muestra si hacer swipe para arriba
+            }
+        } else {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) // versiones inferiores a 30
+        }
+    }
 
 
 }

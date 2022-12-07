@@ -23,11 +23,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TasksFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
@@ -39,7 +34,6 @@ class TasksFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
