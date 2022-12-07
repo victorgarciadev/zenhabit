@@ -161,7 +161,8 @@
     <string name="toast_change_email">Email canviat correctament.</string>
 
     <!-- NOTIFICACIONS -->
-    <string name="label_notificacio_jardi">El teu jardí creix!</string>
-    <string name="label_notificacio_getNewItem">Tens x Roses noves!!!</string>
+    <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>
+    <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendet.</string>
+    <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
 
 </resources>
