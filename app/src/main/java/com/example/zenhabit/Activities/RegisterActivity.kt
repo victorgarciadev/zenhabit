@@ -19,6 +19,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -75,6 +77,10 @@ private fun crearUsuari(email: String, password: String, nom: String) {
                         .document(Firebase.auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+                    val actualDay = Calendar.getInstance().getTime()
+                    val temporal = VerificacioNotificacio(actualDay,false)
+                    val notificacio = FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(Firebase.auth.currentUser!!.uid).set(temporal)
                     Toast(this).showCustomToast(getString(R.string.user_created), this)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)

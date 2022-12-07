@@ -201,10 +201,7 @@ class MainActivity : AppCompatActivity() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val lastDay = result.getTimestamp("lastDate")!!.toDate() // dia i hora que es va llençar l'última notificació
-                Log.d("time","$lastDay")
-                Log.d("newTime","$actualDay")
                     val difference: Long = actualDay.time - lastDay.time
-                    Log.d("diff","$difference")
                     val seconds = difference / 1000
                     val minutes = seconds / 60
                     val hours = minutes / 60
