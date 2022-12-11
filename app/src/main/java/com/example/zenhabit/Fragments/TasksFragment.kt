@@ -22,6 +22,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.util.Objects
 
 class TasksFragment : Fragment() {
 
@@ -31,6 +32,7 @@ class TasksFragment : Fragment() {
     private lateinit var data: MutableList<Tasca>
     private lateinit var mAdapter: AdapterTasques
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
+    private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,23 +50,43 @@ class TasksFragment : Fragment() {
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
+
+
+        //ResptesDiaris shimmer
+        shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
+        shimmerFrameLayoutObjDiari.startShimmer()
+
+        //obtenir els reptes diaris
         for (i in 1..3) {
             val document = FirebaseFirestore.getInstance().collection("Reptes")
                 .document(i.toString()).get()
                 .addOnSuccessListener { result ->
                     val titol = result.get("titol")
+                    val desc = result.get("descripcio")
                     if (i == 1) {
-                        binding.titolRepte1.text = titol.toString()
+                        binding.Obj1.textViewDesc.text = desc.toString()
+                        binding.Obj1.titolRepte.text = titol.toString()
                     }
                     if (i == 2) {
-                        binding.titolRepte2.text = titol.toString()
+                        binding.Obj2.textViewDesc.text = desc.toString()
+                        binding.Obj2.titolRepte.text = titol.toString()
                     }
                     if (i == 3) {
-                        binding.titolRepte3.text = titol.toString()
+                        binding.Obj3.textViewDesc.text = desc.toString()
+                        binding.Obj3.titolRepte.text = titol.toString()
                     }
-
                 }
         }
+
+        //Mostrar
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.listObjDiari.visibility = View.VISIBLE
+            shimmerFrameLayoutObjDiari.stopShimmer()
+            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+        }, 1000)
+
+
+
 
 //      RecyclerView shimmer
         val mRecyclerView = binding.rvTasques
@@ -84,7 +106,10 @@ class TasksFragment : Fragment() {
 //        cargar recyclerview
         mRecyclerView.setLayoutManager(mLayoutManager);
         data = dataInicialize() as MutableList<Tasca>
-        mAdapter = AdapterTasques(data, { index -> deleteItem(index)} , { nom, hora -> sendItem(nom, hora)} );
+        mAdapter = AdapterTasques(
+            data,
+            { index -> deleteItem(index) },
+            { nom, hora -> sendItem(nom, hora) });
         mRecyclerView.setAdapter(mAdapter)
 
 
@@ -93,7 +118,8 @@ class TasksFragment : Fragment() {
     }
 
     private fun sendItem(nom: String, hora: String) {
-        val action = TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
+        val action =
+            TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
         findNavController().navigate(action)
     }
 
