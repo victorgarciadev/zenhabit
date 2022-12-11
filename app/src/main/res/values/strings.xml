@@ -127,7 +127,7 @@
     <string name="credits">&#160;Crèdits</string>
 
     <!-- HOME TASQUES PENDENTS -->
-    <string name="tasques_pendents">Tens ...</string>
+    <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
     <string name="pendents_segona_singular">tasca i</string>
     <string name="pendents_segona_plural">tasques i</string>
