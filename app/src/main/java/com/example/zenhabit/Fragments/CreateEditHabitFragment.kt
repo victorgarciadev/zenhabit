@@ -65,7 +65,7 @@ class CreateEditHabitFragment : Fragment() {
                                   binding.checkboxDivendres.isChecked,
                                   binding.checkboxDissabte.isChecked,
                                   binding.checkboxDiumenge.isChecked,)
-            val horari = binding.etPlannedDate.hint.toString()
+            val horari = binding.etPlannedHour.hint.toString()
             val complert = false
             val tipus = true
 
