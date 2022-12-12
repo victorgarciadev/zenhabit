@@ -73,14 +73,14 @@ private fun crearUsuari(email: String, password: String, nom: String) {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Tasca>(), ArrayList<Habit>())
-                    val db = FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(Firebase.auth.currentUser!!.uid).set(usuari)
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
                     val actualDay = Calendar.getInstance().getTime()
                     val temporal = VerificacioNotificacio(actualDay,false)
-                    val notificacio = FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(Firebase.auth.currentUser!!.uid).set(temporal)
+                    FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(auth.currentUser!!.uid).set(temporal)
                     Toast(this).showCustomToast(getString(R.string.user_created), this)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)

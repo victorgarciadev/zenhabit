@@ -40,7 +40,7 @@ class home : Fragment() {
         binding.btnVeureJardi.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_jardiFragment)  // posar aquest codi als btn
         }
-        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
+        FirebaseFirestore.getInstance().collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
