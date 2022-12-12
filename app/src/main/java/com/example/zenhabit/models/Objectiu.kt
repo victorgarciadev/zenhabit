@@ -2,7 +2,7 @@ package com.example.zenhabit.models
 
 import java.util.Date
 
-class Objectiu(nom: String, descripcio: String, categoria: String, dataLimit: Date, repetible:Dies,horari:String, complert: Boolean, ultimaDataFet: Date?, tipus: Boolean) {
+class Objectiu(nom: String, descripcio: String, categoria: String, dataLimit: String, repetible:Dies,horari:String, complert: Boolean, ultimaDataFet: Date?, tipus: Boolean) {
     val nom = nom
     val descripcio = descripcio
     val categoria = categoria
