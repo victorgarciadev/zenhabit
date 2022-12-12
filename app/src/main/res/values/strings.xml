@@ -30,7 +30,7 @@
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
     <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
-    <string name="label_jardi_items_obtinguts">Obtinguts/des: x</string>
+    <string name="label_jardi_items_obtinguts">Quantitat: x</string>
     <string name="nom_canal">Notificacions Zenhabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
@@ -127,7 +127,7 @@
     <string name="credits">&#160;Crèdits</string>
 
     <!-- HOME TASQUES PENDENTS -->
-    <string name="tasques_pendents">Tens ...</string>
+    <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
     <string name="pendents_segona_singular">tasca i</string>
     <string name="pendents_segona_plural">tasques i</string>
