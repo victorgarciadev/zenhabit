@@ -162,7 +162,7 @@
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>
-    <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendet.</string>
+    <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendent.</string>
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
 
 </resources>
