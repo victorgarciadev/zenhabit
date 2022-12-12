@@ -27,12 +27,6 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateEditHabitFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateEditHabitFragment : Fragment() {
 
     // View Binding (Fragment)
@@ -41,7 +35,6 @@ class CreateEditHabitFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(

@@ -1,6 +1,9 @@
 package com.example.zenhabit
 
-import android.app.*
+import android.app.Dialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -11,12 +14,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -25,24 +28,19 @@ import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Repte
 import com.example.zenhabit.models.Tasca
-import com.example.zenhabit.models.Verificacio
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var bin: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     lateinit var bottomNavigation : BottomNavigationView
 
     // Atributs *** NOTIFICACIONS ***
@@ -53,9 +51,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        resetNotification() // funcio que checkea si ha passat un dia des de la última notificació o no
+
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
+
+        auth = Firebase.auth
+
+        resetNotification()  // comprova si ja ha pasat un dia des de la última notificacio
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -67,10 +69,12 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
 
+        hideSystemUI() // esconde la bottomnavigation de android
+
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.home -> navController.navigate(R.id.homeActivity)
+                R.id.home -> navController.popBackStack(R.id.homeActivity, false)
                 R.id.settings -> navController.navigate(R.id.settingsFragment)
             }
             true
@@ -78,27 +82,36 @@ class MainActivity : AppCompatActivity() {
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
         bottomNavigation.itemIconTintList = null;
         //FirebaseUtils()
-
     }
 
     override fun onStop() {
         // l'aplicació entra aqui quan l'usuari ja no la veu
         super.onStop()
-            // checkeja a la bbdd si ja ha vist la notifiació avui o o no
-            val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
-                .document(Firebase.auth.currentUser!!.uid).get()
-                .addOnSuccessListener { result ->
-                    val vist = result.get("vist") as Boolean
-                    if (!vist) {
-                        val update = FirebaseFirestore.getInstance().collection("Verificacions")
-                            .document(Firebase.auth.currentUser!!.uid).update( "vist",true)
-                        Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                            launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
-                        }, 3000)
-                        }
-                    }
+        // checkeja a la bbdd si ja ha vist la notifiació avui o o no
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val vist = result.get("vist") as Boolean
+                if (!vist) {
+                    FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(auth.currentUser!!.uid).update( "vist",true)
+                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                        launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
+                    }, 3000)
+                }
+            }
     }
 
+    class FirebaseUtils {
+        val reto = Repte(3,"Escriure't una nota positiva","Nota")
+        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
+        val db = FirebaseFirestore.getInstance().collection("Reptes")
+            .document(reto.idRepte.toString()).set(reto)
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+    }
+
+    //*** INICI NAVBAR ***
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_action_bar, menu)
@@ -108,6 +121,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+    //*** FI NAVBAR ***
 
     // Accions pels ítems del menú more (Action Bar)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -129,19 +143,28 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    class FirebaseUtils {
-        //val reto = Repte(3,"Escriure't una nota positiva","Nota")
-        val verifica = Verificacio(false, Calendar.getInstance().getTime())
-        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
-        val db = FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(Firebase.auth.currentUser!!.uid).set(verifica)
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+    // INICI *** NOTIFICACIONS ***
+    // Crea el canal per gestionar totes les notificacions
+    private fun createNotificationChannel() {
+        // Crea el NotificationChannel, però només per API 26+ perquè aquesta és una Classe nova no present a les llibreries de suport estàndards
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT // indica grau d'importància de la notificació
+            // Nom del canal per definir les notificacions de l'app
+            val channel = NotificationChannel(canalID, nomCanal, importance).apply {
+                // definir color led per l'avís de notificació
+                // LightColor = Color.GREEN
+                // enableLights(true)
+                description = descripcioCanal
+            }
+            // Registrar el canal al Sistema (telèfon)
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
-
     private fun launchNotification() {
-        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(Firebase.auth.currentUser!!.uid).get()
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val tasca = result.get("llistaTasques") as ArrayList<Tasca>
                 val habit = result.get("llistaHabits") as ArrayList<Habit>
@@ -151,9 +174,9 @@ class MainActivity : AppCompatActivity() {
                     createNotificationChannel()
                     val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
                     if (numeroPendents == 1) {
-                        text = getString(R.string.label_notificacio_getNewItemPrimer) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItemPrimer_singular)
+                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
                     } else {
-                        text = getString(R.string.label_notificacio_getNewItemPrimer) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItemPrimer_plural)
+                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
                     }
                     // 1. Crear constructor per mostrar la notificació
                     val builder = NotificationCompat.Builder(this, canalID)
@@ -172,45 +195,41 @@ class MainActivity : AppCompatActivity() {
                     val flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
             }
-        //*** FI NOTIFICACIONS ***
+    }
+    private fun resetNotification() {
+        val actualDay = Calendar.getInstance().getTime()// dia i hora actual
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val lastDay = result.getTimestamp("lastDate")!!.toDate() // dia i hora que es va llençar l'última notificació
+                    val difference: Long = actualDay.time - lastDay.time
+                    val seconds = difference / 1000
+                    val minutes = seconds / 60
+                    val hours = minutes / 60
+                    val days = hours / 24
+                    if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
+                        FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
+                    }
+            }
     }
 
-    // Mètodes *** NOTIFICACIONS ***
-    // 1. Crea el canal per gestionar totes les notificacions
 
-    private fun createNotificationChannel() {
-        // Crea el NotificationChannel, però només per API 26+ perquè aquesta és una Classe nova no present a les llibreries de suport estàndards
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT // indica grau d'importància de la notificació
-            // Nom del canal per definir les notificacions de l'app
-            val channel = NotificationChannel(canalID, nomCanal, importance).apply {
-                // definir color led per l'avís de notificació
-                // LightColor = Color.GREEN
-                // enableLights(true)
-                description = descripcioCanal
+    //*** FI NOTIFICACIONS ***
+
+    private fun hideSystemUI() {
+        // comprobar si la SDK es superior o inferior a 30
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false)
+            if (window.insetsController != null) {
+                window.insetsController!!.hide(WindowInsets.Type.navigationBars()) // esconde la navegacion inferior
+                window.insetsController!!.systemBarsBehavior =
+                    WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE // la muestra si hacer swipe para arriba
             }
-            // Registrar el canal al Sistema (telèfon)
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+        } else {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) // versiones inferiores a 30
         }
     }
 
-    private fun resetNotification() {
-        val actualDay = Calendar.getInstance().getTime() // dia i hora actual
-        val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(Firebase.auth.currentUser!!.uid).get()
-            .addOnSuccessListener { result ->
-                val lastDay = result.get("lastDate") as Date // dia i hora que es va llençar l'última notificació
-                val difference: Long = lastDay.time - actualDay.time
-                val seconds = difference / 1000
-                val minutes = seconds / 60
-                val hours = minutes / 60
-                val days = hours / 24
-                if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
-                    val update = FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(Firebase.auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
-                }
-            }
-    }
-    }
+
+}
