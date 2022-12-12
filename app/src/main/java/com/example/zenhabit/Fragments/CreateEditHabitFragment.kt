@@ -20,12 +20,15 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
+import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Objectiu
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CreateEditHabitFragment : Fragment() {
 
@@ -54,18 +57,27 @@ class CreateEditHabitFragment : Fragment() {
             val nom = binding.nomHabitEdit.editableText.toString()
             val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
-            val horari = binding.etPlannedHour.hint.toString()
+            val dataLimit = binding.etPlannedHour.hint as Date
+            val dies: Dies = Dies(binding.checkboxDilluns.isChecked,
+                                  binding.checkboxDimarts.isChecked,
+                                  binding.checkboxDimecres.isChecked,
+                                  binding.checkboxDijous.isChecked,
+                                  binding.checkboxDivendres.isChecked,
+                                  binding.checkboxDissabte.isChecked,
+                                  binding.checkboxDiumenge.isChecked,)
+            val horari = binding.etPlannedDate.hint.toString()
+            val complert = false
+            val tipus = true
 
-            val data = binding.etPlannedDate.hint.toString()
+            val habit = Objectiu(nom,descripcio,categoria,dataLimit,dies,horari,false,null,tipus)
 
-            val habit = Habit(nom,descripcio,categoria,null,data,horari, false, null)
-            val document = FirebaseFirestore.getInstance().collection("Usuaris")
+            FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                        val patata: ArrayList<Habit> = result.get("llistaHabits") as ArrayList<Habit>
-                        patata.add(habit)
-                        val db2 = FirebaseFirestore.getInstance().collection("Usuaris")
-                            .document(Firebase.auth.currentUser!!.uid).update( "llistaHabits",patata)
+                        val valors: ArrayList<Objectiu> = result.get("llistaObjectius") as ArrayList<Objectiu>
+                        valors.add(habit)
+                        FirebaseFirestore.getInstance().collection("Usuaris")
+                            .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)
                 }
             findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
