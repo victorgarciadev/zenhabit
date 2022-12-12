@@ -18,6 +18,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
 import com.example.zenhabit.databinding.FragmentCreateEditTaskBinding
+import com.example.zenhabit.models.Dies
+import com.example.zenhabit.models.Objectiu
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,6 +59,24 @@ class CreateEditTaskFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditTaskFragment_to_createEditHabitFragment)
         }
         binding.btnGuardarCrearEditarTasca.setOnClickListener {
+
+            val nom = binding.nomTascaEdit.editableText.toString()
+            val descripcio = binding.txtInputDescripcioTasca.editText?.text.toString()
+            val categoria = binding.dropDwnMenuCategoriesTasca.editText?.text.toString()
+            val dataLimit = binding.etPlannedDate.hint as Date
+            val tipus = true
+
+            val tasca = Objectiu(nom,descripcio,categoria,dataLimit,null,null,false,null,tipus)
+
+            FirebaseFirestore.getInstance().collection("Usuaris")
+                .document(Firebase.auth.currentUser!!.uid).get()
+                .addOnSuccessListener { result ->
+                    val valors: ArrayList<Objectiu> = result.get("llistaObjectius") as ArrayList<Objectiu>
+                    valors.add(tasca)
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)
+                }
+
             findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
         }
 
