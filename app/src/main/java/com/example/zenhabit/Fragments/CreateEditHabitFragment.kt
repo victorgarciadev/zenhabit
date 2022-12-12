@@ -7,12 +7,11 @@ import android.content.ContentValues
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.TimePicker
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -78,6 +77,9 @@ class CreateEditHabitFragment : Fragment() {
                         valors.add(habit)
                         FirebaseFirestore.getInstance().collection("Usuaris")
                             .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)
+                            .addOnCompleteListener {
+                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                            }
                 }
             findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
@@ -212,6 +214,24 @@ class CreateEditHabitFragment : Fragment() {
 
             setFragmentResult("REQUEST_KEY", selectedDateBundle)
 
+        }
+    }
+
+    private fun Toast.showCustomToast(message: String)
+    {
+        val layout = requireActivity().layoutInflater.inflate (
+            R.layout.toast_layout,
+            requireActivity().findViewById(R.id.toast_container)
+        )
+
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+        this.apply {
+            setGravity(Gravity.CENTER, 0, 700)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
         }
     }
 }
