@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
-    tools:context=".Fragments.CreateEditHabitFragment">
+    tools:context=".Fragments.CreateEditHabitFragment"
+    android:background="@color/fondo">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -119,7 +119,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Nom de l'hàbit"
+                            android:hint="@string/nom_de_habit"
                             android:textColor="@color/fondo"
                             android:textColorHint="@color/fondo"
                             android:textSize="30sp"
@@ -187,132 +187,191 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_rowRepeticio"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="32dp"
-                        android:layout_weight="1"
-                        android:background="#30444E"
-                        app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit"
-                        tools:ignore="MissingConstraints"
-                        tools:layout_editor_absoluteX="32dp">
-
-                        <ImageView
-                            android:id="@+id/img_repeticioCrearEditarHabit"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginStart="32dp"
-                            android:contentDescription="@string/icona_repeticio"
-                            android:src="@drawable/img_btn_repeticio_habit"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.52"
-                            tools:ignore="HardcodedText" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/repeticio"
-                            android:textColor="@color/white"
-                            android:textSize="17sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.567" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btn_seleccionarRepeticioCrearEditarHabit"
-                            app:layout_constraintStart_toEndOf="@+id/img_repeticioCrearEditarHabit"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:background="#30444E"
-                                android:textColor="@color/white"
-                                android:textColorHint="@color/white"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <Button
-                            android:id="@+id/btn_seleccionarRepeticioCrearEditarHabit"
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginEnd="24dp"
-                            android:backgroundTint="#30444E"
-                            android:drawableTop="@drawable/ic_baseline_arrow_forward_ios_24"
-                            android:foregroundTint="#30444E"
-                            android:shadowColor="#30444E"
-                            android:shadowDx="0"
-                            android:shadowDy="0"
-                            android:shadowRadius="0"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_rowHorari"
+                    <TextView
+                        android:id="@+id/textView_labelRepeticio"
                         android:layout_width="0dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:background="#30444E"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/repeticio"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_repeat"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowRepeticio"
-                        tools:ignore="MissingConstraints">
+                        app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit" />
 
-                        <ImageView
-                            android:id="@+id/img_rellotgeHorariCrearEditarHabit"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginStart="32dp"
-                            android:contentDescription="@string/icona_rellotge"
-                            android:src="@drawable/img_btn_watch_icon"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelRepeticio">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/horari"
-                            android:textColor="@color/white"
-                            android:textSize="17sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_rellotgeHorariCrearEditarHabit"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.567" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/columna1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toStartOf="@+id/columna2"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dilluns"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dilluns"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dimarts"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dimarts"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dimecres"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dimecres"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dijous"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dijous"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/columna2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/columna1">
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Divendres"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/divendres"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dissabte"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dissabte"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Diumenge"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/diumenge"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp" />
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:id="@+id/checkbox_Dies"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView_labelHourLimit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/hora_limit"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_watch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes1" />
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes2"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingVertical="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelHourLimit">
 
                         <EditText
                             android:id="@+id/etPlannedHour"
                             android:layout_width="222dp"
-                            android:layout_height="53dp"
+                            android:layout_height="60sp"
                             android:allowClickWhenDisabled="true"
                             android:clickable="true"
                             android:focusable="false"
                             android:gravity="center"
-                            android:hint="00:00"
+                            android:hint="@string/_hora0000"
                             android:inputType="time"
+                            android:background="@null"
                             android:maxLines="1"
                             android:textColor="#FFFFFF"
                             android:textColorHint="#FFFFFF"
@@ -323,72 +382,60 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.571" />
+                    </LinearLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout_rowDataLimit"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_weight="1"
-                        android:background="#30444E"
-                        android:backgroundTint="#30444E"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                    <TextView
+                        android:id="@+id/textView_labelDataLimit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:drawableTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/data_limit"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_calendar_create"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowHorari"
-                        tools:ignore="MissingConstraints">
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes2" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/open_sans"
-                            android:text="@string/data_limit"
-                            android:textColor="#FFFFFF"
-                            android:textSize="17sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_rellotgeDataLimitCrearEditarHabit"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.513" />
-
-                        <ImageView
-                            android:id="@+id/img_rellotgeDataLimitCrearEditarHabit"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginStart="32dp"
-                            android:contentDescription="@string/icona_rellotge"
-                            android:src="@drawable/img_btn_watch_icon"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.52" />
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes3"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="32dp"
+                        android:paddingVertical="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelDataLimit">
 
                         <EditText
                             android:id="@+id/etPlannedDate"
-                            android:layout_width="222dp"
-                            android:layout_height="53dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
                             android:allowClickWhenDisabled="true"
                             android:clickable="true"
                             android:focusable="false"
                             android:gravity="center"
-                            android:hint="00/00/00"
+                            android:hint="@string/data000000"
                             android:inputType="date"
                             android:maxLines="1"
+                            android:background="@null"
                             android:textColor="#FFFFFF"
+                            android:layout_gravity="center"
                             android:textColorHint="#FFFFFF"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.883"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.571" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:textSize="20sp" />
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/btn_guardarCrearEditarHabit"
@@ -404,7 +451,7 @@
                         app:cornerRadius="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_rowDataLimit" />
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

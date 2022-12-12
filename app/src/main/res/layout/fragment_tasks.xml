@@ -40,7 +40,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextContrastCheck" />
 
-                <FrameLayout
+                <LinearLayout
                     android:id="@+id/frameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -59,185 +59,49 @@
                         tools:layout_editor_absoluteX="0dp"
                         tools:layout_editor_absoluteY="33dp">
 
-                        <LinearLayout
-                            android:id="@+id/repte_diari_row1"
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmerObjDiari"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/rounded_corner"
-                            android:backgroundTint="#4D3DD497"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/textView2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:text="@string/descobdiari"
-                                    android:textColor="@color/white"
-                                    android:textSize="19sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                <include layout="@layout/obj_diari_shimmer_layout"/>
 
-                                <CheckBox
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:buttonTint="@color/white"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.0"
-                                    tools:ignore="DuplicateSpeakableTextCheck" />
+                                <include layout="@layout/obj_diari_shimmer_layout"/>
 
-                                <TextView
-                                    android:id="@+id/titolRepte1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:layout_marginStart="16dp"
-                                    android:text=""
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/textView2"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.521" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+                                <include layout="@layout/obj_diari_shimmer_layout" />
 
-                        </LinearLayout>
-
+                            </LinearLayout>
+                        </com.facebook.shimmer.ShimmerFrameLayout>
                         <LinearLayout
-                            android:id="@+id/repte_diari_row2"
+                            android:id="@+id/listObjDiari"
+                            android:visibility="invisible"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/rounded_corner"
-                            android:backgroundTint="#4D3DD497"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/repte_diari_row1">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
+                            <include layout="@layout/obj_diari_ayout"
+                                android:id="@+id/Obj1"/>
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                            <include layout="@layout/obj_diari_ayout"
+                                android:id="@+id/Obj2"/>
 
-                                <TextView
-                                    android:id="@+id/titolRepte2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:text=""
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/textView4"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/textView4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:text="@string/descobdiari"
-                                    android:textColor="@color/white"
-                                    android:textSize="19sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <CheckBox
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:buttonTint="@color/white"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/textView4"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.0" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
+                            <include layout="@layout/obj_diari_ayout"
+                                android:id="@+id/Obj3"/>
 
                         </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/repte_diari_row3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/rounded_corner"
-                            android:backgroundTint="#4D3DD497"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/repte_diari_row2">
-
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <CheckBox
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
-                                    android:buttonTint="@color/white"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintStart_toEndOf="@+id/textView6"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.0"
-                                    tools:ignore="DuplicateSpeakableTextCheck" />
-
-                                <TextView
-                                    android:id="@+id/titolRepte3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:layout_marginStart="16dp"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/textView6"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.476" />
-
-                                <TextView
-                                    android:id="@+id/textView6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp"
-                                    android:text="@string/descobdiari"
-                                    android:textColor="@color/white"
-                                    android:textSize="19sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        </LinearLayout>
-
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </FrameLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView"
@@ -260,7 +124,7 @@
                     android:layout_height="64dp"
                     android:layout_margin="5dp"
                     android:layout_marginBottom="16dp"
-                    android:backgroundTint="#D99600"
+                    android:backgroundTint="#2C3E46"
                     android:text="@string/boton"
                     app:cornerRadius="100dp"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
@@ -286,8 +150,8 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingBottom="3dp"
-                        android:paddingTop="3dp">
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp">
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/shimmer"
