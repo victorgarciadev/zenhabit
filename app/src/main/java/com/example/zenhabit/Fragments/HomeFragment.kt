@@ -14,6 +14,7 @@ import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
 import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Objectiu
 import com.example.zenhabit.models.Tasca
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,11 +45,22 @@ class home : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
-                    val tasques = result.get("llistaTasques") as ArrayList<Tasca>
-                    val habits = result.get("llistaHabits") as ArrayList<Habit>
-                    val numeroTasques = tasques.count()
-                    val numeroHabits = habits.count()
-                if (numeroTasques == 1 && numeroHabits == 1) {
+                    val objectius = result.get("llistaObjectius") as ArrayList<Objectiu>
+                    if (objectius != null) {
+
+                    }
+                    val provaTemporal = objectius.count()
+                    //val numeroHabits = habits.count()
+                if (provaTemporal == 1) {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
+                    binding.imgNotification.startAnimation(shake)
+                } else {
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $provaTemporal " + getString(R.string.pendents_segona_plural) + " $provaTemporal " + getString(R.string.pendents_tercera_plural)
+                    if(provaTemporal != 0){
+                        binding.imgNotification.startAnimation(shake)
+                    }
+                }
+                /*if (numeroTasques == 1 && numeroHabits == 1) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular) + " 1 " + getString(R.string.pendents_tercera_singular)
                     binding.imgNotification.startAnimation(shake)
                 } else if (numeroTasques == 1 && numeroHabits != 1) {
@@ -62,7 +74,7 @@ class home : Fragment() {
                         binding.imgNotification.startAnimation(shake)
                     }
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroTasques " + getString(R.string.pendents_segona_plural) + " $numeroHabits " + getString(R.string.pendents_tercera_plural)
-                }
+                }*/
             }
         binding.btnVeureHabitTasca.setOnClickListener{
             findNavController().navigate(R.id.action_home2_to_tasksFragment2)
