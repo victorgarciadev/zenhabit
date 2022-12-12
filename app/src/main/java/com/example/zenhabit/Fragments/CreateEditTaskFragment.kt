@@ -63,8 +63,8 @@ class CreateEditTaskFragment : Fragment() {
             val nom = binding.nomTascaEdit.editableText.toString()
             val descripcio = binding.txtInputDescripcioTasca.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesTasca.editText?.text.toString()
-            val dataLimit = binding.etPlannedDate.hint as Date
-            val tipus = true
+            val dataLimit = binding.etPlannedDate.hint.toString()
+            val tipus = false
 
             val tasca = Objectiu(nom,descripcio,categoria,dataLimit,null,null,false,null,tipus)
 
