@@ -57,7 +57,7 @@ class CreateEditHabitFragment : Fragment() {
             val nom = binding.nomHabitEdit.editableText.toString()
             val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
-            val dataLimit = binding.etPlannedHour.hint as Date
+            val dataLimit = binding.etPlannedDate.hint.toString()
             val dies: Dies = Dies(binding.checkboxDilluns.isChecked,
                                   binding.checkboxDimarts.isChecked,
                                   binding.checkboxDimecres.isChecked,
@@ -65,7 +65,7 @@ class CreateEditHabitFragment : Fragment() {
                                   binding.checkboxDivendres.isChecked,
                                   binding.checkboxDissabte.isChecked,
                                   binding.checkboxDiumenge.isChecked,)
-            val horari = binding.etPlannedDate.hint.toString()
+            val horari = binding.etPlannedHour.hint.toString()
             val complert = false
             val tipus = true
 
