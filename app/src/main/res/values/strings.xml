@@ -150,7 +150,8 @@
     <string name="toast_change_email">Email canviat correctament.</string>
 
     <!-- NOTIFICACIONS -->
-    <string name="label_notificacio_jardi">El teu jardí creix!</string>
-    <string name="label_notificacio_getNewItem">Tens x Roses noves!!!</string>
-
+    <string name="label_notificacio_jardi">Tens ZenHabits per fer!</string>
+    <string name="label_notificacio_getNewItemPrimer">Tens</string>
+    <string name="label_notificacio_getNewItemPrimer_singular">hàbit o tasca pendents.</string>
+    <string name="label_notificacio_getNewItemPrimer_plural">hàbits o tasques pendents.</string>
 </resources>
