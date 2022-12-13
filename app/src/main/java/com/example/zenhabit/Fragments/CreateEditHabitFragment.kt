@@ -3,10 +3,8 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.ContentValues
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
 import com.example.zenhabit.models.Dies
-import com.example.zenhabit.models.Habit
-import com.example.zenhabit.models.Objectiu
+import com.example.zenhabit.models.Objectius
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -68,12 +65,12 @@ class CreateEditHabitFragment : Fragment() {
             val complert = false
             val tipus = true
 
-            val habit = Objectiu(nom,descripcio,categoria,dataLimit,dies,horari,false,null,tipus)
+            val habit = Objectius(nom,descripcio,categoria,dataLimit,dies,horari,false,null,tipus)
 
             FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                        val valors: ArrayList<Objectiu> = result.get("llistaObjectius") as ArrayList<Objectiu>
+                        val valors: ArrayList<Objectius> = result.get("llistaObjectius") as ArrayList<Objectius>
                         valors.add(habit)
                         FirebaseFirestore.getInstance().collection("Usuaris")
                             .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)

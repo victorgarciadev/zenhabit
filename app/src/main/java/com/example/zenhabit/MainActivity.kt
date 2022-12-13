@@ -19,7 +19,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,7 +26,7 @@ import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Repte
-import com.example.zenhabit.models.Tasca
+import com.example.zenhabit.models.Objectius
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -166,9 +165,9 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val tasca = result.get("llistaTasques") as ArrayList<Tasca>
+                val Objectius = result.get("llistaTasques") as ArrayList<Objectius>
                 val habit = result.get("llistaHabits") as ArrayList<Habit>
-                val numeroPendents = tasca.count() + habit.count()
+                val numeroPendents = Objectius.count() + habit.count()
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()
