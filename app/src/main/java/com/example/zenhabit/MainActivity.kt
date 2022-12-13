@@ -89,18 +89,20 @@ class MainActivity : AppCompatActivity() {
         // l'aplicació entra aqui quan l'usuari ja no la veu
         super.onStop()
         // checkeja a la bbdd si ja ha vist la notifiació avui o o no
-        FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(auth.currentUser!!.uid).get()
-            .addOnSuccessListener { result ->
-                val vist = result.get("vist") as Boolean
-                if (!vist) {
-                    FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(auth.currentUser!!.uid).update( "vist",true)
-                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                        launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
-                    }, 3000)
+        if (auth.currentUser != null) {
+            FirebaseFirestore.getInstance().collection("Verificacions")
+                .document(auth.currentUser!!.uid).get()
+                .addOnSuccessListener { result ->
+                    val vist = result.get("vist") as Boolean
+                    if (!vist) {
+                        FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(auth.currentUser!!.uid).update( "vist",true)
+                        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                            launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
+                        }, 3000)
+                    }
                 }
-            }
+        }
     }
 
     class FirebaseUtils {
@@ -138,8 +140,9 @@ class MainActivity : AppCompatActivity() {
        }
         if (item.itemId == R.id.logout) {
             FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+            finishAffinity()
         }
         return super.onOptionsItemSelected(item)
     }
