@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
 
-        hideSystemUI() // esconde la bottomnavigation de android
+        //hideSystemUI() // esconde la bottomnavigation de android
 
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
