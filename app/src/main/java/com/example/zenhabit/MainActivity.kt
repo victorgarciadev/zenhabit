@@ -26,6 +26,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Objectiu
 import com.example.zenhabit.models.Repte
 import com.example.zenhabit.models.Tasca
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -166,9 +167,8 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val tasca = result.get("llistaTasques") as ArrayList<Tasca>
-                val habit = result.get("llistaHabits") as ArrayList<Habit>
-                val numeroPendents = tasca.count() + habit.count()
+                val tasca = result.get("llistaObjectius") as ArrayList<Objectiu>
+                val numeroPendents = tasca.count()
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()
