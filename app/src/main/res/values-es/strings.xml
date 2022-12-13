@@ -21,7 +21,7 @@
     <string name="label_jardi_items_obtinguts">Cantidad: x</string>
     <string name="nom_canal">Notificaciones ZenHabit</string>
     <string name="descripcio_canal">Notificaciones de la aplicación ZenHabit</string>
-    <string name="avet">Aveto</string>
+    <string name="avet">Abeto</string>
     <string name="palmera">Palmera</string>
     <string name="olivera">Olivo</string>
     <string name="girasol">Girasol</string>
@@ -30,7 +30,7 @@
     <string name="aloe_vera">Aloe Vera</string>
     <string name="bambu">Bambú</string>
     <string name="cactus">Cactus</string>
-    <string name="icona_avet">Icono de un aveto</string>
+    <string name="icona_avet">Icono de un abeto</string>
     <string name="icona_palmera">Icono de una palmera</string>
     <string name="icona_olivera">Icono de un olivo</string>
     <string name="icona_girasol">Icono de un girasol</string>
@@ -132,4 +132,6 @@
     <string name="label_notificacio_jardi">¡Todavía tienes tareas por hacer!</string>
     <string name="label_notificacio_getNewItem_singular">"Tarea o hábito pendiente. "</string>
     <string name="label_notificacio_getNewItem_plural">Tareas o hábitos pendientes.</string>
+    <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
+    <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
 </resources>
