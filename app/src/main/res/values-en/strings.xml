@@ -104,7 +104,7 @@
     <string name="tasques_pendents">You have &#8230;</string>
     <string name="pendents_primera">You have</string>
     <string name="pendents_segona_singular">Pending target.</string>
-    <string name="pendents_segona_plural">Pending targets,</string>
+    <string name="pendents_segona_plural">Pending targets.</string>
     <string name="pendents_tercera_singular">Remaining habit.</string>
     <string name="pendents_tercera_plural">Remaining habits.</string>
     <string name="icona_campana">Bell icon</string>
