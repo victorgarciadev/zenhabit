@@ -103,8 +103,8 @@
     <string name="credits">&#160;Créditos</string>
     <string name="tasques_pendents">Tienes &#8230;</string>
     <string name="pendents_primera">Tienes</string>
-    <string name="pendents_segona_singular">"Tarea i "</string>
-    <string name="pendents_segona_plural">Tareas i</string>
+    <string name="pendents_segona_singular">objetivo pendiente.</string>
+    <string name="pendents_segona_plural">objetivos pendientes.</string>
     <string name="pendents_tercera_singular">Hábito pendiente.</string>
     <string name="pendents_tercera_plural">Hábitos pendientes.</string>
     <string name="icona_campana">Icono campana</string>
