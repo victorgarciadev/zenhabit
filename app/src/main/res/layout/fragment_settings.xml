@@ -69,114 +69,14 @@
                 android:padding="32dp">
 
                 <!-- IDIOMES -->
-                <TextView
-                    android:id="@+id/textView_labelLanguage"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:fontFamily="@font/open_sans"
-                    android:text="@string/configuracions_titol_idioma_aplicacio"
-                    android:textColor="@color/white"
-                    android:textDirection="ltr"
-                    android:textSize="24sp"
-                    android:textStyle="normal|bold"
-                    android:typeface="sans"
-                    app:drawableStartCompat="@drawable/ic_language_24"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- IDIOMES RADIO BUTTONS -->
-                <LinearLayout
-                    android:id="@+id/graphic_bloc_idiomes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_rounded_corner_rectangle"
-                    android:backgroundTint="#142024"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="32dp"
-                    android:paddingVertical="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioGroup
-                            android:layout_width="130dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:textAlignment="center"
-                            android:textDirection="ltr"
-                            tools:ignore="UselessParent">
-
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:buttonTint="@color/white"
-                                android:fontFamily="@font/open_sans"
-                                android:paddingStart="7dp"
-                                android:text="@string/configuracions_idioma_catala"
-                                android:textColor="@color/white"
-                                android:textSize="16.5sp" />
-
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="64dp"
-                                android:layout_marginLeft="0dp"
-                                android:layout_marginRight="0dp"
-                                android:buttonTint="@color/white"
-                                android:fontFamily="@font/open_sans"
-                                android:paddingStart="7dp"
-                                android:text="@string/configuracions_idioma_castellano"
-                                android:textColor="@color/white"
-                                android:textSize="16.5sp" />
-
-                            <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:buttonTint="@color/white"
-                                android:fontFamily="@font/open_sans"
-                                android:paddingStart="7dp"
-                                android:text="@string/configuracions_idioma_english"
-                                android:textColor="@color/white"
-                                android:textSize="16.5sp" />
-
-                        </RadioGroup>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <Button
-                                android:id="@+id/btn_saveIdioma"
-                                android:layout_width="100dp"
-                                android:layout_height="64dp"
-                                android:backgroundTint="#1DBE7D"
-                                android:fontFamily="@font/open_sans_bold"
-                                android:text="@string/desar"
-                                android:textSize="18sp"
-                                app:cornerRadius="10dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.75"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <!-- PERFIL -->
                 <TextView
                     android:id="@+id/textView_labelProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/configuracions_titol_perfil"
@@ -187,7 +87,7 @@
                     android:typeface="sans"
                     app:drawableStartCompat="@drawable/ic_edit_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- CANVIAR NOM USUARI -->
                 <LinearLayout
