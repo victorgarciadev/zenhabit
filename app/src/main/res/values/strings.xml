@@ -129,10 +129,8 @@
     <!-- HOME TASQUES PENDENTS -->
     <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
-    <string name="pendents_segona_singular">tasca i</string>
-    <string name="pendents_segona_plural">tasques i</string>
-    <string name="pendents_tercera_singular"> hàbit pendents.</string>
-    <string name="pendents_tercera_plural"> hàbits pendents.</string>
+    <string name="pendents_segona_singular"> objectiu pendent.</string>
+    <string name="pendents_segona_plural">objectius pendents.</string>
     <string name="icona_campana">icona campana</string>
     <string name="pendents">Pendents</string>
     <string name="seguiment">SEGUIMENT</string>
@@ -159,10 +157,12 @@
     <string name="error_username_created">El nom d\'usuari ha de ser d\'entre 3 i 15 caràcters.</string>
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
+    <string name="toast_habit_creat">Hàbit creat correctament!</string>
+    <string name="toast_tasca_creada">Tasca creada correctament!</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>
-    <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendet.</string>
+    <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendent.</string>
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
 
 </resources>

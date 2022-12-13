@@ -68,7 +68,7 @@ class SettingsFragment : Fragment() {
                 actualUser.reauthenticate(credential).addOnCompleteListener {
                     actualUser.updateEmail(binding.inputChangeEmail.text.toString()).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val document = FirebaseFirestore.getInstance().collection("Usuaris")
+                            FirebaseFirestore.getInstance().collection("Usuaris")
                                 .document(actualUser.uid).update("email", binding.inputChangeEmail.text.toString())
                             Toast(activity).showCustomToast(getString(R.string.toast_change_email))
                         } else {
@@ -87,7 +87,7 @@ class SettingsFragment : Fragment() {
                     displayName = binding.inputChangeUserName.text.toString()
                 }
                 actualUser!!.updateProfile(profileUpdates)
-                val document = FirebaseFirestore.getInstance().collection("Usuaris")
+                FirebaseFirestore.getInstance().collection("Usuaris")
                     .document(actualUser.uid).update("nom", binding.inputChangeUserName.text.toString())
             } else {
                 Toast(activity).showCustomToast(getString(R.string.error_username_created))

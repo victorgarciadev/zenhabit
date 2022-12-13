@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var bin: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     lateinit var bottomNavigation : BottomNavigationView
 
     // Atributs *** NOTIFICACIONS ***
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         bin = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bin.root)
+
+        auth = Firebase.auth
 
         resetNotification()  // comprova si ja ha pasat un dia des de la última notificacio
 
@@ -85,13 +88,13 @@ class MainActivity : AppCompatActivity() {
         // l'aplicació entra aqui quan l'usuari ja no la veu
         super.onStop()
         // checkeja a la bbdd si ja ha vist la notifiació avui o o no
-        val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(Firebase.auth.currentUser!!.uid).get()
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val vist = result.get("vist") as Boolean
                 if (!vist) {
-                    val update = FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(Firebase.auth.currentUser!!.uid).update( "vist",true)
+                    FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(auth.currentUser!!.uid).update( "vist",true)
                     Handler(Looper.getMainLooper()).postDelayed(Runnable {
                         launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
                     }, 3000)
@@ -160,8 +163,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun launchNotification() {
-        val tasquesPendents = FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(Firebase.auth.currentUser!!.uid).get()
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val tasca = result.get("llistaTasques") as ArrayList<Tasca>
                 val habit = result.get("llistaHabits") as ArrayList<Habit>
@@ -195,8 +198,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun resetNotification() {
         val actualDay = Calendar.getInstance().getTime()// dia i hora actual
-        val verificacio = FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(Firebase.auth.currentUser!!.uid).get()
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val lastDay = result.getTimestamp("lastDate")!!.toDate() // dia i hora que es va llençar l'última notificació
                     val difference: Long = actualDay.time - lastDay.time
@@ -205,8 +208,8 @@ class MainActivity : AppCompatActivity() {
                     val hours = minutes / 60
                     val days = hours / 24
                     if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
-                        val update = FirebaseFirestore.getInstance().collection("Verificacions")
-                            .document(Firebase.auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
+                        FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
                     }
             }
     }
