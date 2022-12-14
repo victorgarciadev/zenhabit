@@ -8,34 +8,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
-import com.example.zenhabit.adapter.AdapterObjectius
+import com.example.zenhabit.adapter.AdapterTasques
 import com.example.zenhabit.databinding.FragmentTasksBinding
-import com.example.zenhabit.models.Dies
-import com.example.zenhabit.models.Objectius
+import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Repte
+import com.example.zenhabit.models.Tasca
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Objects
 
 class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding
 
-    val db = FirebaseFirestore.getInstance()
-    private lateinit var data: MutableList<Objectius>
-    private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter: AdapterObjectius
+    private lateinit var data: MutableList<Tasca>
+    private lateinit var mAdapter: AdapterTasques
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +43,7 @@ class TasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.tasks_title))
         val view = binding.root
@@ -54,7 +52,7 @@ class TasksFragment : Fragment() {
         }
 
 
-        //ReptesDiaris shimmer
+        //ResptesDiaris shimmer
         shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
         shimmerFrameLayoutObjDiari.startShimmer()
 
@@ -87,79 +85,39 @@ class TasksFragment : Fragment() {
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
         }, 1000)
 
-//--------------OLD RECICLERVIEW----------------------
-////      RecyclerView shimmer
-//        val mRecyclerView = binding.rvTasques
-//        val mLayoutManager = LinearLayoutManager(this.getActivity())
-//
-//        shimmerFrameLayout = binding.shimmer
-//        shimmerFrameLayout.startShimmer()
-////        cargar
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            binding.rvTasques.visibility = View.VISIBLE
-//            shimmerFrameLayout.stopShimmer()
-//            shimmerFrameLayout.visibility = View.INVISIBLE
-//        }, 1000)
-////        cargar recyclerview
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        data = dataInicialize() as MutableList<Objectius>
-//        mAdapter = AdapterObjectius(
-//            data,
-//            { index -> deleteItem(index) },
-//            { nom, hora -> sendItem(nom, hora.toString()) });
-//        mRecyclerView.setAdapter(mAdapter)
 
 
-//----------------NEW RECYCLERVIEW-----------------
-//cargar shimmer
-        mRecyclerView = binding.rvTasques
+
+//      RecyclerView shimmer
+        val mRecyclerView = binding.rvTasques
         val mLayoutManager = LinearLayoutManager(this.getActivity())
+
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
-//cargar recyclerview
-        mRecyclerView.layoutManager = mLayoutManager
-        loadData()
+
+//        cargar
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.rvTasques.visibility = View.VISIBLE
+            shimmerFrameLayout.stopShimmer()
+            shimmerFrameLayout.visibility = View.INVISIBLE
+        }, 1000)
+
+
+//        cargar recyclerview
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        data = dataInicialize() as MutableList<Tasca>
+        mAdapter = AdapterTasques(
+            data,
+            { index -> deleteItem(index) },
+            { nom, hora -> sendItem(nom, hora) });
+        mRecyclerView.setAdapter(mAdapter)
+
+
 
         return view
     }
 
-    private fun loadData() {
-
-        var ret: ArrayList<Objectius> = ArrayList()
-
-        val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
-        docref.get().addOnSuccessListener { document ->
-            if (document != null) {
-
-                ret = Objectius.dataFirebaseToObjectius(document)
-
-//shimmer desaparece
-                binding.rvTasques.visibility = View.VISIBLE
-                shimmerFrameLayout.stopShimmer()
-                shimmerFrameLayout.visibility = View.INVISIBLE
-
-
-                mAdapter = AdapterObjectius(
-                    ret,
-                    { index -> deleteItem(index) },
-                    { nom, hora -> sendItem(nom, hora) });
-
-                mRecyclerView.setAdapter(mAdapter)
-
-            } else {
-                //ERROR
-                Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO EL DOCUMENTO")
-
-            }
-
-        }.addOnFailureListener { exception ->
-            Log.d("TAG", "ERROR AL OBTENER ${exception}")
-
-        }
-    }
-
     private fun sendItem(nom: String, hora: String) {
-
         val action =
             TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
         findNavController().navigate(action)
@@ -177,26 +135,26 @@ class TasksFragment : Fragment() {
 
     }
 
-    private fun dataInicialize(): ArrayList<Objectius> {
+    private fun dataInicialize(): ArrayList<Tasca> {
 
-        val tasquesList: ArrayList<Objectius> = ArrayList()
-
-        tasquesList.add(
-            Objectius(
-                "Llegir", "LLegir 10 min", "Salut", "25-12-2022", Dies(
-                    false, true, true, true, true, true, true
-                ), "10:00", false, Date(), false
-            )
-        )
-        tasquesList.add(
-            Objectius(
-                "leer", "leer 11 min", "Salut", "25-12-2022", Dies(
-                    false, true, true, true, false, true, true
-                ), "10:00", false, Date(), true
-            )
-        )
+        val tasquesList: ArrayList<Tasca> = ArrayList()
 
 
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
+        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
+        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
+        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
 
         return tasquesList
 

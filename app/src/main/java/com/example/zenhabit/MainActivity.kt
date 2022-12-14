@@ -19,14 +19,16 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
+import com.example.zenhabit.models.Objectiu
 import com.example.zenhabit.models.Repte
-import com.example.zenhabit.models.Objectius
+import com.example.zenhabit.models.Tasca
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
 
-        hideSystemUI() // esconde la bottomnavigation de android
+        //hideSystemUI() // esconde la bottomnavigation de android
 
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener{ item ->
@@ -87,18 +89,20 @@ class MainActivity : AppCompatActivity() {
         // l'aplicació entra aqui quan l'usuari ja no la veu
         super.onStop()
         // checkeja a la bbdd si ja ha vist la notifiació avui o o no
-        FirebaseFirestore.getInstance().collection("Verificacions")
-            .document(auth.currentUser!!.uid).get()
-            .addOnSuccessListener { result ->
-                val vist = result.get("vist") as Boolean
-                if (!vist) {
-                    FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(auth.currentUser!!.uid).update( "vist",true)
-                    Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                        launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
-                    }, 3000)
+        if (auth.currentUser != null) {
+            FirebaseFirestore.getInstance().collection("Verificacions")
+                .document(auth.currentUser!!.uid).get()
+                .addOnSuccessListener { result ->
+                    val vist = result.get("vist") as Boolean
+                    if (!vist) {
+                        FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(auth.currentUser!!.uid).update( "vist",true)
+                        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                            launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
+                        }, 3000)
+                    }
                 }
-            }
+        }
     }
 
     class FirebaseUtils {
@@ -136,8 +140,9 @@ class MainActivity : AppCompatActivity() {
        }
         if (item.itemId == R.id.logout) {
             FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+            finishAffinity()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -165,9 +170,8 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val Objectius = result.get("llistaTasques") as ArrayList<Objectius>
-                val habit = result.get("llistaHabits") as ArrayList<Habit>
-                val numeroPendents = Objectius.count() + habit.count()
+                val tasca = result.get("llistaObjectius") as ArrayList<Objectiu>
+                val numeroPendents = tasca.count()
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()
