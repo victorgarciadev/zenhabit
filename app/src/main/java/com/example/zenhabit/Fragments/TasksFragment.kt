@@ -9,9 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
@@ -23,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.log
 
 class TasksFragment : Fragment() {
 
@@ -32,6 +31,7 @@ class TasksFragment : Fragment() {
 
     val db = FirebaseFirestore.getInstance()
     private lateinit var data: MutableList<Objectius>
+    private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
@@ -87,7 +87,7 @@ class TasksFragment : Fragment() {
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
         }, 1000)
 
-//
+//--------------OLD RECICLERVIEW----------------------
 ////      RecyclerView shimmer
 //        val mRecyclerView = binding.rvTasques
 //        val mLayoutManager = LinearLayoutManager(this.getActivity())
@@ -109,44 +109,42 @@ class TasksFragment : Fragment() {
 //            { nom, hora -> sendItem(nom, hora.toString()) });
 //        mRecyclerView.setAdapter(mAdapter)
 
+
+//----------------NEW RECYCLERVIEW-----------------
 //cargar shimmer
-        val mRecyclerView = binding.rvTasques
+        mRecyclerView = binding.rvTasques
         val mLayoutManager = LinearLayoutManager(this.getActivity())
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
 //cargar recyclerview
-        mRecyclerView.layoutManager = mLayoutManager;
-        data = loadData()
-        mAdapter = AdapterObjectius(
-            data,
-            { index -> deleteItem(index) },
-            { nom, hora -> sendItem(nom, hora) });
-        mRecyclerView.setAdapter(mAdapter)
-
-//            loadData()
-//            Log.d("TAG", "ESTE ES EL DATAINITIALIZE ${dataInicialize()}")
-
+        mRecyclerView.layoutManager = mLayoutManager
+        loadData()
 
         return view
     }
 
-    private fun loadData(): ArrayList<Objectius> {
+    private fun loadData() {
 
         var ret: ArrayList<Objectius> = ArrayList()
 
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
             if (document != null) {
-                //Log.d("TAG", "DocumentSnaps   hot data: ${document.data}")
 
-                ret = document.get("llistaObjectius") as java.util.ArrayList<Objectius>
-
-                Log.d("TAG", "ESTE ES EL RET ${ret}")
+                ret = Objectius.dataFirebaseToObjectius(document)
 
 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
                 shimmerFrameLayout.stopShimmer()
                 shimmerFrameLayout.visibility = View.INVISIBLE
+
+
+                mAdapter = AdapterObjectius(
+                    ret,
+                    { index -> deleteItem(index) },
+                    { nom, hora -> sendItem(nom, hora) });
+
+                mRecyclerView.setAdapter(mAdapter)
 
             } else {
                 //ERROR
@@ -158,7 +156,6 @@ class TasksFragment : Fragment() {
             Log.d("TAG", "ERROR AL OBTENER ${exception}")
 
         }
-        return ret
     }
 
     private fun sendItem(nom: String, hora: String) {
