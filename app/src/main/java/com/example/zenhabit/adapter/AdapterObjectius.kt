@@ -1,22 +1,19 @@
 package com.example.zenhabit.adapter
 
 
-import android.content.pm.PackageManager
-import android.util.Property
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ExpandableListView.OnChildClickListener
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
-import com.example.zenhabit.models.Tasca
+import com.example.zenhabit.models.Objectius
 
 
-class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> Unit, val clickListener: (String,String) -> Unit) :
-    RecyclerView.Adapter<AdapterTasques.ViewHolder>() {
+class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String) -> Unit) :
+    RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
     var listData = listaTasques
 
@@ -27,12 +24,12 @@ class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> 
         val button = itemView.findViewById<Button>(R.id.eliminar)
         val bigItem: ConstraintLayout = itemView.findViewById(R.id.itemRecyclerView)
 
-        fun bind(tasca: Tasca, index: Int) {
-            tvTasca.text = tasca.nom
-            tvHora.text = tasca.hora
+        fun bind(Objectius: Objectius, index: Int) {
+            tvTasca.text = Objectius.nom
+            tvHora.text = Objectius.horari
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(tasca.nom, tasca.hora) }
+            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.horari.toString()) }
         }
     }
 
@@ -56,7 +53,7 @@ class AdapterTasques(val listaTasques: List<Tasca>, val onClickDelete: (Int) -> 
             position
         )
     }
-    fun setItems(items: List<Tasca>){
+    fun setItems(items: List<Objectius>){
         listData = items
         notifyDataSetChanged()
     }

@@ -1,7 +1,5 @@
 package com.example.zenhabit.Fragments
 
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,22 +12,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
-import com.example.zenhabit.adapter.AdapterTasques
+import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Habit
-import com.example.zenhabit.models.Objectiu
+import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Repte
-import com.example.zenhabit.models.Tasca
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -40,11 +30,12 @@ class TasksFragment : Fragment() {
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding
 
-    private lateinit var data: MutableList<Tasca>
-    private lateinit var mAdapter: AdapterTasques
+    val db = FirebaseFirestore.getInstance()
+    private lateinit var data: MutableList<Objectius>
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
-    private lateinit var pieChart: PieChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,39 +90,53 @@ class TasksFragment : Fragment() {
 
 
 
-
-//      RecyclerView shimmer
-        val mRecyclerView = binding.rvTasques
+//----------------NEW RECYCLERVIEW-----------------
+//cargar shimmer
+        mRecyclerView = binding.rvTasques
         val mLayoutManager = LinearLayoutManager(this.getActivity())
-
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
-
-//        cargar
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.rvTasques.visibility = View.VISIBLE
-            shimmerFrameLayout.stopShimmer()
-            shimmerFrameLayout.visibility = View.INVISIBLE
-        }, 1000)
-
-
-//        cargar recyclerview
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        data = dataInicialize() as MutableList<Tasca>
-        mAdapter = AdapterTasques(
-            data,
-            { index -> deleteItem(index) },
-            { nom, hora -> sendItem(nom, hora) });
-        mRecyclerView.setAdapter(mAdapter)
-
-        // chart
-        pieChart = binding.pieChart
-        preparePieData()
-
+//cargar recyclerview
+        mRecyclerView.layoutManager = mLayoutManager
+        loadData()
 
         return view
     }
 
+    private fun loadData() {
+
+        var ret: ArrayList<Objectius> = ArrayList()
+
+        val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
+        docref.get().addOnSuccessListener { document ->
+            if (document != null) {
+
+                ret = Objectius.dataFirebaseToObjectius(document)
+
+//shimmer desaparece
+                binding.rvTasques.visibility = View.VISIBLE
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.visibility = View.INVISIBLE
+
+
+                mAdapter = AdapterObjectius(
+                    ret,
+                    { index -> deleteItem(index) },
+                    { nom, hora -> sendItem(nom, hora) });
+
+                mRecyclerView.setAdapter(mAdapter)
+
+            } else {
+                //ERROR
+                Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO EL DOCUMENTO")
+
+            }
+
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "ERROR AL OBTENER ${exception}")
+
+        }
+    }
     private fun sendItem(nom: String, hora: String) {
         val action =
             TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
@@ -150,132 +155,6 @@ class TasksFragment : Fragment() {
 
     }
 
-    private fun dataInicialize(): ArrayList<Tasca> {
 
-        val tasquesList: ArrayList<Tasca> = ArrayList()
-
-
-        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
-        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
-        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
-        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
-        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
-        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
-        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
-        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
-        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
-        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
-        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
-        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
-        tasquesList.add(Tasca("Llegir", "10:00", "Tasca"))
-        tasquesList.add(Tasca("Caminar", "12:00", "Habit"))
-        tasquesList.add(Tasca("Comprar", "22:00", "Tasca"))
-
-        return tasquesList
-
-    }
-
-    private fun preparePieData() {
-// on below line we are setting user percent value,
-        // setting description as enabled and offset for pie chart
-        pieChart.setUsePercentValues(true)
-        pieChart.getDescription().setEnabled(false)
-        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
-
-        // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.95f)
-
-        // on below line we are setting hole
-        // and hole color for pie chart
-        pieChart.setDrawHoleEnabled(true)
-        pieChart.setHoleColor(Color.TRANSPARENT)
-
-        // on below line we are setting circle color and alpha
-        pieChart.setTransparentCircleColor(Color.TRANSPARENT)
-        pieChart.setTransparentCircleAlpha(110)
-
-        // on  below line we are setting hole radius
-        pieChart.setHoleRadius(30f)
-        pieChart.setTransparentCircleRadius(34f)
-
-        // on below line we are setting center text
-        pieChart.setDrawCenterText(true)
-
-        // on below line we are setting
-        // rotation for our pie chart
-        pieChart.setRotationAngle(0f)
-
-        // enable rotation of the pieChart by touch
-        pieChart.setRotationEnabled(true)
-        pieChart.setHighlightPerTapEnabled(true)
-
-        // on below line we are setting animation for our pie chart
-        pieChart.animateY(1400, Easing.EaseInOutQuad)
-
-        // on below line we are disabling our legend for pie chart
-        pieChart.legend.isEnabled = false
-        pieChart.setEntryLabelColor(Color.WHITE)
-        pieChart.setEntryLabelTextSize(12f)
-
-        // on below line we are creating array list and
-        // adding data to it to display in pie chart
-        //val perFet: Float = getDataFromDatabase()
-        //val perNoFet: Float = 100 - perFet
-        val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(80f))
-        entries.add(PieEntry(20f))
-        //entries.add(PieEntry(80f))
-        //entries.add(PieEntry(20f))
-
-        // on below line we are setting pie data set
-        val dataSet = PieDataSet(entries, "Mobile OS")
-
-        // on below line we are setting icons.
-        dataSet.setDrawIcons(false)
-
-        // on below line we are setting slice for pie
-        dataSet.sliceSpace = 3f
-        dataSet.iconsOffset = MPPointF(0f, 40f)
-        dataSet.selectionShift = 7f
-
-        // add a lot of colors to listwwssw
-        val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.red))
-        colors.add(resources.getColor(R.color.yellow))
-
-        // on below line we are setting colors.
-        dataSet.colors = colors
-
-        // on below line we are setting pie data set
-        val data = PieData(dataSet)
-        data.setValueFormatter(PercentFormatter())
-        data.setValueTextSize(0f)
-        data.setValueTypeface(Typeface.DEFAULT_BOLD)
-        data.setValueTextColor(Color.WHITE)
-        pieChart.setData(data)
-
-        // loading chart
-        pieChart.invalidate()
-    }
-
-    private fun getDataFromDatabase(): Float {
-        var fetes = 0
-        var noFetes = 0
-        FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(Firebase.auth.currentUser!!.uid).get()
-            .addOnSuccessListener { result ->
-                val objectius = result.get("llistaObjectius") as ArrayList<Objectiu>
-                objectius.forEach {
-                    if (it.complert) {
-                        fetes++
-                    } else {
-                        noFetes++
-                    }
-                }
-            }
-        val total = fetes + noFetes
-        val perFet = fetes / total as Float
-        return perFet
-    }
 
 }
