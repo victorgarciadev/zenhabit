@@ -196,7 +196,7 @@ class TasksFragment : Fragment() {
 
         // on  below line we are setting hole radius
         pieChart.setHoleRadius(30f)
-        pieChart.setTransparentCircleRadius(33f)
+        pieChart.setTransparentCircleRadius(34f)
 
         // on below line we are setting center text
         pieChart.setDrawCenterText(true)
@@ -219,9 +219,13 @@ class TasksFragment : Fragment() {
 
         // on below line we are creating array list and
         // adding data to it to display in pie chart
+        //val perFet: Float = getDataFromDatabase()
+        //val perNoFet: Float = 100 - perFet
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(80f))
         entries.add(PieEntry(20f))
+        //entries.add(PieEntry(80f))
+        //entries.add(PieEntry(20f))
 
         // on below line we are setting pie data set
         val dataSet = PieDataSet(entries, "Mobile OS")
@@ -232,7 +236,7 @@ class TasksFragment : Fragment() {
         // on below line we are setting slice for pie
         dataSet.sliceSpace = 3f
         dataSet.iconsOffset = MPPointF(0f, 40f)
-        dataSet.selectionShift = 5f
+        dataSet.selectionShift = 7f
 
         // add a lot of colors to listwwssw
         val colors: ArrayList<Int> = ArrayList()
@@ -250,11 +254,28 @@ class TasksFragment : Fragment() {
         data.setValueTextColor(Color.WHITE)
         pieChart.setData(data)
 
-        // undo all highlights
-        pieChart.highlightValues(null)
-
         // loading chart
         pieChart.invalidate()
+    }
+
+    private fun getDataFromDatabase(): Float {
+        var fetes = 0
+        var noFetes = 0
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val objectius = result.get("llistaObjectius") as ArrayList<Objectiu>
+                objectius.forEach {
+                    if (it.complert) {
+                        fetes++
+                    } else {
+                        noFetes++
+                    }
+                }
+            }
+        val total = fetes + noFetes
+        val perFet = fetes / total as Float
+        return perFet
     }
 
 }
