@@ -80,8 +80,8 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnSaveNom.setOnClickListener {
-            val messi = binding.inputChangeUserName.text.toString()
-            if (messi.length <= 15 && messi.length >= 3) {
+            val nouNom = binding.inputChangeUserName.text.toString()
+            if (nouNom.length <= 15 && nouNom.length >= 3) {
                 val actualUser = FirebaseAuth.getInstance().currentUser
                 val profileUpdates = userProfileChangeRequest {
                     displayName = binding.inputChangeUserName.text.toString()

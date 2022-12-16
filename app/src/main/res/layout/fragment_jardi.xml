@@ -79,7 +79,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -137,7 +138,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -192,7 +194,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -248,7 +251,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -301,7 +305,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -354,7 +359,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -407,7 +413,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -461,7 +468,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -514,7 +522,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
-                                app:cardBackgroundColor="@color/fondo">
+                                app:cardBackgroundColor="@android:color/transparent"
+                                app:cardElevation="0dp">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -585,6 +594,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:background="@drawable/rounded_corner"
                         android:backgroundTint="#293E46"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -892,14 +902,14 @@
                                     android:layout_marginStart="8dp"
                                     android:background="@drawable/shape_jardi_verticalscrollview_img"
                                     android:backgroundTint="#00A2E7"
+                                    android:contentDescription="@string/icona_rosa"
                                     android:padding="5dp"
                                     android:src="@drawable/jardi_flor_rosa"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle5"
 
+                                    app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle5"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    android:contentDescription="@string/icona_rosa" />
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/txt_ArbresTitle5"
@@ -961,13 +971,13 @@
                                     android:layout_marginStart="8dp"
                                     android:background="@drawable/shape_jardi_verticalscrollview_img"
                                     android:backgroundTint="#FEC442"
+                                    android:contentDescription="@string/icona_lavanda"
                                     android:padding="5dp"
                                     android:src="@drawable/jardi_flor_lavanda"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle6"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    android:contentDescription="@string/icona_lavanda" />
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/txt_ArbresTitle6"
@@ -1097,13 +1107,13 @@
                                     android:layout_marginStart="8dp"
                                     android:background="@drawable/shape_jardi_verticalscrollview_img"
                                     android:backgroundTint="#3dd598"
+                                    android:contentDescription="@string/icona_bambu"
                                     android:padding="5dp"
                                     android:src="@drawable/jardi_planta_bamboo"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle8"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    android:contentDescription="@string/icona_bambu" />
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/txt_ArbresTitle8"
