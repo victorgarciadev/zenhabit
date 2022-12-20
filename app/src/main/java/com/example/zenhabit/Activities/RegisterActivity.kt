@@ -39,14 +39,14 @@ class RegisterActivity : AppCompatActivity() {
         auth = Firebase.auth
 
 
-        val buttonCancel: Button = findViewById(R.id.btn_cancel)
+        val buttonCancel: Button = bin.btnCancel
         buttonCancel.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
 
 
-        val buttonRegister: Button = findViewById(R.id.btn_register)
+        val buttonRegister: Button = bin.btnRegister
         buttonRegister.setOnClickListener {
             crearUsuari(
                 bin.inputCreateEmail.text.toString().trim(),
