@@ -26,9 +26,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Habit
-import com.example.zenhabit.models.Objectiu
+import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Repte
-import com.example.zenhabit.models.Tasca
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -170,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val tasca = result.get("llistaObjectius") as ArrayList<Objectiu>
+                val tasca = result.get("llistaObjectius") as ArrayList<Objectius>
                 val numeroPendents = tasca.count()
                 var text = ""
                 if (numeroPendents > 0) {

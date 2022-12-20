@@ -1,24 +1,17 @@
 package com.example.zenhabit.Fragments
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentHomeBinding
-import com.example.zenhabit.models.Dies
-import com.example.zenhabit.models.Habit
-import com.example.zenhabit.models.Objectiu
-import com.example.zenhabit.models.Tasca
+import com.example.zenhabit.models.Objectius
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -48,7 +41,7 @@ class home : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
-                    val objectius = result.get("llistaObjectius") as ArrayList<Objectiu>
+                    val objectius = result.get("llistaObjectius") as ArrayList<Objectius>
                     var numeroObjectius = objectius.count()
                 if (numeroObjectius == 1 ) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular)

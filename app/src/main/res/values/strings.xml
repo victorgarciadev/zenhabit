@@ -129,7 +129,7 @@
     <!-- HOME TASQUES PENDENTS -->
     <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
-    <string name="pendents_segona_singular"> objectiu pendent.</string>
+    <string name="pendents_segona_singular"> Objectius pendent.</string>
     <string name="pendents_segona_plural">objectius pendents.</string>
     <string name="icona_campana">icona campana</string>
     <string name="pendents">Pendents</string>

@@ -72,7 +72,7 @@ private fun crearUsuari(email: String, password: String, nom: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Objectiu>())
+                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Objectius>())
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
