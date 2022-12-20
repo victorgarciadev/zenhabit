@@ -48,7 +48,6 @@
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#8A334D57"
                     android:orientation="vertical"
-                    android:paddingBottom="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ReptesDiaris">
@@ -74,29 +73,33 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <include layout="@layout/obj_diari_shimmer_layout"/>
+                                <include layout="@layout/obj_diari_shimmer_layout" />
 
-                                <include layout="@layout/obj_diari_shimmer_layout"/>
+                                <include layout="@layout/obj_diari_shimmer_layout" />
 
                                 <include layout="@layout/obj_diari_shimmer_layout" />
 
                             </LinearLayout>
                         </com.facebook.shimmer.ShimmerFrameLayout>
+
                         <LinearLayout
                             android:id="@+id/listObjDiari"
-                            android:visibility="invisible"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="invisible">
 
-                            <include layout="@layout/obj_diari_ayout"
-                                android:id="@+id/Obj1"/>
+                            <include
+                                android:id="@+id/Obj1"
+                                layout="@layout/obj_diari_ayout" />
 
-                            <include layout="@layout/obj_diari_ayout"
-                                android:id="@+id/Obj2"/>
+                            <include
+                                android:id="@+id/Obj2"
+                                layout="@layout/obj_diari_ayout" />
 
-                            <include layout="@layout/obj_diari_ayout"
-                                android:id="@+id/Obj3"/>
+                            <include
+                                android:id="@+id/Obj3"
+                                layout="@layout/obj_diari_ayout" />
 
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>

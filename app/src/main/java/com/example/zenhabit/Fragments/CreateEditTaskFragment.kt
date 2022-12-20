@@ -19,10 +19,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
-import com.example.zenhabit.databinding.FragmentCreateEditHabitBinding
 import com.example.zenhabit.databinding.FragmentCreateEditTaskBinding
-import com.example.zenhabit.models.Dies
-import com.example.zenhabit.models.Objectiu
+import com.example.zenhabit.models.Objectius
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -42,7 +40,7 @@ class CreateEditTaskFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditTaskBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_task))
@@ -69,15 +67,17 @@ class CreateEditTaskFragment : Fragment() {
             val dataLimit = binding.etPlannedDate.hint.toString()
             val tipus = false
 
-            val tasca = Objectiu(nom,descripcio,categoria,dataLimit,null,null,false,null,tipus)
+            val tasca =
+                Objectius(nom, descripcio, categoria, dataLimit, null, null, false, null, tipus)
 
             FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                    val valors: ArrayList<Objectiu> = result.get("llistaObjectius") as ArrayList<Objectiu>
+                    val valors: ArrayList<Objectius> =
+                        result.get("llistaObjectius") as ArrayList<Objectius>
                     valors.add(tasca)
                     FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)
+                        .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
                         .addOnCanceledListener {
                             Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
                         }
@@ -101,7 +101,7 @@ class CreateEditTaskFragment : Fragment() {
             )
         }
 
-        with(binding.autoCompleteTextView){
+        with(binding.autoCompleteTextView) {
             setAdapter(adapter)
         }
 
@@ -110,14 +110,17 @@ class CreateEditTaskFragment : Fragment() {
         val year = c.get(Calendar.YEAR)
 
         var initialYear = -1
-        if (initialYear == -1)
+        if (initialYear == -1) {
             initialYear = year
+        }
         var initialMonth = -1
-        if (initialMonth == -1)
+        if (initialMonth == -1) {
             initialMonth = c.get(Calendar.MONTH)
+        }
         var initialDay = -1
-        if (initialDay == -1)
+        if (initialDay == -1) {
             initialDay = c.get(Calendar.DAY_OF_MONTH)
+        }
         binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
         binding.apply {
             etPlannedDate.hint
