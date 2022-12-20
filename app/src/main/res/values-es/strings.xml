@@ -130,8 +130,8 @@
     <string name="toast_change_password">"Contraseña cambiada correctamente. "</string>
     <string name="toast_change_email">Correo cambiado correctamente.</string>
     <string name="label_notificacio_jardi">¡Todavía tienes tareas por hacer!</string>
-    <string name="label_notificacio_getNewItem_singular">"Tarea o hábito pendiente. "</string>
-    <string name="label_notificacio_getNewItem_plural">Tareas o hábitos pendientes.</string>
+    <string name="label_notificacio_getNewItem_singular">"tarea o hábito pendiente. "</string>
+    <string name="label_notificacio_getNewItem_plural">tareas o hábitos pendientes.</string>
     <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
     <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
 </resources>
