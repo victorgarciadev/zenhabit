@@ -97,7 +97,7 @@
     <string name="about_credits">"Desarrollado por: "</string>
     <string name="pablo_morante">Pablo Morante</string>
     <string name="copyright">&#169; 2022 ZenHabit</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Salir</string>
     <string name="logotip_zenhabit">Logotipo ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Créditos</string>
@@ -130,8 +130,8 @@
     <string name="toast_change_password">"Contraseña cambiada correctamente. "</string>
     <string name="toast_change_email">Correo cambiado correctamente.</string>
     <string name="label_notificacio_jardi">¡Todavía tienes tareas por hacer!</string>
-    <string name="label_notificacio_getNewItem_singular">"Tarea o hábito pendiente. "</string>
-    <string name="label_notificacio_getNewItem_plural">Tareas o hábitos pendientes.</string>
+    <string name="label_notificacio_getNewItem_singular">"tarea o hábito pendiente. "</string>
+    <string name="label_notificacio_getNewItem_plural">tareas o hábitos pendientes.</string>
     <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
     <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
 </resources>

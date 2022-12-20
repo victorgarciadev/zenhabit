@@ -1,5 +1,7 @@
 package com.example.zenhabit.Fragments
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -20,9 +22,19 @@ import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Repte
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import org.w3c.dom.Document
 import java.util.Objects
 
 class TasksFragment : Fragment() {
@@ -36,6 +48,7 @@ class TasksFragment : Fragment() {
     private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
+    private lateinit var pieChart: PieChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +113,12 @@ class TasksFragment : Fragment() {
         mRecyclerView.layoutManager = mLayoutManager
         loadData()
 
+
+        // chart
+        pieChart = binding.pieChart
+        preparePieData()
+
+
         return view
     }
 
@@ -155,6 +174,114 @@ class TasksFragment : Fragment() {
 
     }
 
+    private fun preparePieData() {
+        // on below line we are setting user percent value,
+        // setting description as enabled and offset for pie chart
+        pieChart.setUsePercentValues(true)
+        pieChart.getDescription().setEnabled(false)
+        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+        // on below line we are setting drag for our pie chart
+        pieChart.setDragDecelerationFrictionCoef(0.95f)
+
+        // on below line we are setting hole
+        // and hole color for pie chart
+        pieChart.setDrawHoleEnabled(true)
+        pieChart.setHoleColor(Color.TRANSPARENT)
+
+        // on below line we are setting circle color and alpha
+        pieChart.setTransparentCircleColor(Color.TRANSPARENT)
+        pieChart.setTransparentCircleAlpha(110)
+
+        // on  below line we are setting hole radius
+        pieChart.setHoleRadius(30f)
+        pieChart.setTransparentCircleRadius(33f)
+
+        // on below line we are setting center text
+        pieChart.setDrawCenterText(true)
+
+        // on below line we are setting
+        // rotation for our pie chart
+        pieChart.setRotationAngle(0f)
+
+        // enable rotation of the pieChart by touch
+        pieChart.setRotationEnabled(true)
+        pieChart.setHighlightPerTapEnabled(true)
+
+        // on below line we are setting animation for our pie chart
+        pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+        // on below line we are disabling our legend for pie chart
+        pieChart.legend.isEnabled = false
+        pieChart.setEntryLabelColor(Color.WHITE)
+        pieChart.setEntryLabelTextSize(12f)
+
+        val perCC: Float = getDataFromFirestore()
+        val perNC: Float = 100 - perCC
+
+        // on below line we are creating array list and
+        // adding data to it to display in pie chart
+        val entries: ArrayList<PieEntry> = ArrayList()
+        entries.add(PieEntry(perCC))
+        entries.add(PieEntry(perNC))
+
+        // on below line we are setting pie data set
+        val dataSet = PieDataSet(entries, "Mobile OS")
+
+        // on below line we are setting icons.
+        dataSet.setDrawIcons(false)
+
+        // on below line we are setting slice for pie
+        dataSet.sliceSpace = 3f
+        dataSet.iconsOffset = MPPointF(0f, 40f)
+        dataSet.selectionShift = 5f
+
+        // add a lot of colors to listwwssw
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(resources.getColor(R.color.red))
+        colors.add(resources.getColor(R.color.yellow))
+
+        // on below line we are setting colors.
+        dataSet.colors = colors
+
+        // on below line we are setting pie data set
+        val data = PieData(dataSet)
+        data.setValueFormatter(PercentFormatter())
+        data.setValueTextSize(0f)
+        data.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data.setValueTextColor(Color.WHITE)
+        pieChart.setData(data)
+
+        // undo all highlights
+        pieChart.highlightValues(null)
+
+        // loading chart
+        pieChart.invalidate()
+    }
+
+    fun getDataFromFirestore(): Float {
+        var perT: Float = 0f
+        var total: Int = 0
+        var oComplets: Int = 0
+        var objectius: ArrayList<Objectius> = ArrayList()
+
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                if (result != null) {
+                    objectius = Objectius.dataFirebaseToObjectius(result)
+                    total = objectius.size
+                    for (objectiu in objectius) {
+                        if (objectiu.complert) {
+                            oComplets++
+                        }
+                    }
+                    perT = (oComplets / total).toFloat()
+                }
+            }
+
+        return perT
+    }
 
 
 }
