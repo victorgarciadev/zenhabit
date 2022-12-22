@@ -134,4 +134,5 @@
     <string name="label_notificacio_getNewItem_plural">tareas o hábitos pendientes.</string>
     <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
     <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
+    <string name="data_limit_hint">00/00/00</string>
 </resources>

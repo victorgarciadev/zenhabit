@@ -65,7 +65,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/btn_crearEditarHabit"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +105,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
-                        android:outlineAmbientShadowColor="@android:color/transparent"
                         app:boxStrokeWidth="0dp"
                         app:boxStrokeWidthFocused="0dp"
                         app:hintEnabled="false"
@@ -118,8 +118,9 @@
                             android:id="@+id/nomHabitEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
                             android:fontFamily="@font/open_sans"
-                            android:hint="@string/nom_de_habit"
+                            android:hint="@string/nom_habit"
                             android:textColor="@color/fondo"
                             android:textColorHint="@color/fondo"
                             android:textSize="30sp"
@@ -194,7 +195,6 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="32dp"
                         android:drawablePadding="8dp"
-                        android:drawableTint="@color/white"
                         android:fontFamily="@font/open_sans"
                         android:text="@string/repeticio"
                         android:textColor="@color/white"
@@ -241,7 +241,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/dilluns"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                                 <CheckBox
                                     android:id="@+id/checkbox_Dimarts"
@@ -251,7 +252,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/dimarts"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                                 <CheckBox
                                     android:id="@+id/checkbox_Dimecres"
@@ -261,7 +263,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/dimecres"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                                 <CheckBox
                                     android:id="@+id/checkbox_Dijous"
@@ -271,7 +274,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/dijous"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                             </LinearLayout>
 
@@ -290,7 +294,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/divendres"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                                 <CheckBox
                                     android:id="@+id/checkbox_Dissabte"
@@ -300,7 +305,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/dissabte"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
 
                                 <CheckBox
                                     android:id="@+id/checkbox_Diumenge"
@@ -310,7 +316,8 @@
                                     android:buttonTint="@color/white"
                                     android:text="@string/diumenge"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp" />
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
                             </LinearLayout>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -333,7 +340,6 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="32dp"
                         android:drawablePadding="8dp"
-                        android:drawableTint="@color/white"
                         android:fontFamily="@font/open_sans"
                         android:text="@string/hora_limit"
                         android:textColor="@color/white"
@@ -367,7 +373,7 @@
                             android:layout_height="60sp"
                             android:allowClickWhenDisabled="true"
                             android:clickable="true"
-                            android:focusable="false"
+                            android:focusable="true"
                             android:gravity="center"
                             android:hint="@string/_hora0000"
                             android:inputType="time"
@@ -381,7 +387,9 @@
                             app:layout_constraintHorizontal_bias="0.883"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.571" />
+                            app:layout_constraintVertical_bias="0.571"
+                            android:importantForAutofill="no"
+                            tools:targetApi="s" />
                     </LinearLayout>
 
                     <TextView
@@ -391,7 +399,6 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="32dp"
                         android:drawablePadding="8dp"
-                        android:drawableTint="@color/white"
                         android:fontFamily="@font/open_sans"
                         android:text="@string/data_limit"
                         android:textColor="@color/white"
@@ -425,7 +432,7 @@
                             android:layout_height="60dp"
                             android:allowClickWhenDisabled="true"
                             android:clickable="true"
-                            android:focusable="false"
+                            android:focusable="true"
                             android:gravity="center"
                             android:hint="@string/data000000"
                             android:inputType="date"
@@ -434,7 +441,9 @@
                             android:textColor="#FFFFFF"
                             android:layout_gravity="center"
                             android:textColorHint="#FFFFFF"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            tools:targetApi="s"
+                            android:importantForAutofill="no" />
                     </LinearLayout>
 
                     <Button

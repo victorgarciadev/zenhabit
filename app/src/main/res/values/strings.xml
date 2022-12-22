@@ -54,7 +54,7 @@
     <string name="icona_bambu">Icona d\'una planta de Bambú</string>
     <string name="icona_cactus">Icona d\'un Cactus</string>
 
-    <!-- HÀBITS -->
+    <!-- HÀBITS / TASQUES -->
     <string name="nom_de_la_tasca">Nom tasca</string>
     <string name="hora">hora</string>
     <string name="icona_repeticio">icona de repetició</string>
@@ -80,6 +80,7 @@
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
+    <string name="data_limit_hint">00/00/00</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>

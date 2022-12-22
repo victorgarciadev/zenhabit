@@ -134,4 +134,5 @@
     <string name="label_notificacio_getNewItem_plural">tasks or habits remaining.</string>
     <string name="toast_habit_creat">Habit created successfully!</string>
     <string name="toast_tasca_creada">Task created successfully!</string>
+    <string name="data_limit_hint">00/00/00</string>
 </resources>
