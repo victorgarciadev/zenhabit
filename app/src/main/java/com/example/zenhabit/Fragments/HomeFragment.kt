@@ -41,8 +41,13 @@ class home : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
-                    val objectius = result.get("llistaObjectius") as ArrayList<Objectius>
+                    val objectius = Objectius.dataFirebaseToObjectius(result)
+                    //val objectius = result.get("llistaObjectius") as ArrayList<Objectius>
                     var numeroObjectius = objectius.count()
+                    var habitosRealizados: Int = 0
+                    var tareasRealizadas: Int = 0
+                    var totalHabitos: Int = 0
+                    var totalTareas: Int = 0
                 if (numeroObjectius == 1 ) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular)
                     binding.imgNotification.startAnimation(shake)
@@ -51,6 +56,32 @@ class home : Fragment() {
                         binding.imgNotification.startAnimation(shake)
                     }
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroObjectius " + getString(R.string.pendents_segona_plural)
+                }
+                if (numeroObjectius > 0) {
+                    for (objectiu in objectius) {
+                        if (objectiu.tipus) {
+                            totalHabitos++
+                            if (objectiu.complert) {
+                                habitosRealizados++
+                            }
+                        } else if (!objectiu.tipus) {
+                            totalTareas++
+                            if (objectiu.complert) {
+                                tareasRealizadas++
+                            }
+                        }
+                    }
+                    var pendientes = numeroObjectius - (habitosRealizados + tareasRealizadas)
+                    pendientes = (pendientes / numeroObjectius) * 100
+                    if (totalHabitos > 0) {
+                        habitosRealizados = (habitosRealizados / totalHabitos) * 100
+                        binding.percentHabits.progress = habitosRealizados
+                    }
+                    if (totalTareas > 0) {
+                        tareasRealizadas = (tareasRealizadas / totalTareas) * 100
+                        binding.percentTasques.progress = tareasRealizadas
+                    }
+                    binding.percentPendents.progress = pendientes
                 }
             }
         binding.btnVeureHabitTasca.setOnClickListener{
