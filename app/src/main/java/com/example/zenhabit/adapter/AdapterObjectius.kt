@@ -1,6 +1,8 @@
 package com.example.zenhabit.adapter
 
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,11 +27,16 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
         val bigItem: ConstraintLayout = itemView.findViewById(R.id.itemRecyclerView)
 
         fun bind(Objectius: Objectius, index: Int) {
+            if (Objectius.tipus) {
+                // canviar color de la bola per habit
+            } else {
+                // canviar color de la bola per tasca
+            }
             tvTasca.text = Objectius.nom
-            tvHora.text = Objectius.horari
+            tvHora.text = Objectius.dataLimit
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.horari.toString()) }
+            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit) }
         }
     }
 
@@ -56,6 +63,10 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
     fun setItems(items: List<Objectius>){
         listData = items
         notifyDataSetChanged()
+    }
+
+    fun getItem(position: Int): Any {
+        return listaTasques[position]
     }
 }
 

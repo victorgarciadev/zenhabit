@@ -44,10 +44,10 @@ class home : Fragment() {
                     val objectius = Objectius.dataFirebaseToObjectius(result)
                     //val objectius = result.get("llistaObjectius") as ArrayList<Objectius>
                     var numeroObjectius = objectius.count()
-                    var habitosRealizados: Int = 0
-                    var tareasRealizadas: Int = 0
-                    var totalHabitos: Int = 0
-                    var totalTareas: Int = 0
+                    var habitosRealizados: Float = 0f
+                    var tareasRealizadas: Float = 0f
+                    var totalHabitos: Float = 0f
+                    var totalTareas: Float = 0f
                 if (numeroObjectius == 1 ) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular)
                     binding.imgNotification.startAnimation(shake)
@@ -75,13 +75,13 @@ class home : Fragment() {
                     pendientes = (pendientes / numeroObjectius) * 100
                     if (totalHabitos > 0) {
                         habitosRealizados = (habitosRealizados / totalHabitos) * 100
-                        binding.percentHabits.progress = habitosRealizados
+                        binding.percentHabits.progress = habitosRealizados.toInt()
                     }
                     if (totalTareas > 0) {
                         tareasRealizadas = (tareasRealizadas / totalTareas) * 100
-                        binding.percentTasques.progress = tareasRealizadas
+                        binding.percentTasques.progress = tareasRealizadas.toInt()
                     }
-                    binding.percentPendents.progress = pendientes
+                    binding.percentPendents.progress = pendientes.toInt()
                 }
             }
         binding.btnVeureHabitTasca.setOnClickListener{
