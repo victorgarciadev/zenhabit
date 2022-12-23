@@ -147,15 +147,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/TitolLayoutProgres" />
 
-                    <View
+                    <ProgressBar
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                         android:id="@+id/percent_pendents"
-                        android:layout_width="wrap_content"
-                        android:layout_height="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#ffc542"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#ffc542"
+                        android:max="100"
+                        android:scaleY="1.5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_pendents" />
+                        app:layout_constraintTop_toBottomOf="@+id/text_pendents"
+                        />
 
                     <TextView
                         android:id="@+id/text_habits_complets"
@@ -168,15 +173,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/percent_pendents" />
 
-                    <View
+                    <ProgressBar
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                         android:id="@+id/percent_habits"
-                        android:layout_width="120dp"
-                        android:layout_height="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#ff575f"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#ff575f"
+                        android:max="100"
+                        android:scaleY="1.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_habits_complets" />
-
 
                     <TextView
                         android:id="@+id/text_tasques_completes"
@@ -189,11 +197,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/percent_habits" />
 
-                    <View
-                        android:layout_width="120dp"
-                        android:layout_height="5dp"
+                    <ProgressBar
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:id="@+id/percent_tasques"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#00a2e7"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#00a2e7"
+                        android:max="100"
+                        android:scaleY="1.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_tasques_completes" />
 
