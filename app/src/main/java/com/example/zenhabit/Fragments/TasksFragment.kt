@@ -137,6 +137,7 @@ class TasksFragment : Fragment() {
             if (document != null) {
 
                 ret = Objectius.dataFirebaseToObjectius(document)
+                val filteredList = ret.filter { !it.complert }
 
                 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
@@ -145,7 +146,7 @@ class TasksFragment : Fragment() {
 
 
                 mAdapter = AdapterObjectius(
-                    ret,
+                    filteredList,
                     { index -> deleteItem(index) },
                     { nom, hora -> sendItem(nom, hora) });
 
@@ -186,10 +187,6 @@ class TasksFragment : Fragment() {
                         Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
                     }
             }
-        if (::data.isInitialized) {
-            data.removeAt(index)
-            mAdapter.setItems(data)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -205,7 +202,7 @@ class TasksFragment : Fragment() {
         pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.95f)
+        pieChart.setDragDecelerationFrictionCoef(1f)
 
         // on below line we are setting hole
         // and hole color for pie chart
@@ -217,7 +214,7 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(30f)
+        pieChart.setHoleRadius(80f)
         pieChart.setTransparentCircleRadius(33f)
 
         // on below line we are setting center text
