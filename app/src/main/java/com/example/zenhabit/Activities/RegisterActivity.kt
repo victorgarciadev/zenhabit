@@ -39,14 +39,14 @@ class RegisterActivity : AppCompatActivity() {
         auth = Firebase.auth
 
 
-        val buttonCancel: Button = findViewById(R.id.btn_cancel)
+        val buttonCancel: Button = bin.btnCancel
         buttonCancel.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
 
 
-        val buttonRegister: Button = findViewById(R.id.btn_register)
+        val buttonRegister: Button = bin.btnRegister
         buttonRegister.setOnClickListener {
             crearUsuari(
                 bin.inputCreateEmail.text.toString().trim(),
@@ -72,7 +72,7 @@ private fun crearUsuari(email: String, password: String, nom: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Objectiu>())
+                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Objectius>())
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }

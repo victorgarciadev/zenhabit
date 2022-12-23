@@ -31,7 +31,7 @@
     <string name="label_home_tasques_complertes">Tasques complertes</string>
     <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
     <string name="label_jardi_items_obtinguts">Quantitat: x</string>
-    <string name="nom_canal">Notificacions Zenhabit</string>
+    <string name="nom_canal">Notificacions ZenHabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
     <!--  JARDÍ  -->
@@ -67,7 +67,7 @@
     <string name="divendres">Divendres</string>
     <string name="dissabte">Dissabte</string>
     <string name="diumenge">Diumenge</string>
-    <string name="hora_limit">Hora límit</string>
+    <string name="hora_limit">Hora</string>
     <string name="_hora0000">00:00</string>
     <string name="data000000">00/00/00</string>
 
@@ -121,7 +121,7 @@
     <string name="about_credits">Desenvolupat per:</string>
     <string name="pablo_morante">Pablo Morante</string>
     <string name="copyright">&#169; 2022 ZenHabit</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Sortir</string>
     <string name="logotip_zenhabit">Logotip ZenHabit</string>
     <string name="zenhabit_logo_descripcio">ZenHabit logo</string>
     <string name="credits">&#160;Crèdits</string>
@@ -129,7 +129,7 @@
     <!-- HOME TASQUES PENDENTS -->
     <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
-    <string name="pendents_segona_singular"> objectiu pendent.</string>
+    <string name="pendents_segona_singular"> Objectius pendent.</string>
     <string name="pendents_segona_plural">objectius pendents.</string>
     <string name="icona_campana">icona campana</string>
     <string name="pendents">Pendents</string>
@@ -164,5 +164,7 @@
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>
     <string name="label_notificacio_getNewItem_singular">tasca o hàbit pendent.</string>
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
+    <string name="pendents_tercera_singular">Hàbit pendent.</string>
+    <string name="pendents_tercera_plural">Hàbits pendents.</string>
 
 </resources>
