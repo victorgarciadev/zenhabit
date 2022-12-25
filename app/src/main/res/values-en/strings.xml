@@ -134,4 +134,15 @@
     <string name="label_notificacio_getNewItem_plural">tasks or habits remaining.</string>
     <string name="toast_habit_creat">Habit created successfully!</string>
     <string name="toast_tasca_creada">Task created successfully!</string>
+    <string name="data_limit_hint">00/00/00</string>
+    <string name="btn_tancar">Close</string>
+    <string name="descripcio_palmera">Its length will help you reach all your goals much sooner.</string>
+    <string name="descripcio_aloe">Its healing properties will help you not to give up.</string>
+    <string name="descripcio_avet">Its strength will make you build \"robust\" goals.</string>
+    <string name="descripcio_olivera">His wisdom will help you make better decisions to achieve your goals.</string>
+    <string name="descripcio_girasol">His energy will make you unstoppable!</string>
+    <string name="descripcio_rosa">Its beauty will give you optimism to face new challenges.</string>
+    <string name="descripcio_lavanda">Its fragrance will help you clear your mind to make better decisions.</string>
+    <string name="descripcio_cactus">Its spines will help you keep bad habits away!</string>
+    <string name="descripcio_bambu">Your flexibility will help you find new approaches to your problems.</string>
 </resources>

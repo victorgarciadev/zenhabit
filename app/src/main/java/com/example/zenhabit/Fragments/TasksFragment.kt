@@ -14,26 +14,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
-import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Objectius
-import com.example.zenhabit.models.Repte
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
@@ -108,7 +105,6 @@ class TasksFragment : Fragment() {
         }, 1000)
 
 
-
 //----------------NEW RECYCLERVIEW-----------------
 //cargar shimmer
         mRecyclerView = binding.rvTasques
@@ -162,6 +158,7 @@ class TasksFragment : Fragment() {
 
         }
     }
+
     private fun sendItem(nom: String, hora: String) {
         val action =
             TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)

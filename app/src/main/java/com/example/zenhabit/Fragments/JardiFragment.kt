@@ -1,24 +1,26 @@
 package com.example.zenhabit.Fragments
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentJardiBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
+
+
 class JardiFragment : Fragment() {
     private var _binding: FragmentJardiBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,9 @@ class JardiFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.garden_title))
         val view = binding.root
         christmasSpecial()
+
+        // Mostra la descripció pels ítems del Jardí (CardViews)
+        openItemDescription()
 
         // Inflate the layout for this fragment
         return view
@@ -48,4 +53,93 @@ class JardiFragment : Fragment() {
             }
         }
     }
+
+    /**
+     * Mètode per mostrar en un 'Dialog' les decripcions de cada ítem del Jardí quan es clica
+     * el cardView corresponent.
+     * @author Txell Llanas
+     */
+    private fun openItemDescription() {
+
+        val dialog = activity?.let {
+            Dialog(it, R.style.CustomDialog)
+        }
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Item 1: Avet
+        binding.cardViewAvet.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_avet_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 2: Palmera
+        binding.cardViewPalmera.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_palmera_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 3: Olivera
+        binding.cardViewOlivera.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_olivera_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 4: Girasol
+        binding.cardViewGirasol.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_girasol_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 5: Rosa
+        binding.cardViewRosa.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_rosa_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 6: Lavanda
+        binding.cardViewLavanda.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_lavanda_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 7: Aloe-vera
+        binding.cardViewAloe.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_aloe_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 8: Bambú
+        binding.cardViewBambu.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_bambu_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+        // Item 9: Cactus
+        binding.cardViewCactus.setOnClickListener {
+            dialog?.setContentView(R.layout.dialog_cactus_description)
+            dialog?.show()
+
+            val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
+            closeBtn?.setOnClickListener { dialog.dismiss() }
+        }
+    }
+
 }
+
+
