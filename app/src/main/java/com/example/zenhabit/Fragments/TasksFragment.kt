@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Gravity
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,6 +33,12 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
+import org.w3c.dom.Document
+import java.util.Objects
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class TasksFragment : Fragment() {
 
@@ -124,7 +134,7 @@ class TasksFragment : Fragment() {
 
                 ret = Objectius.dataFirebaseToObjectius(document)
 
-//shimmer desaparece
+                //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
                 shimmerFrameLayout.stopShimmer()
                 shimmerFrameLayout.visibility = View.INVISIBLE
@@ -156,6 +166,23 @@ class TasksFragment : Fragment() {
     }
 
     private fun deleteItem(index: Int) {
+        var objectiuSeleccionat = mAdapter.getItem(index) as Objectius
+        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val objectius = Objectius.dataFirebaseToObjectius(result)
+                for (objectiu in objectius) {
+                    if (objectiu.nom == objectiuSeleccionat.nom && objectiu.categoria == objectiuSeleccionat.categoria && objectiu.dataLimit == objectiuSeleccionat.dataLimit && objectiu.horari == objectiuSeleccionat.horari) {
+                        objectius.remove(objectiu)
+                        objectiuSeleccionat.complert = true
+                        objectius.add(objectiuSeleccionat)
+                    }
+                }
+                FirebaseFirestore.getInstance().collection("Usuaris")
+                    .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
+                    .addOnCompleteListener {
+                        Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                    }
+            }
         if (::data.isInitialized) {
             data.removeAt(index)
             mAdapter.setItems(data)
@@ -209,13 +236,16 @@ class TasksFragment : Fragment() {
         pieChart.setEntryLabelColor(Color.WHITE)
         pieChart.setEntryLabelTextSize(12f)
 
-        val perCC: Float = getDataFromFirestore()
-        val perNC: Float = 100 - perCC
+        var perCC = 0f
+        runBlocking {
+            perCC = getDataFromFirestore()
+        }
+        val perNC: Float = 100 - (perCC*100)
 
         // on below line we are creating array list and
         // adding data to it to display in pie chart
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(perCC))
+        entries.add(PieEntry(perCC*100))
         entries.add(PieEntry(perNC))
 
         // on below line we are setting pie data set
@@ -252,33 +282,45 @@ class TasksFragment : Fragment() {
         pieChart.invalidate()
     }
 
-    fun getDataFromFirestore(): Float {
+    suspend fun getDataFromFirestore(): Float {
         var perT: Float = 0f
-        var total: Int = 0
-        var oComplets: Int = 0
+        var total: Float = 0f
+        var oComplets: Float = 0f
         var objectius: ArrayList<Objectius> = ArrayList()
 
-        FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(Firebase.auth.currentUser!!.uid).get()
-            .addOnSuccessListener { result ->
-                if (result != null) {
-                    objectius = Objectius.dataFirebaseToObjectius(result)
-                    total = objectius.size
-                    for (objectiu in objectius) {
-                        if (objectiu.complert) {
-                            oComplets++
-                        }
-                    }
-                    if (total != 0) {
-                        perT = (oComplets / total).toFloat()
-                    } else {
-                        perT = total.toFloat()
-                    }
+        val result = FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get().await()
 
+        if (result != null) {
+            objectius = Objectius.dataFirebaseToObjectius(result)
+            total = (objectius.size).toFloat()
+            for (objectiu in objectius) {
+                if (objectiu.complert) {
+                    oComplets++
                 }
             }
+            perT = (oComplets / total)
+        }
 
         return perT
+    }
+
+    private fun Toast.showCustomToast(message: String)
+    {
+        val layout = requireActivity().layoutInflater.inflate (
+            R.layout.toast_layout,
+            requireActivity().findViewById(R.id.toast_container)
+        )
+
+        val textView = layout.findViewById<TextView>(R.id.toast_text)
+        textView.text = message
+
+        this.apply {
+            setGravity(Gravity.CENTER, 0, 700)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
+        }
     }
 
 
