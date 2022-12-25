@@ -135,4 +135,14 @@
     <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
     <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
     <string name="data_limit_hint">00/00/00</string>
+    <string name="btn_tancar">Cerrar</string>
+    <string name="descripcio_palmera">Su longitud te ayudará a llegar mucho antes a todos tus objetivos.</string>
+    <string name="descripcio_aloe">Sus propiedades curativas te ayudarán a no desfallecer.</string>
+    <string name="descripcio_avet">Su fortaleza hará que construyas objetivos \"robustos\".</string>
+    <string name="descripcio_olivera">Su sabiduría te ayudará a tomar mejores decisiones para cumplir tus objetivos.</string>
+    <string name="descripcio_girasol">¡Su energía te hará imparable!</string>
+    <string name="descripcio_rosa">Su belleza te dará optimismo para encarar los nuevos retos.</string>
+    <string name="descripcio_lavanda">Su fragancia te ayudará a despejar la mente para tomar mejores decisiones.</string>
+    <string name="descripcio_cactus">¡Sus espinas te ayudarán a mantener alejados los malos hábitos!</string>
+    <string name="descripcio_bambu">Su flexibilidad le ayudará a encontrar nuevos enfoques a tus problemas.</string>
 </resources>

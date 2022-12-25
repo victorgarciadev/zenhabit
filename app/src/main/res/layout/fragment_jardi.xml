@@ -90,6 +90,7 @@
 
                             <!-- CARD 1 (arbre: avet)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Avet"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -116,6 +117,7 @@
                                         tools:ignore="TooDeepLayout" />
 
                                     <TextView
+                                        android:id="@+id/mesInfo_Avet"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="8dp"
@@ -149,6 +151,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 2 (arbre: palmera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Palmera"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -205,6 +208,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 3 (arbre: olivera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Olivera"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -262,6 +266,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 4 (flor: girasol)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Girasol"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -316,6 +321,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 5 (flor: rosa)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Rosa"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -370,6 +376,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 6 (arbre: lavanda)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Lavanda"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -424,6 +431,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 7 (arbre: aloe vera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Aloe"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -479,6 +487,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 8 (flor: bambú)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_bambu"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -533,6 +542,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 9 (arbre: cactus)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Cactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -923,7 +933,8 @@
 
                                     app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle5"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="ImageContrastCheck" />
 
                                 <TextView
                                     android:id="@+id/txt_ArbresTitle5"
@@ -938,7 +949,8 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/textView5"
                                     app:layout_constraintStart_toEndOf="@+id/imageView5"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TooManyViews" />
 
                                 <TextView
                                     android:id="@+id/textView5"
@@ -1046,7 +1058,7 @@
                                 android:backgroundTint="@color/fondo">
 
                                 <ImageView
-                                    android:id="@+id/imageView7"
+                                    android:id="@+id/item_image"
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
                                     android:layout_marginStart="8dp"
@@ -1073,7 +1085,7 @@
                                     app:autoSizeTextType="uniform"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/textView7"
-                                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                                    app:layout_constraintStart_toEndOf="@+id/item_image"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
