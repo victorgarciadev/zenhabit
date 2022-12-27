@@ -42,20 +42,21 @@ class home : Fragment() {
             .addOnSuccessListener { result ->
                     shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)
                     val objectius = Objectius.dataFirebaseToObjectius(result)
-                    //val objectius = result.get("llistaObjectius") as ArrayList<Objectius>
+                    val filteredObjectius = objectius.filter{ !it.complert}
+                    val numeroAlerta = filteredObjectius.count()
                     var numeroObjectius = objectius.count()
                     var habitosRealizados: Float = 0f
                     var tareasRealizadas: Float = 0f
                     var totalHabitos: Float = 0f
                     var totalTareas: Float = 0f
-                if (numeroObjectius == 1 ) {
+                if (numeroAlerta == 1 ) {
                     binding.tasquesPendents.text = getString(R.string.pendents_primera) + " 1 " + getString(R.string.pendents_segona_singular)
                     binding.imgNotification.startAnimation(shake)
                 } else {
-                    if(numeroObjectius != 0){
+                    if(numeroAlerta != 0){
                         binding.imgNotification.startAnimation(shake)
                     }
-                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroObjectius " + getString(R.string.pendents_segona_plural)
+                    binding.tasquesPendents.text = getString(R.string.pendents_primera) + " $numeroAlerta " + getString(R.string.pendents_segona_plural)
                 }
                 if (numeroObjectius > 0) {
                     for (objectiu in objectius) {
