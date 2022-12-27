@@ -14,7 +14,10 @@
         <!-- Customize your theme here. -->
         <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:fontFamily">@font/open_sans</item>
     </style>
+
+    <!-- Aquí s'estableix on es troben les animacions quan canviem d'activitat. -->
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
