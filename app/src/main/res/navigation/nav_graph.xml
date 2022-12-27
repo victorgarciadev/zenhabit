@@ -60,6 +60,13 @@
         <argument
             android:name="time"
             app:argType="string" />
+        <argument
+            android:name="descripcio"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="categoria"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/homeActivity"

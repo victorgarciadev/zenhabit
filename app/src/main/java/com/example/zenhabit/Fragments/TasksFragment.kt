@@ -22,6 +22,7 @@ import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Planta
+import com.example.zenhabit.models.PlantaUsuari
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -140,7 +141,7 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     filteredList,
                     { index -> deleteItem(index) },
-                    { nom, hora -> sendItem(nom, hora) });
+                    { nom, hora, descripcio, categoria -> sendItem(nom, hora, descripcio, categoria) });
 
                 mRecyclerView.setAdapter(mAdapter)
 
@@ -156,9 +157,9 @@ class TasksFragment : Fragment() {
         }
     }
 
-    private fun sendItem(nom: String, hora: String) {
+    private fun sendItem(nom: String, hora: String, descripcio: String, categoria: String) {
         val action =
-            TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora)
+            TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora, descripcio, categoria)
         findNavController().navigate(action)
     }
 
@@ -182,14 +183,20 @@ class TasksFragment : Fragment() {
                 db.collection("Usuaris")
                     .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
 
-                db.collection("Plantes").get()
-                    .addOnSuccessListener { result ->
-                        val plantes = result as ArrayList<Planta>
-                        val max = plantes.size-1
-                        val numRandom = (0..max).random()
-                        plantes.get(numRandom)
+                val numRandom = (1..9).random()
 
-                        Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                db.collection("Plantes").document(numRandom.toString()).get()
+                    .addOnSuccessListener { secondResult ->
+                        val plantesUsuari = PlantaUsuari.dataFirebaseToPlanta(result)
+                        val canvisPlanta = plantesUsuari.get(numRandom)
+                        var quantitat = canvisPlanta.quantitat
+                        quantitat++
+                        canvisPlanta.quantitat = quantitat
+                        plantesUsuari.set(numRandom, canvisPlanta)
+                        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).update("llistaPlantes",plantesUsuari)
+                            .addOnSuccessListener {
+                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                            }
                     }
             }
     }
@@ -250,8 +257,8 @@ class TasksFragment : Fragment() {
         // on below line we are creating array list and
         // adding data to it to display in pie chart
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(perCC*100))
         entries.add(PieEntry(perNC))
+        entries.add(PieEntry(perCC*100))
 
         // on below line we are setting pie data set
         val dataSet = PieDataSet(entries, "Mobile OS")

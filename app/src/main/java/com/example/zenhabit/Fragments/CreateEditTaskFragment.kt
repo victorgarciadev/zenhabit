@@ -3,6 +3,7 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -32,6 +33,7 @@ class CreateEditTaskFragment : Fragment() {
     // View Binding (Fragment)
     private var _binding: FragmentCreateEditTaskBinding? = null
     private val binding get() = _binding!!
+    private var editantTasca: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +50,20 @@ class CreateEditTaskFragment : Fragment() {
 
         val name = arguments?.get("Name").toString()
         if (name != "null") {
+            editantTasca = true
             binding.nomTascaEdit.setText(name)
             (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.edit_task))
             binding.btnCrearEditarHabit.isVisible = false
+        }
+        val categoria = arguments?.get("categoria").toString()
+        if (categoria != "null") {
+            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+        }
+        val descripcio = arguments?.get("descripcio").toString()
+        if (descripcio != "null") {
+            binding.txtInputDescripcioTasca.editText?.setText(descripcio)
         } else {
-            binding.nomTascaEdit.setText("")
-            binding.btnCrearEditarHabit.isVisible = true
+            binding.txtInputDescripcioTasca.editText?.setText("")
         }
         // binding pels botons 'btn_crearEditarHabit' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarHabit.setOnClickListener {
@@ -73,12 +83,23 @@ class CreateEditTaskFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                    val valors: ArrayList<Objectius> =
-                        result.get("llistaObjectius") as ArrayList<Objectius>
-                    valors.add(tasca)
+                    //val valors: ArrayList<Objectius> =
+                     //   result.get("llistaObjectius") as ArrayList<Objectius>
+                    val valors = Objectius.dataFirebaseToObjectius(result)
+                    if (!editantTasca) {
+                        valors.add(tasca)
+                    } else {
+                        var index = 0
+                        for (valor in valors) {
+                            if (!valor.tipus && valor.nom == arguments?.get("Name").toString() && valor.dataLimit == arguments?.get("time").toString() ) {
+                                valors.set(index, tasca)
+                            }
+                            index++
+                        }
+                    }
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
-                        .addOnCanceledListener {
+                        .addOnSuccessListener {
                             Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
                         }
                 }
@@ -121,7 +142,12 @@ class CreateEditTaskFragment : Fragment() {
         if (initialDay == -1) {
             initialDay = c.get(Calendar.DAY_OF_MONTH)
         }
-        binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
+        val hora = arguments?.get("time").toString()
+        if (hora != "null") {
+            binding.etPlannedDate.hint = "$hora"
+        } else {
+            binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
+        }
         binding.apply {
             etPlannedDate.hint
             etPlannedDate.setOnClickListener {

@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat.setBackgroundTintList
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Objectius
 
 
-class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String) -> Unit) :
+class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String) -> Unit) :
     RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
     var listData = listaTasques
@@ -25,18 +26,19 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
         val tvHora: TextView = itemView.findViewById(R.id.txtHora)
         val button = itemView.findViewById<Button>(R.id.eliminar)
         val bigItem: ConstraintLayout = itemView.findViewById(R.id.itemRecyclerView)
+        val tipus: View = itemView.findViewById(R.id.view)
 
         fun bind(Objectius: Objectius, index: Int) {
             if (Objectius.tipus) {
-                // canviar color de la bola per habit
+                tipus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FEC442"))) // habit
             } else {
-                // canviar color de la bola per tasca
+                tipus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00A2E7"))) // tasca
             }
             tvTasca.text = Objectius.nom
             tvHora.text = Objectius.dataLimit
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit) }
+            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit, Objectius.descripcio, Objectius.categoria) }
         }
     }
 
