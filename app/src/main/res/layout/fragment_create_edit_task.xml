@@ -49,7 +49,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btn_crearEditarTasca"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
 
                 <Button
                     android:id="@+id/btn_crearEditarTasca"
@@ -111,7 +112,6 @@
                     android:layout_marginStart="24dp"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
-                    android:outlineAmbientShadowColor="@android:color/transparent"
                     app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -122,14 +122,14 @@
                         android:id="@+id/nomTascaEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nom de la tasca"
-                        android:textColor="#000000"
-
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        android:textColorHint="#000000"
+                        android:inputType="textCapSentences"
                         android:fontFamily="@font/open_sans"
-                        android:textSize="30sp"/>
+                        android:hint="@string/nom_de_la_tasca"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000"
+                        android:textSize="30sp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -201,7 +201,6 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:drawablePadding="8dp"
-                    android:drawableTint="@color/white"
                     android:fontFamily="@font/open_sans"
                     android:text="@string/data_limit"
                     android:textColor="@color/white"
@@ -227,23 +226,24 @@
                     android:paddingVertical="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">>
+                    app:layout_constraintTop_toBottomOf="@+id/textView_labelLanguage">
 
                     <EditText
                         android:id="@+id/etPlannedDate"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:allowClickWhenDisabled="true"
+                        android:layout_gravity="center"
                         android:clickable="true"
-                        android:focusable="false"
+                        android:focusable="true"
                         android:gravity="center"
-                        android:hint="00/00/00"
+                        android:hint="@string/data_limit_hint"
+                        android:importantForAutofill="no"
                         android:inputType="date"
                         android:maxLines="1"
                         android:textColor="#FFFFFF"
-                        android:layout_gravity="center"
                         android:textColorHint="#FFFFFF"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>
 
                 <Button
@@ -251,12 +251,13 @@
                     style="@style/btn_Guardar"
                     android:layout_marginTop="32dp"
                     android:text="@string/desar"
-                    app:cornerRadius="15dp"
                     android:textSize="20sp"
+                    app:cornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes" />
+                    app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes"
+                    tools:ignore="TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
