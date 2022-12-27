@@ -16,6 +16,7 @@
     <string name="desar">DESAR</string>
     <string name="btn_home_jardi">JARDÍ</string>
     <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
+    <string name="btn_tancar">Tancar</string>
 
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
@@ -29,7 +30,7 @@
     <string name="label_home_pendents">Pendents</string>
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
-    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
+    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Més informació</string>
     <string name="label_jardi_items_obtinguts">Quantitat: x</string>
     <string name="nom_canal">Notificacions ZenHabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
@@ -53,8 +54,17 @@
     <string name="icona_aloe_vera">Icona d\'una planta d\'Aloe Vera</string>
     <string name="icona_bambu">Icona d\'una planta de Bambú</string>
     <string name="icona_cactus">Icona d\'un Cactus</string>
+    <string name="descripcio_palmera">La seva longitud t\'ajudarà a arribar molt abans a tots els teus objectius.</string>
+    <string name="descripcio_aloe">Les seves propietats curatives t\'ajudaran a no defallir.</string>
+    <string name="descripcio_avet">La seva fortalesa farà que construeixis objectius \"robustos\".</string>
+    <string name="descripcio_olivera">La seva sabiduria t\'ajudarà a prendre millors decisions per complir els teus objectius.</string>
+    <string name="descripcio_girasol">La seva energia et farà imparable!</string>
+    <string name="descripcio_rosa">La seva bellesa et donarà optimisme per encarar els nous reptes.</string>
+    <string name="descripcio_lavanda">La seva fragancia t\'ajudarà a aclarir la ment per prendre millors decisions</string>
+    <string name="descripcio_bambu">La seva flexibilitat t\'ajudarà a trobar nous enfocs als teus problemes.</string>
+    <string name="descripcio_cactus">Les seves espines t\'ajudaran a mantenir allunyats els mals hàbits!</string>
 
-    <!-- HÀBITS -->
+    <!-- HÀBITS / TASQUES -->
     <string name="nom_de_la_tasca">Nom tasca</string>
     <string name="hora">hora</string>
     <string name="icona_repeticio">icona de repetició</string>
@@ -80,6 +90,7 @@
     <string name="tasques">Tasques</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
+    <string name="data_limit_hint">00/00/00</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>

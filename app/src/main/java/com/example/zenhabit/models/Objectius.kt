@@ -25,7 +25,7 @@ class Objectius(
     val dataLimit = dataLimit
     val repetible = repetible
     val horari = horari
-    val complert = complert
+    var complert = complert
     val ultimaDataFet = ultimaDataFet
     val tipus = tipus
 

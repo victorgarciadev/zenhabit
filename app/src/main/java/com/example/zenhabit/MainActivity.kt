@@ -19,13 +19,10 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
-import com.example.zenhabit.models.Habit
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Repte
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -43,11 +40,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     lateinit var bottomNavigation : BottomNavigationView
 
-    // Atributs *** NOTIFICACIONS ***
+    // *** NOTIFICACIONS *** (Atributs)
     private val canalID = "channelID"
     private val nomCanal = "@strings/nom_canal"
     private val descripcioCanal = "@strings/descripcio_canal"
-    private val notificacio_jardi_ID = 0  // notificationId is a unique int for each notification that you must define
+    private val notificacioJardiID = 0  // ID únic per identificar aquesta notificació
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
-        bottomNavigation.itemIconTintList = null;
+        bottomNavigation.itemIconTintList = null
         //FirebaseUtils()
     }
 
@@ -113,23 +110,39 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
-    //*** INICI NAVBAR ***
+    //*** NAVBAR (INICI) ***
+    /**
+     * Mètode per carregar ítems dins l'Action Bar, si aquesta existeix.
+     * @property menu El menú a crear.
+     * @return valor booleà en funció de si el menú es pot crear satisfactòriament o no.
+     * @author Txell Llanas
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_action_bar, menu)
         return true
     }
 
+    /**
+     * Mètode per controlar la navegació cap amunt.
+     * @return Boolean que determina el tipus de navegació cap amunt.
+     * @author Txell Llanas, Pablo Morante
+     */
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
     //*** FI NAVBAR ***
 
-    // Accions pels ítems del menú more (Action Bar)
+    //*** MENÚ MORE (INICI) ***
+    /**
+     * Mètode per especificar una acció per cada ítem que contingui el menú 'More' (Action Bar)
+     * @property item L'ítem a crear dins el menú.
+     * @return Especifica quin ítem dins el menú s'ha seleccionat.
+     * @author Txell Llanas, Pablo Morante
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.about) {
 
-            // Codi per tornar transparent el fons de l'XML
+        // Ítem 'About': Codi per mostrar el pop-up amb els crèdits
+        if (item.itemId == R.id.about) {
             val dialog = Dialog(this@MainActivity)
             dialog.setContentView(R.layout.about_dialog)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -137,34 +150,45 @@ class MainActivity : AppCompatActivity() {
 
             return true
        }
+
+        // Ítem 'Log Out': Codi per sortir de l'aplicació (tancar sessió)
         if (item.itemId == R.id.logout) {
             FirebaseAuth.getInstance().signOut()
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
             finishAffinity()
         }
-        return super.onOptionsItemSelected(item)
-    }
 
-    // INICI *** NOTIFICACIONS ***
-    // Crea el canal per gestionar totes les notificacions
+        return super.onOptionsItemSelected(item)
+
+    }
+    // *** FI MENÚ MORE ***
+
+    //*** NOTIFICACIONS (INICI) ***
+    /**
+     * Crea un canal per gestionar totes les notificacions a l'usuari dins de l'App.
+     * Permet especifcar-ne una descripció i un nivell de prioritat per a totes les notificacions
+     * assignades a aquest canal.
+     * @author Txell Llanas
+     */
     private fun createNotificationChannel() {
+
         // Crea el NotificationChannel, però només per API 26+ perquè aquesta és una Classe nova no present a les llibreries de suport estàndards
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT // indica grau d'importància de la notificació
+
+            // Indica un grau d'importància 'alt' per la notificació (emet un so)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
             // Nom del canal per definir les notificacions de l'app
             val channel = NotificationChannel(canalID, nomCanal, importance).apply {
-                // definir color led per l'avís de notificació
-                // LightColor = Color.GREEN
-                // enableLights(true)
                 description = descripcioCanal
+
             }
-            // Registrar el canal al Sistema (telèfon)
+
+            // Registra el canal al Sistema (Dispositiu mòbil)
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
+
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
@@ -192,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
                     // 2. Fer que la notificació aparegui (especificar trigger...) PENDENT!!!
                     with(NotificationManagerCompat.from(this)) {
-                        notify(notificacio_jardi_ID, builder.build())
+                        notify(notificacioJardiID, builder.build())
                     }
                     val flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
@@ -215,8 +239,6 @@ class MainActivity : AppCompatActivity() {
                     }
             }
     }
-
-
     //*** FI NOTIFICACIONS ***
 
     private fun hideSystemUI() {

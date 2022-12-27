@@ -43,7 +43,7 @@
                         app:srcCompat="@drawable/logo_dark" />
 
                     <TextView
-                        android:id="@+id/textView_about_versio"
+                        android:id="@+id/textView_itemTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -59,7 +59,7 @@
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
-                        android:id="@+id/textView_credits"
+                        android:id="@+id/textView_itemDescription"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
@@ -71,7 +71,7 @@
                         app:autoSizeTextType="uniform"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_about_versio" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView_itemTitle" />
 
                     <TextView
                         android:id="@+id/textView_VictorGarcia"
@@ -87,7 +87,7 @@
                         app:autoSizeTextType="uniform"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_credits" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView_itemDescription" />
 
                     <TextView
                         android:id="@+id/textView_IzanJimenez"
