@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +21,7 @@ import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Objectius
+import com.example.zenhabit.models.Planta
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -35,10 +35,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import org.w3c.dom.Document
-import java.util.Objects
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class TasksFragment : Fragment() {
 
@@ -105,13 +101,13 @@ class TasksFragment : Fragment() {
         }, 1000)
 
 
-//----------------NEW RECYCLERVIEW-----------------
-//cargar shimmer
+        //----------------NEW RECYCLERVIEW-----------------
+        //cargar shimmer
         mRecyclerView = binding.rvTasques
         val mLayoutManager = LinearLayoutManager(this.getActivity())
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
-//cargar recyclerview
+        //cargar recyclerview
         mRecyclerView.layoutManager = mLayoutManager
         loadData()
 
@@ -183,9 +179,16 @@ class TasksFragment : Fragment() {
                     }
                     index++
                 }
-                FirebaseFirestore.getInstance().collection("Usuaris")
+                db.collection("Usuaris")
                     .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
-                    .addOnCompleteListener {
+
+                db.collection("Plantes").get()
+                    .addOnSuccessListener { result ->
+                        val plantes = result as ArrayList<Planta>
+                        val max = plantes.size-1
+                        val numRandom = (0..max).random()
+                        plantes.get(numRandom)
+
                         Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
                     }
             }

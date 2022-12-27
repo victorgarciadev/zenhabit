@@ -72,7 +72,9 @@ private fun crearUsuari(email: String, password: String, nom: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), ArrayList<PlantaUsuari>(), ArrayList<Objectius>())
+                    var plantes: ArrayList<PlantaUsuari> = ArrayList()
+                    addPlantesToList(plantes)
+                    val usuari = Usuari(nom, email, ArrayList<RepteUsuari>(), plantes, ArrayList<Objectius>())
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(auth.currentUser!!.uid).set(usuari)
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
@@ -151,4 +153,16 @@ private fun Toast.showCustomToast(message: String, activity: RegisterActivity) {
         show()
     }
 }
+    private fun addPlantesToList(plantes: ArrayList<PlantaUsuari>) {
+        plantes.add(PlantaUsuari("Abeto",0))
+        plantes.add(PlantaUsuari("Palmera",0))
+        plantes.add(PlantaUsuari("Olivo",0))
+        plantes.add(PlantaUsuari("Girasol",0))
+        plantes.add(PlantaUsuari("Rosa",0))
+        plantes.add(PlantaUsuari("Lavanda",0))
+        plantes.add(PlantaUsuari("Aloe Vera",0))
+        plantes.add(PlantaUsuari("Bambú",0))
+        plantes.add(PlantaUsuari("Cactus",0))
+
+    }
 }
