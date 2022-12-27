@@ -174,12 +174,17 @@ class TasksFragment : Fragment() {
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val objectius = Objectius.dataFirebaseToObjectius(result)
+                var index = 0
                 for (objectiu in objectius) {
                     if (objectiu.nom == objectiuSeleccionat.nom && objectiu.categoria == objectiuSeleccionat.categoria && objectiu.dataLimit == objectiuSeleccionat.dataLimit && objectiu.horari == objectiuSeleccionat.horari) {
-                        objectius.remove(objectiu)
-                        objectiuSeleccionat.complert = true
-                        objectius.add(objectiuSeleccionat)
+                        val objectiuLlista = objectiu
+                        objectiuLlista.complert = true
+                        objectius.set(index, objectiuLlista)
+                        val filteredList = objectius.filter { !it.complert }
+                        mAdapter.setItems(filteredList)
+                        break
                     }
+                    index++
                 }
                 FirebaseFirestore.getInstance().collection("Usuaris")
                     .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
