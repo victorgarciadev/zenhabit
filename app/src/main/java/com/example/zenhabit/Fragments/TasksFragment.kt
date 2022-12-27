@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +21,7 @@ import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Objectius
+import com.example.zenhabit.models.Planta
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -35,10 +35,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import org.w3c.dom.Document
-import java.util.Objects
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class TasksFragment : Fragment() {
 
@@ -105,13 +101,13 @@ class TasksFragment : Fragment() {
         }, 1000)
 
 
-//----------------NEW RECYCLERVIEW-----------------
-//cargar shimmer
+        //----------------NEW RECYCLERVIEW-----------------
+        //cargar shimmer
         mRecyclerView = binding.rvTasques
         val mLayoutManager = LinearLayoutManager(this.getActivity())
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
-//cargar recyclerview
+        //cargar recyclerview
         mRecyclerView.layoutManager = mLayoutManager
         loadData()
 
@@ -133,6 +129,7 @@ class TasksFragment : Fragment() {
             if (document != null) {
 
                 ret = Objectius.dataFirebaseToObjectius(document)
+                val filteredList = ret.filter { !it.complert }
 
                 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
@@ -141,7 +138,7 @@ class TasksFragment : Fragment() {
 
 
                 mAdapter = AdapterObjectius(
-                    ret,
+                    filteredList,
                     { index -> deleteItem(index) },
                     { nom, hora -> sendItem(nom, hora) });
 
@@ -170,23 +167,31 @@ class TasksFragment : Fragment() {
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val objectius = Objectius.dataFirebaseToObjectius(result)
+                var index = 0
                 for (objectiu in objectius) {
                     if (objectiu.nom == objectiuSeleccionat.nom && objectiu.categoria == objectiuSeleccionat.categoria && objectiu.dataLimit == objectiuSeleccionat.dataLimit && objectiu.horari == objectiuSeleccionat.horari) {
-                        objectius.remove(objectiu)
-                        objectiuSeleccionat.complert = true
-                        objectius.add(objectiuSeleccionat)
+                        val objectiuLlista = objectiu
+                        objectiuLlista.complert = true
+                        objectius.set(index, objectiuLlista)
+                        val filteredList = objectius.filter { !it.complert }
+                        mAdapter.setItems(filteredList)
+                        break
                     }
+                    index++
                 }
-                FirebaseFirestore.getInstance().collection("Usuaris")
+                db.collection("Usuaris")
                     .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
-                    .addOnCompleteListener {
+
+                db.collection("Plantes").get()
+                    .addOnSuccessListener { result ->
+                        val plantes = result as ArrayList<Planta>
+                        val max = plantes.size-1
+                        val numRandom = (0..max).random()
+                        plantes.get(numRandom)
+
                         Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
                     }
             }
-        if (::data.isInitialized) {
-            data.removeAt(index)
-            mAdapter.setItems(data)
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -202,7 +207,7 @@ class TasksFragment : Fragment() {
         pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.95f)
+        pieChart.setDragDecelerationFrictionCoef(1f)
 
         // on below line we are setting hole
         // and hole color for pie chart
@@ -214,7 +219,7 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(30f)
+        pieChart.setHoleRadius(80f)
         pieChart.setTransparentCircleRadius(33f)
 
         // on below line we are setting center text
