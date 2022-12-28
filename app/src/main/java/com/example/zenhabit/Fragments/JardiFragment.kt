@@ -45,6 +45,9 @@ class JardiFragment : Fragment() {
         return view
     }
 
+    /**
+     * Habilita una visualització especial de Nadal si la data actual és entre el 15 de desembre i el 6 de gener.
+     */
     private fun christmasSpecial() {
         val actualDay = Calendar.getInstance().getTime()
         val d1 = "12/15/2022"
@@ -148,8 +151,7 @@ class JardiFragment : Fragment() {
     }
 
     /**
-     * Mètode per mostrar la quantitat de plantes aconseguides dintre del fragment Jardí.
-     * @author Víctor García
+     * Recupera una llista de plantes de Firebase per a l'usuari actual i actualitza la visualització de la quantitat de cada planta.
      */
     private fun getPlantesfromFirebase() {
         FirebaseFirestore.getInstance().collection("Usuaris")
@@ -157,8 +159,8 @@ class JardiFragment : Fragment() {
             .addOnSuccessListener { result ->
                 val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
                 var i = 0
-                for (planta in plantes){
-                    when (i){
+                for (planta in plantes) {
+                    when (i) {
                         0 -> binding.quantitat0.text = planta.quantitat.toString()
                         1 -> binding.quantitat1.text = planta.quantitat.toString()
                         2 -> binding.quantitat2.text = planta.quantitat.toString()
