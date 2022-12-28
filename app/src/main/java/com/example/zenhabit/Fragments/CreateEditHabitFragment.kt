@@ -126,9 +126,9 @@ class CreateEditHabitFragment : Fragment() {
                             } else {
                                 Toast(activity).showCustomToast(getString(R.string.toast_habit_update))
                             }
+                            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
                         }
                 }
-            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
 
         return view
