@@ -1,13 +1,12 @@
 package com.example.zenhabit.models
 
-import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
-import kotlin.math.log
 
-
+/**
+ * @author Pablo Morante, Izan Jimenez, Txell Llanas
+ */
 class Objectius(
     nom: String,
     descripcio: String,
@@ -30,6 +29,9 @@ class Objectius(
     val tipus = tipus
 
 
+    /**
+     * @author Izan Jimenez
+     */
     companion object {
 
         fun dataFirebaseToObjectius(document: DocumentSnapshot): ArrayList<Objectius> {

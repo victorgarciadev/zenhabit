@@ -21,7 +21,9 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * @author Victor García, Txell Llanas, Pablo Morante
+ */
 class JardiFragment : Fragment() {
     private var _binding: FragmentJardiBinding? = null
     private val binding get() = _binding!!
@@ -45,6 +47,9 @@ class JardiFragment : Fragment() {
         return view
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun christmasSpecial() {
         val actualDay = Calendar.getInstance().getTime()
         val d1 = "12/15/2022"

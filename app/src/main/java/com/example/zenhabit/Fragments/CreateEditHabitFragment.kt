@@ -27,6 +27,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class CreateEditHabitFragment : Fragment() {
 
     // View Binding (Fragment)
@@ -216,6 +219,9 @@ class CreateEditHabitFragment : Fragment() {
     }
 
 
+    /**
+     * @author Izan Jimenez
+     */
     class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
         private val calendar = Calendar.getInstance()
 
@@ -243,6 +249,9 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Izan Jimenez
+     */
     class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -273,6 +282,9 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String) {
         val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,

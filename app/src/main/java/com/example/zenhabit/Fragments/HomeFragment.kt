@@ -17,6 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 
+/**
+ * @author Pablo Morante, Victor García, Izan Jimenez
+ */
 class home : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
