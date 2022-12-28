@@ -169,7 +169,10 @@
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
     <string name="toast_habit_creat">Hàbit creat correctament!</string>
+    <string name="toast_habit_update">Hàbit actualitzat correctament!</string>
     <string name="toast_tasca_creada">Tasca creada correctament!</string>
+    <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
+    <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>

@@ -145,4 +145,7 @@
     <string name="descripcio_lavanda">Su fragancia te ayudará a despejar la mente para tomar mejores decisiones.</string>
     <string name="descripcio_cactus">¡Sus espinas te ayudarán a mantener alejados los malos hábitos!</string>
     <string name="descripcio_bambu">Su flexibilidad le ayudará a encontrar nuevos enfoques a tus problemas.</string>
+    <string name="toast_tasca_update">¡Tarea actualizada correctamente!</string>
+    <string name="toast_objectiu_completat">¡Felicidades! Has conseguido 1</string>
+    <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
 </resources>
