@@ -17,13 +17,13 @@
         app:snowflakeAlphaMin="150"
         app:snowflakeAngleMax="5"
         app:snowflakeImage="@drawable/snowflake"
-        app:snowflakeSizeMax="20dp"
-        app:snowflakeSizeMin="4dp"
-        app:snowflakeSpeedMax="10"
-        app:snowflakeSpeedMin="4"
+        app:snowflakeSizeMax="7dp"
+        app:snowflakeSizeMin="3dp"
+        app:snowflakeSpeedMax="2"
+        app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="250" />
+        app:snowflakesNum="120" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -690,6 +690,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView1"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -757,6 +773,22 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle2"
                                     app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/quantitat1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FEC442"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -827,6 +859,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FD565E"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -893,6 +941,22 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle4"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
+                                <TextView
+                                    android:id="@+id/quantitat3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#3dd598"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView4"
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
@@ -967,6 +1031,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TooManyViews,TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView5"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1033,6 +1113,22 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle6"
                                     app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/quantitat5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FEC442"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1103,6 +1199,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FD565E"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1168,6 +1280,22 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle8"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
+                                <TextView
+                                    android:id="@+id/quantitat7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#3dd598"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView8"
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
@@ -1242,6 +1370,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1253,6 +1397,5 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>

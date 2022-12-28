@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentJardiBinding
+import com.example.zenhabit.models.PlantaUsuari
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 
 class JardiFragment : Fragment() {
@@ -33,6 +37,9 @@ class JardiFragment : Fragment() {
 
         // Mostra la descripció pels ítems del Jardí (CardViews)
         openItemDescription()
+
+        // Mostra la quantitat de plantes aconseguides
+        getPlantesfromFirebase()
 
         // Inflate the layout for this fragment
         return view
@@ -140,6 +147,32 @@ class JardiFragment : Fragment() {
         }
     }
 
-}
+    /**
+     * Mètode per mostrar la quantitat de plantes aconseguides dintre del fragment Jardí.
+     * @author Víctor García
+     */
+    private fun getPlantesfromFirebase() {
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
+                var i = 0
+                for (planta in plantes){
+                    when (i){
+                        0 -> binding.quantitat0.text = planta.quantitat.toString()
+                        1 -> binding.quantitat1.text = planta.quantitat.toString()
+                        2 -> binding.quantitat2.text = planta.quantitat.toString()
+                        3 -> binding.quantitat3.text = planta.quantitat.toString()
+                        4 -> binding.quantitat4.text = planta.quantitat.toString()
+                        5 -> binding.quantitat5.text = planta.quantitat.toString()
+                        6 -> binding.quantitat6.text = planta.quantitat.toString()
+                        7 -> binding.quantitat7.text = planta.quantitat.toString()
+                        8 -> binding.quantitat8.text = planta.quantitat.toString()
+                    }
+                    i++
+                }
+            }
 
+    }
+}
 

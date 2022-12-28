@@ -18,7 +18,7 @@
     <string name="label_home_complerts">Completed habits</string>
     <string name="label_home_tasques_complertes">Completed tasks</string>
     <string name="label_jardi_descripcio_item">Description</string>
-    <string name="label_jardi_items_obtinguts">Quantity: x</string>
+    <string name="label_jardi_items_obtinguts">Quantity:</string>
     <string name="nom_canal">ZenHabit notifications</string>
     <string name="descripcio_canal">ZenHabit App notifications</string>
     <string name="avet">Fir tree</string>
