@@ -32,7 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
-
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -181,6 +183,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Llança una notificació que mostra el nombre de tasques pendents a la llista de tasques de l'usuari.
      * Si no hi ha tasques pendents, no es mostra cap notificació.
+     * @author Pablo Morante
      */
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
@@ -222,6 +225,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Restableix l'estat de notificació a la base de dades perquè es pugui tornar a mostrar una notificació.
      * L'estat de la notificació es restableix si la darrera vegada que es va mostrar una notificació va ser fa almenys un dia.
+     * @author Pablo Morante
      */
     private fun resetNotification() {
         val actualDay = Calendar.getInstance().getTime()// dia i hora actual

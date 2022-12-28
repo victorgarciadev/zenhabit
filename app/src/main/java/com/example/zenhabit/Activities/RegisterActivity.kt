@@ -64,8 +64,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-
-private fun crearUsuari(email: String, password: String, nom: String) {
+    /**
+     * @author Pablo Morante, Izan Jimenez
+     */
+    private fun crearUsuari(email: String, password: String, nom: String) {
     if (!validateForm()) {
         return
     } else {
@@ -94,6 +96,9 @@ private fun crearUsuari(email: String, password: String, nom: String) {
     }
 }
 
+/**
+ * @author Pablo Morante
+ */
 private fun posaNomUser(nom: String) {
     val profileUpdates = userProfileChangeRequest {
         displayName = nom
@@ -107,6 +112,9 @@ private fun posaNomUser(nom: String) {
         }
 }
 
+/**
+ * @author Pablo Morante
+ */
 private fun validateForm(): Boolean {
     var valid = true
     val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}\$".toRegex()
@@ -137,6 +145,9 @@ private fun validateForm(): Boolean {
     return valid
 }
 
+/**
+ * @author Pablo Morante
+ */
 private fun Toast.showCustomToast(message: String, activity: RegisterActivity) {
     val layout = activity.layoutInflater.inflate(
         R.layout.toast_layout,
@@ -153,6 +164,9 @@ private fun Toast.showCustomToast(message: String, activity: RegisterActivity) {
         show()
     }
 }
+    /**
+     * @author Pablo Morante
+     */
     private fun addPlantesToList(plantes: ArrayList<PlantaUsuari>) {
         plantes.add(PlantaUsuari("Abeto",0))
         plantes.add(PlantaUsuari("Palmera",0))

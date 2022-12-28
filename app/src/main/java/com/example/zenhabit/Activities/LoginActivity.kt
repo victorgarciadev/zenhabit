@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class LoginActivity : AppCompatActivity() {
 
     // Declarar variable pel View Binding
@@ -82,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @param email de l'usuari
      * @param password de l'usuari
+     * @author Izan Jimenez, Pablo Morante
      */
     private fun signIn(email: String, password: String) {
         //verificació d’errors de camps de text. Mostra errors en Toast
@@ -133,6 +137,7 @@ class LoginActivity : AppCompatActivity() {
      * Si algun dels camps està buit, es mostra un missatge d'error.
      *
      * @return true si el formulari és vàlid, false en cas contrari
+     * @author Izan Jimenez, Txell Llanas, Pablo Morante
      */
     private fun validateForm(): Boolean {
         var valid = true
@@ -160,6 +165,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @param missatge que es mostrarà al toast
      * @param activity des de la qual es mostra el toast
+     * @author Pablo Morante
      */
     private fun Toast.showCustomToast(message: String, activity: LoginActivity) {
         val layout = activity.layoutInflater.inflate(
@@ -183,6 +189,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @param context des del qual es crida la funció
      * @return true si el dispositiu té una connexió a Internet activa, false en cas contrari
+     * @author Pablo Morante
      */
     @RequiresApi(Build.VERSION_CODES.M)
     private fun isOnline(context: Context): Boolean {

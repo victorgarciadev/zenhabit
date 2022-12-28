@@ -1,5 +1,8 @@
 package com.example.zenhabit.models
 
+/**
+ * @author Pablo Morante
+ */
 class DiesHabit(dilluns: Boolean, dimarts: Boolean, dimecres: Boolean, dijous: Boolean, divendres: Boolean, dissabte: Boolean, diumenge: Boolean) {
     val dilluns = dilluns
     val dimarts = dimarts

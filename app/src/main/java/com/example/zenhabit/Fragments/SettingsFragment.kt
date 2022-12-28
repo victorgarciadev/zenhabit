@@ -1,29 +1,24 @@
 package com.example.zenhabit.Fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.zenhabit.MainActivity
+import androidx.fragment.app.Fragment
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentSettingsBinding
-import com.example.zenhabit.models.Habit
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import java.util.ArrayList
 
+/**
+ * @author Victor García, Txell Llanas, Pablo Morante
+ */
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
@@ -100,6 +95,9 @@ class SettingsFragment : Fragment() {
 
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String)
     {
         val layout = requireActivity().layoutInflater.inflate (
