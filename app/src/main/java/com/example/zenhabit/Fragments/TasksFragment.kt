@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Planta
 import com.example.zenhabit.models.PlantaUsuari
@@ -36,6 +37,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TasksFragment : Fragment() {
 
@@ -141,7 +144,7 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     filteredList,
                     { index -> deleteItem(index) },
-                    { nom, hora, descripcio, categoria -> sendItem(nom, hora, descripcio, categoria) });
+                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion -> sendItem(nom, fecha, descripcio, categoria, tipus, hora, repeticion) });
 
                 mRecyclerView.setAdapter(mAdapter)
 
@@ -157,10 +160,16 @@ class TasksFragment : Fragment() {
         }
     }
 
-    private fun sendItem(nom: String, hora: String, descripcio: String, categoria: String) {
-        val action =
-            TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora, descripcio, categoria)
-        findNavController().navigate(action)
+    private fun sendItem(nom: String, fecha: String, descripcio: String, categoria: String, tipus: Boolean, hora: String?, repeticion: Dies?) {
+        if (tipus) {
+            val action =
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(nom, hora, fecha, descripcio, categoria, repeticion?.toBooleanArray())
+            findNavController().navigate(action)
+        } else {
+            val action =
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, fecha, descripcio, categoria)
+            findNavController().navigate(action)
+        }
     }
 
     private fun deleteItem(index: Int) {
@@ -195,7 +204,14 @@ class TasksFragment : Fragment() {
                         plantesUsuari.set(numRandom, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).update("llistaPlantes",plantesUsuari)
                             .addOnSuccessListener {
-                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                                val language = Locale.getDefault().getLanguage()
+                                if (language == "en") {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("name").toString())
+                                } else if (language == "es") {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nombre").toString())
+                                } else {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nom").toString())
+                                }
                             }
                     }
             }
