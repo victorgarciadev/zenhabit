@@ -14,13 +14,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.databinding.ObjDiariAyoutBinding
 import com.example.zenhabit.models.Objectius
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
@@ -30,22 +30,23 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import org.w3c.dom.Document
-import java.util.Objects
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding
 
-    val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+    private  var auth: FirebaseAuth = Firebase.auth
     private lateinit var data: MutableList<Objectius>
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
@@ -60,11 +61,10 @@ class TasksFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.tasks_title))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.tasks_title)
         val view = binding.root
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
@@ -77,22 +77,26 @@ class TasksFragment : Fragment() {
 
         //obtenir els reptes diaris
         for (i in 1..3) {
-            val document = FirebaseFirestore.getInstance().collection("Reptes")
+            FirebaseFirestore.getInstance().collection("Reptes")
                 .document(i.toString()).get()
                 .addOnSuccessListener { result ->
                     val titol = result.get("titol")
                     val desc = result.get("descripcio")
+                    val done = result.get("vist") as Boolean
                     if (i == 1) {
                         binding.Obj1.textViewDesc.text = desc.toString()
                         binding.Obj1.titolRepte.text = titol.toString()
+                        binding.Obj1.checkboxDone.isChecked = done
                     }
                     if (i == 2) {
                         binding.Obj2.textViewDesc.text = desc.toString()
                         binding.Obj2.titolRepte.text = titol.toString()
+                        binding.Obj2.checkboxDone.isChecked = done
                     }
                     if (i == 3) {
                         binding.Obj3.textViewDesc.text = desc.toString()
                         binding.Obj3.titolRepte.text = titol.toString()
+                        binding.Obj3.checkboxDone.isChecked = done
                     }
                 }
         }
@@ -102,13 +106,27 @@ class TasksFragment : Fragment() {
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
+
         }, 1000)
+
+        //canviar de color els checkboxes
+        binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj1, 1)
+        }
+        binding.Obj2.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj2, 2)
+        }
+        binding.Obj3.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj3, 3)
+        }
+
 
 
 //----------------NEW RECYCLERVIEW-----------------
 //cargar shimmer
         mRecyclerView = binding.rvTasques
-        val mLayoutManager = LinearLayoutManager(this.getActivity())
+        val mLayoutManager = LinearLayoutManager(this.activity)
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
 //cargar recyclerview
@@ -124,9 +142,63 @@ class TasksFragment : Fragment() {
         return view
     }
 
+    /***
+     * Funcio per canviar de color els checkboxes
+     * @author Izan Jimenez
+     */
+    private fun checkChecked(
+        isChecked: Boolean,
+        objDiariAyoutBinding: ObjDiariAyoutBinding,
+        obj: Int
+    ) {
+        if (isChecked) {
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D174C37"))
+            FirebaseFirestore.getInstance().collection("Reptes")
+                .document(obj.toString()).update("vist", true)
+
+        } else {
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D3DD497"))
+            FirebaseFirestore.getInstance().collection("Reptes")
+                .document(obj.toString()).update("vist", false)
+        }
+    }
+
+    /***
+     * Reseteja els reptes diaris cada 24h
+     */
+    private fun resetReptesDiaris() {
+        val actualDay = Calendar.getInstance().time// dia i hora actual
+
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val lastDay = result.getTimestamp("lastDate")!!
+                    .toDate() // dia i hora que es va llençar l'última notificació
+                val difference: Long = actualDay.time - lastDay.time
+                val seconds = difference / 1000
+                val minutes = seconds / 60
+                val hours = minutes / 60
+                val days = hours / 24
+                Log.d("DAYS", days.toString())
+                if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
+                    checkChecked(false, binding.Obj1, 1)
+                    binding.Obj3.checkboxDone.isChecked = false
+                    checkChecked(false, binding.Obj1, 2)
+                    binding.Obj3.checkboxDone.isChecked = false
+                    checkChecked(false, binding.Obj1, 3)
+                    binding.Obj3.checkboxDone.isChecked = false
+
+//                    // val doc = FirebaseFirestore.getInstance().collection("Reptes").get().result.count()
+//                    Log.d("COUNT", "Count: ${doc}")
+                }
+            }
+
+
+    }
+
     private fun loadData() {
 
-        var ret: ArrayList<Objectius> = ArrayList()
+        var ret: ArrayList<Objectius>
 
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
@@ -143,9 +215,9 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     ret,
                     { index -> deleteItem(index) },
-                    { nom, hora -> sendItem(nom, hora) });
+                    { nom, hora -> sendItem(nom, hora) })
 
-                mRecyclerView.setAdapter(mAdapter)
+                mRecyclerView.adapter = mAdapter
 
             } else {
                 //ERROR
@@ -154,7 +226,7 @@ class TasksFragment : Fragment() {
             }
 
         }.addOnFailureListener { exception ->
-            Log.d("TAG", "ERROR AL OBTENER ${exception}")
+            Log.d("TAG", "ERROR AL OBTENER $exception")
 
         }
     }
@@ -166,7 +238,7 @@ class TasksFragment : Fragment() {
     }
 
     private fun deleteItem(index: Int) {
-        var objectiuSeleccionat = mAdapter.getItem(index) as Objectius
+        val objectiuSeleccionat = mAdapter.getItem(index) as Objectius
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val objectius = Objectius.dataFirebaseToObjectius(result)
@@ -178,7 +250,8 @@ class TasksFragment : Fragment() {
                     }
                 }
                 FirebaseFirestore.getInstance().collection("Usuaris")
-                    .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
+                    .document(Firebase.auth.currentUser!!.uid)
+                    .update("llistaObjectius", objectius)
                     .addOnCompleteListener {
                         Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
                     }
@@ -198,15 +271,15 @@ class TasksFragment : Fragment() {
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
         pieChart.setUsePercentValues(true)
-        pieChart.getDescription().setEnabled(false)
+        pieChart.description.isEnabled = false
         pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.95f)
+        pieChart.dragDecelerationFrictionCoef = 0.95f
 
         // on below line we are setting hole
         // and hole color for pie chart
-        pieChart.setDrawHoleEnabled(true)
+        pieChart.isDrawHoleEnabled = true
         pieChart.setHoleColor(Color.TRANSPARENT)
 
         // on below line we are setting circle color and alpha
@@ -214,19 +287,19 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(30f)
-        pieChart.setTransparentCircleRadius(33f)
+        pieChart.holeRadius = 30f
+        pieChart.transparentCircleRadius = 33f
 
         // on below line we are setting center text
         pieChart.setDrawCenterText(true)
 
         // on below line we are setting
         // rotation for our pie chart
-        pieChart.setRotationAngle(0f)
+        pieChart.rotationAngle = 0f
 
         // enable rotation of the pieChart by touch
-        pieChart.setRotationEnabled(true)
-        pieChart.setHighlightPerTapEnabled(true)
+        pieChart.isRotationEnabled = true
+        pieChart.isHighlightPerTapEnabled = true
 
         // on below line we are setting animation for our pie chart
         pieChart.animateY(1400, Easing.EaseInOutQuad)
@@ -240,12 +313,12 @@ class TasksFragment : Fragment() {
         runBlocking {
             perCC = getDataFromFirestore()
         }
-        val perNC: Float = 100 - (perCC*100)
+        val perNC: Float = 100 - (perCC * 100)
 
         // on below line we are creating array list and
         // adding data to it to display in pie chart
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(perCC*100))
+        entries.add(PieEntry(perCC * 100))
         entries.add(PieEntry(perNC))
 
         // on below line we are setting pie data set
@@ -283,10 +356,10 @@ class TasksFragment : Fragment() {
     }
 
     suspend fun getDataFromFirestore(): Float {
-        var perT: Float = 0f
-        var total: Float = 0f
-        var oComplets: Float = 0f
-        var objectius: ArrayList<Objectius> = ArrayList()
+        var perT = 0f
+        val total: Float
+        var oComplets = 0f
+        val objectius: ArrayList<Objectius>
 
         val result = FirebaseFirestore.getInstance().collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get().await()
@@ -305,9 +378,8 @@ class TasksFragment : Fragment() {
         return perT
     }
 
-    private fun Toast.showCustomToast(message: String)
-    {
-        val layout = requireActivity().layoutInflater.inflate (
+    private fun Toast.showCustomToast(message: String) {
+        val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,
             requireActivity().findViewById(R.id.toast_container)
         )
