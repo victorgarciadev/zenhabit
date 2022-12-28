@@ -100,7 +100,11 @@ class CreateEditTaskFragment : Fragment() {
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
                         .addOnSuccessListener {
-                            Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
+                            if (!editantTasca) {
+                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
+                            } else {
+                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_update))
+                            }
                         }
                 }
 
