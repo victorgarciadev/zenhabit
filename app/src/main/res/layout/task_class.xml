@@ -73,8 +73,8 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="10dp"
-            android:layout_height="9dp"
+            android:layout_width="7dp"
+            android:layout_height="8dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="#0DFF03"
             app:layout_constraintBottom_toBottomOf="parent"

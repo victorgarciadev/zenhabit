@@ -109,8 +109,8 @@
     <string name="pendents_tercera_plural">Remaining habits.</string>
     <string name="icona_campana">Bell icon</string>
     <string name="pendents">Remaining</string>
-    <string name="seguiment">TRACING</string>
-    <string name="complerts">DONE</string>
+    <string name="seguiment">Tracing</string>
+    <string name="complerts">Done</string>
     <string name="create_habit">Create habit</string>
     <string name="edit_habit">Edit habit</string>
     <string name="create_task">Create task</string>
