@@ -31,7 +31,7 @@
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
     <string name="label_jardi_descripcio_item" tools:ignore="Typos">Més informació</string>
-    <string name="label_jardi_items_obtinguts">Quantitat: x</string>
+    <string name="label_jardi_items_obtinguts">Quantitat:</string>
     <string name="nom_canal">Notificacions ZenHabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
