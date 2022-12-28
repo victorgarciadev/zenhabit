@@ -193,6 +193,16 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:listitem="@layout/task_class" />
+                        <TextView
+                            android:id="@+id/empty_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="@string/no_data_available" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -242,7 +252,7 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_marginStart="10dp"
-                            android:background="#E91E63"
+                            android:background="#A6FD565E"
                             app:circularflow_defaultRadius="20dp"
                             app:circularflow_radiusInDP="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -259,7 +269,7 @@
                             android:layout_height="16dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="24dp"
-                            android:background="#FFEB3B"
+                            android:background="#993DD497"
                             app:circularflow_defaultRadius="20dp"
                             app:circularflow_radiusInDP="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"

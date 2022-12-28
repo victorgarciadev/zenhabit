@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var bin: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
-    lateinit var bottomNavigation : BottomNavigationView
+    lateinit var bottomNavigation: BottomNavigationView
 
     // *** NOTIFICACIONS *** (Atributs)
     private val canalID = "channelID"
@@ -66,10 +66,8 @@ class MainActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setTitle("ZenHabit")
 
-        //hideSystemUI() // esconde la bottomnavigation de android
-
         bottomNavigation = bin.bottomNavigationView
-        bottomNavigation.setOnItemSelectedListener{ item ->
+        bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> navController.popBackStack(R.id.homeActivity, false)
                 R.id.settings -> navController.navigate(R.id.settingsFragment)
@@ -78,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         }
         //De momento la siguiente línea hace que no se quede marcado el último botón tocado en la NavBar
         bottomNavigation.itemIconTintList = null
-        //FirebaseUtils()
     }
 
     override fun onStop() {
@@ -92,22 +89,13 @@ class MainActivity : AppCompatActivity() {
                     val vist = result.get("vist") as Boolean
                     if (!vist) {
                         FirebaseFirestore.getInstance().collection("Verificacions")
-                            .document(auth.currentUser!!.uid).update( "vist",true)
+                            .document(auth.currentUser!!.uid).update("vist", true)
                         Handler(Looper.getMainLooper()).postDelayed(Runnable {
                             launchNotification() // funció que llença la notificació, es farà als 3 segons de tancar l'aplicació
                         }, 3000)
                     }
                 }
         }
-    }
-
-    class FirebaseUtils {
-        val reto = Repte(3,"Escriure't una nota positiva","Nota")
-        //val planta = Planta("exemple", "exemple descripcio2", "@drawable/ic_tree01_200", "pinacio")
-        val db = FirebaseFirestore.getInstance().collection("Reptes")
-            .document(reto.idRepte.toString()).set(reto)
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
     //*** NAVBAR (INICI) ***
@@ -149,7 +137,7 @@ class MainActivity : AppCompatActivity() {
             dialog.show()
 
             return true
-       }
+        }
 
         // Ítem 'Log Out': Codi per sortir de l'aplicació (tancar sessió)
         if (item.itemId == R.id.logout) {
@@ -189,6 +177,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * Llança una notificació que mostra el nombre de tasques pendents a la llista de tasques de l'usuari.
+     * Si no hi ha tasques pendents, no es mostra cap notificació.
+     */
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
@@ -198,11 +191,14 @@ class MainActivity : AppCompatActivity() {
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()
-                    val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+                    val pendingIntent: PendingIntent =
+                        PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
                     if (numeroPendents == 1) {
-                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
+                        text =
+                            getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
                     } else {
-                        text = getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
+                        text =
+                            getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
                     }
                     // 1. Crear constructor per mostrar la notificació
                     val builder = NotificationCompat.Builder(this, canalID)
@@ -222,38 +218,29 @@ class MainActivity : AppCompatActivity() {
                 }
             }
     }
+
+    /**
+     * Restableix l'estat de notificació a la base de dades perquè es pugui tornar a mostrar una notificació.
+     * L'estat de la notificació es restableix si la darrera vegada que es va mostrar una notificació va ser fa almenys un dia.
+     */
     private fun resetNotification() {
         val actualDay = Calendar.getInstance().getTime()// dia i hora actual
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val lastDay = result.getTimestamp("lastDate")!!.toDate() // dia i hora que es va llençar l'última notificació
-                    val difference: Long = actualDay.time - lastDay.time
-                    val seconds = difference / 1000
-                    val minutes = seconds / 60
-                    val hours = minutes / 60
-                    val days = hours / 24
-                    if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
-                        FirebaseFirestore.getInstance().collection("Verificacions")
-                            .document(auth.currentUser!!.uid).update( "vist",false, "lastDate",actualDay)
-                    }
+                val lastDay = result.getTimestamp("lastDate")!!
+                    .toDate() // dia i hora que es va llençar l'última notificació
+                val difference: Long = actualDay.time - lastDay.time
+                val seconds = difference / 1000
+                val minutes = seconds / 60
+                val hours = minutes / 60
+                val days = hours / 24
+                if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
+                    FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(auth.currentUser!!.uid)
+                        .update("vist", false, "lastDate", actualDay)
+                }
             }
     }
     //*** FI NOTIFICACIONS ***
-
-    private fun hideSystemUI() {
-        // comprobar si la SDK es superior o inferior a 30
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            if (window.insetsController != null) {
-                window.insetsController!!.hide(WindowInsets.Type.navigationBars()) // esconde la navegacion inferior
-                window.insetsController!!.systemBarsBehavior =
-                    WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE // la muestra si hacer swipe para arriba
-            }
-        } else {
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) // versiones inferiores a 30
-        }
-    }
-
-
 }

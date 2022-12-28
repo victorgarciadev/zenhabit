@@ -12,10 +12,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat.setBackgroundTintList
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
+import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
 
 
-class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String) -> Unit) :
+class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit) :
     RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
     var listData = listaTasques
@@ -38,7 +39,7 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
             tvHora.text = Objectius.dataLimit
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit, Objectius.descripcio, Objectius.categoria) }
+            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit, Objectius.descripcio, Objectius.categoria, Objectius.tipus, Objectius.horari, Objectius.repetible) }
         }
     }
 

@@ -18,7 +18,7 @@
     <string name="label_home_complerts">Hábitos realizados</string>
     <string name="label_home_tasques_complertes">Tareas realizadas</string>
     <string name="label_jardi_descripcio_item">Descripción</string>
-    <string name="label_jardi_items_obtinguts">Cantidad: x</string>
+    <string name="label_jardi_items_obtinguts">Cantidad:</string>
     <string name="nom_canal">Notificaciones ZenHabit</string>
     <string name="descripcio_canal">Notificaciones de la aplicación ZenHabit</string>
     <string name="avet">Abeto</string>
@@ -59,7 +59,7 @@
     <string name="descobdiari">DescObDiario</string>
     <string name="aconseguides">Conseguidas</string>
     <string name="reptes_diaris">Retos diarios</string>
-    <string name="tasques">Tareas</string>
+    <string name="tasques">Objetivos</string>
     <string name="nom_tasca">Nombre Tarea</string>
     <string name="nom_habit">Nombre Hábito</string>
     <string name="settings_title">Configuración</string>
@@ -145,4 +145,8 @@
     <string name="descripcio_lavanda">Su fragancia te ayudará a despejar la mente para tomar mejores decisiones.</string>
     <string name="descripcio_cactus">¡Sus espinas te ayudarán a mantener alejados los malos hábitos!</string>
     <string name="descripcio_bambu">Su flexibilidad le ayudará a encontrar nuevos enfoques a tus problemas.</string>
+    <string name="toast_tasca_update">¡Tarea actualizada correctamente!</string>
+    <string name="toast_objectiu_completat">¡Felicidades! Has conseguido 1</string>
+    <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
+    <string name="no_data_available">No tienes objetivos pendientes.</string>
 </resources>

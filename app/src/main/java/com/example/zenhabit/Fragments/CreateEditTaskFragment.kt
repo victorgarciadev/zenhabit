@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
@@ -100,11 +101,14 @@ class CreateEditTaskFragment : Fragment() {
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
                         .addOnSuccessListener {
-                            Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
+                            if (!editantTasca) {
+                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
+                            } else {
+                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_update))
+                            }
+                            findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
                         }
                 }
-
-            findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
         }
 
         return view

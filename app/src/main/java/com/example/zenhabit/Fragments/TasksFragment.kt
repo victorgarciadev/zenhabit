@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.Planta
 import com.example.zenhabit.models.PlantaUsuari
@@ -36,6 +37,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TasksFragment : Fragment() {
 
@@ -128,9 +131,26 @@ class TasksFragment : Fragment() {
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
             if (document != null) {
-
                 ret = Objectius.dataFirebaseToObjectius(document)
+                if (ret.isEmpty()) {
+                    mRecyclerView.visibility = View.GONE
+                    binding.emptyView.visibility = View.VISIBLE
+                }
+                else {
+                    mRecyclerView.visibility = View.VISIBLE
+                    binding.emptyView.visibility = View.GONE
+                }
+
                 val filteredList = ret.filter { !it.complert }
+
+                if (filteredList.isEmpty()) {
+                    mRecyclerView.visibility = View.GONE
+                    binding.emptyView.visibility = View.VISIBLE
+                }
+                else {
+                    mRecyclerView.visibility = View.VISIBLE
+                    binding.emptyView.visibility = View.GONE
+                }
 
                 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
@@ -141,7 +161,7 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     filteredList,
                     { index -> deleteItem(index) },
-                    { nom, hora, descripcio, categoria -> sendItem(nom, hora, descripcio, categoria) });
+                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion -> sendItem(nom, fecha, descripcio, categoria, tipus, hora, repeticion) });
 
                 mRecyclerView.setAdapter(mAdapter)
 
@@ -157,10 +177,16 @@ class TasksFragment : Fragment() {
         }
     }
 
-    private fun sendItem(nom: String, hora: String, descripcio: String, categoria: String) {
-        val action =
-            TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, hora, descripcio, categoria)
-        findNavController().navigate(action)
+    private fun sendItem(nom: String, fecha: String, descripcio: String, categoria: String, tipus: Boolean, hora: String?, repeticion: Dies?) {
+        if (tipus) {
+            val action =
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(nom, hora, fecha, descripcio, categoria, repeticion?.toBooleanArray())
+            findNavController().navigate(action)
+        } else {
+            val action =
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, fecha, descripcio, categoria)
+            findNavController().navigate(action)
+        }
     }
 
     private fun deleteItem(index: Int) {
@@ -195,7 +221,14 @@ class TasksFragment : Fragment() {
                         plantesUsuari.set(numRandom, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).update("llistaPlantes",plantesUsuari)
                             .addOnSuccessListener {
-                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                                val language = Locale.getDefault().getLanguage()
+                                if (language == "en") {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("name").toString())
+                                } else if (language == "es") {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nombre").toString())
+                                } else {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nom").toString())
+                                }
                             }
                     }
             }
@@ -211,10 +244,10 @@ class TasksFragment : Fragment() {
         // setting description as enabled and offset for pie chart
         pieChart.setUsePercentValues(true)
         pieChart.getDescription().setEnabled(false)
-        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+        pieChart.setExtraOffsets(5f, 5f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(1f)
+        pieChart.setDragDecelerationFrictionCoef(0.25f)
 
         // on below line we are setting hole
         // and hole color for pie chart
@@ -226,7 +259,7 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(80f)
+        pieChart.setHoleRadius(75f)
         pieChart.setTransparentCircleRadius(33f)
 
         // on below line we are setting center text
@@ -238,10 +271,10 @@ class TasksFragment : Fragment() {
 
         // enable rotation of the pieChart by touch
         pieChart.setRotationEnabled(true)
-        pieChart.setHighlightPerTapEnabled(true)
+        pieChart.setHighlightPerTapEnabled(false)
 
         // on below line we are setting animation for our pie chart
-        pieChart.animateY(1400, Easing.EaseInOutQuad)
+        pieChart.animateY(800, Easing.EaseInOutQuad)
 
         // on below line we are disabling our legend for pie chart
         pieChart.legend.isEnabled = false
@@ -267,14 +300,14 @@ class TasksFragment : Fragment() {
         dataSet.setDrawIcons(false)
 
         // on below line we are setting slice for pie
-        dataSet.sliceSpace = 3f
+        dataSet.sliceSpace = 1f
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
 
         // add a lot of colors to listwwssw
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.red))
-        colors.add(resources.getColor(R.color.yellow))
+        colors.add(Color.parseColor("#A6FD565E"))
+        colors.add(Color.parseColor("#993DD497"))
 
         // on below line we are setting colors.
         dataSet.colors = colors

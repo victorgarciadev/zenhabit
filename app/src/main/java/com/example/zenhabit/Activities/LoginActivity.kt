@@ -34,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         // Inicialitzar View Binding (Activity)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -76,6 +75,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Intents d'iniciar sessió a l'usuari amb el correu electrònic i la contrasenya especificats.
+     * Si l'inici de sessió té èxit, l'usuari passa a la pantalla d'inici i es mostra un missatge de brindis.
+     * Si l'inici de sessió falla, es mostra un missatge de brindis i es mostra el botó de restabliment de la contrasenya si el nombre d'intents fallits és superior o igual a 3.
+     *
+     * @param email de l'usuari
+     * @param password de l'usuari
+     */
     private fun signIn(email: String, password: String) {
         //verificació d’errors de camps de text. Mostra errors en Toast
         if (!validateForm()) {
@@ -104,9 +111,15 @@ class LoginActivity : AppCompatActivity() {
                         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast(this).showCustomToast(getString(R.string.send_email), this)
+                                    Toast(this).showCustomToast(
+                                        getString(R.string.send_email),
+                                        this
+                                    )
                                 } else {
-                                    Toast(this).showCustomToast(getString(R.string.error_send_email), this)
+                                    Toast(this).showCustomToast(
+                                        getString(R.string.error_send_email),
+                                        this
+                                    )
                                 }
                             }
                     }
@@ -115,6 +128,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Valida el formulari comprovant que els camps de correu electrònic i contrasenya no estiguin buits.
+     * Si algun dels camps està buit, es mostra un missatge d'error.
+     *
+     * @return true si el formulari és vàlid, false en cas contrari
+     */
     private fun validateForm(): Boolean {
         var valid = true
 
@@ -136,9 +155,14 @@ class LoginActivity : AppCompatActivity() {
         return valid
     }
 
-    private fun Toast.showCustomToast(message: String, activity: LoginActivity)
-    {
-        val layout = activity.layoutInflater.inflate (
+    /**
+     * Mostra un toast (missatge) personalitzat amb el text especificat.
+     *
+     * @param missatge que es mostrarà al toast
+     * @param activity des de la qual es mostra el toast
+     */
+    private fun Toast.showCustomToast(message: String, activity: LoginActivity) {
+        val layout = activity.layoutInflater.inflate(
             R.layout.toast_layout,
             activity.findViewById(R.id.toast_container)
         )
@@ -154,6 +178,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Comprova si el dispositiu té una connexió a Internet activa.
+     *
+     * @param context des del qual es crida la funció
+     * @return true si el dispositiu té una connexió a Internet activa, false en cas contrari
+     */
     @RequiresApi(Build.VERSION_CODES.M)
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =

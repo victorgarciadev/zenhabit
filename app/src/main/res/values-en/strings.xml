@@ -18,7 +18,7 @@
     <string name="label_home_complerts">Completed habits</string>
     <string name="label_home_tasques_complertes">Completed tasks</string>
     <string name="label_jardi_descripcio_item">Description</string>
-    <string name="label_jardi_items_obtinguts">Quantity: x</string>
+    <string name="label_jardi_items_obtinguts">Quantity:</string>
     <string name="nom_canal">ZenHabit notifications</string>
     <string name="descripcio_canal">ZenHabit App notifications</string>
     <string name="avet">Fir tree</string>
@@ -59,7 +59,7 @@
     <string name="descobdiari">DailyDescObj</string>
     <string name="aconseguides">Achieved</string>
     <string name="reptes_diaris">Daily challenges</string>
-    <string name="tasques">Tasks</string>
+    <string name="tasques">Goals</string>
     <string name="nom_tasca">Task name</string>
     <string name="nom_habit">Habit name</string>
     <string name="settings_title">Settings</string>
@@ -145,4 +145,8 @@
     <string name="descripcio_lavanda">Its fragrance will help you clear your mind to make better decisions.</string>
     <string name="descripcio_cactus">Its spines will help you keep bad habits away!</string>
     <string name="descripcio_bambu">Your flexibility will help you find new approaches to your problems.</string>
+    <string name="toast_tasca_update">Task updated succesfully!</string>
+    <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
+    <string name="toast_habit_update">Habit updated succesfully!</string>
+    <string name="no_data_available">You have no pending goals.</string>
 </resources>
