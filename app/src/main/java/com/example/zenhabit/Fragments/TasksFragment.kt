@@ -244,10 +244,10 @@ class TasksFragment : Fragment() {
         // setting description as enabled and offset for pie chart
         pieChart.setUsePercentValues(true)
         pieChart.getDescription().setEnabled(false)
-        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+        pieChart.setExtraOffsets(5f, 5f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(1f)
+        pieChart.setDragDecelerationFrictionCoef(0.25f)
 
         // on below line we are setting hole
         // and hole color for pie chart
@@ -259,7 +259,7 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(80f)
+        pieChart.setHoleRadius(75f)
         pieChart.setTransparentCircleRadius(33f)
 
         // on below line we are setting center text
@@ -271,10 +271,10 @@ class TasksFragment : Fragment() {
 
         // enable rotation of the pieChart by touch
         pieChart.setRotationEnabled(true)
-        pieChart.setHighlightPerTapEnabled(true)
+        pieChart.setHighlightPerTapEnabled(false)
 
         // on below line we are setting animation for our pie chart
-        pieChart.animateY(1400, Easing.EaseInOutQuad)
+        pieChart.animateY(800, Easing.EaseInOutQuad)
 
         // on below line we are disabling our legend for pie chart
         pieChart.legend.isEnabled = false
@@ -300,14 +300,14 @@ class TasksFragment : Fragment() {
         dataSet.setDrawIcons(false)
 
         // on below line we are setting slice for pie
-        dataSet.sliceSpace = 3f
+        dataSet.sliceSpace = 1f
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
 
         // add a lot of colors to listwwssw
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.red))
-        colors.add(resources.getColor(R.color.yellow))
+        colors.add(Color.parseColor("#A6FD565E"))
+        colors.add(Color.parseColor("#993DD497"))
 
         // on below line we are setting colors.
         dataSet.colors = colors
