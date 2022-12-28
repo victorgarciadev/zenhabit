@@ -59,7 +59,7 @@
     <string name="descobdiari">DailyDescObj</string>
     <string name="aconseguides">Achieved</string>
     <string name="reptes_diaris">Daily challenges</string>
-    <string name="tasques">Tasks</string>
+    <string name="tasques">Goals</string>
     <string name="nom_tasca">Task name</string>
     <string name="nom_habit">Habit name</string>
     <string name="settings_title">Settings</string>
@@ -148,4 +148,5 @@
     <string name="toast_tasca_update">Task updated succesfully!</string>
     <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
     <string name="toast_habit_update">Habit updated succesfully!</string>
+    <string name="no_data_available">You have no pending goals.</string>
 </resources>

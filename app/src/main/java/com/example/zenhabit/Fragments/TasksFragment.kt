@@ -131,9 +131,26 @@ class TasksFragment : Fragment() {
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
             if (document != null) {
-
                 ret = Objectius.dataFirebaseToObjectius(document)
+                if (ret.isEmpty()) {
+                    mRecyclerView.visibility = View.GONE
+                    binding.emptyView.visibility = View.VISIBLE
+                }
+                else {
+                    mRecyclerView.visibility = View.VISIBLE
+                    binding.emptyView.visibility = View.GONE
+                }
+
                 val filteredList = ret.filter { !it.complert }
+
+                if (filteredList.isEmpty()) {
+                    mRecyclerView.visibility = View.GONE
+                    binding.emptyView.visibility = View.VISIBLE
+                }
+                else {
+                    mRecyclerView.visibility = View.VISIBLE
+                    binding.emptyView.visibility = View.GONE
+                }
 
                 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
