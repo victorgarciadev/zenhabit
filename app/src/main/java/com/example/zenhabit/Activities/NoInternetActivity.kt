@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.databinding.ActivityNoInternetBinding
 
+/**
+ * @author Pablo Morante
+ */
 class NoInternetActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNoInternetBinding
 

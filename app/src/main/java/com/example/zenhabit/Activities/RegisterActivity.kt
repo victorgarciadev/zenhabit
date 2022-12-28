@@ -22,6 +22,9 @@ import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var bin: ActivityRegisterBinding
