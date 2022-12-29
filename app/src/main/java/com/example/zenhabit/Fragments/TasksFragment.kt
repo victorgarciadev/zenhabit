@@ -73,7 +73,7 @@ class TasksFragment : Fragment() {
 
         //obtenir els reptes diaris
         for (i in 1..3) {
-            val document = FirebaseFirestore.getInstance().collection("Reptes")
+            db.collection("Reptes")
                 .document(i.toString()).get()
                 .addOnSuccessListener { result ->
                     val titol = result.get("titol")
@@ -93,7 +93,7 @@ class TasksFragment : Fragment() {
                 }
         }
 
-        //Mostrar
+        //Mostrar reptes
         Handler(Looper.getMainLooper()).postDelayed({
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
@@ -278,12 +278,9 @@ class TasksFragment : Fragment() {
             }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     /**
+     * Prepara les dades del gràfic i les configura.
+     *
      * @author Pablo Morante
      */
     private fun preparePieData() {
@@ -375,7 +372,9 @@ class TasksFragment : Fragment() {
     }
 
     /**
-     * @author Pablo Morante
+     * Recupera dades de Firestore i calcula el percentatge d'objectius completats.
+     *
+     * @return el percentatge d'objectius completats com a float
      */
     suspend fun getDataFromFirestore(): Float {
         var perT = 0f
@@ -383,7 +382,7 @@ class TasksFragment : Fragment() {
         var oComplets = 0f
         var objectius: ArrayList<Objectius> = ArrayList()
 
-        val result = FirebaseFirestore.getInstance().collection("Usuaris")
+        val result = db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get().await()
 
         if (result != null) {

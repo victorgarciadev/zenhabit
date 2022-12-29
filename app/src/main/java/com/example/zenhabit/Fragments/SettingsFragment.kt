@@ -1,8 +1,6 @@
 package com.example.zenhabit.Fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,19 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.zenhabit.MainActivity
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentSettingsBinding
-import com.example.zenhabit.models.Habit
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import java.util.ArrayList
 
 /**
  * @author Victor García, Txell Llanas, Pablo Morante
@@ -31,6 +23,7 @@ class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +62,7 @@ class SettingsFragment : Fragment() {
                     actualUser.updateEmail(binding.inputChangeEmail.text.toString())
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                FirebaseFirestore.getInstance().collection("Usuaris")
+                                db.collection("Usuaris")
                                     .document(actualUser.uid)
                                     .update("email", binding.inputChangeEmail.text.toString())
                                 Toast(activity).showCustomToast(getString(R.string.toast_change_email))
@@ -89,7 +82,7 @@ class SettingsFragment : Fragment() {
                     displayName = binding.inputChangeUserName.text.toString()
                 }
                 actualUser!!.updateProfile(profileUpdates)
-                FirebaseFirestore.getInstance().collection("Usuaris")
+                db.collection("Usuaris")
                     .document(actualUser.uid)
                     .update("nom", binding.inputChangeUserName.text.toString())
             } else {
