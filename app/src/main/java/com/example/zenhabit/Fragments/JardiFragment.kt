@@ -1,6 +1,5 @@
 package com.example.zenhabit.Fragments
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
