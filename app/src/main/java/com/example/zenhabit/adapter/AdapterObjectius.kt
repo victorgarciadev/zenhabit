@@ -61,7 +61,7 @@ class AdapterObjectius(
     // Returns a new ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.task_class, parent, false)
+            .inflate(R.layout.task_list_item, parent, false)
 
         return ViewHolder(view)
     }

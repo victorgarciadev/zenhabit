@@ -35,7 +35,8 @@
                     android:layout_marginStart="8dp"
                     android:text="@string/reptes_diaris"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
+                    android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextContrastCheck" />
@@ -115,7 +116,8 @@
                     android:layout_marginBottom="16dp"
                     android:text="@string/tasques"
                     android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
@@ -192,7 +194,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            tools:listitem="@layout/task_class" />
+                            tools:listitem="@layout/task_list_item" />
                         <TextView
                             android:id="@+id/empty_view"
                             android:layout_width="match_parent"
@@ -216,94 +218,101 @@
                     android:layout_marginBottom="16dp"
                     android:text="@string/seguiment"
                     android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:textSize="34sp"
+                    app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toTopOf="@+id/container_seguiment"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/container_tasques" />-
+                    app:layout_constraintTop_toBottomOf="@+id/container_tasques" />
 
                 <FrameLayout
                     android:id="@+id/container_seguiment"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
+                    android:padding="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textViewSeguiment">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <com.github.mikephil.charting.charts.PieChart
                             android:id="@+id/pieChart"
-                            android:layout_width="190dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.055"
+                            app:layout_constraintEnd_toStartOf="@+id/frameLayout2"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <View
-                            android:id="@+id/view2"
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_marginStart="10dp"
-                            android:background="#A6FD565E"
-                            app:circularflow_defaultRadius="20dp"
-                            app:circularflow_radiusInDP="20dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintCircleRadius="20dp"
-                            app:layout_constraintEnd_toStartOf="@+id/textView13"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toEndOf="@+id/pieChart"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.39" />
-
-                        <View
-                            android:id="@+id/view3"
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="24dp"
-                            android:background="#993DD497"
-                            app:circularflow_defaultRadius="20dp"
-                            app:circularflow_radiusInDP="20dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintCircleRadius="20dp"
-                            app:layout_constraintEnd_toStartOf="@+id/textView14"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toEndOf="@+id/pieChart"
-                            app:layout_constraintTop_toBottomOf="@+id/view2"
-                            app:layout_constraintVertical_bias="0.0" />
-
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="wrap_content"
-                            android:layout_height="16dp"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/pendents"
-                            android:textColor="#E8E8E8"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/view2"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.39" />
-
-                        <TextView
-                            android:id="@+id/textView13"
+                        <FrameLayout
+                            android:id="@+id/frameLayout2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="24dp"
-                            android:text="@string/complerts"
-                            android:textColor="#E8E8E8"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/view3"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/pieChart"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:id="@+id/view2"
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginStart="16dp"
+                                    android:background="#A6FD565E"
+                                    app:circularflow_defaultRadius="20dp"
+                                    app:circularflow_radiusInDP="20dp"
+                                    app:layout_constraintCircleRadius="20dp" />
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="@string/complerts"
+                                    android:textColor="#E8E8E8" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="6dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="8dp">
+
+                                <View
+                                    android:id="@+id/view3"
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="#993DD497"
+                                    app:circularflow_defaultRadius="20dp"
+                                    app:circularflow_radiusInDP="20dp"
+                                    app:layout_constraintCircleRadius="20dp" />
+
+                                <TextView
+                                    android:id="@+id/textView14"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="16dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/pendents"
+                                    android:textColor="#E8E8E8" />
+                            </LinearLayout>
+                        </FrameLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
