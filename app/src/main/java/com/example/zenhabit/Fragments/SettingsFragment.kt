@@ -23,6 +23,7 @@ class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +62,7 @@ class SettingsFragment : Fragment() {
                     actualUser.updateEmail(binding.inputChangeEmail.text.toString())
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                FirebaseFirestore.getInstance().collection("Usuaris")
+                                db.collection("Usuaris")
                                     .document(actualUser.uid)
                                     .update("email", binding.inputChangeEmail.text.toString())
                                 Toast(activity).showCustomToast(getString(R.string.toast_change_email))
@@ -81,7 +82,7 @@ class SettingsFragment : Fragment() {
                     displayName = binding.inputChangeUserName.text.toString()
                 }
                 actualUser!!.updateProfile(profileUpdates)
-                FirebaseFirestore.getInstance().collection("Usuaris")
+                db.collection("Usuaris")
                     .document(actualUser.uid)
                     .update("nom", binding.inputChangeUserName.text.toString())
             } else {

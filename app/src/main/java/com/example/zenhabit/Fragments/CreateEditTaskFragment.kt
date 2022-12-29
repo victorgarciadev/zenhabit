@@ -35,6 +35,7 @@ class CreateEditTaskFragment : Fragment() {
     private var _binding: FragmentCreateEditTaskBinding? = null
     private val binding get() = _binding!!
     private var editantTasca: Boolean = false
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +78,7 @@ class CreateEditTaskFragment : Fragment() {
             val tasca =
                 Objectius(nom, descripcio, categoria, dataLimit, null, null, false, null, tipus)
 
-            FirebaseFirestore.getInstance().collection("Usuaris")
+            db.collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
                     val valors = Objectius.dataFirebaseToObjectius(result)
@@ -95,7 +96,7 @@ class CreateEditTaskFragment : Fragment() {
                             index++
                         }
                     }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
+                    db.collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
                         .addOnSuccessListener {
                             if (!editantTasca) {

@@ -29,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var bin: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
                             plantes,
                             ArrayList<Objectius>()
                         )
-                        FirebaseFirestore.getInstance().collection("Usuaris")
+                        db.collection("Usuaris")
                             .document(auth.currentUser!!.uid).set(usuari)
                             .addOnSuccessListener {
                                 Log.d(
@@ -109,7 +110,7 @@ class RegisterActivity : AppCompatActivity() {
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
                         val actualDay = Calendar.getInstance().getTime()
                         val temporal = VerificacioNotificacio(actualDay, false)
-                        FirebaseFirestore.getInstance().collection("Verificacions")
+                        db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)

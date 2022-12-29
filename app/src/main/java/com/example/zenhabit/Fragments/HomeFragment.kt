@@ -23,6 +23,7 @@ class home : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var shake: Animation
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +36,7 @@ class home : Fragment() {
         binding.btnVeureJardi.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_jardiFragment)
         }
-        FirebaseFirestore.getInstance().collection("Usuaris")
+        db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 shake = AnimationUtils.loadAnimation(activity, R.anim.bell_animation)

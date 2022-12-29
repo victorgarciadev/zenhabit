@@ -35,6 +35,7 @@ class CreateEditHabitFragment : Fragment() {
     private var _binding: FragmentCreateEditHabitBinding? = null
     private val binding get() = _binding!!
     private var editantHabit: Boolean = false
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,7 +102,7 @@ class CreateEditHabitFragment : Fragment() {
             val habit =
                 Objectius(nom, descripcio, categoria, dataLimit, dies, horari, false, null, tipus)
 
-            FirebaseFirestore.getInstance().collection("Usuaris")
+            db.collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
                     val valors = Objectius.dataFirebaseToObjectius(result)
@@ -119,7 +120,7 @@ class CreateEditHabitFragment : Fragment() {
                             index++
                         }
                     }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
+                    db.collection("Usuaris")
                         .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
                         .addOnCompleteListener {
                             if (!editantHabit) {

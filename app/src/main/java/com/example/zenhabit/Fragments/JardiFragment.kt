@@ -26,6 +26,7 @@ import java.util.*
 class JardiFragment : Fragment() {
     private var _binding: FragmentJardiBinding? = null
     private val binding get() = _binding!!
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -160,7 +161,7 @@ class JardiFragment : Fragment() {
      * @author Víctor García
      */
     private fun getPlantesfromFirebase() {
-        FirebaseFirestore.getInstance().collection("Usuaris")
+        db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
