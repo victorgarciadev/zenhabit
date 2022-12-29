@@ -149,4 +149,5 @@
     <string name="toast_objectiu_completat">¡Felicidades! Has conseguido 1</string>
     <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
     <string name="no_data_available">No tienes objetivos pendientes.</string>
+    <string name="toast_change_name">Nombre de usuario cambiado correctamente.</string>
 </resources>
