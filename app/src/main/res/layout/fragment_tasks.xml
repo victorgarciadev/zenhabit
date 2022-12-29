@@ -193,19 +193,44 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:listitem="@layout/task_class" />
+                        <TextView
+                            android:id="@+id/empty_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="@string/no_data_available" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/textViewSeguiment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/seguiment"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toTopOf="@+id/container_seguiment"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/container_tasques" />-
+
                 <FrameLayout
+                    android:id="@+id/container_seguiment"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/container_tasques">
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSeguiment">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -222,66 +247,63 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/seguiment"
-                            android:textColor="#FFFFFF"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.923"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.265" />
-
                         <View
-                            android:layout_width="11dp"
-                            android:layout_height="6dp"
-                            android:background="#E91E63"
+                            android:id="@+id/view2"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="10dp"
+                            android:background="#A6FD565E"
                             app:circularflow_defaultRadius="20dp"
                             app:circularflow_radiusInDP="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintCircleRadius="20dp"
                             app:layout_constraintEnd_toStartOf="@+id/textView13"
-                            app:layout_constraintHorizontal_bias="0.946"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/pieChart"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.453" />
+                            app:layout_constraintVertical_bias="0.39" />
 
                         <View
-                            android:layout_width="11dp"
-                            android:layout_height="6dp"
-                            android:layout_marginBottom="72dp"
-                            android:background="#FFEB3B"
+                            android:id="@+id/view3"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="24dp"
+                            android:background="#993DD497"
                             app:circularflow_defaultRadius="20dp"
                             app:circularflow_radiusInDP="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintCircleRadius="20dp"
                             app:layout_constraintEnd_toStartOf="@+id/textView14"
-                            app:layout_constraintHorizontal_bias="0.915"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@+id/pieChart"
+                            app:layout_constraintTop_toBottomOf="@+id/view2"
+                            app:layout_constraintVertical_bias="0.0" />
 
                         <TextView
                             android:id="@+id/textView14"
-                            android:layout_width="60dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="16dp"
-                            android:layout_marginStart="248dp"
-                            android:layout_marginTop="120dp"
+                            android:layout_marginStart="8dp"
                             android:text="@string/pendents"
                             android:textColor="#E8E8E8"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/view2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.39" />
 
                         <TextView
                             android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="240dp"
-                            android:layout_marginTop="88dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="24dp"
                             android:text="@string/complerts"
                             android:textColor="#E8E8E8"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/view3"
+                            app:layout_constraintTop_toBottomOf="@+id/textView14"
+                            app:layout_constraintVertical_bias="0.0" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

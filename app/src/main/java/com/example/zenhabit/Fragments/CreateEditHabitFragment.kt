@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -31,6 +32,7 @@ class CreateEditHabitFragment : Fragment() {
     // View Binding (Fragment)
     private var _binding: FragmentCreateEditHabitBinding? = null
     private val binding get() = _binding!!
+    private var editantHabit: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,38 @@ class CreateEditHabitFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_habit))
         val view = binding.root
 
+        // editar habit
+        val name = arguments?.get("Name").toString()
+        if (name != "null") {
+            editantHabit = true
+            binding.nomHabitEdit.setText(name)
+            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.edit_habit))
+            binding.btnCrearEditarTasca.isVisible = false
+        }
+        val categoria = arguments?.get("Categoria").toString()
+        if (categoria != "null") {
+            binding.dropDwnMenuCategoriesHabit.editText?.setText(categoria)
+        }
+        val descripcio = arguments?.get("Descripcion").toString()
+        if (descripcio != "null") {
+            binding.txtInputDescripcioHabit.editText?.setText(descripcio)
+        } else {
+            binding.txtInputDescripcioHabit.editText?.setText("")
+        }
+        val arrayDies = arguments?.get("Repeticion") as BooleanArray?
+        if (arrayDies != null) {
+            val llistaDies: List<Dies> = Dies.fromBooleanArray(arrayDies)
+            for (dia in llistaDies) {
+                if (dia.dilluns) binding.checkboxDilluns.isChecked = true
+                if (dia.dimarts) binding.checkboxDimarts.isChecked = true
+                if (dia.dimecres) binding.checkboxDimecres.isChecked = true
+                if (dia.dijous) binding.checkboxDijous.isChecked = true
+                if (dia.divendres) binding.checkboxDivendres.isChecked = true
+                if (dia.dissabte) binding.checkboxDissabte.isChecked = true
+                if (dia.diumenge) binding.checkboxDiumenge.isChecked = true
+            }
+        }
+
         // binding pels botons 'btn_crearEditarTasca' i 'btn_guardarCrearEditarHabit'
         binding.btnCrearEditarTasca.setOnClickListener {
             findNavController().navigate(R.id.action_createEditHabitFragment_to_createEditTaskFragment)
@@ -53,32 +87,48 @@ class CreateEditHabitFragment : Fragment() {
             val nom = binding.nomHabitEdit.editableText.toString()
             val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
-            val dataLimit = binding.etPlannedHour.hint.toString()
-            val dies: Dies = Dies(binding.checkboxDilluns.isChecked,
-                                  binding.checkboxDimarts.isChecked,
-                                  binding.checkboxDimecres.isChecked,
-                                  binding.checkboxDijous.isChecked,
-                                  binding.checkboxDivendres.isChecked,
-                                  binding.checkboxDissabte.isChecked,
-                                  binding.checkboxDiumenge.isChecked,)
+            val dataLimit = binding.etPlannedDate.hint.toString()
+            val dies: Dies = Dies(
+                binding.checkboxDilluns.isChecked,
+                binding.checkboxDimarts.isChecked,
+                binding.checkboxDimecres.isChecked,
+                binding.checkboxDijous.isChecked,
+                binding.checkboxDivendres.isChecked,
+                binding.checkboxDissabte.isChecked,
+                binding.checkboxDiumenge.isChecked,
+            )
             val horari = binding.etPlannedHour.hint.toString()
-            val complert = false
             val tipus = true
 
-            val habit = Objectius(nom,descripcio,categoria,dataLimit,dies,horari,false,null,tipus)
+            val habit =
+                Objectius(nom, descripcio, categoria, dataLimit, dies, horari, false, null, tipus)
 
             FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                        val valors: ArrayList<Objectius> = result.get("llistaObjectius") as ArrayList<Objectius>
+                    val valors = Objectius.dataFirebaseToObjectius(result)
+                    if (!editantHabit) {
                         valors.add(habit)
-                        FirebaseFirestore.getInstance().collection("Usuaris")
-                            .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",valors)
-                            .addOnCompleteListener {
-                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                    } else {
+                        var index = 0
+                        for (valor in valors) {
+                            if (valor.tipus && valor.nom == arguments?.get("Name").toString() && valor.dataLimit == arguments?.get("Fecha").toString() && valor.horari == arguments?.get("Hora").toString() ) {
+                                valors.set(index, habit)
                             }
+                            index++
+                        }
+                    }
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
+                        .addOnCompleteListener {
+                            if (!editantHabit) {
+                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                            } else {
+                                Toast(activity).showCustomToast(getString(R.string.toast_habit_update))
+                            }
+                            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
+                        }
                 }
-            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
         }
 
         return view
@@ -113,7 +163,16 @@ class CreateEditHabitFragment : Fragment() {
         var initialDay = -1
         if (initialDay == -1)
             initialDay = c.get(Calendar.DAY_OF_MONTH)
-        binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
+        val fecha = arguments?.get("Fecha").toString()
+        if (fecha != "null") {
+            binding.etPlannedDate.hint = "$fecha"
+        } else {
+            binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
+        }
+        val hora = arguments?.get("Hora").toString()
+        if (hora != "null") {
+            binding.etPlannedHour.hint = "$hora"
+        }
         binding.apply {
             etPlannedDate.hint
             etPlannedDate.setOnClickListener {
@@ -214,9 +273,8 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
-    private fun Toast.showCustomToast(message: String)
-    {
-        val layout = requireActivity().layoutInflater.inflate (
+    private fun Toast.showCustomToast(message: String) {
+        val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,
             requireActivity().findViewById(R.id.toast_container)
         )

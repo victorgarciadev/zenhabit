@@ -31,7 +31,7 @@
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
     <string name="label_jardi_descripcio_item" tools:ignore="Typos">Més informació</string>
-    <string name="label_jardi_items_obtinguts">Quantitat: x</string>
+    <string name="label_jardi_items_obtinguts">Quantitat:</string>
     <string name="nom_canal">Notificacions ZenHabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
@@ -87,10 +87,11 @@
     <string name="descobdiari">DescObDiari</string>
     <string name="aconseguides">Aconseguides</string>
     <string name="reptes_diaris">Reptes diaris</string>
-    <string name="tasques">Tasques</string>
+    <string name="tasques">Objectius</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
     <string name="data_limit_hint">00/00/00</string>
+    <string name="no_data_available">No tens objectius pendents.</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -144,7 +145,7 @@
     <string name="pendents_segona_plural">objectius pendents.</string>
     <string name="icona_campana">icona campana</string>
     <string name="pendents">Pendents</string>
-    <string name="seguiment">SEGUIMENT</string>
+    <string name="seguiment">Seguiment</string>
     <string name="complerts">Complerts</string>
 
     <!-- TITOLS ACTIONBAR -->
@@ -169,7 +170,10 @@
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
     <string name="toast_habit_creat">Hàbit creat correctament!</string>
+    <string name="toast_habit_update">Hàbit actualitzat correctament!</string>
     <string name="toast_tasca_creada">Tasca creada correctament!</string>
+    <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
+    <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>

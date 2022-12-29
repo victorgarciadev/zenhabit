@@ -73,10 +73,10 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="10dp"
-            android:layout_height="9dp"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
             android:background="@drawable/rounded_corner"
-            android:backgroundTint="#0DFF03"
+            android:backgroundTint="#3dd598"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.533"
