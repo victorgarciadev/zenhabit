@@ -6,69 +6,93 @@
     android:layout_height="match_parent"
     android:background="#22343C"
     tools:context=".Activities.LoginActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/frameLayout2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#1D2C32"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayout_heading"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageViewNoInternet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/logotip_zenhabit"
-                    android:scaleType="center"
-                    android:scaleX=".8"
-                    android:scaleY=".8"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <FrameLayout
+                    android:id="@+id/frameLayout_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="#1D2C32"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logo_light" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageViewNoInternet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/logotip_zenhabit"
+                            android:scaleType="center"
+                            android:scaleX=".8"
+                            android:scaleY=".8"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/logo_light" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </FrameLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayout_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="32dp">
 
-        <TextView
-            android:id="@+id/noInternetText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="460dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/noInternet"
-            android:gravity="center"
-            android:textColor="#ddd"
-            android:textSize="26sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/noInternetText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="@string/noInternet"
+                    android:textColor="#ddd"
+                    android:textSize="26sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="250dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#FF565E"
-            android:fontFamily="@font/open_sans_bold"
-            android:text="@string/sortir"
-            android:textSize="16sp"
-            app:cornerRadius="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noInternetText" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginBottom="64dp"
+                    android:backgroundTint="#FF565E"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/sortir"
+                    android:textSize="20sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/noInternetText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -154,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
      * @return true si el formulari és vàlid, false en cas contrari
      *
      * @throws IllegalStateException si l'activitat s'està destruint.
-     * @author Pablo Morante
+     * @author Pablo Morante, Txell Llanas
      */
     private fun validateForm(): Boolean {
         var valid = true
