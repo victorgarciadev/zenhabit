@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZenHabit</string>
     <string name="entrar">ENTER</string>
-    <string name="cancel_lar">CANCEL</string>
+    <string name="cancel_lar" tools:ignore="ButtonCase">CANCEL</string>
     <string name="sortir">EXIT</string>
     <string name="registrar_se">REGISTER</string>
     <string name="desar">SAVE</string>
@@ -17,7 +17,7 @@
     <string name="label_home_pendents">To do</string>
     <string name="label_home_complerts">Completed habits</string>
     <string name="label_home_tasques_complertes">Completed tasks</string>
-    <string name="label_jardi_descripcio_item">Description</string>
+    <string name="label_jardi_descripcio_item">More info</string>
     <string name="label_jardi_items_obtinguts">Quantity:</string>
     <string name="nom_canal">ZenHabit notifications</string>
     <string name="descripcio_canal">ZenHabit App notifications</string>
@@ -145,9 +145,9 @@
     <string name="descripcio_lavanda">Its fragrance will help you clear your mind to make better decisions.</string>
     <string name="descripcio_cactus">Its spines will help you keep bad habits away!</string>
     <string name="descripcio_bambu">Your flexibility will help you find new approaches to your problems.</string>
-    <string name="toast_tasca_update">Task updated succesfully!</string>
+    <string name="toast_tasca_update">Task updated successfully!</string>
     <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
-    <string name="toast_habit_update">Habit updated succesfully!</string>
+    <string name="toast_habit_update">Habit updated successfully!</string>
     <string name="no_data_available">You have no pending goals.</string>
     <string name="toast_accept_terms">You must accept the Terms and Conditions.</string>
 </resources>
