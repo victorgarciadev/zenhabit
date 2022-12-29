@@ -48,6 +48,8 @@ class JardiFragment : Fragment() {
     }
 
     /**
+     * Habilita una visualització especial de Nadal si la data actual és entre el 15 de desembre i el 6 de gener.
+     *
      * @author Pablo Morante
      */
     private fun christmasSpecial() {
@@ -69,6 +71,7 @@ class JardiFragment : Fragment() {
     /**
      * Mètode per mostrar en un 'Dialog' les decripcions de cada ítem del Jardí quan es clica
      * el cardView corresponent.
+     *
      * @author Txell Llanas
      */
     private fun openItemDescription() {
@@ -154,6 +157,7 @@ class JardiFragment : Fragment() {
 
     /**
      * Mètode per mostrar la quantitat de plantes aconseguides dintre del fragment Jardí.
+     *
      * @author Víctor García
      */
     private fun getPlantesfromFirebase() {
