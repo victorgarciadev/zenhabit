@@ -14,16 +14,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
-import com.example.zenhabit.models.Objectius
-import com.example.zenhabit.models.Planta
-import com.example.zenhabit.models.PlantaUsuari
+import com.example.zenhabit.databinding.ObjDiariAyoutBinding
+import com.example.zenhabit.models.*
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -32,13 +30,17 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.android.awaitFrame
 import kotlinx.coroutines.tasks.await
 import org.w3c.dom.Document
-import java.util.Objects
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -48,7 +50,7 @@ class TasksFragment : Fragment() {
     private val binding get() = _binding
 
     private val db = FirebaseFirestore.getInstance()
-    private  var auth: FirebaseAuth = Firebase.auth
+    private var auth: FirebaseAuth = Firebase.auth
     private lateinit var data: MutableList<Objectius>
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
@@ -73,36 +75,64 @@ class TasksFragment : Fragment() {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
 
-
         //ResptesDiaris shimmer
         shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
         shimmerFrameLayoutObjDiari.startShimmer()
 
         //obtenir els reptes diaris
-        for (i in 1..3) {
-            FirebaseFirestore.getInstance().collection("Reptes")
-                .document(i.toString()).get()
-                .addOnSuccessListener { result ->
-                    val titol = result.get("titol")
-                    val desc = result.get("descripcio")
-                    val done = result.get("vist") as Boolean
-                    if (i == 1) {
-                        binding.Obj1.textViewDesc.text = desc.toString()
-                        binding.Obj1.titolRepte.text = titol.toString()
-                        binding.Obj1.checkboxDone.isChecked = done
+
+
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(auth.currentUser!!.uid).get()
+            .addOnSuccessListener { resultUser ->
+
+
+
+                val llistaReptes = resultUser.get("llistaReptes") as ArrayList<RepteUsuari>
+                // resultUser.get("llistaReptes") as ArrayList<RepteUsuari>
+                Log.d("REPTESlength1", llistaReptes.size.toString())
+
+                if (llistaReptes != null) {
+                    if (llistaReptes.size <= 0) {
+
+                        omplirLlistReptes()
+
                     }
-                    if (i == 2) {
-                        binding.Obj2.textViewDesc.text = desc.toString()
-                        binding.Obj2.titolRepte.text = titol.toString()
-                        binding.Obj2.checkboxDone.isChecked = done
+                    Log.d("REPTESlength3", llistaReptes.size.toString())
+                    Log.d("REPTESlength3", llistaReptes.toString())
+
+
+
+                    for (i in 1..3) {
+                        Log.d("REPTES", "DENTRO")
+                        val a = llistaReptes[i] as RepteUsuari
+                        Log.d("REPTES", a.toString())
+
+
+                        if (i == 1) {
+                            binding.Obj1.textViewDesc.text = llistaReptes[i].repte.descripcio
+                            binding.Obj1.titolRepte.text = llistaReptes[i].repte.titol
+                            binding.Obj1.checkboxDone.isChecked = llistaReptes[i].acosneguit
+                        }
+                        if (i == 2) {
+                            binding.Obj2.textViewDesc.text = llistaReptes[i].repte.descripcio
+                            binding.Obj2.titolRepte.text = llistaReptes[i].repte.titol
+                            binding.Obj2.checkboxDone.isChecked = llistaReptes[i].acosneguit
+                        }
+                        if (i == 3) {
+                            binding.Obj3.textViewDesc.text = llistaReptes[i].repte.descripcio
+                            binding.Obj3.titolRepte.text = llistaReptes[i].repte.descripcio
+                            binding.Obj3.checkboxDone.isChecked = llistaReptes[i].acosneguit
+                        }
+
                     }
-                    if (i == 3) {
-                        binding.Obj3.textViewDesc.text = desc.toString()
-                        binding.Obj3.titolRepte.text = titol.toString()
-                        binding.Obj3.checkboxDone.isChecked = done
-                    }
+
+
                 }
-        }
+
+
+            }
+
 
         //Mostrar
         Handler(Looper.getMainLooper()).postDelayed({
@@ -125,7 +155,6 @@ class TasksFragment : Fragment() {
         }
 
 
-
         //----------------NEW RECYCLERVIEW-----------------
         //cargar shimmer
         mRecyclerView = binding.rvTasques
@@ -143,6 +172,53 @@ class TasksFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun omplirLlistReptes() {
+
+        val llistaReptes = ArrayList<RepteUsuari>()
+
+        for (i in 1..3) {
+            val docref = FirebaseFirestore.getInstance().collection("Reptes")
+                .document(i.toString()).get()
+                .addOnSuccessListener { result ->
+
+//                    val a = result.toObject<RepteUsuari>()
+//                    if (a != null) {
+//                        Log.d("REPTESObject", a.acosneguit.toString())
+//                    }
+
+
+                    if (result != null) {
+                        val r = Repte(
+                            i,
+                            result.get("descripcio").toString(),
+                            result.get("titol").toString()
+                        )
+
+                        val ru =
+                            RepteUsuari(r, result.get("vist") as Boolean)
+
+//                                    val titol = result.get("titol")
+//                                    val desc = result.get("descripcio")
+//                                    val done = result.get("vist") as Boolean
+                        Log.d("REPTES", ru.repte.titol)
+
+                        llistaReptes.add(ru)
+
+
+                    }
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(auth.currentUser!!.uid)
+                        .update("llistaReptes", llistaReptes)
+                    Log.d("REPTESlength2", llistaReptes.size.toString())
+
+                }.addOnFailureListener { exception ->
+                    Log.d("TAG", "ERROR: $exception")
+                }
+        }
+
+
     }
 
     /***
@@ -211,8 +287,7 @@ class TasksFragment : Fragment() {
                 if (ret.isEmpty()) {
                     mRecyclerView.visibility = View.GONE
                     binding.emptyView.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     mRecyclerView.visibility = View.VISIBLE
                     binding.emptyView.visibility = View.GONE
                 }
@@ -222,8 +297,7 @@ class TasksFragment : Fragment() {
                 if (filteredList.isEmpty()) {
                     mRecyclerView.visibility = View.GONE
                     binding.emptyView.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     mRecyclerView.visibility = View.VISIBLE
                     binding.emptyView.visibility = View.GONE
                 }
@@ -237,7 +311,17 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     filteredList,
                     { index -> deleteItem(index) },
-                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion -> sendItem(nom, fecha, descripcio, categoria, tipus, hora, repeticion) });
+                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
+                        sendItem(
+                            nom,
+                            fecha,
+                            descripcio,
+                            categoria,
+                            tipus,
+                            hora,
+                            repeticion
+                        )
+                    });
 
                 mRecyclerView.adapter = mAdapter
 
@@ -253,14 +337,34 @@ class TasksFragment : Fragment() {
         }
     }
 
-    private fun sendItem(nom: String, fecha: String, descripcio: String, categoria: String, tipus: Boolean, hora: String?, repeticion: Dies?) {
+    private fun sendItem(
+        nom: String,
+        fecha: String,
+        descripcio: String,
+        categoria: String,
+        tipus: Boolean,
+        hora: String?,
+        repeticion: Dies?
+    ) {
         if (tipus) {
             val action =
-                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(nom, hora, fecha, descripcio, categoria, repeticion?.toBooleanArray())
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(
+                    nom,
+                    hora,
+                    fecha,
+                    descripcio,
+                    categoria,
+                    repeticion?.toBooleanArray()
+                )
             findNavController().navigate(action)
         } else {
             val action =
-                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, fecha, descripcio, categoria)
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(
+                    nom,
+                    fecha,
+                    descripcio,
+                    categoria
+                )
             findNavController().navigate(action)
         }
     }
@@ -283,7 +387,7 @@ class TasksFragment : Fragment() {
                     index++
                 }
                 db.collection("Usuaris")
-                    .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
+                    .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", objectius)
 
                 val numRandom = (1..9).random()
 
@@ -295,15 +399,28 @@ class TasksFragment : Fragment() {
                         quantitat++
                         canvisPlanta.quantitat = quantitat
                         plantesUsuari.set(numRandom, canvisPlanta)
-                        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).update("llistaPlantes",plantesUsuari)
+                        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
+                            .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {
                                 val language = Locale.getDefault().getLanguage()
                                 if (language == "en") {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("name").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "name"
+                                        ).toString()
+                                    )
                                 } else if (language == "es") {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nombre").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "nombre"
+                                        ).toString()
+                                    )
                                 } else {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nom").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "nom"
+                                        ).toString()
+                                    )
                                 }
                             }
                     }
@@ -367,7 +484,7 @@ class TasksFragment : Fragment() {
         // adding data to it to display in pie chart
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(perNC))
-        entries.add(PieEntry(perCC*100))
+        entries.add(PieEntry(perCC * 100))
 
         // on below line we are setting pie data set
         val dataSet = PieDataSet(entries, "Mobile OS")
