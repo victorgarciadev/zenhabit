@@ -25,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
@@ -36,10 +35,6 @@ class CreateEditHabitFragment : Fragment() {
     private var _binding: FragmentCreateEditHabitBinding? = null
     private val binding get() = _binding!!
     private var editantHabit: Boolean = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -91,7 +86,7 @@ class CreateEditHabitFragment : Fragment() {
             val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
             val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
             val dataLimit = binding.etPlannedDate.hint.toString()
-            val dies: Dies = Dies(
+            val dies = Dies(
                 binding.checkboxDilluns.isChecked,
                 binding.checkboxDimarts.isChecked,
                 binding.checkboxDimecres.isChecked,
@@ -115,7 +110,10 @@ class CreateEditHabitFragment : Fragment() {
                     } else {
                         var index = 0
                         for (valor in valors) {
-                            if (valor.tipus && valor.nom == arguments?.get("Name").toString() && valor.dataLimit == arguments?.get("Fecha").toString() && valor.horari == arguments?.get("Hora").toString() ) {
+                            if (valor.tipus && valor.nom == arguments?.get("Name")
+                                    .toString() && valor.dataLimit == arguments?.get("Fecha")
+                                    .toString() && valor.horari == arguments?.get("Hora").toString()
+                            ) {
                                 valors.set(index, habit)
                             }
                             index++
@@ -231,7 +229,6 @@ class CreateEditHabitFragment : Fragment() {
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            // return new DatePickerDialog instance
             return DatePickerDialog(requireActivity(), this, year, month, day)
         }
 

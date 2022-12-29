@@ -3,8 +3,6 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +15,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.zenhabit.R
@@ -38,10 +35,6 @@ class CreateEditTaskFragment : Fragment() {
     private var _binding: FragmentCreateEditTaskBinding? = null
     private val binding get() = _binding!!
     private var editantTasca: Boolean = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,15 +80,16 @@ class CreateEditTaskFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("Usuaris")
                 .document(Firebase.auth.currentUser!!.uid).get()
                 .addOnSuccessListener { result ->
-                    //val valors: ArrayList<Objectius> =
-                     //   result.get("llistaObjectius") as ArrayList<Objectius>
                     val valors = Objectius.dataFirebaseToObjectius(result)
                     if (!editantTasca) {
                         valors.add(tasca)
                     } else {
                         var index = 0
                         for (valor in valors) {
-                            if (!valor.tipus && valor.nom == arguments?.get("Name").toString() && valor.dataLimit == arguments?.get("time").toString() ) {
+                            if (!valor.tipus && valor.nom == arguments?.get("Name")
+                                    .toString() && valor.dataLimit == arguments?.get("time")
+                                    .toString()
+                            ) {
                                 valors.set(index, tasca)
                             }
                             index++
@@ -178,9 +172,7 @@ class CreateEditTaskFragment : Fragment() {
             }
         }
 //--------------------------------------------CALENDARI--------------------------------------------
-
     }
-
 
     /**
      * @author Izan Jimenez
@@ -194,7 +186,6 @@ class CreateEditTaskFragment : Fragment() {
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            // return new DatePickerDialog instance
             return DatePickerDialog(requireActivity(), this, year, month, day)
         }
 
@@ -215,9 +206,8 @@ class CreateEditTaskFragment : Fragment() {
     /**
      * @author Pablo Morante
      */
-    private fun Toast.showCustomToast(message: String)
-    {
-        val layout = requireActivity().layoutInflater.inflate (
+    private fun Toast.showCustomToast(message: String) {
+        val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,
             requireActivity().findViewById(R.id.toast_container)
         )
