@@ -183,6 +183,12 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             bin.inputCreateUserName.error = null
         }
+
+        val checkBox = bin.checkBoxTermsAndConditions
+        if (!checkBox.isChecked) {
+            valid = false
+            Toast(this).showCustomToast(getString(R.string.toast_accept_terms), this)
+        }
         return valid
     }
 

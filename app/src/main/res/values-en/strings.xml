@@ -149,4 +149,5 @@
     <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
     <string name="toast_habit_update">Habit updated succesfully!</string>
     <string name="no_data_available">You have no pending goals.</string>
+    <string name="toast_accept_terms">You must accept the Terms and Conditions.</string>
 </resources>
