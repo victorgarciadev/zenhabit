@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat.setBackgroundTintList
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Dies
@@ -18,7 +17,11 @@ import com.example.zenhabit.models.Objectius
 /**
  * @author Izan Jimenez, Pablo Morante
  */
-class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit) :
+class AdapterObjectius(
+    val listaTasques: List<Objectius>,
+    val onClickDelete: (Int) -> Unit,
+    val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit
+) :
     RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
     var listData = listaTasques
@@ -41,7 +44,17 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
             tvHora.text = Objectius.dataLimit
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit, Objectius.descripcio, Objectius.categoria, Objectius.tipus, Objectius.horari, Objectius.repetible) }
+            bigItem.setOnClickListener {
+                clickListener(
+                    Objectius.nom,
+                    Objectius.dataLimit,
+                    Objectius.descripcio,
+                    Objectius.categoria,
+                    Objectius.tipus,
+                    Objectius.horari,
+                    Objectius.repetible
+                )
+            }
         }
     }
 
@@ -67,18 +80,22 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
     }
 
     /**
+     * Estableix els elements de la llista i actualitza la vista de la llista (recycler view).
      *
+     * @param items per a la llista
      */
-    fun setItems(items: List<Objectius>){
+    fun setItems(items: List<Objectius>) {
         listData = items
         notifyDataSetChanged()
     }
 
     /**
+     * Obté l'objecte a la posició especificada de la llista.
      *
+     * @param position de l'objecte a la llista
+     * @return l'objecte a la posició especificada
      */
     fun getItem(position: Int): Any {
         return listaTasques[position]
     }
 }
-

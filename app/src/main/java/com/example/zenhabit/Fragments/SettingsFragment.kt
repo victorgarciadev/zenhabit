@@ -2,13 +2,13 @@ package com.example.zenhabit.Fragments
 
 import android.os.Bundle
 import android.view.Gravity
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.zenhabit.R
 import com.example.zenhabit.databinding.FragmentSettingsBinding
 import com.google.firebase.auth.EmailAuthProvider
@@ -23,10 +23,7 @@ class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-    }
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,33 +40,36 @@ class SettingsFragment : Fragment() {
             if (!actualPsw.isEmpty()) {
                 val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
                 actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updatePassword(binding.inputChangePsw.text.toString()).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Toast(activity).showCustomToast(getString(R.string.toast_change_password))
-                        } else {
-                            Toast(activity).showCustomToast(getString(R.string.error_password_created))
+                    actualUser.updatePassword(binding.inputChangePsw.text.toString())
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast(activity).showCustomToast(getString(R.string.toast_change_password))
+                            } else {
+                                Toast(activity).showCustomToast(getString(R.string.error_password_created))
+                            }
                         }
-                    }
                 }
             }
         }
 
-        binding.btnSaveEmail.setOnClickListener{
+        binding.btnSaveEmail.setOnClickListener {
             val actualUser = FirebaseAuth.getInstance().currentUser
             val email = actualUser!!.email
             val actualPsw = binding.inputActualPswEmail.text
             if (!actualPsw.isEmpty()) {
                 val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
                 actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updateEmail(binding.inputChangeEmail.text.toString()).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            FirebaseFirestore.getInstance().collection("Usuaris")
-                                .document(actualUser.uid).update("email", binding.inputChangeEmail.text.toString())
-                            Toast(activity).showCustomToast(getString(R.string.toast_change_email))
-                        } else {
-                            Toast(activity).showCustomToast(getString(R.string.error_email_created))
+                    actualUser.updateEmail(binding.inputChangeEmail.text.toString())
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                db.collection("Usuaris")
+                                    .document(actualUser.uid)
+                                    .update("email", binding.inputChangeEmail.text.toString())
+                                Toast(activity).showCustomToast(getString(R.string.toast_change_email))
+                            } else {
+                                Toast(activity).showCustomToast(getString(R.string.error_email_created))
+                            }
                         }
-                    }
                 }
             }
         }
@@ -82,8 +82,9 @@ class SettingsFragment : Fragment() {
                     displayName = binding.inputChangeUserName.text.toString()
                 }
                 actualUser!!.updateProfile(profileUpdates)
-                FirebaseFirestore.getInstance().collection("Usuaris")
-                    .document(actualUser.uid).update("nom", binding.inputChangeUserName.text.toString())
+                db.collection("Usuaris")
+                    .document(actualUser.uid)
+                    .update("nom", binding.inputChangeUserName.text.toString())
             } else {
                 Toast(activity).showCustomToast(getString(R.string.error_username_created))
             }
@@ -96,11 +97,13 @@ class SettingsFragment : Fragment() {
     }
 
     /**
+     * Mostra un missatge de toast personalitzat amb el text donat.
+     *
+     * @param message el text per mostrar al toast
      * @author Pablo Morante
      */
-    private fun Toast.showCustomToast(message: String)
-    {
-        val layout = requireActivity().layoutInflater.inflate (
+    private fun Toast.showCustomToast(message: String) {
+        val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,
             requireActivity().findViewById(R.id.toast_container)
         )

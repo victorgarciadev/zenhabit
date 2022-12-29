@@ -47,16 +47,11 @@ class TasksFragment : Fragment() {
     private val binding get() = _binding
 
     val db = FirebaseFirestore.getInstance()
-    private lateinit var data: MutableList<Objectius>
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
     private lateinit var pieChart: PieChart
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +73,7 @@ class TasksFragment : Fragment() {
 
         //obtenir els reptes diaris
         for (i in 1..3) {
-            val document = FirebaseFirestore.getInstance().collection("Reptes")
+            db.collection("Reptes")
                 .document(i.toString()).get()
                 .addOnSuccessListener { result ->
                     val titol = result.get("titol")
@@ -98,7 +93,7 @@ class TasksFragment : Fragment() {
                 }
         }
 
-        //Mostrar
+        //Mostrar reptes
         Handler(Looper.getMainLooper()).postDelayed({
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
@@ -116,11 +111,9 @@ class TasksFragment : Fragment() {
         mRecyclerView.layoutManager = mLayoutManager
         loadData()
 
-
         // chart
         pieChart = binding.pieChart
         preparePieData()
-
 
         return view
     }
@@ -139,8 +132,7 @@ class TasksFragment : Fragment() {
                 if (ret.isEmpty()) {
                     mRecyclerView.visibility = View.GONE
                     binding.emptyView.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     mRecyclerView.visibility = View.VISIBLE
                     binding.emptyView.visibility = View.GONE
                 }
@@ -150,8 +142,7 @@ class TasksFragment : Fragment() {
                 if (filteredList.isEmpty()) {
                     mRecyclerView.visibility = View.GONE
                     binding.emptyView.visibility = View.VISIBLE
-                }
-                else {
+                } else {
                     mRecyclerView.visibility = View.VISIBLE
                     binding.emptyView.visibility = View.GONE
                 }
@@ -165,7 +156,17 @@ class TasksFragment : Fragment() {
                 mAdapter = AdapterObjectius(
                     filteredList,
                     { index -> deleteItem(index) },
-                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion -> sendItem(nom, fecha, descripcio, categoria, tipus, hora, repeticion) });
+                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
+                        sendItem(
+                            nom,
+                            fecha,
+                            descripcio,
+                            categoria,
+                            tipus,
+                            hora,
+                            repeticion
+                        )
+                    });
 
                 mRecyclerView.setAdapter(mAdapter)
 
@@ -184,14 +185,34 @@ class TasksFragment : Fragment() {
     /**
      * @author Pablo Morante
      */
-    private fun sendItem(nom: String, fecha: String, descripcio: String, categoria: String, tipus: Boolean, hora: String?, repeticion: Dies?) {
+    private fun sendItem(
+        nom: String,
+        fecha: String,
+        descripcio: String,
+        categoria: String,
+        tipus: Boolean,
+        hora: String?,
+        repeticion: Dies?
+    ) {
         if (tipus) {
             val action =
-                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(nom, hora, fecha, descripcio, categoria, repeticion?.toBooleanArray())
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditHabitFragment(
+                    nom,
+                    hora,
+                    fecha,
+                    descripcio,
+                    categoria,
+                    repeticion?.toBooleanArray()
+                )
             findNavController().navigate(action)
         } else {
             val action =
-                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(nom, fecha, descripcio, categoria)
+                TasksFragmentDirections.actionTasksFragment2ToCreateEditTaskFragment(
+                    nom,
+                    fecha,
+                    descripcio,
+                    categoria
+                )
             findNavController().navigate(action)
         }
     }
@@ -217,7 +238,7 @@ class TasksFragment : Fragment() {
                     index++
                 }
                 db.collection("Usuaris")
-                    .document(Firebase.auth.currentUser!!.uid).update( "llistaObjectius",objectius)
+                    .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", objectius)
 
                 val numRandom = (1..9).random()
 
@@ -229,27 +250,37 @@ class TasksFragment : Fragment() {
                         quantitat++
                         canvisPlanta.quantitat = quantitat
                         plantesUsuari.set(numRandom, canvisPlanta)
-                        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).update("llistaPlantes",plantesUsuari)
+                        db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
+                            .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {
                                 val language = Locale.getDefault().getLanguage()
                                 if (language == "en") {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("name").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "name"
+                                        ).toString()
+                                    )
                                 } else if (language == "es") {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nombre").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "nombre"
+                                        ).toString()
+                                    )
                                 } else {
-                                    Toast(activity).showCustomToast(getString(R.string.toast_objectiu_completat) + " " + secondResult.get("nom").toString())
+                                    Toast(activity).showCustomToast(
+                                        getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
+                                            "nom"
+                                        ).toString()
+                                    )
                                 }
                             }
                     }
             }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     /**
+     * Prepara les dades del gràfic i les configura.
+     *
      * @author Pablo Morante
      */
     private fun preparePieData() {
@@ -298,13 +329,13 @@ class TasksFragment : Fragment() {
         runBlocking {
             perCC = getDataFromFirestore()
         }
-        val perNC: Float = 100 - (perCC*100)
+        val perNC: Float = 100 - (perCC * 100)
 
         // on below line we are creating array list and
         // adding data to it to display in pie chart
         val entries: ArrayList<PieEntry> = ArrayList()
         entries.add(PieEntry(perNC))
-        entries.add(PieEntry(perCC*100))
+        entries.add(PieEntry(perCC * 100))
 
         // on below line we are setting pie data set
         val dataSet = PieDataSet(entries, "Mobile OS")
@@ -340,16 +371,18 @@ class TasksFragment : Fragment() {
         pieChart.invalidate()
     }
 
-/**
- * @author Pablo Morante
- */
+    /**
+     * Recupera dades de Firestore i calcula el percentatge d'objectius completats.
+     *
+     * @return el percentatge d'objectius completats com a float
+     */
     suspend fun getDataFromFirestore(): Float {
-        var perT: Float = 0f
-        var total: Float = 0f
-        var oComplets: Float = 0f
+        var perT = 0f
+        var total = 0f
+        var oComplets = 0f
         var objectius: ArrayList<Objectius> = ArrayList()
 
-        val result = FirebaseFirestore.getInstance().collection("Usuaris")
+        val result = db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get().await()
 
         if (result != null) {
@@ -369,9 +402,8 @@ class TasksFragment : Fragment() {
     /**
      * @author Pablo Morante
      */
-    private fun Toast.showCustomToast(message: String)
-    {
-        val layout = requireActivity().layoutInflater.inflate (
+    private fun Toast.showCustomToast(message: String) {
+        val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,
             requireActivity().findViewById(R.id.toast_container)
         )
