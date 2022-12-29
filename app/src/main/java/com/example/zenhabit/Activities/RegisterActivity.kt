@@ -116,7 +116,7 @@ private fun posaNomUser(nom: String) {
 }
 
 /**
- * @author Pablo Morante
+ * @author Pablo Morante, Txell Llanas
  */
 private fun validateForm(): Boolean {
     var valid = true
@@ -144,6 +144,12 @@ private fun validateForm(): Boolean {
         valid = false
     } else {
         bin.inputCreateUserName.error = null
+    }
+
+    val checkBox = bin.checkBoxTermsAndConditions
+    if (!checkBox.isChecked) {
+        valid = false
+        Toast(this).showCustomToast(getString(R.string.toast_accept_terms), this)
     }
     return valid
 }
