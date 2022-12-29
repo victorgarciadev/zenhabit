@@ -1,5 +1,6 @@
 package com.example.zenhabit.Fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -162,8 +162,8 @@ class JardiFragment : Fragment() {
             .addOnSuccessListener { result ->
                 val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
                 var i = 0
-                for (planta in plantes){
-                    when (i){
+                for (planta in plantes) {
+                    when (i) {
                         0 -> binding.quantitat0.text = planta.quantitat.toString()
                         1 -> binding.quantitat1.text = planta.quantitat.toString()
                         2 -> binding.quantitat2.text = planta.quantitat.toString()

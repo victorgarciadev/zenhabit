@@ -23,5 +23,5 @@ class NoInternetActivity : AppCompatActivity() {
         binding.btnCancel.setOnClickListener {
             finishAffinity()
         }
-        }
     }
+}
