@@ -7,13 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +22,6 @@ import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
-import com.example.zenhabit.models.Planta
 import com.example.zenhabit.models.PlantaUsuari
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
@@ -35,11 +34,13 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.util.*
-import kotlin.collections.ArrayList
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
@@ -124,6 +125,9 @@ class TasksFragment : Fragment() {
         return view
     }
 
+    /**
+     * @author Izan Jimenez
+     */
     private fun loadData() {
 
         var ret: ArrayList<Objectius> = ArrayList()
@@ -177,6 +181,9 @@ class TasksFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun sendItem(nom: String, fecha: String, descripcio: String, categoria: String, tipus: Boolean, hora: String?, repeticion: Dies?) {
         if (tipus) {
             val action =
@@ -189,6 +196,9 @@ class TasksFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Izan Jimenez
+     */
     private fun deleteItem(index: Int) {
         var objectiuSeleccionat = mAdapter.getItem(index) as Objectius
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
@@ -239,6 +249,9 @@ class TasksFragment : Fragment() {
 
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun preparePieData() {
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
@@ -327,6 +340,9 @@ class TasksFragment : Fragment() {
         pieChart.invalidate()
     }
 
+/**
+ * @author Pablo Morante
+ */
     suspend fun getDataFromFirestore(): Float {
         var perT: Float = 0f
         var total: Float = 0f
@@ -350,6 +366,9 @@ class TasksFragment : Fragment() {
         return perT
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String)
     {
         val layout = requireActivity().layoutInflater.inflate (

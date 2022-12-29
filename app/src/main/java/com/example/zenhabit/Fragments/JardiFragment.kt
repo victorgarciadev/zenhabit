@@ -21,7 +21,9 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * @author Victor García, Txell Llanas, Pablo Morante
+ */
 class JardiFragment : Fragment() {
     private var _binding: FragmentJardiBinding? = null
     private val binding get() = _binding!!
@@ -47,6 +49,8 @@ class JardiFragment : Fragment() {
 
     /**
      * Habilita una visualització especial de Nadal si la data actual és entre el 15 de desembre i el 6 de gener.
+     *
+     * @author Pablo Morante
      */
     private fun christmasSpecial() {
         val actualDay = Calendar.getInstance().getTime()
@@ -67,6 +71,7 @@ class JardiFragment : Fragment() {
     /**
      * Mètode per mostrar en un 'Dialog' les decripcions de cada ítem del Jardí quan es clica
      * el cardView corresponent.
+     *
      * @author Txell Llanas
      */
     private fun openItemDescription() {
@@ -151,7 +156,9 @@ class JardiFragment : Fragment() {
     }
 
     /**
-     * Recupera una llista de plantes de Firebase per a l'usuari actual i actualitza la visualització de la quantitat de cada planta.
+     * Mètode per mostrar la quantitat de plantes aconseguides dintre del fragment Jardí.
+     *
+     * @author Víctor García
      */
     private fun getPlantesfromFirebase() {
         FirebaseFirestore.getInstance().collection("Usuaris")
@@ -159,8 +166,8 @@ class JardiFragment : Fragment() {
             .addOnSuccessListener { result ->
                 val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
                 var i = 0
-                for (planta in plantes) {
-                    when (i) {
+                for (planta in plantes){
+                    when (i){
                         0 -> binding.quantitat0.text = planta.quantitat.toString()
                         1 -> binding.quantitat1.text = planta.quantitat.toString()
                         2 -> binding.quantitat2.text = planta.quantitat.toString()

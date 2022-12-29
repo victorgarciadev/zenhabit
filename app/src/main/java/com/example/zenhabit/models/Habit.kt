@@ -1,8 +1,10 @@
 package com.example.zenhabit.models
 
-//import com.google.type.Date
 import java.util.Date
 
+/**
+ * @author Pablo Morante
+ */
 class Habit(nom: String, descripcio: String?, categoria: String, repetible: List<DiesHabit>?, dataLimit: String, horari: String, complert: Boolean, ultimaDataFet: Date?) {
     val nom = nom
     val descripcio = descripcio

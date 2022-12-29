@@ -29,6 +29,9 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class CreateEditTaskFragment : Fragment() {
 
     // View Binding (Fragment)
@@ -179,6 +182,9 @@ class CreateEditTaskFragment : Fragment() {
     }
 
 
+    /**
+     * @author Izan Jimenez
+     */
     class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
         private val calendar = Calendar.getInstance()
 
@@ -206,6 +212,9 @@ class CreateEditTaskFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String)
     {
         val layout = requireActivity().layoutInflater.inflate (

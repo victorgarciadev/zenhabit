@@ -24,13 +24,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 
+/**
+ * @author Victor García, Txell Llanas, Pablo Morante
+ */
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+            super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -48,36 +51,33 @@ class SettingsFragment : Fragment() {
             if (!actualPsw.isEmpty()) {
                 val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
                 actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updatePassword(binding.inputChangePsw.text.toString())
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast(activity).showCustomToast(getString(R.string.toast_change_password))
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.error_password_created))
-                            }
+                    actualUser.updatePassword(binding.inputChangePsw.text.toString()).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast(activity).showCustomToast(getString(R.string.toast_change_password))
+                        } else {
+                            Toast(activity).showCustomToast(getString(R.string.error_password_created))
                         }
+                    }
                 }
             }
         }
 
-        binding.btnSaveEmail.setOnClickListener {
+        binding.btnSaveEmail.setOnClickListener{
             val actualUser = FirebaseAuth.getInstance().currentUser
             val email = actualUser!!.email
             val actualPsw = binding.inputActualPswEmail.text
             if (!actualPsw.isEmpty()) {
                 val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
                 actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updateEmail(binding.inputChangeEmail.text.toString())
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                FirebaseFirestore.getInstance().collection("Usuaris")
-                                    .document(actualUser.uid)
-                                    .update("email", binding.inputChangeEmail.text.toString())
-                                Toast(activity).showCustomToast(getString(R.string.toast_change_email))
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.error_email_created))
-                            }
+                    actualUser.updateEmail(binding.inputChangeEmail.text.toString()).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            FirebaseFirestore.getInstance().collection("Usuaris")
+                                .document(actualUser.uid).update("email", binding.inputChangeEmail.text.toString())
+                            Toast(activity).showCustomToast(getString(R.string.toast_change_email))
+                        } else {
+                            Toast(activity).showCustomToast(getString(R.string.error_email_created))
                         }
+                    }
                 }
             }
         }
@@ -91,8 +91,7 @@ class SettingsFragment : Fragment() {
                 }
                 actualUser!!.updateProfile(profileUpdates)
                 FirebaseFirestore.getInstance().collection("Usuaris")
-                    .document(actualUser.uid)
-                    .update("nom", binding.inputChangeUserName.text.toString())
+                    .document(actualUser.uid).update("nom", binding.inputChangeUserName.text.toString())
             } else {
                 Toast(activity).showCustomToast(getString(R.string.error_username_created))
             }
@@ -108,6 +107,7 @@ class SettingsFragment : Fragment() {
      * Mostra un missatge de toast personalitzat amb el text donat.
      *
      * @param message el text per mostrar al toast
+     * @author Pablo Morante
      */
     private fun Toast.showCustomToast(message: String) {
         val layout = requireActivity().layoutInflater.inflate(

@@ -15,7 +15,9 @@ import com.example.zenhabit.R
 import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
 
-
+/**
+ * @author Izan Jimenez, Pablo Morante
+ */
 class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit) :
     RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
@@ -63,11 +65,18 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
             position
         )
     }
+
+    /**
+     *
+     */
     fun setItems(items: List<Objectius>){
         listData = items
         notifyDataSetChanged()
     }
 
+    /**
+     *
+     */
     fun getItem(position: Int): Any {
         return listaTasques[position]
     }
