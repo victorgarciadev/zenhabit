@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="69dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
@@ -27,19 +27,20 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="13dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="#3dd598"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="34dp"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="64dp"
             android:orientation="horizontal"
@@ -55,17 +56,18 @@
                     android:id="@+id/txtNomTasca"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
                     android:text="@string/nom_de_la_tasca"
                     android:textAlignment="textStart"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:scrollHorizontally="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.538" />
+                    app:layout_constraintVertical_bias="0.25" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -88,12 +90,14 @@
                     android:id="@+id/label_temps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="@string/label_finalitzacio_objectiu"
                     android:textColor="#ccc"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45" />
 
                 <TextView
                     android:id="@+id/txtHora"
@@ -103,11 +107,12 @@
                     android:text="@string/hora"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_temps"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,8 +131,10 @@
             android:insetBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.31"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute">
 
         </Button>
