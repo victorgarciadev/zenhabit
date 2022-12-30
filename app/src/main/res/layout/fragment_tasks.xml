@@ -120,7 +120,8 @@
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+                    app:layout_constraintVertical_bias="0.6" />
 
                 <Button
                     android:id="@+id/addTasc"
@@ -215,7 +216,7 @@
                     android:layout_height="53dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/seguiment"
                     android:textColor="@color/white"
                     android:textSize="34sp"
@@ -228,7 +229,7 @@
                     android:id="@+id/container_seguiment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
                     android:padding="16dp"
@@ -279,7 +280,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
-                                    android:text="@string/complerts"
+                                    android:text="@string/pendents"
                                     android:textColor="#E8E8E8" />
 
                             </LinearLayout>
@@ -309,7 +310,7 @@
                                     android:layout_height="16dp"
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
-                                    android:text="@string/pendents"
+                                    android:text="@string/complerts"
                                     android:textColor="#E8E8E8" />
                             </LinearLayout>
                         </FrameLayout>
