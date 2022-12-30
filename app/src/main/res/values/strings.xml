@@ -175,6 +175,7 @@
     <string name="toast_tasca_creada">Tasca creada correctament!</string>
     <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
     <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
+    <string name="toast_accept_terms">Cal acceptar els Termes i Condicions.</string>
     <string name="toast_change_name">Nom d\'usuari canviat correctament.</string>
 
     <!-- NOTIFICACIONS -->

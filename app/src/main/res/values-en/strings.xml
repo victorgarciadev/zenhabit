@@ -150,4 +150,6 @@
     <string name="toast_habit_update">Habit updated successfully!</string>
     <string name="no_data_available">You have no pending goals.</string>
     <string name="toast_change_name">Username changed successfully.</string>
+    <string name="toast_accept_terms">You must accept the Terms and Conditions.</string>
+    <string name="label_finalitzacio_objectiu">Ends:</string>
 </resources>

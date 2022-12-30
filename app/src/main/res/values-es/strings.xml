@@ -150,4 +150,6 @@
     <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
     <string name="no_data_available">No tienes objetivos pendientes.</string>
     <string name="toast_change_name">Nombre de usuario cambiado correctamente.</string>
+    <string name="toast_accept_terms">" Es necesario aceptar los Términos y Condiciones."</string>
+    <string name="label_finalitzacio_objectiu">Finaliza:</string>
 </resources>
