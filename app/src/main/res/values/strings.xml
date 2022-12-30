@@ -92,6 +92,7 @@
     <string name="nom_habit">Nom Hàbit</string>
     <string name="data_limit_hint">00/00/00</string>
     <string name="no_data_available">No tens objectius pendents.</string>
+    <string name="label_finalitzacio_objectiu">Finalitza:</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>

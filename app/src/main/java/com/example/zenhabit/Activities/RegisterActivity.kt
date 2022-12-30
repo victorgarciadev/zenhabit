@@ -154,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
      * @return true si el formulari és vàlid, false en cas contrari
      *
      * @throws IllegalStateException si l'activitat s'està destruint.
-     * @author Pablo Morante
+     * @author Pablo Morante, Txell Llanas
      */
     private fun validateForm(): Boolean {
         var valid = true
@@ -182,6 +182,12 @@ class RegisterActivity : AppCompatActivity() {
             valid = false
         } else {
             bin.inputCreateUserName.error = null
+        }
+
+        val checkBox = bin.checkBoxTermsAndConditions
+        if (!checkBox.isChecked) {
+            valid = false
+            Toast(this).showCustomToast(getString(R.string.toast_accept_terms), this)
         }
         return valid
     }

@@ -17,7 +17,7 @@
     <string name="label_home_pendents">Pendientes</string>
     <string name="label_home_complerts">Hábitos realizados</string>
     <string name="label_home_tasques_complertes">Tareas realizadas</string>
-    <string name="label_jardi_descripcio_item">Descripción</string>
+    <string name="label_jardi_descripcio_item">Más información</string>
     <string name="label_jardi_items_obtinguts">Cantidad:</string>
     <string name="nom_canal">Notificaciones ZenHabit</string>
     <string name="descripcio_canal">Notificaciones de la aplicación ZenHabit</string>
