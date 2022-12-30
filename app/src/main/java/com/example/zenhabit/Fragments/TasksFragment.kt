@@ -245,11 +245,11 @@ class TasksFragment : Fragment() {
                 db.collection("Plantes").document(numRandom.toString()).get()
                     .addOnSuccessListener { secondResult ->
                         val plantesUsuari = PlantaUsuari.dataFirebaseToPlanta(result)
-                        val canvisPlanta = plantesUsuari.get(numRandom)
+                        val canvisPlanta = plantesUsuari.get(numRandom-1)
                         var quantitat = canvisPlanta.quantitat
                         quantitat++
                         canvisPlanta.quantitat = quantitat
-                        plantesUsuari.set(numRandom, canvisPlanta)
+                        plantesUsuari.set(numRandom-1, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
                             .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {

@@ -93,6 +93,10 @@
     <string name="data_limit_hint">00/00/00</string>
     <string name="no_data_available">No tens objectius pendents.</string>
     <string name="label_finalitzacio_objectiu">Finalitza:</string>
+    <string name="formulari_nom_objectiu">El nom no pot superar els 25 caràcters.</string>
+    <string name="formulari_nom_objectiu2">Un nom és necessari.</string>
+    <string name="formulari_categoria">S\'ha de seleccionar una categoria.</string>
+    <string name="formulari_date">La data ha de ser anterior a avui.</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -176,6 +180,8 @@
     <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
     <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
     <string name="toast_accept_terms">Cal acceptar els Termes i Condicions.</string>
+    <string name="toast_change_name">Nom d\'usuari canviat correctament.</string>
+    <string name="toast_formulari_habit">S\'ha de seleccionar mínim 1 dia de repetició.</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>

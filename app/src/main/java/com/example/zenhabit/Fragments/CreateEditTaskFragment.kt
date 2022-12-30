@@ -3,6 +3,7 @@ package com.example.zenhabit.Fragments
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -68,52 +69,54 @@ class CreateEditTaskFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditTaskFragment_to_createEditHabitFragment)
         }
         binding.btnGuardarCrearEditarTasca.setOnClickListener {
+            if (!validateForm()) {
+                Log.d("Error", "Error format tasca.")
+            } else {
+                val nom = binding.nomTascaEdit.editableText.toString()
+                val descripcio = binding.txtInputDescripcioTasca.editText?.text.toString()
+                val categoria = binding.dropDwnMenuCategoriesTasca.editText?.text.toString()
+                val dataLimit = binding.etPlannedDate.hint.toString()
+                val tipus = false
 
-            val nom = binding.nomTascaEdit.editableText.toString()
-            val descripcio = binding.txtInputDescripcioTasca.editText?.text.toString()
-            val categoria = binding.dropDwnMenuCategoriesTasca.editText?.text.toString()
-            val dataLimit = binding.etPlannedDate.hint.toString()
-            val tipus = false
+                val tasca =
+                    Objectius(nom, descripcio, categoria, dataLimit, null, null, false, null, tipus)
 
-            val tasca =
-                Objectius(nom, descripcio, categoria, dataLimit, null, null, false, null, tipus)
-
-            db.collection("Usuaris")
-                .document(Firebase.auth.currentUser!!.uid).get()
-                .addOnSuccessListener { result ->
-                    val valors = Objectius.dataFirebaseToObjectius(result)
-                    if (!editantTasca) {
-                        valors.add(tasca)
-                    } else {
-                        var index = 0
-                        for (valor in valors) {
-                            if (!valor.tipus && valor.nom == arguments?.get("Name")
-                                    .toString() && valor.dataLimit == arguments?.get("time")
-                                    .toString()
-                            ) {
-                                valors.set(index, tasca)
+                db.collection("Usuaris")
+                    .document(Firebase.auth.currentUser!!.uid).get()
+                    .addOnSuccessListener { result ->
+                        val valors = Objectius.dataFirebaseToObjectius(result)
+                        if (!editantTasca) {
+                            valors.add(tasca)
+                        } else {
+                            var index = 0
+                            for (valor in valors) {
+                                if (!valor.tipus && valor.nom == arguments?.get("Name")
+                                        .toString() && valor.dataLimit == arguments?.get("time")
+                                        .toString()
+                                ) {
+                                    valors.set(index, tasca)
+                                }
+                                index++
                             }
-                            index++
                         }
+                        db.collection("Usuaris")
+                            .document(Firebase.auth.currentUser!!.uid)
+                            .update("llistaObjectius", valors)
+                            .addOnSuccessListener {
+                                if (!editantTasca) {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
+                                } else {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_tasca_update))
+                                }
+                                findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
+                            }
                     }
-                    db.collection("Usuaris")
-                        .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
-                        .addOnSuccessListener {
-                            if (!editantTasca) {
-                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_creada))
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.toast_tasca_update))
-                            }
-                            findNavController().navigate(R.id.action_createEditTaskFragment_to_tasksFragment2)
-                        }
-                }
+            }
         }
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         // Carregar dades XML + crear adaptador pel Dropdown Menu (Categories)
         val categories = resources.getStringArray(R.array.categories)
         val adapter = activity?.let {
@@ -202,6 +205,47 @@ class CreateEditTaskFragment : Fragment() {
 
             setFragmentResult("REQUEST_KEY", selectedDateBundle)
         }
+    }
+
+    /**
+     * Valida el formulari per assegurar-se que s'omplen tots els camps obligatoris i que les dades són vàlides.
+     *
+     * @return true si el formulari és vàlid, false en cas contrari
+     * @author Pablo Morante
+     */
+    private fun validateForm(): Boolean {
+        var valid = true
+        if (!binding.nomTascaEdit.text.isNullOrBlank()) {
+            if (binding.nomTascaEdit.text?.length!! > 25) {
+                binding.nomTascaEdit.error = "El nom no pot superar els 25 caràcters."
+                valid = false
+            } else {
+                binding.nomTascaEdit.error = null
+            }
+        } else {
+            binding.nomTascaEdit.error = "Un nom és necessari."
+            valid = false
+        }
+        if (binding.dropDwnMenuCategoriesTasca.editText?.text.isNullOrBlank()) {
+            binding.dropDwnMenuCategoriesTasca.error = "S'ha de seleccionar una categoria."
+            valid = false
+        } else {
+            binding.dropDwnMenuCategoriesTasca.error = null
+        }
+
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN)
+        val plannedDateString = binding.etPlannedDate.hint.toString()
+        val plannedDate = sdf.parse(plannedDateString)
+        val currentDate = Calendar.getInstance()
+        val plannedDateCalendar = Calendar.getInstance()
+        plannedDateCalendar.setTime(plannedDate)
+        if (plannedDateCalendar.before(currentDate)) {
+            binding.etPlannedDate.error = "La data ha de ser posterior a avui."
+            valid = false
+        } else {
+            binding.etPlannedDate.error = null
+        }
+        return valid
     }
 
     /**

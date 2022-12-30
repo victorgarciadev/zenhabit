@@ -149,6 +149,12 @@
     <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
     <string name="toast_habit_update">Habit updated successfully!</string>
     <string name="no_data_available">You have no pending goals.</string>
+    <string name="toast_change_name">Username changed successfully.</string>
     <string name="toast_accept_terms">You must accept the Terms and Conditions.</string>
-    <string name="label_finalitzacio_objectiu">Completed:</string>
+    <string name="label_finalitzacio_objectiu">Ends:</string>
+    <string name="toast_formulari_habit">You have to select 1 day of repetition minimum.</string>
+    <string name="formulari_nom_objectiu2">The name is required.</string>
+    <string name="formulari_nom_objectiu">The name cannot be longer than 25 characters.</string>
+    <string name="formulari_categoria">You must select a category.</string>
+    <string name="formulari_date">The date cannot be before today.</string>
 </resources>
