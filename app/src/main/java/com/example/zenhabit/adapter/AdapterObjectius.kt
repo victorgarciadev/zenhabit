@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
- * @author Izan Jimenez, Pablo Morante
+ * @author Izan Jimenez, Pablo Morante, Víctor García
  */
 class AdapterObjectius(
     val listaTasques: List<Objectius>,
@@ -40,6 +42,19 @@ class AdapterObjectius(
             } else {
                 tipus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00A2E7"))) // tasca
             }
+
+            // En cas que la tasca o hàbit tingui una data de finalització anterior a la data actual, la data apareixerà en vermell
+            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN)
+            val plannedDateString = Objectius.dataLimit
+            val plannedDate = sdf.parse(plannedDateString)
+            val currentDate = Calendar.getInstance()
+            val plannedDateCalendar = Calendar.getInstance()
+            plannedDateCalendar.setTime(plannedDate)
+
+            if ( currentDate.after(plannedDateCalendar) ) {
+                tvHora.setTextColor(ColorStateList.valueOf(Color.parseColor("#FD565E")))
+            }
+
             tvTasca.text = Objectius.nom
             tvHora.text = Objectius.dataLimit
 

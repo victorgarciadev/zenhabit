@@ -3,82 +3,144 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="wrap_content"
+
     android:backgroundTint="#00FFFFFF"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="false"
     app:elevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="69dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/fondo">
+        android:backgroundTint="#CC22343C"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
-        <TextView
-            android:id="@+id/txtNomTasca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/shimmer_color"
-            android:text="@string/nom_de_la_tasca"
-            android:textAlignment="center"
-            android:textColor="@color/shimmer_color"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.491" />
-
-
-        <TextView
-            android:id="@+id/txtHora"
-            android:layout_width="70sp"
-            android:layout_height="wrap_content"
-            android:background="@color/shimmer_color"
-            android:text="@string/hora"
-            android:textAlignment="center"
-            android:textColor="@color/shimmer_color"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/eliminar"
-            app:layout_constraintHorizontal_bias="0.81"
-            app:layout_constraintStart_toEndOf="@+id/txtNomTasca"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/eliminar"
-            android:layout_width="36dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="11dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/shimmer_color"
-            android:textSize="8sp"
-            app:cornerRadius="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck,DuplicateClickableBoundsCheck,TouchTargetSizeCheck,TextContrastCheck" />
 
         <View
-            android:layout_width="10dp"
-            android:layout_height="9dp"
+            android:id="@+id/view"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="@color/shimmer_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/txtHora"
-            app:layout_constraintHorizontal_bias="0.46"
-            app:layout_constraintStart_toEndOf="@+id/txtNomTasca"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="64dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:background="@color/shimmer_color">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/shimmer_color"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:text="@string/nom_de_la_tasca"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/shimmer_color"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.25" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="64dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/label_temps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/shimmer_color"
+                    android:text="@string/label_finalitzacio_objectiu"
+                    android:textColor="@color/shimmer_color"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45" />
+
+                <TextView
+                    android:id="@+id/txtHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/shimmer_color"
+                    android:text="@string/hora"
+                    android:textAlignment="center"
+                    android:textColor="@color/shimmer_color"
+                    android:textSize="14sp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/label_temps"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/eliminar"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:alpha="1"
+            android:backgroundTint="#00FFFFFF"
+            android:drawableTop="@drawable/ic_baseline_done"
+            android:drawableTint="@color/shimmer_color"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.31"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,UnusedAttribute">
+
+        </Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
