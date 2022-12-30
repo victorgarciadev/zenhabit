@@ -207,6 +207,12 @@ class CreateEditTaskFragment : Fragment() {
         }
     }
 
+    /**
+     * Valida el formulari per assegurar-se que s'omplen tots els camps obligatoris i que les dades són vàlides.
+     *
+     * @return true si el formulari és vàlid, false en cas contrari
+     * @author Pablo Morante
+     */
     private fun validateForm(): Boolean {
         var valid = true
         if (!binding.nomTascaEdit.text.isNullOrBlank()) {

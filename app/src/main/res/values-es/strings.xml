@@ -152,4 +152,9 @@
     <string name="toast_change_name">Nombre de usuario cambiado correctamente.</string>
     <string name="toast_accept_terms">" Es necesario aceptar los Términos y Condiciones."</string>
     <string name="label_finalitzacio_objectiu">Finaliza:</string>
+    <string name="toast_formulari_habit">Mínimo se tiene que seleccionar 1 día de repetición.</string>
+    <string name="formulari_nom_objectiu">El nombre no puede superar los 25 carácteres.</string>
+    <string name="formulari_nom_objectiu2">El nombre es necesario.</string>
+    <string name="formulari_categoria">Se debe que seleccionar una categoria.</string>
+    <string name="formulari_date">La fecha no puede ser anterior a hoy.</string>
 </resources>
