@@ -7,13 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,16 +33,17 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
-import kotlinx.coroutines.android.awaitFrame
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import org.w3c.dom.Document
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
+import kotlin.collections.HashMap
+import kotlin.collections.List
+
 
 class TasksFragment : Fragment() {
 
@@ -51,7 +52,6 @@ class TasksFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth = Firebase.auth
-    private lateinit var data: MutableList<Objectius>
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
@@ -80,58 +80,32 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari.startShimmer()
 
         //obtenir els reptes diaris
-
-
-        FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(auth.currentUser!!.uid).get()
-            .addOnSuccessListener { resultUser ->
-
-
-
-                val llistaReptes = resultUser.get("llistaReptes") as ArrayList<RepteUsuari>
-                // resultUser.get("llistaReptes") as ArrayList<RepteUsuari>
-                Log.d("REPTESlength1", llistaReptes.size.toString())
-
-                if (llistaReptes != null) {
-                    if (llistaReptes.size <= 0) {
-
-                        omplirLlistReptes()
-
+        //obtenir els reptes diaris
+        for (i in 1..3) {
+            db.collection("Reptes")
+                .document(i.toString()).get()
+                .addOnSuccessListener { result ->
+                    val titol = result.get("titol")
+                    val desc = result.get("descripcio")
+                    val done = result.get("vist") as Boolean
+                    if (i == 1) {
+                        binding.Obj1.textViewDesc.text = desc.toString()
+                        binding.Obj1.titolRepte.text = titol.toString()
+                        binding.Obj1.checkboxDone.isChecked = done
                     }
-                    Log.d("REPTESlength3", llistaReptes.size.toString())
-                    Log.d("REPTESlength3", llistaReptes.toString())
-
-
-
-                    for (i in 1..3) {
-                        Log.d("REPTES", "DENTRO")
-                        val a = llistaReptes[i] as RepteUsuari
-                        Log.d("REPTES", a.toString())
-
-
-                        if (i == 1) {
-                            binding.Obj1.textViewDesc.text = llistaReptes[i].repte.descripcio
-                            binding.Obj1.titolRepte.text = llistaReptes[i].repte.titol
-                            binding.Obj1.checkboxDone.isChecked = llistaReptes[i].acosneguit
-                        }
-                        if (i == 2) {
-                            binding.Obj2.textViewDesc.text = llistaReptes[i].repte.descripcio
-                            binding.Obj2.titolRepte.text = llistaReptes[i].repte.titol
-                            binding.Obj2.checkboxDone.isChecked = llistaReptes[i].acosneguit
-                        }
-                        if (i == 3) {
-                            binding.Obj3.textViewDesc.text = llistaReptes[i].repte.descripcio
-                            binding.Obj3.titolRepte.text = llistaReptes[i].repte.descripcio
-                            binding.Obj3.checkboxDone.isChecked = llistaReptes[i].acosneguit
-                        }
-
+                    if (i == 2) {
+                        binding.Obj2.textViewDesc.text = desc.toString()
+                        binding.Obj2.titolRepte.text = titol.toString()
+                        binding.Obj2.checkboxDone.isChecked = done
                     }
-
-
+                    if (i == 3) {
+                        binding.Obj3.textViewDesc.text = desc.toString()
+                        binding.Obj3.titolRepte.text = titol.toString()
+                        binding.Obj3.checkboxDone.isChecked = done
+                    }
                 }
+        }
 
-
-            }
 
 
         //Mostrar
@@ -174,52 +148,52 @@ class TasksFragment : Fragment() {
         return view
     }
 
-    private fun omplirLlistReptes() {
 
-        val llistaReptes = ArrayList<RepteUsuari>()
-
-        for (i in 1..3) {
-            val docref = FirebaseFirestore.getInstance().collection("Reptes")
-                .document(i.toString()).get()
-                .addOnSuccessListener { result ->
-
-//                    val a = result.toObject<RepteUsuari>()
-//                    if (a != null) {
-//                        Log.d("REPTESObject", a.acosneguit.toString())
+    //--------- Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari -------
+//    private fun omplirLlistReptes() {
+//
+//        val llistaReptes = ArrayList<RepteUsuari>()
+//
+//        for (i in 1..3) {
+//            val docref = FirebaseFirestore.getInstance().collection("Reptes")
+//                .document(i.toString()).get()
+//                .addOnSuccessListener { result ->
+//
+////                    val a = result.toObject<RepteUsuari>()
+////                    if (a != null) {
+////                        Log.d("REPTESObject", a.acosneguit.toString())
+////                    }
+//
+//
+//                    if (result != null) {
+//                        val r = Repte(
+//                            i,
+//                            result.get("descripcio").toString(),
+//                            result.get("titol").toString()
+//                        )
+//
+//                        val ru =
+//                            RepteUsuari(r, result.get("vist") as Boolean)
+//
+////                                    val titol = result.get("titol")
+////                                    val desc = result.get("descripcio")
+////                                    val done = result.get("vist") as Boolean
+//                        Log.d("REPTES", ru.repte!!.titol)
+//
+//                        llistaReptes.add(ru)
+//
+//
 //                    }
-
-
-                    if (result != null) {
-                        val r = Repte(
-                            i,
-                            result.get("descripcio").toString(),
-                            result.get("titol").toString()
-                        )
-
-                        val ru =
-                            RepteUsuari(r, result.get("vist") as Boolean)
-
-//                                    val titol = result.get("titol")
-//                                    val desc = result.get("descripcio")
-//                                    val done = result.get("vist") as Boolean
-                        Log.d("REPTES", ru.repte.titol)
-
-                        llistaReptes.add(ru)
-
-
-                    }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(auth.currentUser!!.uid)
-                        .update("llistaReptes", llistaReptes)
-                    Log.d("REPTESlength2", llistaReptes.size.toString())
-
-                }.addOnFailureListener { exception ->
-                    Log.d("TAG", "ERROR: $exception")
-                }
-        }
-
-
-    }
+//                    FirebaseFirestore.getInstance().collection("Usuaris")
+//                        .document(auth.currentUser!!.uid)
+//                        .update("llistaReptes", llistaReptes)
+//                    Log.d("REPTESlength2", llistaReptes.size.toString())
+//
+//                }.addOnFailureListener { exception ->
+//                    Log.d("TAG", "ERROR: $exception")
+//                }
+//        }
+//    }
 
     /***
      * Funcio per canviar de color els checkboxes
