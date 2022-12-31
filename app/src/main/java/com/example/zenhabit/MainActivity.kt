@@ -194,8 +194,9 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val tasca = result.get("llistaObjectius") as ArrayList<Objectius>
-                val numeroPendents = tasca.count()
+                val objectius = Objectius.dataFirebaseToObjectius(result)
+                val objectiusFiltered = objectius.filter { !it.complert }
+                val numeroPendents = objectiusFiltered.count()
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()

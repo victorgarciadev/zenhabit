@@ -44,8 +44,12 @@ class SettingsFragment : Fragment() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast(activity).showCustomToast(getString(R.string.toast_change_password))
+                                binding.inputActualPsw.text.clear()
+                                binding.inputChangePsw.text.clear()
                             } else {
                                 Toast(activity).showCustomToast(getString(R.string.error_password_created))
+                                binding.inputActualPsw.text.clear()
+                                binding.inputChangePsw.text.clear()
                             }
                         }
                 }
@@ -66,8 +70,12 @@ class SettingsFragment : Fragment() {
                                     .document(actualUser.uid)
                                     .update("email", binding.inputChangeEmail.text.toString())
                                 Toast(activity).showCustomToast(getString(R.string.toast_change_email))
+                                binding.inputActualPswEmail.text.clear()
+                                binding.inputChangeEmail.text.clear()
                             } else {
                                 Toast(activity).showCustomToast(getString(R.string.error_email_created))
+                                binding.inputActualPswEmail.text.clear()
+                                binding.inputChangeEmail.text.clear()
                             }
                         }
                 }
@@ -85,6 +93,10 @@ class SettingsFragment : Fragment() {
                 db.collection("Usuaris")
                     .document(actualUser.uid)
                     .update("nom", binding.inputChangeUserName.text.toString())
+                    .addOnSuccessListener {
+                        Toast(activity).showCustomToast(getString(R.string.toast_change_name))
+                        binding.inputChangeUserName.text.clear()
+                    }
             } else {
                 Toast(activity).showCustomToast(getString(R.string.error_username_created))
             }
