@@ -3,6 +3,9 @@ package com.example.zenhabit.models
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.ArrayList
 
+/**
+ * @author Pablo Morante
+ */
 class PlantaUsuari(planta: String, quantitat: Int) {
     val planta = planta
     var quantitat = quantitat

@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -25,18 +26,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class CreateEditHabitFragment : Fragment() {
 
     // View Binding (Fragment)
     private var _binding: FragmentCreateEditHabitBinding? = null
     private val binding get() = _binding!!
     private var editantHabit: Boolean = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,58 +84,74 @@ class CreateEditHabitFragment : Fragment() {
             findNavController().navigate(R.id.action_createEditHabitFragment_to_createEditTaskFragment)
         }
         binding.btnGuardarCrearEditarHabit.setOnClickListener {
-            val nom = binding.nomHabitEdit.editableText.toString()
-            val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
-            val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
-            val dataLimit = binding.etPlannedDate.hint.toString()
-            val dies: Dies = Dies(
-                binding.checkboxDilluns.isChecked,
-                binding.checkboxDimarts.isChecked,
-                binding.checkboxDimecres.isChecked,
-                binding.checkboxDijous.isChecked,
-                binding.checkboxDivendres.isChecked,
-                binding.checkboxDissabte.isChecked,
-                binding.checkboxDiumenge.isChecked,
-            )
-            val horari = binding.etPlannedHour.hint.toString()
-            val tipus = true
-
-            val habit =
-                Objectius(nom, descripcio, categoria, dataLimit, dies, horari, false, null, tipus)
-
-            FirebaseFirestore.getInstance().collection("Usuaris")
-                .document(Firebase.auth.currentUser!!.uid).get()
-                .addOnSuccessListener { result ->
-                    val valors = Objectius.dataFirebaseToObjectius(result)
-                    if (!editantHabit) {
-                        valors.add(habit)
-                    } else {
-                        var index = 0
-                        for (valor in valors) {
-                            if (valor.tipus && valor.nom == arguments?.get("Name").toString() && valor.dataLimit == arguments?.get("Fecha").toString() && valor.horari == arguments?.get("Hora").toString() ) {
-                                valors.set(index, habit)
+            if (!validateForm()) {
+                Log.d("Error", "Error format habit.")
+            } else {
+                val nom = binding.nomHabitEdit.editableText.toString()
+                val descripcio = binding.txtInputDescripcioHabit.editText?.text.toString()
+                val categoria = binding.dropDwnMenuCategoriesHabit.editText?.text.toString()
+                val dataLimit = binding.etPlannedDate.hint.toString()
+                val dies = Dies(
+                    binding.checkboxDilluns.isChecked,
+                    binding.checkboxDimarts.isChecked,
+                    binding.checkboxDimecres.isChecked,
+                    binding.checkboxDijous.isChecked,
+                    binding.checkboxDivendres.isChecked,
+                    binding.checkboxDissabte.isChecked,
+                    binding.checkboxDiumenge.isChecked,
+                )
+                val horari = binding.etPlannedHour.hint.toString()
+                val tipus = true
+                val habit =
+                    Objectius(
+                        nom,
+                        descripcio,
+                        categoria,
+                        dataLimit,
+                        dies,
+                        horari,
+                        false,
+                        null,
+                        tipus
+                    )
+                db.collection("Usuaris")
+                    .document(Firebase.auth.currentUser!!.uid).get()
+                    .addOnSuccessListener { result ->
+                        val valors = Objectius.dataFirebaseToObjectius(result)
+                        if (!editantHabit) {
+                            valors.add(habit)
+                        } else {
+                            var index = 0
+                            for (valor in valors) {
+                                if (valor.tipus && valor.nom == arguments?.get("Name")
+                                        .toString() && valor.dataLimit == arguments?.get("Fecha")
+                                        .toString() && valor.horari == arguments?.get("Hora")
+                                        .toString()
+                                ) {
+                                    valors.set(index, habit)
+                                }
+                                index++
                             }
-                            index++
                         }
+                        db.collection("Usuaris")
+                            .document(Firebase.auth.currentUser!!.uid)
+                            .update("llistaObjectius", valors)
+                            .addOnCompleteListener {
+                                if (!editantHabit) {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
+                                } else {
+                                    Toast(activity).showCustomToast(getString(R.string.toast_habit_update))
+                                }
+                                findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
+                            }
                     }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", valors)
-                        .addOnCompleteListener {
-                            if (!editantHabit) {
-                                Toast(activity).showCustomToast(getString(R.string.toast_habit_creat))
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.toast_habit_update))
-                            }
-                            findNavController().navigate(R.id.action_createEditHabitFragment_to_tasksFragment2)
-                        }
-                }
+            }
         }
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         // Carregar dades XML + crear adaptador pel Dropdown Menu (Categories)
         val categories = resources.getStringArray(R.array.categories)
         val adapter = activity?.let {
@@ -216,6 +232,9 @@ class CreateEditHabitFragment : Fragment() {
     }
 
 
+    /**
+     * @author Izan Jimenez
+     */
     class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
         private val calendar = Calendar.getInstance()
 
@@ -225,7 +244,6 @@ class CreateEditHabitFragment : Fragment() {
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            // return new DatePickerDialog instance
             return DatePickerDialog(requireActivity(), this, year, month, day)
         }
 
@@ -243,6 +261,9 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Izan Jimenez
+     */
     class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -273,6 +294,64 @@ class CreateEditHabitFragment : Fragment() {
         }
     }
 
+    /**
+     * Valida el formulari per assegurar-se que s'omplen tots els camps obligatoris i que les dades són vàlides.
+     *
+     * @return true si el formulari és vàlid, false en cas contrari
+     * @author Pablo Morante
+     */
+    private fun validateForm(): Boolean {
+        var valid = true
+        if (!binding.nomHabitEdit.text.isNullOrBlank()) {
+            if (binding.nomHabitEdit.text?.length!! > 25) {
+                binding.nomHabitEdit.error = "El nom no pot superar els 25 caràcters."
+                valid = false
+            } else {
+                binding.nomHabitEdit.error = null
+            }
+        } else {
+            binding.nomHabitEdit.error = "Un nom és necessari."
+            valid = false
+        }
+        if (binding.dropDwnMenuCategoriesHabit.editText?.text.isNullOrBlank()) {
+            binding.dropDwnMenuCategoriesHabit.error = "S'ha de seleccionar una categoria."
+            valid = false
+        } else {
+            binding.dropDwnMenuCategoriesHabit.error = null
+        }
+
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN)
+        val plannedDateString = binding.etPlannedDate.hint.toString()
+        val plannedDate = sdf.parse(plannedDateString)
+        val currentDate = Calendar.getInstance()
+        val plannedDateCalendar = Calendar.getInstance()
+        plannedDateCalendar.setTime(plannedDate)
+        if (plannedDateCalendar.before(currentDate)) {
+            binding.etPlannedDate.error = "La data ha de ser posterior a avui."
+            valid = false
+        } else {
+            binding.etPlannedDate.error = null
+        }
+        var countTemp = 0
+        if (binding.checkboxDilluns.isChecked) countTemp++
+        if (binding.checkboxDimarts.isChecked) countTemp++
+        if (binding.checkboxDimecres.isChecked) countTemp++
+        if (binding.checkboxDijous.isChecked) countTemp++
+        if (binding.checkboxDivendres.isChecked) countTemp++
+        if (binding.checkboxDissabte.isChecked) countTemp++
+        if (binding.checkboxDiumenge.isChecked) countTemp++
+
+        if (countTemp == 0) {
+            Toast(activity).showCustomToast(getString(R.string.toast_formulari_habit))
+            valid = false
+        }
+
+        return valid
+    }
+
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String) {
         val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,

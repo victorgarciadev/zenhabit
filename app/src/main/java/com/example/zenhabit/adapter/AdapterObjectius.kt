@@ -9,14 +9,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat.setBackgroundTintList
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
+import java.text.SimpleDateFormat
+import java.util.*
 
-
-class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (Int) -> Unit, val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit) :
+/**
+ * @author Izan Jimenez, Pablo Morante, Víctor García
+ */
+class AdapterObjectius(
+    val listaTasques: List<Objectius>,
+    val onClickDelete: (Int) -> Unit,
+    val clickListener: (String, String, String, String, Boolean, String?, Dies?) -> Unit
+) :
     RecyclerView.Adapter<AdapterObjectius.ViewHolder>() {
 
     var listData = listaTasques
@@ -35,18 +42,41 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
             } else {
                 tipus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00A2E7"))) // tasca
             }
+
+            // En cas que la tasca o hàbit tingui una data de finalització anterior a la data actual, la data apareixerà en vermell
+            val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ITALIAN)
+            val plannedDateString = Objectius.dataLimit
+            val plannedDate = sdf.parse(plannedDateString)
+            val currentDate = Calendar.getInstance()
+            val plannedDateCalendar = Calendar.getInstance()
+            plannedDateCalendar.setTime(plannedDate)
+
+            if ( currentDate.after(plannedDateCalendar) ) {
+                tvHora.setTextColor(ColorStateList.valueOf(Color.parseColor("#FD565E")))
+            }
+
             tvTasca.text = Objectius.nom
             tvHora.text = Objectius.dataLimit
 
             button.setOnClickListener { onClickDelete(index) }
-            bigItem.setOnClickListener { clickListener(Objectius.nom, Objectius.dataLimit, Objectius.descripcio, Objectius.categoria, Objectius.tipus, Objectius.horari, Objectius.repetible) }
+            bigItem.setOnClickListener {
+                clickListener(
+                    Objectius.nom,
+                    Objectius.dataLimit,
+                    Objectius.descripcio,
+                    Objectius.categoria,
+                    Objectius.tipus,
+                    Objectius.horari,
+                    Objectius.repetible
+                )
+            }
         }
     }
 
     // Returns a new ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.task_class, parent, false)
+            .inflate(R.layout.task_list_item, parent, false)
 
         return ViewHolder(view)
     }
@@ -63,13 +93,24 @@ class AdapterObjectius(val listaTasques: List<Objectius>, val onClickDelete: (In
             position
         )
     }
-    fun setItems(items: List<Objectius>){
+
+    /**
+     * Estableix els elements de la llista i actualitza la vista de la llista (recycler view).
+     *
+     * @param items per a la llista
+     */
+    fun setItems(items: List<Objectius>) {
         listData = items
         notifyDataSetChanged()
     }
 
+    /**
+     * Obté l'objecte a la posició especificada de la llista.
+     *
+     * @param position de l'objecte a la llista
+     * @return l'objecte a la posició especificada
+     */
     fun getItem(position: Int): Any {
         return listaTasques[position]
     }
 }
-

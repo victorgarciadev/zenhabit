@@ -13,11 +13,16 @@
     <string name="titol_home_progres">PROGRESO</string>
     <string name="titol_jardi">Jardín</string>
     <string name="categoria">Categoría</string>
+    <string-array name="categories">
+        <item>Aprendizaje</item>
+        <item>Productividad</item>
+        <item>Salud</item>
+    </string-array>
     <string name="noInternet">"No tienes conexión a internet. Vuelve a probar. "</string>
     <string name="label_home_pendents">Pendientes</string>
     <string name="label_home_complerts">Hábitos realizados</string>
     <string name="label_home_tasques_complertes">Tareas realizadas</string>
-    <string name="label_jardi_descripcio_item">Descripción</string>
+    <string name="label_jardi_descripcio_item">Más información</string>
     <string name="label_jardi_items_obtinguts">Cantidad:</string>
     <string name="nom_canal">Notificaciones ZenHabit</string>
     <string name="descripcio_canal">Notificaciones de la aplicación ZenHabit</string>
@@ -149,4 +154,12 @@
     <string name="toast_objectiu_completat">¡Felicidades! Has conseguido 1</string>
     <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
     <string name="no_data_available">No tienes objetivos pendientes.</string>
+    <string name="toast_change_name">Nombre de usuario cambiado correctamente.</string>
+    <string name="toast_accept_terms">" Es necesario aceptar los Términos y Condiciones."</string>
+    <string name="label_finalitzacio_objectiu">Finaliza:</string>
+    <string name="toast_formulari_habit">Mínimo se tiene que seleccionar 1 día de repetición.</string>
+    <string name="formulari_nom_objectiu">El nombre no puede superar los 25 carácteres.</string>
+    <string name="formulari_nom_objectiu2">El nombre es necesario.</string>
+    <string name="formulari_categoria">Se debe que seleccionar una categoria.</string>
+    <string name="formulari_date">La fecha no puede ser anterior a hoy.</string>
 </resources>

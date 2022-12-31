@@ -23,9 +23,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class LoginActivity : AppCompatActivity() {
 
-    // Declarar variable pel View Binding
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private var passwordTry: Int = 0
@@ -44,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.hide()
 
-        // Intent cap a la pantalla principal 'Home' si l'usuari no està loguejat
         binding.btnEnter.setOnClickListener {
             if (!isOnline(this)) {
                 startActivity(Intent(this, NoInternetActivity::class.java))
@@ -59,15 +60,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Comprovar si usuari ja està loguejat
+    /**
+     * Es crida quan l'activitat es fa visible per a l'usuari.
+     *
+     * Aquest mètode verifica si l'usuari té connexió a Internet i redirigeix a NoInternetActivity si no en té.
+     * Si l'usuari té connexió a Internet, comprova si l'usuari ha iniciat sessió i redirigeix a MainActivity en conseqüència.
+     *
+     * @throws IllegalStateException si l'activitat s'està destruint.
+     */
     @RequiresApi(Build.VERSION_CODES.M)
     public override fun onStart() {
         super.onStart()
-        // check if user has internet connection
         if (!isOnline(this)) {
             startActivity(Intent(this, NoInternetActivity::class.java))
         } else {
-            // Check if user is signed in (non-null) and update UI accordingly.
             val currentUser = auth.currentUser
             if (currentUser != null) {
                 startActivity(Intent(this, MainActivity::class.java))
@@ -77,11 +83,12 @@ class LoginActivity : AppCompatActivity() {
 
     /**
      * Intents d'iniciar sessió a l'usuari amb el correu electrònic i la contrasenya especificats.
-     * Si l'inici de sessió té èxit, l'usuari passa a la pantalla d'inici i es mostra un missatge de brindis.
-     * Si l'inici de sessió falla, es mostra un missatge de brindis i es mostra el botó de restabliment de la contrasenya si el nombre d'intents fallits és superior o igual a 3.
+     * Si l'inici de sessió té èxit, l'usuari passa a la pantalla d'inici i es mostra un missatge de toast.
+     * Si l'inici de sessió falla, es mostra un missatge de toast i es mostra el botó de restabliment de la contrasenya si el nombre d'intents fallits és superior o igual a 3.
      *
      * @param email de l'usuari
      * @param password de l'usuari
+     * @author Izan Jimenez, Pablo Morante
      */
     private fun signIn(email: String, password: String) {
         //verificació d’errors de camps de text. Mostra errors en Toast
@@ -133,6 +140,7 @@ class LoginActivity : AppCompatActivity() {
      * Si algun dels camps està buit, es mostra un missatge d'error.
      *
      * @return true si el formulari és vàlid, false en cas contrari
+     * @author Izan Jimenez, Txell Llanas, Pablo Morante
      */
     private fun validateForm(): Boolean {
         var valid = true
@@ -160,6 +168,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @param missatge que es mostrarà al toast
      * @param activity des de la qual es mostra el toast
+     * @author Pablo Morante
      */
     private fun Toast.showCustomToast(message: String, activity: LoginActivity) {
         val layout = activity.layoutInflater.inflate(
@@ -183,6 +192,7 @@ class LoginActivity : AppCompatActivity() {
      *
      * @param context des del qual es crida la funció
      * @return true si el dispositiu té una connexió a Internet activa, false en cas contrari
+     * @author Pablo Morante
      */
     @RequiresApi(Build.VERSION_CODES.M)
     private fun isOnline(context: Context): Boolean {

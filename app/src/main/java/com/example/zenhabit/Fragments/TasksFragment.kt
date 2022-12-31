@@ -7,19 +7,22 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.Gravity
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zenhabit.R
 import com.example.zenhabit.adapter.AdapterObjectius
 import com.example.zenhabit.databinding.FragmentTasksBinding
+import com.example.zenhabit.models.Dies
+import com.example.zenhabit.models.Objectius
+import com.example.zenhabit.models.PlantaUsuari
 import com.example.zenhabit.databinding.ObjDiariAyoutBinding
 import com.example.zenhabit.models.*
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -45,6 +48,9 @@ import kotlin.collections.HashMap
 import kotlin.collections.List
 
 
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class TasksFragment : Fragment() {
 
     private lateinit var _binding: FragmentTasksBinding
@@ -75,11 +81,11 @@ class TasksFragment : Fragment() {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
         }
 
+
         //ResptesDiaris shimmer
         shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
         shimmerFrameLayoutObjDiari.startShimmer()
 
-        //obtenir els reptes diaris
         //obtenir els reptes diaris
         for (i in 1..3) {
             db.collection("Reptes")
@@ -106,9 +112,7 @@ class TasksFragment : Fragment() {
                 }
         }
 
-
-
-        //Mostrar
+        //Mostrar reptes
         Handler(Looper.getMainLooper()).postDelayed({
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
@@ -248,7 +252,9 @@ class TasksFragment : Fragment() {
 
 
     }
-
+    /**
+     * @author Izan Jimenez
+     */
     private fun loadData() {
 
         var ret: ArrayList<Objectius>
@@ -256,7 +262,6 @@ class TasksFragment : Fragment() {
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
             if (document != null) {
-
                 ret = Objectius.dataFirebaseToObjectius(document)
                 if (ret.isEmpty()) {
                     mRecyclerView.visibility = View.GONE
@@ -311,6 +316,9 @@ class TasksFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun sendItem(
         nom: String,
         fecha: String,
@@ -343,6 +351,9 @@ class TasksFragment : Fragment() {
         }
     }
 
+    /**
+     * @author Izan Jimenez
+     */
     private fun deleteItem(index: Int) {
         val objectiuSeleccionat = mAdapter.getItem(index) as Objectius
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
@@ -368,11 +379,11 @@ class TasksFragment : Fragment() {
                 db.collection("Plantes").document(numRandom.toString()).get()
                     .addOnSuccessListener { secondResult ->
                         val plantesUsuari = PlantaUsuari.dataFirebaseToPlanta(result)
-                        val canvisPlanta = plantesUsuari.get(numRandom)
+                        val canvisPlanta = plantesUsuari.get(numRandom-1)
                         var quantitat = canvisPlanta.quantitat
                         quantitat++
                         canvisPlanta.quantitat = quantitat
-                        plantesUsuari.set(numRandom, canvisPlanta)
+                        plantesUsuari.set(numRandom-1, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
                             .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {
@@ -401,11 +412,11 @@ class TasksFragment : Fragment() {
             }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
+    /**
+     * Prepara les dades del gràfic i les configura.
+     *
+     * @author Pablo Morante
+     */
     private fun preparePieData() {
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
@@ -494,13 +505,18 @@ class TasksFragment : Fragment() {
         pieChart.invalidate()
     }
 
+    /**
+     * Recupera dades de Firestore i calcula el percentatge d'objectius completats.
+     *
+     * @return el percentatge d'objectius completats com a float
+     */
     suspend fun getDataFromFirestore(): Float {
         var perT = 0f
-        val total: Float
+        var total = 0f
         var oComplets = 0f
-        val objectius: ArrayList<Objectius>
+        var objectius: ArrayList<Objectius> = ArrayList()
 
-        val result = FirebaseFirestore.getInstance().collection("Usuaris")
+        val result = db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get().await()
 
         if (result != null) {
@@ -517,6 +533,9 @@ class TasksFragment : Fragment() {
         return perT
     }
 
+    /**
+     * @author Pablo Morante
+     */
     private fun Toast.showCustomToast(message: String) {
         val layout = requireActivity().layoutInflater.inflate(
             R.layout.toast_layout,

@@ -32,7 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
-
+/**
+ * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -101,6 +103,7 @@ class MainActivity : AppCompatActivity() {
     //*** NAVBAR (INICI) ***
     /**
      * Mètode per carregar ítems dins l'Action Bar, si aquesta existeix.
+     *
      * @property menu El menú a crear.
      * @return valor booleà en funció de si el menú es pot crear satisfactòriament o no.
      * @author Txell Llanas
@@ -112,6 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Mètode per controlar la navegació cap amunt.
+     *
      * @return Boolean que determina el tipus de navegació cap amunt.
      * @author Txell Llanas, Pablo Morante
      */
@@ -123,6 +127,7 @@ class MainActivity : AppCompatActivity() {
     //*** MENÚ MORE (INICI) ***
     /**
      * Mètode per especificar una acció per cada ítem que contingui el menú 'More' (Action Bar)
+     *
      * @property item L'ítem a crear dins el menú.
      * @return Especifica quin ítem dins el menú s'ha seleccionat.
      * @author Txell Llanas, Pablo Morante
@@ -155,6 +160,7 @@ class MainActivity : AppCompatActivity() {
      * Crea un canal per gestionar totes les notificacions a l'usuari dins de l'App.
      * Permet especifcar-ne una descripció i un nivell de prioritat per a totes les notificacions
      * assignades a aquest canal.
+     *
      * @author Txell Llanas
      */
     private fun createNotificationChannel() {
@@ -181,13 +187,16 @@ class MainActivity : AppCompatActivity() {
     /**
      * Llança una notificació que mostra el nombre de tasques pendents a la llista de tasques de l'usuari.
      * Si no hi ha tasques pendents, no es mostra cap notificació.
+     *
+     * @author Pablo Morante
      */
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val tasca = result.get("llistaObjectius") as ArrayList<Objectius>
-                val numeroPendents = tasca.count()
+                val objectius = Objectius.dataFirebaseToObjectius(result)
+                val objectiusFiltered = objectius.filter { !it.complert }
+                val numeroPendents = objectiusFiltered.count()
                 var text = ""
                 if (numeroPendents > 0) {
                     createNotificationChannel()
@@ -222,6 +231,8 @@ class MainActivity : AppCompatActivity() {
     /**
      * Restableix l'estat de notificació a la base de dades perquè es pugui tornar a mostrar una notificació.
      * L'estat de la notificació es restableix si la darrera vegada que es va mostrar una notificació va ser fa almenys un dia.
+     *
+     * @author Pablo Morante
      */
     private fun resetNotification() {
         val actualDay = Calendar.getInstance().getTime()// dia i hora actual

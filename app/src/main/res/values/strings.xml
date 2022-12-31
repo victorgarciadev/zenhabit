@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZenHabit</string>
 
-    <!-- Valors provisionals: DropdownMenu items (Categories) -->
+    <!-- Valors DropdownMenu items (Categories) -->
     <string-array name="categories">
         <item>Aprenentatge</item>
         <item>Productivitat</item>
@@ -60,7 +60,7 @@
     <string name="descripcio_olivera">La seva sabiduria t\'ajudarà a prendre millors decisions per complir els teus objectius.</string>
     <string name="descripcio_girasol">La seva energia et farà imparable!</string>
     <string name="descripcio_rosa">La seva bellesa et donarà optimisme per encarar els nous reptes.</string>
-    <string name="descripcio_lavanda">La seva fragancia t\'ajudarà a aclarir la ment per prendre millors decisions</string>
+    <string name="descripcio_lavanda">La seva fragància t\'ajudarà a aclarir la ment per prendre millors decisions.</string>
     <string name="descripcio_bambu">La seva flexibilitat t\'ajudarà a trobar nous enfocs als teus problemes.</string>
     <string name="descripcio_cactus">Les seves espines t\'ajudaran a mantenir allunyats els mals hàbits!</string>
 
@@ -92,6 +92,11 @@
     <string name="nom_habit">Nom Hàbit</string>
     <string name="data_limit_hint">00/00/00</string>
     <string name="no_data_available">No tens objectius pendents.</string>
+    <string name="label_finalitzacio_objectiu">Finalitza:</string>
+    <string name="formulari_nom_objectiu">El nom no pot superar els 25 caràcters.</string>
+    <string name="formulari_nom_objectiu2">Un nom és necessari.</string>
+    <string name="formulari_categoria">S\'ha de seleccionar una categoria.</string>
+    <string name="formulari_date">La data ha de ser anterior a avui.</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -174,6 +179,9 @@
     <string name="toast_tasca_creada">Tasca creada correctament!</string>
     <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
     <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
+    <string name="toast_accept_terms">Cal acceptar els Termes i Condicions.</string>
+    <string name="toast_change_name">Nom d\'usuari canviat correctament.</string>
+    <string name="toast_formulari_habit">S\'ha de seleccionar mínim 1 dia de repetició.</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>

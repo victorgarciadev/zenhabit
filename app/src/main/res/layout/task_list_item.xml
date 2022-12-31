@@ -20,7 +20,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="#CC22343C"
+        android:backgroundTint="@color/fondo"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
@@ -30,7 +30,7 @@
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:background="@drawable/rounded_corner"
-            android:backgroundTint="@color/shimmer_color"
+            android:backgroundTint="#3dd598"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintHorizontal_bias="0.6"
@@ -50,20 +50,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:background="@color/shimmer_color">
+                android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/txtNomTasca"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:background="@color/shimmer_color"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
                     android:text="@string/nom_de_la_tasca"
                     android:textAlignment="textStart"
-                    android:textColor="@color/shimmer_color"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +91,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:background="@color/shimmer_color"
                     android:text="@string/label_finalitzacio_objectiu"
-                    android:textColor="@color/shimmer_color"
+                    android:textColor="#ccc"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +104,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:background="@color/shimmer_color"
                     android:text="@string/hora"
                     android:textAlignment="center"
-                    android:textColor="@color/shimmer_color"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +126,7 @@
             android:alpha="1"
             android:backgroundTint="#00FFFFFF"
             android:drawableTop="@drawable/ic_baseline_done"
-            android:drawableTint="@color/shimmer_color"
+            android:drawableTint="#3dd598"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
