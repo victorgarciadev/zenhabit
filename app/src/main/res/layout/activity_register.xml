@@ -174,42 +174,14 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView_iconPsw"
                     app:layout_constraintTop_toBottomOf="@+id/input_createEmail" />
 
-                <Button
-                    android:id="@+id/btn_register"
-                    android:layout_width="250dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="48dp"
-                    android:backgroundTint="#1DBE7D"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/registrar_se"
-                    android:textSize="16sp"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/input_createPsw"
-                    tools:ignore="TextContrastCheck" />
-
-                <Button
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="250dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="32dp"
-                    android:backgroundTint="#FF565E"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/cancel_lar"
-                    android:textSize="16sp"
-                    app:cornerRadius="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_register" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/termsAndCondBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_cancel">
+                    app:layout_constraintTop_toBottomOf="@+id/input_createPsw">
 
                     <TextView
                         android:id="@+id/textView_termsAndConditions"
@@ -220,7 +192,7 @@
                         android:text="@string/termes_i_condicions"
                         android:textColor="#999999"
                         android:textColorLink="@color/white"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.042"
@@ -238,6 +210,37 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="#1DBE7D"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/registrar_se"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/termsAndCondBox"
+                    tools:ignore="TextContrastCheck" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="250dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#FF565E"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/cancel_lar"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
