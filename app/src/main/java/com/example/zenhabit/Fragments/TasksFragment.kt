@@ -64,10 +64,6 @@ class TasksFragment : Fragment() {
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
     private lateinit var pieChart: PieChart
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -143,11 +139,9 @@ class TasksFragment : Fragment() {
         mRecyclerView.layoutManager = mLayoutManager
         loadData()
 
-
         // chart
         pieChart = binding.pieChart
         preparePieData()
-
 
         return view
     }
@@ -287,22 +281,7 @@ class TasksFragment : Fragment() {
                 shimmerFrameLayout.visibility = View.INVISIBLE
 
 
-                mAdapter = AdapterObjectius(
-                    filteredList,
-                    { index -> deleteItem(index) },
-                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
-                        sendItem(
-                            nom,
-                            fecha,
-                            descripcio,
-                            categoria,
-                            tipus,
-                            hora,
-                            repeticion
-                        )
-                    });
-
-                mRecyclerView.adapter = mAdapter
+                setRecyclerView(filteredList)
 
             } else {
                 //ERROR
@@ -311,9 +290,34 @@ class TasksFragment : Fragment() {
             }
 
         }.addOnFailureListener { exception ->
-            Log.d("TAG", "ERROR AL OBTENER $exception")
+            Log.d("TAG", "ERROR AL OBTENER ${exception}")
 
         }
+    }
+
+    /**
+     * Estableix la RecyclerView amb la llista d'Objectius donada.
+     *
+     * @param objectiusList llista d'Objectius per mostrar al RecyclerView
+     * @author Izan Jimenez, Pablo Morante
+     */
+    private fun setRecyclerView(objectiusList: List<Objectius>) {
+        mAdapter = AdapterObjectius(
+            objectiusList,
+            { index -> deleteItem(index) },
+            { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
+                sendItem(
+                    nom,
+                    fecha,
+                    descripcio,
+                    categoria,
+                    tipus,
+                    hora,
+                    repeticion
+                )
+            })
+
+        mRecyclerView.setAdapter(mAdapter)
     }
 
     /**
@@ -355,7 +359,7 @@ class TasksFragment : Fragment() {
      * @author Izan Jimenez
      */
     private fun deleteItem(index: Int) {
-        val objectiuSeleccionat = mAdapter.getItem(index) as Objectius
+        var objectiuSeleccionat = mAdapter.getItem(index) as Objectius
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val objectius = Objectius.dataFirebaseToObjectius(result)
@@ -366,7 +370,7 @@ class TasksFragment : Fragment() {
                         objectiuLlista.complert = true
                         objectius.set(index, objectiuLlista)
                         val filteredList = objectius.filter { !it.complert }
-                        mAdapter.setItems(filteredList)
+                        setRecyclerView(filteredList)
                         break
                     }
                     index++
@@ -379,15 +383,15 @@ class TasksFragment : Fragment() {
                 db.collection("Plantes").document(numRandom.toString()).get()
                     .addOnSuccessListener { secondResult ->
                         val plantesUsuari = PlantaUsuari.dataFirebaseToPlanta(result)
-                        val canvisPlanta = plantesUsuari.get(numRandom-1)
+                        val canvisPlanta = plantesUsuari.get(numRandom - 1)
                         var quantitat = canvisPlanta.quantitat
                         quantitat++
                         canvisPlanta.quantitat = quantitat
-                        plantesUsuari.set(numRandom-1, canvisPlanta)
+                        plantesUsuari.set(numRandom - 1, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
                             .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {
-                                val language = Locale.getDefault().getLanguage()
+                                val language = Locale.getDefault().language
                                 if (language == "en") {
                                     Toast(activity).showCustomToast(
                                         getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
@@ -429,7 +433,7 @@ class TasksFragment : Fragment() {
 
         // on below line we are setting hole
         // and hole color for pie chart
-        pieChart.isDrawHoleEnabled = true
+        pieChart.setDrawHoleEnabled(true)
         pieChart.setHoleColor(Color.TRANSPARENT)
 
         // on below line we are setting circle color and alpha
@@ -445,7 +449,7 @@ class TasksFragment : Fragment() {
 
         // on below line we are setting
         // rotation for our pie chart
-        pieChart.rotationAngle = 0f
+        pieChart.setRotationAngle(0f)
 
         // enable rotation of the pieChart by touch
         pieChart.setRotationEnabled(true)
