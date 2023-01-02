@@ -13,6 +13,11 @@
     <string name="titol_home_progres">PROGRESS</string>
     <string name="titol_jardi">Garden</string>
     <string name="categoria">Category</string>
+    <string-array name="categories">
+        <item>Learning</item>
+        <item>Productividad</item>
+        <item>Health</item>
+    </string-array>
     <string name="noInternet">You don\'t have Internet connection. Please, try again.</string>
     <string name="label_home_pendents">To do</string>
     <string name="label_home_complerts">Completed habits</string>
