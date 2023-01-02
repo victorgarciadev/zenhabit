@@ -56,7 +56,7 @@ class CreateEditTaskFragment : Fragment() {
         }
         val categoria = arguments?.get("categoria").toString()
         if (categoria != "null") {
-            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+            checkLanguageCategoria(categoria)
         }
         val descripcio = arguments?.get("descripcio").toString()
         if (descripcio != "null") {
@@ -204,6 +204,25 @@ class CreateEditTaskFragment : Fragment() {
             selectedDateBundle.putString("SELECTED_DATE", selectedDate)
 
             setFragmentResult("REQUEST_KEY", selectedDateBundle)
+        }
+    }
+
+    /**
+     * Comprova l'idioma del dispositiu i estableix el TextView per a la categoria de la tasca en l'idioma corresponent.
+     *
+     * @param categoria de la tasca
+     * @author Pablo Morante
+     */
+    private fun checkLanguageCategoria(categoria: String) {
+        val language = Locale.getDefault().language
+        if (language == "es" && (categoria == "Aprendizaje" || categoria == "Producticidad" || categoria == "Salud")) {
+            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+        } else if (language == "en" && (categoria == "Learning" || categoria == "Productivity" || categoria == "Health")) {
+            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+        } else if (language == "ca" && (categoria == "Aprenentatge" || categoria == "Productivitat" || categoria == "Salut")) {
+            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+        } else {
+            binding.dropDwnMenuCategoriesTasca.editText?.setText("")
         }
     }
 
