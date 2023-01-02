@@ -32,7 +32,7 @@
                     android:id="@+id/ReptesDiaris"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/reptes_diaris"
                     android:textColor="#FFFFFF"
                     android:textSize="34sp"
@@ -45,7 +45,7 @@
                     android:id="@+id/frameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#8A334D57"
                     android:orientation="vertical"
@@ -111,9 +111,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="53dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/tasques"
                     android:textColor="@color/white"
                     android:textSize="34sp"
@@ -121,21 +119,21 @@
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-                    app:layout_constraintVertical_bias="0.6" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <Button
                     android:id="@+id/addTasc"
                     style="@style/button_addTasck"
                     android:layout_width="54dp"
                     android:layout_height="64dp"
-                    android:layout_margin="5dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
                     android:backgroundTint="#2C3E46"
                     android:text="@string/boton"
                     app:cornerRadius="100dp"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+                    app:layout_constraintVertical_bias="1.0"
                     tools:ignore="TextContrastCheck,TextContrastCheck">
 
                 </Button>
@@ -144,7 +142,7 @@
                     android:id="@+id/container_tasques"
                     android:layout_width="0dp"
                     android:layout_height="230dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="80dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -196,15 +194,16 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:listitem="@layout/task_list_item" />
+
                         <TextView
                             android:id="@+id/empty_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/no_data_available"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            android:gravity="center"
-                            android:visibility="gone"
-                            android:text="@string/no_data_available" />
+                            android:visibility="gone" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -214,9 +213,8 @@
                     android:id="@+id/textViewSeguiment"
                     android:layout_width="wrap_content"
                     android:layout_height="53dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="8dp"
                     android:text="@string/seguiment"
                     android:textColor="@color/white"
                     android:textSize="34sp"
@@ -229,7 +227,6 @@
                     android:id="@+id/container_seguiment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
                     android:padding="16dp"
