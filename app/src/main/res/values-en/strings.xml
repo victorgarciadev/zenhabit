@@ -15,7 +15,7 @@
     <string name="categoria">Category</string>
     <string-array name="categories">
         <item>Learning</item>
-        <item>Productividad</item>
+        <item>Productivity</item>
         <item>Health</item>
     </string-array>
     <string name="noInternet">You don\'t have Internet connection. Please, try again.</string>

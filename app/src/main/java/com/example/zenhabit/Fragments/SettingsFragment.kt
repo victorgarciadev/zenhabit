@@ -31,72 +31,27 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.config_title))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title =
+            getString(R.string.config_title)
 
         binding.btnSaveNewPsw.setOnClickListener {
-            val actualUser = FirebaseAuth.getInstance().currentUser
-            val email = actualUser!!.email
-            val actualPsw = binding.inputActualPsw.text
+            val actualPsw = binding.inputActualPsw.text.toString()
             if (!actualPsw.isEmpty()) {
-                val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
-                actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updatePassword(binding.inputChangePsw.text.toString())
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast(activity).showCustomToast(getString(R.string.toast_change_password))
-                                binding.inputActualPsw.text.clear()
-                                binding.inputChangePsw.text.clear()
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.error_password_created))
-                                binding.inputActualPsw.text.clear()
-                                binding.inputChangePsw.text.clear()
-                            }
-                        }
-                }
+                changePassword(actualPsw)
             }
         }
 
         binding.btnSaveEmail.setOnClickListener {
-            val actualUser = FirebaseAuth.getInstance().currentUser
-            val email = actualUser!!.email
-            val actualPsw = binding.inputActualPswEmail.text
-            if (!actualPsw.isEmpty()) {
-                val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
-                actualUser.reauthenticate(credential).addOnCompleteListener {
-                    actualUser.updateEmail(binding.inputChangeEmail.text.toString())
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                db.collection("Usuaris")
-                                    .document(actualUser.uid)
-                                    .update("email", binding.inputChangeEmail.text.toString())
-                                Toast(activity).showCustomToast(getString(R.string.toast_change_email))
-                                binding.inputActualPswEmail.text.clear()
-                                binding.inputChangeEmail.text.clear()
-                            } else {
-                                Toast(activity).showCustomToast(getString(R.string.error_email_created))
-                                binding.inputActualPswEmail.text.clear()
-                                binding.inputChangeEmail.text.clear()
-                            }
-                        }
-                }
+            val actualPsw = binding.inputActualPswEmail.text.toString()
+            if (actualPsw.isNotEmpty()) {
+                changeEmail(actualPsw)
             }
         }
 
         binding.btnSaveNom.setOnClickListener {
             val nouNom = binding.inputChangeUserName.text.toString()
-            if (nouNom.length <= 15 && nouNom.length >= 3) {
-                val actualUser = FirebaseAuth.getInstance().currentUser
-                val profileUpdates = userProfileChangeRequest {
-                    displayName = binding.inputChangeUserName.text.toString()
-                }
-                actualUser!!.updateProfile(profileUpdates)
-                db.collection("Usuaris")
-                    .document(actualUser.uid)
-                    .update("nom", binding.inputChangeUserName.text.toString())
-                    .addOnSuccessListener {
-                        Toast(activity).showCustomToast(getString(R.string.toast_change_name))
-                        binding.inputChangeUserName.text.clear()
-                    }
+            if (nouNom.length in 3..15) {
+                changeNom()
             } else {
                 Toast(activity).showCustomToast(getString(R.string.error_username_created))
             }
@@ -106,6 +61,77 @@ class SettingsFragment : Fragment() {
 
         return binding.root
 
+    }
+
+    /**
+     * Canvia la contrasenya de l'usuari connectat actualment.
+     *
+     * @param actualPsw contrasenya actual de l'usuari
+     */
+    private fun changePassword(actualPsw: String) {
+        val actualUser = FirebaseAuth.getInstance().currentUser
+        val email = actualUser!!.email
+        val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
+        actualUser.reauthenticate(credential).addOnCompleteListener {
+            actualUser.updatePassword(binding.inputChangePsw.text.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast(activity).showCustomToast(getString(R.string.toast_change_password))
+                        binding.inputActualPsw.text.clear()
+                        binding.inputChangePsw.text.clear()
+                    } else {
+                        Toast(activity).showCustomToast(getString(R.string.error_password_created))
+                        binding.inputActualPsw.text.clear()
+                        binding.inputChangePsw.text.clear()
+                    }
+                }
+        }
+    }
+
+    /**
+     * Canvia el correu electrònic de l'usuari connectat actualment.
+     *
+     * @param actualPsw contrasenya actual de l'usuari
+     */
+    private fun changeEmail(actualPsw: String) {
+        val actualUser = FirebaseAuth.getInstance().currentUser
+        val email = actualUser!!.email
+        val credential = EmailAuthProvider.getCredential(email!!, actualPsw.toString())
+        actualUser.reauthenticate(credential).addOnCompleteListener {
+            actualUser.updateEmail(binding.inputChangeEmail.text.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        db.collection("Usuaris")
+                            .document(actualUser.uid)
+                            .update("email", binding.inputChangeEmail.text.toString())
+                        Toast(activity).showCustomToast(getString(R.string.toast_change_email))
+                        binding.inputActualPswEmail.text.clear()
+                        binding.inputChangeEmail.text.clear()
+                    } else {
+                        Toast(activity).showCustomToast(getString(R.string.error_email_created))
+                        binding.inputActualPswEmail.text.clear()
+                        binding.inputChangeEmail.text.clear()
+                    }
+                }
+        }
+    }
+
+    /**
+     * Canvia el nom de l'usuari connectat actualment.
+     */
+    private fun changeNom() {
+        val actualUser = FirebaseAuth.getInstance().currentUser
+        val profileUpdates = userProfileChangeRequest {
+            displayName = binding.inputChangeUserName.text.toString()
+        }
+        actualUser!!.updateProfile(profileUpdates)
+        db.collection("Usuaris")
+            .document(actualUser.uid)
+            .update("nom", binding.inputChangeUserName.text.toString())
+            .addOnSuccessListener {
+                Toast(activity).showCustomToast(getString(R.string.toast_change_name))
+                binding.inputChangeUserName.text.clear()
+            }
     }
 
     /**

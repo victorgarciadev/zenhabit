@@ -7,13 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.Gravity
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +23,8 @@ import com.example.zenhabit.databinding.FragmentTasksBinding
 import com.example.zenhabit.models.Dies
 import com.example.zenhabit.models.Objectius
 import com.example.zenhabit.models.PlantaUsuari
+import com.example.zenhabit.databinding.ObjDiariAyoutBinding
+import com.example.zenhabit.models.*
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -31,12 +33,20 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.auth.User
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.collections.List
+
 
 /**
  * @author Victor García, Izan Jimenez, Txell Llanas, Pablo Morante
@@ -46,7 +56,8 @@ class TasksFragment : Fragment() {
     private lateinit var _binding: FragmentTasksBinding
     private val binding get() = _binding
 
-    val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+    private var auth: FirebaseAuth = Firebase.auth
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterObjectius
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
@@ -56,11 +67,11 @@ class TasksFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.tasks_title))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.tasks_title)
         val view = binding.root
         _binding.addTasc.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment2_to_createEditTaskFragment)
@@ -78,17 +89,21 @@ class TasksFragment : Fragment() {
                 .addOnSuccessListener { result ->
                     val titol = result.get("titol")
                     val desc = result.get("descripcio")
+                    val done = result.get("vist") as Boolean
                     if (i == 1) {
                         binding.Obj1.textViewDesc.text = desc.toString()
                         binding.Obj1.titolRepte.text = titol.toString()
+                        binding.Obj1.checkboxDone.isChecked = done
                     }
                     if (i == 2) {
                         binding.Obj2.textViewDesc.text = desc.toString()
                         binding.Obj2.titolRepte.text = titol.toString()
+                        binding.Obj2.checkboxDone.isChecked = done
                     }
                     if (i == 3) {
                         binding.Obj3.textViewDesc.text = desc.toString()
                         binding.Obj3.titolRepte.text = titol.toString()
+                        binding.Obj3.checkboxDone.isChecked = done
                     }
                 }
         }
@@ -98,7 +113,20 @@ class TasksFragment : Fragment() {
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
+
         }, 1000)
+
+        //canviar de color els checkboxes
+        binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj1, 1)
+        }
+        binding.Obj2.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj2, 2)
+        }
+        binding.Obj3.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkChecked(isChecked, binding.Obj3, 3)
+        }
 
 
         //----------------NEW RECYCLERVIEW-----------------
@@ -118,12 +146,112 @@ class TasksFragment : Fragment() {
         return view
     }
 
+
+    //--------- Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari -------
+//    private fun omplirLlistReptes() {
+//
+//        val llistaReptes = ArrayList<RepteUsuari>()
+//
+//        for (i in 1..3) {
+//            val docref = FirebaseFirestore.getInstance().collection("Reptes")
+//                .document(i.toString()).get()
+//                .addOnSuccessListener { result ->
+//
+////                    val a = result.toObject<RepteUsuari>()
+////                    if (a != null) {
+////                        Log.d("REPTESObject", a.acosneguit.toString())
+////                    }
+//
+//
+//                    if (result != null) {
+//                        val r = Repte(
+//                            i,
+//                            result.get("descripcio").toString(),
+//                            result.get("titol").toString()
+//                        )
+//
+//                        val ru =
+//                            RepteUsuari(r, result.get("vist") as Boolean)
+//
+////                                    val titol = result.get("titol")
+////                                    val desc = result.get("descripcio")
+////                                    val done = result.get("vist") as Boolean
+//                        Log.d("REPTES", ru.repte!!.titol)
+//
+//                        llistaReptes.add(ru)
+//
+//
+//                    }
+//                    FirebaseFirestore.getInstance().collection("Usuaris")
+//                        .document(auth.currentUser!!.uid)
+//                        .update("llistaReptes", llistaReptes)
+//                    Log.d("REPTESlength2", llistaReptes.size.toString())
+//
+//                }.addOnFailureListener { exception ->
+//                    Log.d("TAG", "ERROR: $exception")
+//                }
+//        }
+//    }
+
+    /***
+     * Funcio per canviar de color els checkboxes
+     * @author Izan Jimenez
+     */
+    private fun checkChecked(
+        isChecked: Boolean,
+        objDiariAyoutBinding: ObjDiariAyoutBinding,
+        obj: Int
+    ) {
+        if (isChecked) {
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D174C37"))
+            FirebaseFirestore.getInstance().collection("Reptes")
+                .document(obj.toString()).update("vist", true)
+
+        } else {
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D3DD497"))
+            FirebaseFirestore.getInstance().collection("Reptes")
+                .document(obj.toString()).update("vist", false)
+        }
+    }
+
+    /***
+     * Reseteja els reptes diaris cada 24h
+     */
+    private fun resetReptesDiaris() {
+        val actualDay = Calendar.getInstance().time// dia i hora actual
+
+        FirebaseFirestore.getInstance().collection("Verificacions")
+            .document(auth.currentUser!!.uid).get()
+            .addOnSuccessListener { result ->
+                val lastDay = result.getTimestamp("lastDate")!!
+                    .toDate() // dia i hora que es va llençar l'última notificació
+                val difference: Long = actualDay.time - lastDay.time
+                val seconds = difference / 1000
+                val minutes = seconds / 60
+                val hours = minutes / 60
+                val days = hours / 24
+                Log.d("DAYS", days.toString())
+                if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
+                    checkChecked(false, binding.Obj1, 1)
+                    binding.Obj3.checkboxDone.isChecked = false
+                    checkChecked(false, binding.Obj1, 2)
+                    binding.Obj3.checkboxDone.isChecked = false
+                    checkChecked(false, binding.Obj1, 3)
+                    binding.Obj3.checkboxDone.isChecked = false
+
+//                    // val doc = FirebaseFirestore.getInstance().collection("Reptes").get().result.count()
+//                    Log.d("COUNT", "Count: ${doc}")
+                }
+            }
+
+
+    }
     /**
      * @author Izan Jimenez
      */
     private fun loadData() {
 
-        var ret: ArrayList<Objectius> = ArrayList()
+        var ret: ArrayList<Objectius>
 
         val docref = db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
         docref.get().addOnSuccessListener { document ->
@@ -153,22 +281,7 @@ class TasksFragment : Fragment() {
                 shimmerFrameLayout.visibility = View.INVISIBLE
 
 
-                mAdapter = AdapterObjectius(
-                    filteredList,
-                    { index -> deleteItem(index) },
-                    { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
-                        sendItem(
-                            nom,
-                            fecha,
-                            descripcio,
-                            categoria,
-                            tipus,
-                            hora,
-                            repeticion
-                        )
-                    });
-
-                mRecyclerView.setAdapter(mAdapter)
+                setRecyclerView(filteredList)
 
             } else {
                 //ERROR
@@ -180,6 +293,31 @@ class TasksFragment : Fragment() {
             Log.d("TAG", "ERROR AL OBTENER ${exception}")
 
         }
+    }
+
+    /**
+     * Estableix la RecyclerView amb la llista d'Objectius donada.
+     *
+     * @param objectiusList llista d'Objectius per mostrar al RecyclerView
+     * @author Izan Jimenez, Pablo Morante
+     */
+    private fun setRecyclerView(objectiusList: List<Objectius>) {
+        mAdapter = AdapterObjectius(
+            objectiusList,
+            { index -> deleteItem(index) },
+            { nom, fecha, descripcio, categoria, tipus, hora, repeticion ->
+                sendItem(
+                    nom,
+                    fecha,
+                    descripcio,
+                    categoria,
+                    tipus,
+                    hora,
+                    repeticion
+                )
+            })
+
+        mRecyclerView.setAdapter(mAdapter)
     }
 
     /**
@@ -232,7 +370,7 @@ class TasksFragment : Fragment() {
                         objectiuLlista.complert = true
                         objectius.set(index, objectiuLlista)
                         val filteredList = objectius.filter { !it.complert }
-                        mAdapter.setItems(filteredList)
+                        setRecyclerView(filteredList)
                         break
                     }
                     index++
@@ -245,15 +383,15 @@ class TasksFragment : Fragment() {
                 db.collection("Plantes").document(numRandom.toString()).get()
                     .addOnSuccessListener { secondResult ->
                         val plantesUsuari = PlantaUsuari.dataFirebaseToPlanta(result)
-                        val canvisPlanta = plantesUsuari.get(numRandom-1)
+                        val canvisPlanta = plantesUsuari.get(numRandom - 1)
                         var quantitat = canvisPlanta.quantitat
                         quantitat++
                         canvisPlanta.quantitat = quantitat
-                        plantesUsuari.set(numRandom-1, canvisPlanta)
+                        plantesUsuari.set(numRandom - 1, canvisPlanta)
                         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid)
                             .update("llistaPlantes", plantesUsuari)
                             .addOnSuccessListener {
-                                val language = Locale.getDefault().getLanguage()
+                                val language = Locale.getDefault().language
                                 if (language == "en") {
                                     Toast(activity).showCustomToast(
                                         getString(R.string.toast_objectiu_completat) + " " + secondResult.get(
