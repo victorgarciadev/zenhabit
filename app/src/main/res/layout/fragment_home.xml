@@ -72,7 +72,7 @@
 
                     <Button
                         android:id="@+id/btn_veureJardi"
-                        android:layout_width="335dp"
+                        android:layout_width="320dp"
                         android:layout_height="200dp"
                         android:backgroundTint="#30444E"
                         android:drawableTop="@drawable/fulles_200"
@@ -93,7 +93,7 @@
 
                     <Button
                         android:id="@+id/btn_veureHabitTasca"
-                        android:layout_width="335dp"
+                        android:layout_width="320dp"
                         android:layout_height="200dp"
                         android:layout_marginTop="8dp"
                         android:backgroundTint="#30444E"

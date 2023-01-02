@@ -112,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="53dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginBottom="-4dp"
                     android:text="@string/tasques"
                     android:textColor="@color/white"
                     android:textSize="34sp"
@@ -127,7 +128,10 @@
                     android:layout_width="54dp"
                     android:layout_height="64dp"
                     android:layout_marginEnd="16dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
                     android:backgroundTint="#2C3E46"
+                    android:fontFamily="@font/open_sans_bold"
                     android:text="@string/boton"
                     app:cornerRadius="100dp"
                     app:layout_constraintBottom_toTopOf="@+id/container_tasques"
@@ -146,7 +150,6 @@
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#324B55"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.511"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                     tools:ignore="MissingConstraints">
@@ -221,7 +224,8 @@
                     app:autoSizeTextType="uniform"
                     app:layout_constraintBottom_toTopOf="@+id/container_seguiment"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/container_tasques" />
+                    app:layout_constraintTop_toBottomOf="@+id/container_tasques"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <FrameLayout
                     android:id="@+id/container_seguiment"
