@@ -10,7 +10,7 @@
     <string name="btn_home_tasca_habit">HABITS / TASKS</string>
     <string name="hola">Hello!</string>
     <string name="benvingut_da">Welcome!</string>
-    <string name="titol_home_progres">PROGRESS</string>
+    <string name="titol_home_progres">Progress</string>
     <string name="titol_jardi">Garden</string>
     <string name="categoria">Category</string>
     <string-array name="categories">
