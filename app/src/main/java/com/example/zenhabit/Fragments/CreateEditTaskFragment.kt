@@ -215,14 +215,42 @@ class CreateEditTaskFragment : Fragment() {
      */
     private fun checkLanguageCategoria(categoria: String) {
         val language = Locale.getDefault().language
-        if (language == "es" && (categoria == "Aprendizaje" || categoria == "Producticidad" || categoria == "Salud")) {
-            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
-        } else if (language == "en" && (categoria == "Learning" || categoria == "Productivity" || categoria == "Health")) {
-            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
-        } else if (language == "ca" && (categoria == "Aprenentatge" || categoria == "Productivitat" || categoria == "Salut")) {
-            binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+        if (language == "es") {
+            if (categoria == "Aprendizaje" || categoria == "Producticidad" || categoria == "Salud") {
+                binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+            } else {
+                if (categoria == "Learning" || categoria == "Aprenentatge") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Aprendizaje")
+                } else if (categoria == "Productivity" || categoria == "Productivitat") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Productividad")
+                } else if (categoria == "Health" || categoria == "Salut") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Salud")
+                }
+            }
+        } else if (language == "en") {
+            if (categoria == "Learning" || categoria == "Productivity" || categoria == "Health") {
+                binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+            } else {
+                if (categoria == "Aprendizaje" || categoria == "Aprenentatge") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Learning")
+                } else if (categoria == "Productividad" || categoria == "Productivitat") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Productivity")
+                } else if (categoria == "Salud" || categoria == "Salut") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Health")
+                }
+            }
         } else {
-            binding.dropDwnMenuCategoriesTasca.editText?.setText("")
+            if (categoria == "Aprenentatge" || categoria == "Productivitat" || categoria == "Salut") {
+                binding.dropDwnMenuCategoriesTasca.editText?.setText(categoria)
+            } else {
+                if (categoria == "Aprendizaje" || categoria == "Learning") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Aprenentatge")
+                } else if (categoria == "Productividad" || categoria == "Productivity") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Productivitat")
+                } else if (categoria == "Salud" || categoria == "Health") {
+                    binding.dropDwnMenuCategoriesTasca.editText?.setText("Salut")
+                }
+            }
         }
     }
 
