@@ -211,7 +211,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     // 1. Crear constructor per mostrar la notificació
                     val builder = NotificationCompat.Builder(this, canalID)
-                        .setSmallIcon(R.drawable.ic_notificacio)
+                        .setSmallIcon(R.drawable.fulles_200)
                         .setContentTitle(getString(R.string.label_notificacio_jardi))
                         .setContentText(text)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)

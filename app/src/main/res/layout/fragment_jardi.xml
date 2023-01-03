@@ -14,16 +14,16 @@
         android:layout_height="match_parent"
         android:visibility="invisible"
         app:snowflakeAlphaMax="255"
-        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMin="120"
         app:snowflakeAngleMax="5"
         app:snowflakeImage="@drawable/snowflake"
-        app:snowflakeSizeMax="7dp"
+        app:snowflakeSizeMax="9dp"
         app:snowflakeSizeMin="3dp"
-        app:snowflakeSpeedMax="2"
+        app:snowflakeSpeedMax="5"
         app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="120" />
+        app:snowflakesNum="100" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,6 +60,7 @@
                         android:id="@+id/Label_Jardi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="@string/titol_jardi"
                         android:textColor="@color/white"
                         android:textSize="34sp"
@@ -70,14 +71,15 @@
                     <!-- APARADOR Arbres, Flors i Plantes -->
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="208dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/rounded_corner"
                         android:backgroundTint="#8A334D57"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="10dp"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Label_Jardi">
@@ -110,6 +112,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/avet"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
 
                                         app:layout_constraintStart_toStartOf="parent"
@@ -120,10 +123,11 @@
                                         android:id="@+id/mesInfo_Avet"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard1"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -171,6 +175,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/palmera"
                                         android:textColor="#FEC442"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
 
                                         app:layout_constraintStart_toStartOf="parent"
@@ -179,10 +184,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FEC442"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard2"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -228,6 +234,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/olivera"
                                         android:textColor="#FD565E"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -235,10 +242,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FD565E"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard3"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -286,6 +294,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/girasol"
                                         android:textColor="#3dd598"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -293,10 +302,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#3dd598"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard4"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -341,6 +351,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/rosa"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -348,10 +359,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard5"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -396,6 +408,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/lavanda"
                                         android:textColor="#FEC442"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -403,10 +416,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FEC442"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard6"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -451,6 +465,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/aloe_vera"
                                         android:textColor="#FD565E"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -458,10 +473,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FD565E"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard7"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -507,6 +523,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/bambu"
                                         android:textColor="#3dd598"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -514,10 +531,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#3dd598"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard8"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -545,7 +563,6 @@
                                 android:id="@+id/cardView_Cactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginEnd="10dp"
                                 app:cardBackgroundColor="@android:color/transparent"
                                 app:cardElevation="0dp">
 
@@ -562,6 +579,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/cactus"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -570,10 +588,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard9"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -606,6 +625,7 @@
                         android:id="@+id/Aconseguides"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:text="@string/aconseguides"
                         android:textColor="@color/white"
@@ -618,9 +638,9 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/rounded_corner"
-                        android:backgroundTint="#293E46"
+                        android:backgroundTint="#8A334D57"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Aconseguides">
