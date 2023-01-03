@@ -38,7 +38,6 @@ class Objectius(
             //fun dataFirebaseToObjectius(document: ArrayList<Objectius>): ArrayList<Objectius> {
 
             var ret: ArrayList<Objectius> = ArrayList()
-
             val d: Map<String, String> = document.data as Map<String, String>
             val a = d.get("llistaObjectius") as List<*>
             for (i in a) {

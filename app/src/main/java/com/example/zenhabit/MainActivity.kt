@@ -13,7 +13,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -22,9 +21,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.zenhabit.Activities.LoginActivity
 import com.example.zenhabit.databinding.ActivityMainBinding
 import com.example.zenhabit.models.Objectius
-import com.example.zenhabit.models.Repte
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -239,17 +238,24 @@ class MainActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val lastDay = result.getTimestamp("lastDate")!!
-                    .toDate() // dia i hora que es va llençar l'última notificació
-                val difference: Long = actualDay.time - lastDay.time
-                val seconds = difference / 1000
-                val minutes = seconds / 60
-                val hours = minutes / 60
-                val days = hours / 24
-                if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
-                    FirebaseFirestore.getInstance().collection("Verificacions")
-                        .document(auth.currentUser!!.uid)
-                        .update("vist", false, "lastDate", actualDay)
+                if (!result.data.isNullOrEmpty()) {
+                    val lastDay = result.getTimestamp("lastDate")!!
+                        .toDate() // dia i hora que es va llençar l'última notificació
+
+                    val difference: Long = actualDay.time - lastDay.time
+                    val seconds = difference / 1000
+                    val minutes = seconds / 60
+                    val hours = minutes / 60
+                    val days = hours / 24
+                    if (days >= 1) { // si ja ha passat un dia canvia la bbdd per saber que ha de llençar la notifiació una altre vegada
+                        FirebaseFirestore.getInstance().collection("Verificacions")
+                            .document(auth.currentUser!!.uid)
+                            .update("vist", false, "lastDate", actualDay)
+                    }
+                } else {
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
                 }
             }
     }
