@@ -19,6 +19,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -91,11 +93,15 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         var plantes: ArrayList<PlantaUsuari> = ArrayList()
+                        var reptes: ArrayList<RepteUsuari> = ArrayList()
                         addPlantesToList(plantes)
+                        runBlocking {
+                            addReptesToList(reptes)
+                        }
                         val usuari = Usuari(
                             nom,
                             email,
-                            ArrayList<RepteUsuari>(),
+                            reptes,
                             plantes,
                             ArrayList<Objectius>()
                         )
@@ -229,5 +235,16 @@ class RegisterActivity : AppCompatActivity() {
         plantes.add(PlantaUsuari("Bambú", 0))
         plantes.add(PlantaUsuari("Cactus", 0))
 
+    }
+
+    private suspend fun addReptesToList(reptes: ArrayList<RepteUsuari>) {
+        val result = FirebaseFirestore.getInstance().collection("Reptes")
+            .get().await()
+
+        if (result != null) {
+            for (repte in result) {
+                reptes.add(RepteUsuari(repte.get("idRepte") as Long, false))
+            }
+        }
     }
 }
