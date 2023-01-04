@@ -55,7 +55,7 @@ class JardiFragment : Fragment() {
     private fun christmasSpecial() {
         val actualDay = Calendar.getInstance().getTime()
         val d1 = "12/15/2022"
-        val d2 = "01/06/2023"
+        val d2 = "02/01/2023"
 
         val sdf = SimpleDateFormat("MM/dd/yyyy")
         val firstDate: Date = sdf.parse(d1)
