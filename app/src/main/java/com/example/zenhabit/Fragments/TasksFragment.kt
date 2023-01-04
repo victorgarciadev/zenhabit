@@ -1,5 +1,6 @@
 package com.example.zenhabit.Fragments
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -195,7 +196,7 @@ class TasksFragment : Fragment() {
 
     /***
      * Funcio per canviar de color els checkboxes
-     * @author Izan Jimenez
+     * @author Izan Jimenez, Víctor García
      */
     private fun checkChecked(
         isChecked: Boolean,
@@ -203,12 +204,18 @@ class TasksFragment : Fragment() {
         obj: Int
     ) {
         if (isChecked) {
-            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D174C37"))
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
+            objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#6B7477"))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#6B7477")))
+            objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#6B7477"))
             FirebaseFirestore.getInstance().collection("Reptes")
                 .document(obj.toString()).update("vist", true)
 
         } else {
-            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D3DD497"))
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#3dd598"))
+            objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#2E2E2E"))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#2E2E2E")))
+            objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#2E2E2E"))
             FirebaseFirestore.getInstance().collection("Reptes")
                 .document(obj.toString()).update("vist", false)
         }
@@ -419,7 +426,7 @@ class TasksFragment : Fragment() {
     /**
      * Prepara les dades del gràfic i les configura.
      *
-     * @author Pablo Morante
+     * @author Pablo Morante, Víctor García
      */
     private fun preparePieData() {
         // on below line we are setting user percent value,
@@ -488,8 +495,8 @@ class TasksFragment : Fragment() {
 
         // add a lot of colors to listwwssw
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.parseColor("#A6FD565E"))
-        colors.add(Color.parseColor("#993DD497"))
+        colors.add(Color.parseColor("#FD565E"))
+        colors.add(Color.parseColor("#3dd598"))
 
         // on below line we are setting colors.
         dataSet.colors = colors

@@ -9,10 +9,11 @@
     <LinearLayout
         android:id="@+id/repte_diari_row1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="#993DD497"
+        android:backgroundTint="#3dd598"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,18 +26,18 @@
 
             <TextView
                 android:id="@+id/textViewDesc"
-                android:layout_width="156dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:singleLine="false"
                 android:text="@string/descobdiari"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textColor="#454545"
+                android:textSize="15sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.648"
+                app:layout_constraintHorizontal_bias="0.55"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TextContrastCheck" />
@@ -45,10 +46,10 @@
                 android:id="@+id/checkboxDone"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:buttonTint="@color/white"
+                android:buttonTint="#454545"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.7"
                 app:layout_constraintStart_toEndOf="@+id/textViewDesc"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
@@ -61,13 +62,13 @@
                 android:layout_margin="5dp"
                 android:layout_marginStart="16dp"
                 android:text=""
-                android:textColor="@color/white"
+                android:textColor="#454545"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textViewDesc"
+                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.521" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
