@@ -1,13 +1,15 @@
 package com.example.zenhabit.models
 
+import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * @author Pablo Morante, Izan Jimenez
  */
-class RepteUsuari(idRepte: Long, aconseguit: Boolean) {
-    var repte = idRepte
+class RepteUsuari(repte: Repte, aconseguit: Boolean) {
+    var repte = repte
     var aconseguit = aconseguit
 
     /***
@@ -26,14 +28,33 @@ class RepteUsuari(idRepte: Long, aconseguit: Boolean) {
             for (i in a) {
                 i as HashMap<String, String?>
                 val aconseguit = i["aconseguit"] as Boolean
-                var repte = i["repte"] as Long
+                var repte = i["repte"] as HashMap<String, String>
+
                 val r = RepteUsuari(
-                    repte,
+                    Repte(
+                        repte["idRepte"].toString().toInt(),
+                        repte["descripcio"].toString(),
+                        repte["titol"].toString()
+                    ),
                     aconseguit
                 )
                 ret.add(r)
             }
             return ret
         }
+
+        fun dataFirebaseReptestoReptesUsuaris(document: DocumentSnapshot): RepteUsuari {
+            return RepteUsuari(
+                Repte(
+                    document.get("idRepte") as Int,
+                    document.get("descripcio").toString(),
+                    document.get("titol").toString()
+                ), document.get("vist") as Boolean
+            )
+
+
+        }
+
+
     }
 }

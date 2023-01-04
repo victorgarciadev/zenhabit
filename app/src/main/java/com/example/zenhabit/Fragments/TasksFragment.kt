@@ -84,30 +84,62 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari.startShimmer()
 
         //obtenir els reptes diaris
-        for (i in 1..3) {
-            db.collection("Reptes")
-                .document(i.toString()).get()
-                .addOnSuccessListener { result ->
-                    val titol = result.get("titol")
-                    val desc = result.get("descripcio")
-                    val done = result.get("vist") as Boolean
+//        for (i in 1..3) {
+//            db.collection("Reptes")
+//                .document(i.toString()).get()
+//                .addOnSuccessListener { result ->
+//                    val titol = result.get("titol")
+//                    val desc = result.get("descripcio")
+//                    val done = result.get("vist") as Boolean
+//                    if (i == 1) {
+//                        binding.Obj1.textViewDesc.text = desc.toString()
+//                        binding.Obj1.titolRepte.text = titol.toString()
+//                        binding.Obj1.checkboxDone.isChecked = done
+//                    }
+//                    if (i == 2) {
+//                        binding.Obj2.textViewDesc.text = desc.toString()
+//                        binding.Obj2.titolRepte.text = titol.toString()
+//                        binding.Obj2.checkboxDone.isChecked = done
+//                    }
+//                    if (i == 3) {
+//                        binding.Obj3.textViewDesc.text = desc.toString()
+//                        binding.Obj3.titolRepte.text = titol.toString()
+//                        binding.Obj3.checkboxDone.isChecked = done
+//                    }
+//                }
+//        }
+
+
+
+        FirebaseFirestore.getInstance().collection("Usuaris")
+            .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
+                val llista = RepteUsuari.dataFirebasetoReptes(result)
+                Log.d("PRUEBA", llista[1].aconseguit.toString())
+                Log.d("PRUEBA", llista.size.toString())
+
+
+
+                for (i in 1..3) {
+                    //val j = (0..llista.size).random()
+
                     if (i == 1) {
-                        binding.Obj1.textViewDesc.text = desc.toString()
-                        binding.Obj1.titolRepte.text = titol.toString()
-                        binding.Obj1.checkboxDone.isChecked = done
+                        binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
+                        binding.Obj1.titolRepte.text = llista[0].repte.titol
+                        binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
                     }
                     if (i == 2) {
-                        binding.Obj2.textViewDesc.text = desc.toString()
-                        binding.Obj2.titolRepte.text = titol.toString()
-                        binding.Obj2.checkboxDone.isChecked = done
+                        binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
+                        binding.Obj2.titolRepte.text = llista[1].repte.titol
+                        binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
                     }
                     if (i == 3) {
-                        binding.Obj3.textViewDesc.text = desc.toString()
-                        binding.Obj3.titolRepte.text = titol.toString()
-                        binding.Obj3.checkboxDone.isChecked = done
+                        binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
+                        binding.Obj3.titolRepte.text = llista[2].repte.titol
+                        binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
                     }
                 }
-        }
+            }
+
 
         //Mostrar reptes
         Handler(Looper.getMainLooper()).postDelayed({
@@ -149,53 +181,41 @@ class TasksFragment : Fragment() {
 
 
     //--------- Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari -------
-//    private fun omplirLlistReptes() {
-//
-//        val llistaReptes = ArrayList<RepteUsuari>()
-//
-//        for (i in 1..3) {
-//            val docref = FirebaseFirestore.getInstance().collection("Reptes")
-//                .document(i.toString()).get()
-//                .addOnSuccessListener { result ->
-//
-////                    val a = result.toObject<RepteUsuari>()
-////                    if (a != null) {
-////                        Log.d("REPTESObject", a.acosneguit.toString())
-////                    }
-//
-//
-//                    if (result != null) {
-//                        val r = Repte(
-//                            i,
-//                            result.get("descripcio").toString(),
-//                            result.get("titol").toString()
-//                        )
-//
-//                        val ru =
-//                            RepteUsuari(r, result.get("vist") as Boolean)
-//
-////                                    val titol = result.get("titol")
-////                                    val desc = result.get("descripcio")
-////                                    val done = result.get("vist") as Boolean
-//                        Log.d("REPTES", ru.repte!!.titol)
-//
-//                        llistaReptes.add(ru)
-//
-//
+    private fun omplirLlistReptes() {
+
+        val llistaReptes = ArrayList<RepteUsuari>()
+
+        FirebaseFirestore.getInstance().collection("Reptes").get()
+            .addOnSuccessListener { result ->
+
+//                    val a = result.toObject<RepteUsuari>()
+//                    if (a != null) {
+//                        Log.d("REPTESObject", a.acosneguit.toString())
 //                    }
-//                    FirebaseFirestore.getInstance().collection("Usuaris")
-//                        .document(auth.currentUser!!.uid)
-//                        .update("llistaReptes", llistaReptes)
-//                    Log.d("REPTESlength2", llistaReptes.size.toString())
-//
-//                }.addOnFailureListener { exception ->
-//                    Log.d("TAG", "ERROR: $exception")
-//                }
-//        }
-//    }
+
+
+                if (result != null) {
+                    for (i in 1..result.size()) {
+
+                        val r = RepteUsuari.dataFirebaseReptestoReptesUsuaris(result.documents[i])
+                        llistaReptes.add(r)
+
+                    }
+                }
+                FirebaseFirestore.getInstance().collection("Usuaris")
+                    .document(auth.currentUser!!.uid)
+                    .update("llistaReptes", llistaReptes)
+                Log.d("REPTESlength2", llistaReptes.size.toString())
+
+            }.addOnFailureListener { exception ->
+                Log.d("TAG", "ERROR: $exception")
+            }
+
+    }
 
     /***
-     * Funcio per canviar de color els checkboxes una vegada marcats com complerts i desmarcant-los
+     * Funcio per canviar de color els checkboxes una vegada marcats com complerts i desmarcant-los.
+     * Ho canvia també a la BBDD
      * @author Izan Jimenez, Víctor García
      */
     private fun checkChecked(
@@ -206,18 +226,47 @@ class TasksFragment : Fragment() {
         if (isChecked) {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#6B7477"))
-            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#6B7477")))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(
+                ColorStateList.valueOf(
+                    Color.parseColor(
+                        "#6B7477"
+                    )
+                )
+            )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#6B7477"))
-            FirebaseFirestore.getInstance().collection("Reptes")
-                .document(obj.toString()).update("vist", true)
-
+            FirebaseFirestore.getInstance().collection("Usuaris")
+                .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
+                    val llista = RepteUsuari.dataFirebasetoReptes(result)
+                    for (i in 0..llista.size - 1) {
+                        if (llista[i].repte.titol.equals(objDiariAyoutBinding.titolRepte.text)) {
+                            llista[i].aconseguit = true
+                        }
+                    }
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(auth.currentUser!!.uid).update("llistaReptes", llista)
+                }
         } else {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#3dd598"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#2E2E2E"))
-            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#2E2E2E")))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(
+                ColorStateList.valueOf(
+                    Color.parseColor(
+                        "#2E2E2E"
+                    )
+                )
+            )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#2E2E2E"))
-            FirebaseFirestore.getInstance().collection("Reptes")
-                .document(obj.toString()).update("vist", false)
+            FirebaseFirestore.getInstance().collection("Usuaris")
+                .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
+                    val llista = RepteUsuari.dataFirebasetoReptes(result)
+                    for (i in 0..llista.size - 1) {
+                        if (llista[i].repte.titol.equals(objDiariAyoutBinding.titolRepte.text)) {
+                            llista[i].aconseguit = false
+                        }
+                    }
+                    FirebaseFirestore.getInstance().collection("Usuaris")
+                        .document(auth.currentUser!!.uid).update("llistaReptes", llista)
+                }
         }
     }
 
@@ -238,7 +287,7 @@ class TasksFragment : Fragment() {
                 val minutes = seconds / 60
                 val hours = minutes / 60
                 val days = hours / 24
-                Log.d("DAYS", days.toString())
+                Log.d("DAYS", " $days")
                 if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
                     checkChecked(false, binding.Obj1, 1)
                     binding.Obj3.checkboxDone.isChecked = false
@@ -253,6 +302,7 @@ class TasksFragment : Fragment() {
 
 
     }
+
     /**
      * Omple el recyclerView amb les dades que hi ha a la BBDD si aquesta esta disponible
      * @author Izan Jimenez

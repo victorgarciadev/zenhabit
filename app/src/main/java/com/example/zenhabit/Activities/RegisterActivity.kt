@@ -243,7 +243,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (result != null) {
             for (repte in result) {
-                reptes.add(RepteUsuari(repte.get("idRepte") as Long, false))
+                reptes.add(RepteUsuari(repte.get("repte") as Repte, false))
             }
         }
     }
