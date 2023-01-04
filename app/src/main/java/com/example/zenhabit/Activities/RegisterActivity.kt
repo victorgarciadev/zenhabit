@@ -114,8 +114,12 @@ class RegisterActivity : AppCompatActivity() {
                                 )
                             }
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-                        val actualDay = Calendar.getInstance().getTime()
-                        val temporal = VerificacioNotificacio(actualDay, false)
+                        val actualDay = Calendar.getInstance().time
+                        val calendar = Calendar.getInstance()
+                        calendar.time = actualDay
+                        calendar.add(Calendar.DATE, -2)
+                        val previousDay = calendar.time
+                        val temporal = VerificacioNotificacio(actualDay, false, previousDay)
                         db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)
@@ -237,13 +241,19 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Afegeix els reptes de la base de dades a la llista de reptes de l'usuari.
+     *
+     * @param reptes llista a la qual s'han d'afegir els reptes.
+     * @author Pablo Morante
+     */
     private suspend fun addReptesToList(reptes: ArrayList<RepteUsuari>) {
         val result = FirebaseFirestore.getInstance().collection("Reptes")
             .get().await()
 
         if (result != null) {
             for (repte in result) {
-                reptes.add(RepteUsuari(repte.get("idRepte") as Long, false))
+                reptes.add(RepteUsuari(repte.get("titol") as String, repte.get("descripcio") as String, false, false))
             }
         }
     }

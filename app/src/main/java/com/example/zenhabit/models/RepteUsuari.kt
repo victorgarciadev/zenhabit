@@ -1,15 +1,16 @@
 package com.example.zenhabit.models
 
 import com.google.firebase.firestore.DocumentSnapshot
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
  * @author Pablo Morante
  */
-class RepteUsuari(idRepte: Long, aconseguit: Boolean) {
-    var repte = idRepte
+class RepteUsuari(titol: String, descripcio: String, aconseguit: Boolean, mostrant: Boolean) {
+    var titol = titol
+    var descripcio = descripcio
     var aconseguit = aconseguit
+    var mostrant = mostrant
 
     companion object {
 
@@ -22,10 +23,14 @@ class RepteUsuari(idRepte: Long, aconseguit: Boolean) {
             for (i in a) {
                 i as HashMap<String, String?>
                 val aconseguit = i["aconseguit"] as Boolean
-                var repte = i["repte"] as Long
+                var titol = i["titol"] as String
+                var descripcio = i["descripcio"] as String
+                val mostrant = i["mostrant"] as Boolean
                 val r = RepteUsuari(
-                    repte,
-                    aconseguit
+                    titol,
+                    descripcio,
+                    aconseguit,
+                    mostrant
                 )
                 ret.add(r)
             }
