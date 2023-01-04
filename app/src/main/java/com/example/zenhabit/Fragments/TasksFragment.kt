@@ -1,5 +1,6 @@
 package com.example.zenhabit.Fragments
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
@@ -38,11 +39,15 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.auth.User
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.collections.List
 
 
@@ -87,6 +92,7 @@ class TasksFragment : Fragment() {
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
 
         }, 3000)
 
@@ -226,7 +232,7 @@ class TasksFragment : Fragment() {
 
     /***
      * Funcio per canviar de color els checkboxes
-     * @author Izan Jimenez
+     * @author Izan Jimenez, Víctor García
      */
     private suspend fun checkChecked(
         isChecked: Boolean,
@@ -238,7 +244,10 @@ class TasksFragment : Fragment() {
         val text = objDiariAyoutBinding.titolRepte.text.toString()
 
         if (isChecked) {
-            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D174C37"))
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
+            objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#6B7477"))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#6B7477")))
+            objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#6B7477"))
             for ((i, repte) in llistaReptes.withIndex()) {
                 if (repte.titol == text) {
                     llistaReptes[i].aconseguit = true
@@ -246,7 +255,10 @@ class TasksFragment : Fragment() {
                 }
             }
         } else {
-            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#4D3DD497"))
+            objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#3dd598"))
+            objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#2E2E2E"))
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#2E2E2E")))
+            objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#2E2E2E"))
             for ((i, repte) in llistaReptes.withIndex()) {
                 if (repte.titol == text) {
                     llistaReptes[i].aconseguit = false
@@ -263,7 +275,6 @@ class TasksFragment : Fragment() {
     /***
      * Reseteja els reptes diaris cada 24h
      */
-    @RequiresApi(Build.VERSION_CODES.N)
     private fun resetReptesDiaris() {
         val actualDay = Calendar.getInstance().time// dia i hora actual
 
@@ -495,7 +506,7 @@ class TasksFragment : Fragment() {
     /**
      * Prepara les dades del gràfic i les configura.
      *
-     * @author Pablo Morante
+     * @author Pablo Morante, Víctor García
      */
     private fun preparePieData() {
         // on below line we are setting user percent value,
@@ -564,8 +575,8 @@ class TasksFragment : Fragment() {
 
         // add a lot of colors to listwwssw
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(Color.parseColor("#A6FD565E"))
-        colors.add(Color.parseColor("#993DD497"))
+        colors.add(Color.parseColor("#FD565E"))
+        colors.add(Color.parseColor("#3dd598"))
 
         // on below line we are setting colors.
         dataSet.colors = colors
