@@ -195,7 +195,7 @@ class TasksFragment : Fragment() {
 //    }
 
     /***
-     * Funcio per canviar de color els checkboxes
+     * Funcio per canviar de color els checkboxes una vegada marcats com complerts i desmarcant-los
      * @author Izan Jimenez, Víctor García
      */
     private fun checkChecked(
@@ -223,6 +223,7 @@ class TasksFragment : Fragment() {
 
     /***
      * Reseteja els reptes diaris cada 24h
+     * * @author Izan Jimenez
      */
     private fun resetReptesDiaris() {
         val actualDay = Calendar.getInstance().time// dia i hora actual
@@ -246,14 +247,14 @@ class TasksFragment : Fragment() {
                     checkChecked(false, binding.Obj1, 3)
                     binding.Obj3.checkboxDone.isChecked = false
 
-//                    // val doc = FirebaseFirestore.getInstance().collection("Reptes").get().result.count()
-//                    Log.d("COUNT", "Count: ${doc}")
+
                 }
             }
 
 
     }
     /**
+     * Omple el recyclerView amb les dades que hi ha a la BBDD si aquesta esta disponible
      * @author Izan Jimenez
      */
     private fun loadData() {
@@ -363,6 +364,7 @@ class TasksFragment : Fragment() {
     }
 
     /**
+     * Elimina la cel·la complerta de la BBDD i del recyclerView
      * @author Izan Jimenez
      */
     private fun deleteItem(index: Int) {

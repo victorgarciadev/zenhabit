@@ -30,6 +30,8 @@ class Objectius(
 
 
     /**
+     * Retorna una ArrayList d'objectius
+     * @param document resultat de la petició a la BBDD (DocumentSnapshot)
      * @author Izan Jimenez
      */
     companion object {

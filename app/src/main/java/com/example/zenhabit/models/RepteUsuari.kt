@@ -1,16 +1,20 @@
 package com.example.zenhabit.models
 
 import com.google.firebase.firestore.DocumentSnapshot
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * @author Pablo Morante
+ * @author Pablo Morante, Izan Jimenez
  */
 class RepteUsuari(idRepte: Long, aconseguit: Boolean) {
     var repte = idRepte
     var aconseguit = aconseguit
 
+    /***
+     * Retorna una ArrayList de RepteUsuari
+     * @param documnt resultat de la consulta a la BBDD (DocumentSnapshot)
+     * @author Izan Jimenez
+     */
     companion object {
 
         fun dataFirebasetoReptes(document: DocumentSnapshot): ArrayList<RepteUsuari> {
