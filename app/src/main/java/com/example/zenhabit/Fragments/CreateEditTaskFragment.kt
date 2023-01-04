@@ -141,7 +141,7 @@ class CreateEditTaskFragment : Fragment() {
         }
         var initialMonth = -1
         if (initialMonth == -1) {
-            initialMonth = c.get(Calendar.MONTH)
+            initialMonth = c.get(Calendar.MONTH) +1
         }
         var initialDay = -1
         if (initialDay == -1) {

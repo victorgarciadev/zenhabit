@@ -175,7 +175,7 @@ class CreateEditHabitFragment : Fragment() {
             initialYear = year
         var initialMonth = -1
         if (initialMonth == -1)
-            initialMonth = c.get(Calendar.MONTH)
+            initialMonth = c.get(Calendar.MONTH) +1
         var initialDay = -1
         if (initialDay == -1)
             initialDay = c.get(Calendar.DAY_OF_MONTH)
