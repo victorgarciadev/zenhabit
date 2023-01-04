@@ -436,7 +436,7 @@ class TasksFragment : Fragment() {
         pieChart.setExtraOffsets(5f, 5f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.25f)
+        pieChart.setDragDecelerationFrictionCoef(0.35f)
 
         // on below line we are setting hole
         // and hole color for pie chart
@@ -489,7 +489,7 @@ class TasksFragment : Fragment() {
         dataSet.setDrawIcons(false)
 
         // on below line we are setting slice for pie
-        dataSet.sliceSpace = 1f
+        dataSet.sliceSpace = 0f
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
 
