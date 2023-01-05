@@ -37,7 +37,6 @@ class Objectius(
     companion object {
 
         fun dataFirebaseToObjectius(document: DocumentSnapshot): ArrayList<Objectius> {
-            //fun dataFirebaseToObjectius(document: ArrayList<Objectius>): ArrayList<Objectius> {
 
             var ret: ArrayList<Objectius> = ArrayList()
             val d: Map<String, String> = document.data as Map<String, String>

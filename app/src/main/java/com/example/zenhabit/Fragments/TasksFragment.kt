@@ -84,33 +84,6 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari.startShimmer()
 
         //obtenir els reptes diaris
-//        for (i in 1..3) {
-//            db.collection("Reptes")
-//                .document(i.toString()).get()
-//                .addOnSuccessListener { result ->
-//                    val titol = result.get("titol")
-//                    val desc = result.get("descripcio")
-//                    val done = result.get("vist") as Boolean
-//                    if (i == 1) {
-//                        binding.Obj1.textViewDesc.text = desc.toString()
-//                        binding.Obj1.titolRepte.text = titol.toString()
-//                        binding.Obj1.checkboxDone.isChecked = done
-//                    }
-//                    if (i == 2) {
-//                        binding.Obj2.textViewDesc.text = desc.toString()
-//                        binding.Obj2.titolRepte.text = titol.toString()
-//                        binding.Obj2.checkboxDone.isChecked = done
-//                    }
-//                    if (i == 3) {
-//                        binding.Obj3.textViewDesc.text = desc.toString()
-//                        binding.Obj3.titolRepte.text = titol.toString()
-//                        binding.Obj3.checkboxDone.isChecked = done
-//                    }
-//                }
-//        }
-
-
-
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
                 val llista = RepteUsuari.dataFirebasetoReptes(result)
@@ -118,7 +91,7 @@ class TasksFragment : Fragment() {
                 Log.d("PRUEBA", llista.size.toString())
 
 
-
+//nomes agafem els 3 primers
                 for (i in 1..3) {
                     //val j = (0..llista.size).random()
 
@@ -180,38 +153,7 @@ class TasksFragment : Fragment() {
     }
 
 
-    //--------- Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari -------
-    private fun omplirLlistReptes() {
 
-        val llistaReptes = ArrayList<RepteUsuari>()
-
-        FirebaseFirestore.getInstance().collection("Reptes").get()
-            .addOnSuccessListener { result ->
-
-//                    val a = result.toObject<RepteUsuari>()
-//                    if (a != null) {
-//                        Log.d("REPTESObject", a.acosneguit.toString())
-//                    }
-
-
-                if (result != null) {
-                    for (i in 1..result.size()) {
-
-                        val r = RepteUsuari.dataFirebaseReptestoReptesUsuaris(result.documents[i])
-                        llistaReptes.add(r)
-
-                    }
-                }
-                FirebaseFirestore.getInstance().collection("Usuaris")
-                    .document(auth.currentUser!!.uid)
-                    .update("llistaReptes", llistaReptes)
-                Log.d("REPTESlength2", llistaReptes.size.toString())
-
-            }.addOnFailureListener { exception ->
-                Log.d("TAG", "ERROR: $exception")
-            }
-
-    }
 
     /***
      * Funcio per canviar de color els checkboxes una vegada marcats com complerts i desmarcant-los.

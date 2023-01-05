@@ -95,9 +95,6 @@ class RegisterActivity : AppCompatActivity() {
                         var plantes: ArrayList<PlantaUsuari> = ArrayList()
                         var reptes: ArrayList<RepteUsuari> = ArrayList()
                         addPlantesToList(plantes)
-                        runBlocking {
-                            addReptesToList(reptes)
-                        }
                         val usuari = Usuari(
                             nom,
                             email,
@@ -122,6 +119,9 @@ class RegisterActivity : AppCompatActivity() {
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                         if (nom.length > 1) posaNomUser(nom)
+                        runBlocking {
+                            addReptesToList()
+                        }
                     } else {
                         Toast(this).showCustomToast(getString(R.string.error_user_created), this)
                     }
@@ -237,14 +237,44 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private suspend fun addReptesToList(reptes: ArrayList<RepteUsuari>) {
-        val result = FirebaseFirestore.getInstance().collection("Reptes")
-            .get().await()
+    /***
+     * Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari
+     * @author Izan Jimenez
+     */
+    private fun addReptesToList() {
 
-        if (result != null) {
-            for (repte in result) {
-                reptes.add(RepteUsuari(repte.get("repte") as Repte, false))
-            }
+        val llistaReptes = ArrayList<RepteUsuari>()
+
+        runBlocking {
+            FirebaseFirestore.getInstance().collection("Reptes").get()
+                .addOnSuccessListener { result ->
+
+//                    val a = result.toObject<RepteUsuari>()
+//                    if (a != null) {
+//                        Log.d("REPTESObject", a.acosneguit.toString())
+//                    }
+
+
+                    if (result != null) {
+                        for (i in 0 until result.size()) {
+
+                            val r =
+                                RepteUsuari.dataFirebaseReptestoReptesUsuaris(result.documents[i])
+
+                            llistaReptes.add(r)
+
+                            FirebaseFirestore.getInstance().collection("Usuaris")
+                                .document(auth.currentUser!!.uid)
+                                .update("llistaReptes", llistaReptes)
+
+
+                        }
+                    }
+
+                }.addOnFailureListener { exception ->
+                    Log.d("TAG", "ERROR: $exception")
+                }
         }
+
     }
 }

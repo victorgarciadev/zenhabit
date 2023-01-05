@@ -46,10 +46,10 @@ class RepteUsuari(repte: Repte, aconseguit: Boolean) {
         fun dataFirebaseReptestoReptesUsuaris(document: DocumentSnapshot): RepteUsuari {
             return RepteUsuari(
                 Repte(
-                    document.get("idRepte") as Int,
+                    document.get("idRepte").toString().toInt(),
                     document.get("descripcio").toString(),
                     document.get("titol").toString()
-                ), document.get("vist") as Boolean
+                ), false
             )
 
 
