@@ -20,7 +20,6 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,8 +91,8 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        var plantes: ArrayList<PlantaUsuari> = ArrayList()
-                        var reptes: ArrayList<RepteUsuari> = ArrayList()
+                        val plantes: ArrayList<PlantaUsuari> = ArrayList()
+                        val reptes: ArrayList<RepteUsuari> = ArrayList()
                         addPlantesToList(plantes)
                         val usuari = Usuari(
                             nom,
@@ -249,6 +248,7 @@ class RegisterActivity : AppCompatActivity() {
             FirebaseFirestore.getInstance().collection("Reptes").get()
                 .addOnSuccessListener { result ->
 
+//                  metode per tranformar directament a objecte
 //                    val a = result.toObject<RepteUsuari>()
 //                    if (a != null) {
 //                        Log.d("REPTESObject", a.acosneguit.toString())
