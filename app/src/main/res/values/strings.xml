@@ -112,6 +112,10 @@
     <string name="icona_sobre_de_correu">icona sobre de correu</string>
     <string name="icona_usuari">icona usuari</string>
     <string name="icona_en_forma_de_candau">icona en forma de candau</string>
+    <string name="hint_nomUsuari">Nou nom d\'usuari/a</string>
+    <string name="hint_correu">Nou correu electrònic</string>
+    <string name="hint_contrasenya">Contrasenya actual</string>
+    <string name="hint_novaContresenya">Nova contrasenya</string>
 
 
     <string name="contrasenya">Contrasenya</string>
@@ -120,7 +124,6 @@
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
     <string name="oblidat_contrasenya">Has oblidat la teva contrasenya? <a href="#">Restableix-la</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
-    <string name="nom_usuari">Nou nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
     <string name="descripcio_opcional">Descripció (opcional)</string>
