@@ -86,7 +86,7 @@
     <string name="no_tens_compte_registrar_se">¿No tienes cuenta? <a href="#">Registrarse</a></string>
     <string name="oblidat_contrasenya">¿Has olvidado tu contraseña? <a href="#">Restablécela.</a></string>
     <string name="completa_el_teu_perfil">Completa tu perfil</string>
-    <string name="nom_usuari">Nuevo nombre de usuario/a</string>
+    <string name="hint_nomUsuari">Nuevo nombre de usuario/a</string>
     <string name="termes_i_condicions">Acepto los <a href="#">Términos y Condiciones del servicio</a> y la <a href="#">Política de Privacidad</a>.</string>
     <string name="crear_contrasenya">Crear contraseña</string>
     <string name="descripcio_opcional">Descripción (opcional)</string>
@@ -160,6 +160,9 @@
     <string name="toast_formulari_habit">Mínimo se tiene que seleccionar 1 día de repetición.</string>
     <string name="formulari_nom_objectiu">El nombre no puede superar los 25 carácteres.</string>
     <string name="formulari_nom_objectiu2">El nombre es necesario.</string>
-    <string name="formulari_categoria">Se debe que seleccionar una categoria.</string>
+    <string name="formulari_categoria">Hay que seleccionar una categoría.</string>
     <string name="formulari_date">La fecha no puede ser anterior a hoy.</string>
+    <string name="hint_correu">Nuevo correo electrónico</string>
+    <string name="hint_contrasenya">Contraseña actual</string>
+    <string name="hint_novaContresenya">Nueva contraseña</string>
 </resources>

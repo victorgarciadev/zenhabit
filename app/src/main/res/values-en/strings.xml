@@ -72,7 +72,7 @@
     <string name="configuracions_crear_contrasenya">Create password</string>
     <string name="configs_canviar_contrasenya">Change password</string>
     <string name="configs_canviar_nom_usuari">Change name</string>
-    <string name="configs_canviar_correu">Change mail</string>
+    <string name="configs_canviar_correu">Change email</string>
     <string name="configuracions_titol_idioma_aplicacio">App language</string>
     <string name="configuracions_idioma_catala">Catalan</string>
     <string name="configuracions_idioma_castellano">Spanish</string>
@@ -82,11 +82,11 @@
     <string name="icona_en_forma_de_candau">Padlock shape icon</string>
     <string name="contrasenya">Password</string>
     <string name="inicia_sessi_per_continuar">Login to continue</string>
-    <string name="email">Mail</string>
+    <string name="email">Email</string>
     <string name="no_tens_compte_registrar_se">New on ZenHabit? <a href="#">Sign up</a></string>
     <string name="oblidat_contrasenya">Forgot your password? <a href="#">Reset password</a></string>
     <string name="completa_el_teu_perfil">Finish your profile</string>
-    <string name="nom_usuari">New username</string>
+    <string name="hint_nomUsuari">New username</string>
     <string name="termes_i_condicions">Accept <a href="#">Terms and Conditions</a> and the <a href="#">Privacy Policy</a>.</string>
     <string name="crear_contrasenya">New password</string>
     <string name="descripcio_opcional">Description (optional)</string>
@@ -124,12 +124,12 @@
     <string name="tasks_title">Tasks</string>
     <string name="garden_title">Garden</string>
     <string name="mandatory_camp">Required data.</string>
-    <string name="signIn_fail">Wrong mail or password.</string>
+    <string name="signIn_fail">Wrong email or password.</string>
     <string name="send_email">"Reset password mail sent. "</string>
-    <string name="error_send_email">"This mail doesn't have an associated user account. "</string>
+    <string name="error_send_email">"This email doesn't have an associated user account. "</string>
     <string name="user_created">User created.</string>
     <string name="error_user_created">Authentication failed.</string>
-    <string name="error_email_created">Wrong mail format.</string>
+    <string name="error_email_created">Wrong email format.</string>
     <string name="error_password_created">Password must contain between 8 and 15 characters.</string>
     <string name="error_username_created">Username must contain between 3 and 15 characters.</string>
     <string name="toast_change_password">Password changed successfully.</string>
@@ -162,4 +162,7 @@
     <string name="formulari_nom_objectiu">The name cannot be longer than 25 characters.</string>
     <string name="formulari_categoria">You must select a category.</string>
     <string name="formulari_date">The date cannot be before today.</string>
+    <string name="hint_correu">New email</string>
+    <string name="hint_contrasenya">"Current password "</string>
+    <string name="hint_novaContresenya">New password</string>
 </resources>
