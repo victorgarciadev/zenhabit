@@ -30,12 +30,13 @@ class Objectius(
 
 
     /**
+     * Retorna una ArrayList d'objectius
+     * @param document resultat de la petició a la BBDD (DocumentSnapshot)
      * @author Izan Jimenez
      */
     companion object {
 
         fun dataFirebaseToObjectius(document: DocumentSnapshot): ArrayList<Objectius> {
-            //fun dataFirebaseToObjectius(document: ArrayList<Objectius>): ArrayList<Objectius> {
 
             var ret: ArrayList<Objectius> = ArrayList()
             val d: Map<String, String> = document.data as Map<String, String>
