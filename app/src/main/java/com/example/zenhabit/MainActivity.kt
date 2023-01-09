@@ -116,10 +116,11 @@ class MainActivity : AppCompatActivity() {
      * Mètode per controlar la navegació cap amunt.
      *
      * @return Boolean que determina el tipus de navegació cap amunt.
-     * @author Txell Llanas, Pablo Morante
+     * @author Txell Llanas, Pablo Morante, Víctor García
      */
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        navController.navigate(R.id.homeActivity)
+        return true
     }
     //*** FI NAVBAR ***
 
@@ -187,7 +188,7 @@ class MainActivity : AppCompatActivity() {
      * Llança una notificació que mostra el nombre de tasques pendents a la llista de tasques de l'usuari.
      * Si no hi ha tasques pendents, no es mostra cap notificació.
      *
-     * @author Pablo Morante
+     * @author Pablo Morante, Víctor García
      */
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
