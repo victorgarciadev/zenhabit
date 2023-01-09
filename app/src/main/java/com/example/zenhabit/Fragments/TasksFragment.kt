@@ -37,15 +37,12 @@ import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Source
-import com.google.firebase.firestore.auth.User
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.collections.List
 
 
@@ -271,17 +268,19 @@ class TasksFragment : Fragment() {
                     mRecyclerView.visibility = View.GONE
                     binding.emptyView.visibility = View.VISIBLE
                 } else {
+                    val sortedList = filteredList.sortedBy { it ->
+                        val formatter = SimpleDateFormat("dd-MM-yyyy")
+                        formatter.parse(it.dataLimit)
+                    }
                     mRecyclerView.visibility = View.VISIBLE
                     binding.emptyView.visibility = View.GONE
+                    setRecyclerView(sortedList)
                 }
 
                 //shimmer desaparece
                 binding.rvTasques.visibility = View.VISIBLE
                 shimmerFrameLayout.stopShimmer()
                 shimmerFrameLayout.visibility = View.INVISIBLE
-
-
-                setRecyclerView(filteredList)
 
             } else {
                 //ERROR
@@ -551,7 +550,7 @@ class TasksFragment : Fragment() {
         textView.text = message
 
         this.apply {
-            setGravity(Gravity.CENTER, 0, 700)
+            //setGravity(Gravity.CENTER, 0, 700)
             duration = Toast.LENGTH_LONG
             view = layout
             show()

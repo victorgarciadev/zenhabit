@@ -160,7 +160,7 @@
     <string name="toast_formulari_habit">Mínimo se tiene que seleccionar 1 día de repetición.</string>
     <string name="formulari_nom_objectiu">El nombre no puede superar los 25 carácteres.</string>
     <string name="formulari_nom_objectiu2">El nombre es necesario.</string>
-    <string name="formulari_categoria">Hay que seleccionar una categoría.</string>
+    <string name="formulari_categoria">Debes seleccionar una categoría.</string>
     <string name="formulari_date">La fecha no puede ser anterior a hoy.</string>
     <string name="hint_correu">Nuevo correo electrónico</string>
     <string name="hint_contrasenya">Contraseña actual</string>

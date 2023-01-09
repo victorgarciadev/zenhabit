@@ -265,17 +265,17 @@ class CreateEditTaskFragment : Fragment() {
         var valid = true
         if (!binding.nomTascaEdit.text.isNullOrBlank()) {
             if (binding.nomTascaEdit.text?.length!! > 25) {
-                binding.nomTascaEdit.error = "El nom no pot superar els 25 caràcters."
+                binding.nomTascaEdit.error = getString(R.string.formulari_nom_objectiu)
                 valid = false
             } else {
                 binding.nomTascaEdit.error = null
             }
         } else {
-            binding.nomTascaEdit.error = "Un nom és necessari."
+            binding.nomTascaEdit.error = getString(R.string.formulari_nom_objectiu2)
             valid = false
         }
         if (binding.dropDwnMenuCategoriesTasca.editText?.text.isNullOrBlank()) {
-            binding.dropDwnMenuCategoriesTasca.error = "S'ha de seleccionar una categoria."
+            binding.dropDwnMenuCategoriesTasca.error = getString(R.string.formulari_categoria)
             valid = false
         } else {
             binding.dropDwnMenuCategoriesTasca.error = null
@@ -288,7 +288,7 @@ class CreateEditTaskFragment : Fragment() {
         val plannedDateCalendar = Calendar.getInstance()
         plannedDateCalendar.setTime(plannedDate)
         if (plannedDateCalendar.before(currentDate)) {
-            binding.etPlannedDate.error = "La data ha de ser posterior a avui."
+            binding.etPlannedDate.error = getString(R.string.formulari_date)
             valid = false
         } else {
             binding.etPlannedDate.error = null
