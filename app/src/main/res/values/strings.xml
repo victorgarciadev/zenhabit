@@ -96,7 +96,7 @@
     <string name="formulari_nom_objectiu">El nom no pot superar els 25 caràcters.</string>
     <string name="formulari_nom_objectiu2">Un nom és necessari.</string>
     <string name="formulari_categoria">S\'ha de seleccionar una categoria.</string>
-    <string name="formulari_date">La data ha de ser anterior a avui.</string>
+    <string name="formulari_date">La data ha de ser posterior a avui.</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>

@@ -306,17 +306,17 @@ class CreateEditHabitFragment : Fragment() {
         var valid = true
         if (!binding.nomHabitEdit.text.isNullOrBlank()) {
             if (binding.nomHabitEdit.text?.length!! > 25) {
-                binding.nomHabitEdit.error = "El nom no pot superar els 25 caràcters."
+                binding.nomHabitEdit.error = getString(R.string.formulari_nom_objectiu)
                 valid = false
             } else {
                 binding.nomHabitEdit.error = null
             }
         } else {
-            binding.nomHabitEdit.error = "Un nom és necessari."
+            binding.nomHabitEdit.error = getString(R.string.formulari_nom_objectiu2)
             valid = false
         }
         if (binding.dropDwnMenuCategoriesHabit.editText?.text.isNullOrBlank()) {
-            binding.dropDwnMenuCategoriesHabit.error = "S'ha de seleccionar una categoria."
+            binding.dropDwnMenuCategoriesHabit.error = getString(R.string.formulari_categoria)
             valid = false
         } else {
             binding.dropDwnMenuCategoriesHabit.error = null
@@ -329,7 +329,7 @@ class CreateEditHabitFragment : Fragment() {
         val plannedDateCalendar = Calendar.getInstance()
         plannedDateCalendar.setTime(plannedDate)
         if (plannedDateCalendar.before(currentDate)) {
-            binding.etPlannedDate.error = "La data ha de ser posterior a avui."
+            binding.etPlannedDate.error = getString(R.string.formulari_date)
             valid = false
         } else {
             binding.etPlannedDate.error = null
