@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
+ * Adaptador del RecyclerView per inserir les dades, mostrarles i les accions de cada cel·la
  * @author Izan Jimenez, Pablo Morante, Víctor García
  */
 class AdapterObjectius(

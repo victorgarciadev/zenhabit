@@ -143,7 +143,7 @@
                             android:autofillHints="Username"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="@string/nom_usuari"
+                            android:hint="@string/hint_nomUsuari"
                             android:inputType="textPersonName"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -224,7 +224,7 @@
                             android:autofillHints="Email"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Nou correu electrònic"
+                            android:hint="@string/hint_correu"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -254,13 +254,14 @@
                             android:autofillHints="Password"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Contrasenya actual"
+                            android:hint="@string/hint_contrasenya"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView_pswIconEmail"
-                            app:layout_constraintTop_toBottomOf="@+id/input_changeEmail" />
+                            app:layout_constraintTop_toBottomOf="@+id/input_changeEmail"
+                            tools:ignore="TextFields" />
 
 
                         <Button
@@ -336,7 +337,7 @@
                             android:autofillHints="Password"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Nova contrasenya"
+                            android:hint="@string/hint_novaContresenya"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"
@@ -366,7 +367,7 @@
                             android:autofillHints="Password"
                             android:ems="10"
                             android:fontFamily="@font/open_sans"
-                            android:hint="Contrasenya actual"
+                            android:hint="@string/hint_contrasenya"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#999999"

@@ -233,6 +233,7 @@ class CreateEditHabitFragment : Fragment() {
 
 
     /**
+     * Mostra un dialog de Calendari i agafa la data seleccionada
      * @author Izan Jimenez
      */
     class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
@@ -262,6 +263,7 @@ class CreateEditHabitFragment : Fragment() {
     }
 
     /**
+     * Mostra un dialog de temps i agafa la hora seleccionada
      * @author Izan Jimenez
      */
     class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {

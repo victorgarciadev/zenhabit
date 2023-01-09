@@ -179,6 +179,7 @@ class CreateEditTaskFragment : Fragment() {
     }
 
     /**
+     *  Mostra un dialog de Calendari i agafa la data seleccionada
      * @author Izan Jimenez
      */
     class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {

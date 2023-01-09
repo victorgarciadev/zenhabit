@@ -20,7 +20,6 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,12 +91,9 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        var plantes: ArrayList<PlantaUsuari> = ArrayList()
-                        var reptes: ArrayList<RepteUsuari> = ArrayList()
+                        val plantes: ArrayList<PlantaUsuari> = ArrayList()
+                        val reptes: ArrayList<RepteUsuari> = ArrayList()
                         addPlantesToList(plantes)
-                        runBlocking {
-                            addReptesToList(reptes)
-                        }
                         val usuari = Usuari(
                             nom,
                             email,
@@ -114,18 +110,17 @@ class RegisterActivity : AppCompatActivity() {
                                 )
                             }
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-                        val actualDay = Calendar.getInstance().time
-                        val calendar = Calendar.getInstance()
-                        calendar.time = actualDay
-                        calendar.add(Calendar.DATE, -2)
-                        val previousDay = calendar.time
-                        val temporal = VerificacioNotificacio(actualDay, false, previousDay)
+                        val actualDay = Calendar.getInstance().getTime()
+                        val temporal = VerificacioNotificacio(actualDay, false)
                         db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                         if (nom.length > 1) posaNomUser(nom)
+                        runBlocking {
+                            addReptesToList()
+                        }
                     } else {
                         Toast(this).showCustomToast(getString(R.string.error_user_created), this)
                     }
@@ -241,20 +236,45 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * Afegeix els reptes de la base de dades a la llista de reptes de l'usuari.
-     *
-     * @param reptes llista a la qual s'han d'afegir els reptes.
-     * @author Pablo Morante
+    /***
+     * Aquest metode s'tulutzara per omplir els reptes de la Colecció reptes dins de l'usuari
+     * @author Izan Jimenez
      */
-    private suspend fun addReptesToList(reptes: ArrayList<RepteUsuari>) {
-        val result = FirebaseFirestore.getInstance().collection("Reptes")
-            .get().await()
+    private fun addReptesToList() {
 
-        if (result != null) {
-            for (repte in result) {
-                reptes.add(RepteUsuari(repte.get("titol") as String, repte.get("descripcio") as String, false, false))
-            }
+        val llistaReptes = ArrayList<RepteUsuari>()
+
+        runBlocking {
+            FirebaseFirestore.getInstance().collection("Reptes").get()
+                .addOnSuccessListener { result ->
+
+//                  metode per tranformar directament a objecte
+//                    val a = result.toObject<RepteUsuari>()
+//                    if (a != null) {
+//                        Log.d("REPTESObject", a.acosneguit.toString())
+//                    }
+
+
+                    if (result != null) {
+                        for (i in 0 until result.size()) {
+
+                            val r =
+                                RepteUsuari.dataFirebaseReptestoReptesUsuaris(result.documents[i])
+
+                            llistaReptes.add(r)
+
+                            FirebaseFirestore.getInstance().collection("Usuaris")
+                                .document(auth.currentUser!!.uid)
+                                .update("llistaReptes", llistaReptes)
+
+
+                        }
+                    }
+
+                }.addOnFailureListener { exception ->
+                    Log.d("TAG", "ERROR: $exception")
+                }
         }
+
     }
 }

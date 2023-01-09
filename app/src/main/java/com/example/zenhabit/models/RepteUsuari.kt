@@ -1,17 +1,22 @@
 package com.example.zenhabit.models
 
+import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
- * @author Pablo Morante
+ * @author Pablo Morante, Izan Jimenez
  */
-class RepteUsuari(titol: String, descripcio: String, aconseguit: Boolean, mostrant: Boolean) {
-    var titol = titol
-    var descripcio = descripcio
+class RepteUsuari(repte: Repte, aconseguit: Boolean) {
+    var repte = repte
     var aconseguit = aconseguit
-    var mostrant = mostrant
 
+    /***
+     * Retorna una ArrayList de RepteUsuari
+     * @param documnt resultat de la consulta a la BBDD (DocumentSnapshot)
+     * @author Izan Jimenez
+     */
     companion object {
 
         fun dataFirebasetoReptes(document: DocumentSnapshot): ArrayList<RepteUsuari> {
@@ -23,18 +28,33 @@ class RepteUsuari(titol: String, descripcio: String, aconseguit: Boolean, mostra
             for (i in a) {
                 i as HashMap<String, String?>
                 val aconseguit = i["aconseguit"] as Boolean
-                var titol = i["titol"] as String
-                var descripcio = i["descripcio"] as String
-                val mostrant = i["mostrant"] as Boolean
+                var repte = i["repte"] as HashMap<String, String>
+
                 val r = RepteUsuari(
-                    titol,
-                    descripcio,
-                    aconseguit,
-                    mostrant
+                    Repte(
+                        repte["idRepte"].toString().toInt(),
+                        repte["descripcio"].toString(),
+                        repte["titol"].toString()
+                    ),
+                    aconseguit
                 )
                 ret.add(r)
             }
             return ret
         }
+
+        fun dataFirebaseReptestoReptesUsuaris(document: DocumentSnapshot): RepteUsuari {
+            return RepteUsuari(
+                Repte(
+                    document.get("idRepte").toString().toInt(),
+                    document.get("descripcio").toString(),
+                    document.get("titol").toString()
+                ), false
+            )
+
+
+        }
+
+
     }
 }
