@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CreateEditHabitFragment"
+    android:background="@color/fondo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/fondo"
+            android:orientation="vertical">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#30444E"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button
+                        android:id="@+id/btn_crearEditarHabit"
+                        android:layout_width="100dp"
+                        android:layout_height="110dp"
+                        android:layout_marginBottom="48dp"
+                        android:alpha="1"
+                        android:backgroundTint="#FEC442"
+                        android:drawableTop="@drawable/ic_baseline_calendar_zen"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:padding="10dp"
+                        android:text="@string/habit_txt_btn"
+                        android:textAllCaps="false"
+                        android:textColor="@color/fondo"
+                        android:textSize="18sp"
+                        app:cornerRadius="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btn_crearEditarTasca"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_crearEditarTasca"
+                        android:layout_width="100dp"
+                        android:layout_height="110dp"
+                        android:layout_marginBottom="48dp"
+                        android:alpha="0.3"
+                        android:backgroundTint="#00A2E7"
+                        android:drawableTop="@drawable/ic_tasca"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:padding="10dp"
+                        android:text="@string/tasca_txt_btn"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        app:cornerRadius="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_crearEditarHabit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-250dp"
+                    android:layout_marginBottom="40dp">
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bgGreen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="200dp"
+                        android:background="@drawable/layout_bg"
+                        android:backgroundTint="#FEC442"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bgGray"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:background="@drawable/layout_bg"
+                        android:backgroundTint="#22343C"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toTopOf="@+id/graphic_bgGray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGreen"
+                        app:layout_constraintVertical_bias="0.71000004">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nomHabitEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:fontFamily="@font/open_sans"
+                            android:hint="@string/nom_habit"
+                            android:textColor="@color/fondo"
+                            android:textColorHint="@color/fondo"
+                            android:textSize="30sp"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txt_input_DescripcioHabit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="#22343C"
+                        android:backgroundTint="#22343C"
+                        android:hint="@string/descripcio_opcional"
+                        android:textColorHint="#FFF"
+                        app:hintTextColor="#FFF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/graphic_bgGray">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#22343C"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="#FFF"
+                            android:textColorHint="#FFF" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dropDwnMenu_categoriesHabit"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCollapsedPaddingTop="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconTint="#757575"
+                        app:hintTextColor="#757575"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_input_DescripcioHabit"
+                        app:startIconDrawable="@drawable/ic_category">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/categoria"
+                            android:inputType="none"
+                            android:textColorHint="#757575" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/textView_labelRepeticio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/repeticio"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_repeat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dropDwnMenu_categoriesHabit" />
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelRepeticio">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/columna1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toStartOf="@+id/columna2"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dilluns"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dilluns"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dimarts"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dimarts"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dimecres"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dimecres"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dijous"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dijous"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/columna2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/columna1">
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Divendres"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/divendres"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Dissabte"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/dissabte"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <CheckBox
+                                    android:id="@+id/checkbox_Diumenge"
+                                    android:layout_width="120dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginTop="15dp"
+                                    android:buttonTint="@color/white"
+                                    android:text="@string/diumenge"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck" />
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:id="@+id/checkbox_Dies"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="0dp">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView_labelHourLimit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/hora_limit"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_watch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes1" />
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes2"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingVertical="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelHourLimit">
+
+                        <EditText
+                            android:id="@+id/etPlannedHour"
+                            android:layout_width="150dp"
+                            android:layout_height="60sp"
+                            android:allowClickWhenDisabled="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="@string/_hora0000"
+                            android:inputType="time"
+                            android:background="@null"
+                            android:maxLines="1"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.883"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.571"
+                            android:importantForAutofill="no"
+                            tools:targetApi="s" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView_labelDataLimit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/data_limit"
+                        android:textColor="@color/white"
+                        android:textDirection="ltr"
+                        android:textSize="24sp"
+                        android:textStyle="normal|bold"
+                        android:typeface="sans"
+                        app:drawableStartCompat="@drawable/ic_calendar_create"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes2" />
+
+                    <LinearLayout
+                        android:id="@+id/graphic_bloc_idiomes3"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:background="@drawable/bg_rounded_corner_rectangle"
+                        android:backgroundTint="#30444E"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="32dp"
+                        android:paddingVertical="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_labelDataLimit">
+
+                        <EditText
+                            android:id="@+id/etPlannedDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:allowClickWhenDisabled="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="@string/data000000"
+                            android:inputType="date"
+                            android:maxLines="1"
+                            android:background="@null"
+                            android:textColor="#FFFFFF"
+                            android:layout_gravity="center"
+                            android:textColorHint="#FFFFFF"
+                            android:textSize="20sp"
+                            tools:targetApi="s"
+                            android:importantForAutofill="no" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_guardarCrearEditarHabit"
+                        android:layout_width="200dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="32dp"
+                        android:backgroundTint="#1DBD7D"
+                        android:padding="15dp"
+                        android:text="@string/desar"
+                        android:textAllCaps="false"
+                        android:textColor="#FFF"
+                        android:textSize="20sp"
+                        app:cornerRadius="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/graphic_bloc_idiomes3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
