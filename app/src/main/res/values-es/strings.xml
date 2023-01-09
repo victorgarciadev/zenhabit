@@ -10,15 +10,20 @@
     <string name="btn_home_tasca_habit">HÁBITOS/TAREAS</string>
     <string name="hola">¡Hola!</string>
     <string name="benvingut_da">¡Bienvenido/da!</string>
-    <string name="titol_home_progres">PROGRESO</string>
+    <string name="titol_home_progres">Progreso</string>
     <string name="titol_jardi">Jardín</string>
     <string name="categoria">Categoría</string>
+    <string-array name="categories">
+        <item>Aprendizaje</item>
+        <item>Productividad</item>
+        <item>Salud</item>
+    </string-array>
     <string name="noInternet">"No tienes conexión a internet. Vuelve a probar. "</string>
     <string name="label_home_pendents">Pendientes</string>
     <string name="label_home_complerts">Hábitos realizados</string>
     <string name="label_home_tasques_complertes">Tareas realizadas</string>
-    <string name="label_jardi_descripcio_item">Descripción</string>
-    <string name="label_jardi_items_obtinguts">Cantidad: x</string>
+    <string name="label_jardi_descripcio_item">Más información</string>
+    <string name="label_jardi_items_obtinguts">Cantidad:</string>
     <string name="nom_canal">Notificaciones ZenHabit</string>
     <string name="descripcio_canal">Notificaciones de la aplicación ZenHabit</string>
     <string name="avet">Abeto</string>
@@ -59,7 +64,7 @@
     <string name="descobdiari">DescObDiario</string>
     <string name="aconseguides">Conseguidas</string>
     <string name="reptes_diaris">Retos diarios</string>
-    <string name="tasques">Tareas</string>
+    <string name="tasques">Objetivos</string>
     <string name="nom_tasca">Nombre Tarea</string>
     <string name="nom_habit">Nombre Hábito</string>
     <string name="settings_title">Configuración</string>
@@ -81,7 +86,7 @@
     <string name="no_tens_compte_registrar_se">¿No tienes cuenta? <a href="#">Registrarse</a></string>
     <string name="oblidat_contrasenya">¿Has olvidado tu contraseña? <a href="#">Restablécela.</a></string>
     <string name="completa_el_teu_perfil">Completa tu perfil</string>
-    <string name="nom_usuari">Nuevo nombre de usuario/a</string>
+    <string name="hint_nomUsuari">Nuevo nombre de usuario/a</string>
     <string name="termes_i_condicions">Acepto los <a href="#">Términos y Condiciones del servicio</a> y la <a href="#">Política de Privacidad</a>.</string>
     <string name="crear_contrasenya">Crear contraseña</string>
     <string name="descripcio_opcional">Descripción (opcional)</string>
@@ -109,7 +114,7 @@
     <string name="pendents_tercera_plural">Hábitos pendientes.</string>
     <string name="icona_campana">Icono campana</string>
     <string name="pendents">Pendientes</string>
-    <string name="seguiment">SEGUIMIENTO</string>
+    <string name="seguiment">Seguimiento</string>
     <string name="complerts">Completados</string>
     <string name="create_habit">Crear hábito</string>
     <string name="edit_habit">Editar hábito</string>
@@ -134,4 +139,30 @@
     <string name="label_notificacio_getNewItem_plural">tareas o hábitos pendientes.</string>
     <string name="toast_habit_creat">¡Hábito creado correctamente!</string>
     <string name="toast_tasca_creada">¡Tarea creada correctamente!</string>
+    <string name="data_limit_hint">00/00/00</string>
+    <string name="btn_tancar">Cerrar</string>
+    <string name="descripcio_palmera">Su longitud te ayudará a llegar mucho antes a todos tus objetivos.</string>
+    <string name="descripcio_aloe">Sus propiedades curativas te ayudarán a no desfallecer.</string>
+    <string name="descripcio_avet">Su fortaleza hará que construyas objetivos \"robustos\".</string>
+    <string name="descripcio_olivera">Su sabiduría te ayudará a tomar mejores decisiones para cumplir tus objetivos.</string>
+    <string name="descripcio_girasol">¡Su energía te hará imparable!</string>
+    <string name="descripcio_rosa">Su belleza te dará optimismo para encarar los nuevos retos.</string>
+    <string name="descripcio_lavanda">Su fragancia te ayudará a despejar la mente para tomar mejores decisiones.</string>
+    <string name="descripcio_cactus">¡Sus espinas te ayudarán a mantener alejados los malos hábitos!</string>
+    <string name="descripcio_bambu">Su flexibilidad le ayudará a encontrar nuevos enfoques a tus problemas.</string>
+    <string name="toast_tasca_update">¡Tarea actualizada correctamente!</string>
+    <string name="toast_objectiu_completat">¡Felicidades! Has conseguido 1</string>
+    <string name="toast_habit_update">¡Hábito actualizado correctament!</string>
+    <string name="no_data_available">No tienes objetivos pendientes.</string>
+    <string name="toast_change_name">Nombre de usuario cambiado correctamente.</string>
+    <string name="toast_accept_terms">"Es necesario aceptar los Términos y Condiciones."</string>
+    <string name="label_finalitzacio_objectiu">Finaliza:</string>
+    <string name="toast_formulari_habit">Mínimo se tiene que seleccionar 1 día de repetición.</string>
+    <string name="formulari_nom_objectiu">El nombre no puede superar los 25 carácteres.</string>
+    <string name="formulari_nom_objectiu2">El nombre es necesario.</string>
+    <string name="formulari_categoria">Debes seleccionar una categoría.</string>
+    <string name="formulari_date">La fecha no puede ser anterior a hoy.</string>
+    <string name="hint_correu">Nuevo correo electrónico</string>
+    <string name="hint_contrasenya">Contraseña actual</string>
+    <string name="hint_novaContresenya">Nueva contraseña</string>
 </resources>

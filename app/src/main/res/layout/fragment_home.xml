@@ -18,7 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:paddingHorizontal="32dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,12 +38,12 @@
                         android:id="@+id/img_notification"
                         android:layout_width="38dp"
                         android:layout_height="38dp"
+                        android:contentDescription="@string/icona_campana"
                         android:src="@drawable/ic_baseline_notification_important_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="#ffb600"
-                        android:contentDescription="@string/icona_campana" />
+                        app:tint="#ffb600" />
 
                     <TextView
                         android:id="@+id/tasquesPendents"
@@ -51,7 +53,7 @@
                         android:gravity="center"
                         android:text="@string/tasques_pendents"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         app:autoSizeTextType="uniform"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -63,14 +65,14 @@
                     android:id="@+id/constraintLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
                     <Button
                         android:id="@+id/btn_veureJardi"
-                        android:layout_width="300dp"
+                        android:layout_width="320dp"
                         android:layout_height="200dp"
                         android:backgroundTint="#30444E"
                         android:drawableTop="@drawable/fulles_200"
@@ -85,15 +87,14 @@
                         android:textStyle="bold"
                         app:cornerRadius="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.51"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
                         android:id="@+id/btn_veureHabitTasca"
-                        android:layout_width="300dp"
+                        android:layout_width="320dp"
                         android:layout_height="200dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:backgroundTint="#30444E"
                         android:drawableTop="@drawable/tasca_habit_128"
                         android:drawablePadding="70dp"
@@ -114,45 +115,56 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/TitolLayoutProgres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="@string/titol_home_progres"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraintLayout5" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/bg_rounded_corner_rectangle"
                     android:backgroundTint="#1d2c32"
-                    android:padding="32dp"
+                    android:paddingHorizontal="32dp"
+                    android:paddingVertical="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+                    app:layout_constraintTop_toBottomOf="@+id/TitolLayoutProgres">
 
-                    <TextView
-                        android:id="@+id/TitolLayoutProgres"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/titol_home_progres"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/text_pendents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:text="@string/label_home_pendents"
                         android:textColor="#8798a1"
                         android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/TitolLayoutProgres" />
+                        tools:ignore="MissingConstraints" />
 
-                    <View
+                    <ProgressBar
                         android:id="@+id/percent_pendents"
-                        android:layout_width="wrap_content"
-                        android:layout_height="5dp"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#ffc542"
+                        android:max="100"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#FD565E"
+                        android:scaleY="1.5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_pendents" />
@@ -168,15 +180,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/percent_pendents" />
 
-                    <View
+                    <ProgressBar
                         android:id="@+id/percent_habits"
-                        android:layout_width="120dp"
-                        android:layout_height="5dp"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#ff575f"
+                        android:max="100"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#FEC442"
+                        android:scaleY="1.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_habits_complets" />
-
 
                     <TextView
                         android:id="@+id/text_tasques_completes"
@@ -189,11 +204,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/percent_habits" />
 
-                    <View
-                        android:layout_width="120dp"
-                        android:layout_height="5dp"
+                    <ProgressBar
+                        android:id="@+id/percent_tasques"
+                        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginTop="8dp"
-                        android:background="#00a2e7"
+                        android:max="100"
+                        android:progressBackgroundTint="@android:color/darker_gray"
+                        android:progressTint="#00A2E7"
+                        android:scaleY="1.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_tasques_completes" />
 

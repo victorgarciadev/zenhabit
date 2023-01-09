@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZenHabit</string>
 
-    <!-- Valors provisionals: DropdownMenu items (Categories) -->
+    <!-- Valors DropdownMenu items (Categories) -->
     <string-array name="categories">
         <item>Aprenentatge</item>
         <item>Productivitat</item>
@@ -16,11 +16,12 @@
     <string name="desar">DESAR</string>
     <string name="btn_home_jardi">JARDÍ</string>
     <string name="btn_home_tasca_habit">HÀBITS / TASQUES</string>
+    <string name="btn_tancar">Tancar</string>
 
     <!-- TITULARS -->
     <string name="hola">Hola!</string>
     <string name="benvingut_da">Benvingut/da!</string>
-    <string name="titol_home_progres">PROGRÉS</string>
+    <string name="titol_home_progres">Progrés</string>
     <string name="titol_jardi">Jardí</string>
 
     <!-- TEXTES -->
@@ -29,8 +30,8 @@
     <string name="label_home_pendents">Pendents</string>
     <string name="label_home_complerts">Hàbits complets</string>
     <string name="label_home_tasques_complertes">Tasques complertes</string>
-    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Descripció</string>
-    <string name="label_jardi_items_obtinguts">Quantitat: x</string>
+    <string name="label_jardi_descripcio_item" tools:ignore="Typos">Més informació</string>
+    <string name="label_jardi_items_obtinguts">Quantitat:</string>
     <string name="nom_canal">Notificacions ZenHabit</string>
     <string name="descripcio_canal">Notificacions de l\'aplicació Zenhabit</string>
 
@@ -53,8 +54,17 @@
     <string name="icona_aloe_vera">Icona d\'una planta d\'Aloe Vera</string>
     <string name="icona_bambu">Icona d\'una planta de Bambú</string>
     <string name="icona_cactus">Icona d\'un Cactus</string>
+    <string name="descripcio_palmera">La seva longitud t\'ajudarà a arribar molt abans a tots els teus objectius.</string>
+    <string name="descripcio_aloe">Les seves propietats curatives t\'ajudaran a no defallir.</string>
+    <string name="descripcio_avet">La seva fortalesa farà que construeixis objectius \"robustos\".</string>
+    <string name="descripcio_olivera">La seva sabiduria t\'ajudarà a prendre millors decisions per complir els teus objectius.</string>
+    <string name="descripcio_girasol">La seva energia et farà imparable!</string>
+    <string name="descripcio_rosa">La seva bellesa et donarà optimisme per encarar els nous reptes.</string>
+    <string name="descripcio_lavanda">La seva fragància t\'ajudarà a aclarir la ment per prendre millors decisions.</string>
+    <string name="descripcio_bambu">La seva flexibilitat t\'ajudarà a trobar nous enfocs als teus problemes.</string>
+    <string name="descripcio_cactus">Les seves espines t\'ajudaran a mantenir allunyats els mals hàbits!</string>
 
-    <!-- HÀBITS -->
+    <!-- HÀBITS / TASQUES -->
     <string name="nom_de_la_tasca">Nom tasca</string>
     <string name="hora">hora</string>
     <string name="icona_repeticio">icona de repetició</string>
@@ -77,9 +87,16 @@
     <string name="descobdiari">DescObDiari</string>
     <string name="aconseguides">Aconseguides</string>
     <string name="reptes_diaris">Reptes diaris</string>
-    <string name="tasques">Tasques</string>
+    <string name="tasques">Objectius</string>
     <string name="nom_tasca">Nom Tasca</string>
     <string name="nom_habit">Nom Hàbit</string>
+    <string name="data_limit_hint">00/00/00</string>
+    <string name="no_data_available">No tens objectius pendents.</string>
+    <string name="label_finalitzacio_objectiu">Finalitza:</string>
+    <string name="formulari_nom_objectiu">El nom no pot superar els 25 caràcters.</string>
+    <string name="formulari_nom_objectiu2">Un nom és necessari.</string>
+    <string name="formulari_categoria">S\'ha de seleccionar una categoria.</string>
+    <string name="formulari_date">La data ha de ser posterior a avui.</string>
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
@@ -95,6 +112,10 @@
     <string name="icona_sobre_de_correu">icona sobre de correu</string>
     <string name="icona_usuari">icona usuari</string>
     <string name="icona_en_forma_de_candau">icona en forma de candau</string>
+    <string name="hint_nomUsuari">Nou nom d\'usuari/a</string>
+    <string name="hint_correu">Nou correu electrònic</string>
+    <string name="hint_contrasenya">Contrasenya actual</string>
+    <string name="hint_novaContresenya">Nova contrasenya</string>
 
 
     <string name="contrasenya">Contrasenya</string>
@@ -103,7 +124,6 @@
     <string name="no_tens_compte_registrar_se">No tens compte? <a href="#">Registrar-se</a></string>
     <string name="oblidat_contrasenya">Has oblidat la teva contrasenya? <a href="#">Restableix-la</a></string>
     <string name="completa_el_teu_perfil">Completa el teu perfil</string>
-    <string name="nom_usuari">Nou nom d\'usuari/a</string>
     <string name="termes_i_condicions">Accepto els <a href="#">Termes i Condicions del servei</a> i la <a href="#">Política de Privacitat</a>.</string>
     <string name="crear_contrasenya">Crear contrasenya</string>
     <string name="descripcio_opcional">Descripció (opcional)</string>
@@ -129,11 +149,11 @@
     <!-- HOME TASQUES PENDENTS -->
     <string name="tasques_pendents">Tens &#8230;</string>
     <string name="pendents_primera">Tens</string>
-    <string name="pendents_segona_singular"> Objectius pendent.</string>
+    <string name="pendents_segona_singular">objectiu pendent.</string>
     <string name="pendents_segona_plural">objectius pendents.</string>
     <string name="icona_campana">icona campana</string>
     <string name="pendents">Pendents</string>
-    <string name="seguiment">SEGUIMENT</string>
+    <string name="seguiment">Seguiment</string>
     <string name="complerts">Complerts</string>
 
     <!-- TITOLS ACTIONBAR -->
@@ -158,7 +178,13 @@
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
     <string name="toast_habit_creat">Hàbit creat correctament!</string>
+    <string name="toast_habit_update">Hàbit actualitzat correctament!</string>
     <string name="toast_tasca_creada">Tasca creada correctament!</string>
+    <string name="toast_tasca_update">Tasca actualitzada correctament!</string>
+    <string name="toast_objectiu_completat">Felicitats! Has aconseguit 1</string>
+    <string name="toast_accept_terms">Cal acceptar els Termes i Condicions.</string>
+    <string name="toast_change_name">Nom d\'usuari canviat correctament.</string>
+    <string name="toast_formulari_habit">S\'ha de seleccionar mínim 1 dia de repetició.</string>
 
     <!-- NOTIFICACIONS -->
     <string name="label_notificacio_jardi">Encara tens tasques per fer!</string>

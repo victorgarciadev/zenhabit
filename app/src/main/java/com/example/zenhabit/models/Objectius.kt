@@ -1,13 +1,12 @@
 package com.example.zenhabit.models
 
-import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
-import kotlin.math.log
 
-
+/**
+ * @author Pablo Morante, Izan Jimenez, Txell Llanas
+ */
 class Objectius(
     nom: String,
     descripcio: String,
@@ -25,18 +24,21 @@ class Objectius(
     val dataLimit = dataLimit
     val repetible = repetible
     val horari = horari
-    val complert = complert
+    var complert = complert
     val ultimaDataFet = ultimaDataFet
     val tipus = tipus
 
 
+    /**
+     * Retorna una ArrayList d'objectius
+     * @param document resultat de la petició a la BBDD (DocumentSnapshot)
+     * @author Izan Jimenez
+     */
     companion object {
 
         fun dataFirebaseToObjectius(document: DocumentSnapshot): ArrayList<Objectius> {
-            //fun dataFirebaseToObjectius(document: ArrayList<Objectius>): ArrayList<Objectius> {
 
             var ret: ArrayList<Objectius> = ArrayList()
-
             val d: Map<String, String> = document.data as Map<String, String>
             val a = d.get("llistaObjectius") as List<*>
             for (i in a) {

@@ -17,9 +17,11 @@
         <item name="android:textSize">18sp</item>
     </style>
     
-
-    <!--<style name="CustomDialog" parent="android:Theme.Dialog">
+    <!-- Estils personalitzats pels 'DIALOGS' -->
+    <style name="CustomDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-    </style>-->
+    </style>
+
 </resources>

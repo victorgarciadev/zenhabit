@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ZenHabit</string>
     <string name="entrar">ENTER</string>
-    <string name="cancel_lar">CANCEL</string>
+    <string name="cancel_lar" tools:ignore="ButtonCase">CANCEL</string>
     <string name="sortir">EXIT</string>
     <string name="registrar_se">REGISTER</string>
     <string name="desar">SAVE</string>
@@ -10,15 +10,20 @@
     <string name="btn_home_tasca_habit">HABITS / TASKS</string>
     <string name="hola">Hello!</string>
     <string name="benvingut_da">Welcome!</string>
-    <string name="titol_home_progres">PROGRESS</string>
+    <string name="titol_home_progres">Progress</string>
     <string name="titol_jardi">Garden</string>
     <string name="categoria">Category</string>
+    <string-array name="categories">
+        <item>Learning</item>
+        <item>Productivity</item>
+        <item>Health</item>
+    </string-array>
     <string name="noInternet">You don\'t have Internet connection. Please, try again.</string>
     <string name="label_home_pendents">To do</string>
     <string name="label_home_complerts">Completed habits</string>
     <string name="label_home_tasques_complertes">Completed tasks</string>
-    <string name="label_jardi_descripcio_item">Description</string>
-    <string name="label_jardi_items_obtinguts">Quantity: x</string>
+    <string name="label_jardi_descripcio_item">More info</string>
+    <string name="label_jardi_items_obtinguts">Quantity:</string>
     <string name="nom_canal">ZenHabit notifications</string>
     <string name="descripcio_canal">ZenHabit App notifications</string>
     <string name="avet">Fir tree</string>
@@ -59,7 +64,7 @@
     <string name="descobdiari">DailyDescObj</string>
     <string name="aconseguides">Achieved</string>
     <string name="reptes_diaris">Daily challenges</string>
-    <string name="tasques">Tasks</string>
+    <string name="tasques">Goals</string>
     <string name="nom_tasca">Task name</string>
     <string name="nom_habit">Habit name</string>
     <string name="settings_title">Settings</string>
@@ -67,7 +72,7 @@
     <string name="configuracions_crear_contrasenya">Create password</string>
     <string name="configs_canviar_contrasenya">Change password</string>
     <string name="configs_canviar_nom_usuari">Change name</string>
-    <string name="configs_canviar_correu">Change mail</string>
+    <string name="configs_canviar_correu">Change email</string>
     <string name="configuracions_titol_idioma_aplicacio">App language</string>
     <string name="configuracions_idioma_catala">Catalan</string>
     <string name="configuracions_idioma_castellano">Spanish</string>
@@ -77,11 +82,11 @@
     <string name="icona_en_forma_de_candau">Padlock shape icon</string>
     <string name="contrasenya">Password</string>
     <string name="inicia_sessi_per_continuar">Login to continue</string>
-    <string name="email">Mail</string>
+    <string name="email">Email</string>
     <string name="no_tens_compte_registrar_se">New on ZenHabit? <a href="#">Sign up</a></string>
     <string name="oblidat_contrasenya">Forgot your password? <a href="#">Reset password</a></string>
     <string name="completa_el_teu_perfil">Finish your profile</string>
-    <string name="nom_usuari">New username</string>
+    <string name="hint_nomUsuari">New username</string>
     <string name="termes_i_condicions">Accept <a href="#">Terms and Conditions</a> and the <a href="#">Privacy Policy</a>.</string>
     <string name="crear_contrasenya">New password</string>
     <string name="descripcio_opcional">Description (optional)</string>
@@ -109,8 +114,8 @@
     <string name="pendents_tercera_plural">Remaining habits.</string>
     <string name="icona_campana">Bell icon</string>
     <string name="pendents">Remaining</string>
-    <string name="seguiment">TRACING</string>
-    <string name="complerts">DONE</string>
+    <string name="seguiment">Tracing</string>
+    <string name="complerts">Done</string>
     <string name="create_habit">Create habit</string>
     <string name="edit_habit">Edit habit</string>
     <string name="create_task">Create task</string>
@@ -119,12 +124,12 @@
     <string name="tasks_title">Tasks</string>
     <string name="garden_title">Garden</string>
     <string name="mandatory_camp">Required data.</string>
-    <string name="signIn_fail">Wrong mail or password.</string>
+    <string name="signIn_fail">Wrong email or password.</string>
     <string name="send_email">"Reset password mail sent. "</string>
-    <string name="error_send_email">"This mail doesn't have an associated user account. "</string>
+    <string name="error_send_email">"This email doesn't have an associated user account. "</string>
     <string name="user_created">User created.</string>
     <string name="error_user_created">Authentication failed.</string>
-    <string name="error_email_created">Wrong mail format.</string>
+    <string name="error_email_created">Wrong email format.</string>
     <string name="error_password_created">Password must contain between 8 and 15 characters.</string>
     <string name="error_username_created">Username must contain between 3 and 15 characters.</string>
     <string name="toast_change_password">Password changed successfully.</string>
@@ -134,4 +139,30 @@
     <string name="label_notificacio_getNewItem_plural">tasks or habits remaining.</string>
     <string name="toast_habit_creat">Habit created successfully!</string>
     <string name="toast_tasca_creada">Task created successfully!</string>
+    <string name="data_limit_hint">00/00/00</string>
+    <string name="btn_tancar">Close</string>
+    <string name="descripcio_palmera">Its length will help you reach all your goals much sooner.</string>
+    <string name="descripcio_aloe">Its healing properties will help you not to give up.</string>
+    <string name="descripcio_avet">Its strength will make you build \"robust\" goals.</string>
+    <string name="descripcio_olivera">His wisdom will help you make better decisions to achieve your goals.</string>
+    <string name="descripcio_girasol">His energy will make you unstoppable!</string>
+    <string name="descripcio_rosa">Its beauty will give you optimism to face new challenges.</string>
+    <string name="descripcio_lavanda">Its fragrance will help you clear your mind to make better decisions.</string>
+    <string name="descripcio_cactus">Its spines will help you keep bad habits away!</string>
+    <string name="descripcio_bambu">Your flexibility will help you find new approaches to your problems.</string>
+    <string name="toast_tasca_update">Task updated successfully!</string>
+    <string name="toast_objectiu_completat">Congratulations! You\'ve achieved 1</string>
+    <string name="toast_habit_update">Habit updated successfully!</string>
+    <string name="no_data_available">You have no pending goals.</string>
+    <string name="toast_change_name">Username changed successfully.</string>
+    <string name="toast_accept_terms">You must accept the Terms and Conditions.</string>
+    <string name="label_finalitzacio_objectiu">Ends:</string>
+    <string name="toast_formulari_habit">You have to select 1 day of repetition minimum.</string>
+    <string name="formulari_nom_objectiu2">The name is required.</string>
+    <string name="formulari_nom_objectiu">The name cannot be longer than 25 characters.</string>
+    <string name="formulari_categoria">You must select a category.</string>
+    <string name="formulari_date">The date cannot be before today.</string>
+    <string name="hint_correu">New email</string>
+    <string name="hint_contrasenya">"Current password "</string>
+    <string name="hint_novaContresenya">New password</string>
 </resources>

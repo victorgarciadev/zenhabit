@@ -8,6 +8,9 @@ import android.os.Looper
 import androidx.appcompat.app.ActionBar
 import com.example.zenhabit.R
 
+/**
+ * @author Victor García, Pablo Morante
+ */
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

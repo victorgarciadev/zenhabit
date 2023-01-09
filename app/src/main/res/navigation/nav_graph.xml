@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_tasksFragment2_to_createEditTaskFragment"
             app:destination="@id/createEditTaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment2_to_createEditHabitFragment"
+            app:destination="@id/createEditHabitFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -37,11 +40,22 @@
             android:name="Name"
             app:argType="string" />
         <argument
-            android:name="Time"
+            android:name="Hora"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="Fecha"
             app:argType="string" />
         <argument
-            android:name="taskHabit"
+            android:name="Descripcion"
             app:argType="string" />
+        <argument
+            android:name="Categoria"
+            app:argType="string" />
+        <argument
+            android:name="Repeticion"
+            app:argType="boolean[]"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/createEditTaskFragment"
@@ -59,6 +73,13 @@
             app:argType="string" />
         <argument
             android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="descripcio"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="categoria"
             app:argType="string" />
     </fragment>
     <fragment

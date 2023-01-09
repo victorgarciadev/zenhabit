@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
     id("androidx.navigation.safeargs")
+    id 'org.jetbrains.dokka' //KDoc
 }
 
 android {
@@ -59,5 +60,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.github.jetradarmobile:android-snowfall:1.2.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.7"
+    implementation("com.android.support:support-annotations:28.0.0")
 
 }

@@ -14,16 +14,16 @@
         android:layout_height="match_parent"
         android:visibility="invisible"
         app:snowflakeAlphaMax="255"
-        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMin="120"
         app:snowflakeAngleMax="5"
         app:snowflakeImage="@drawable/snowflake"
-        app:snowflakeSizeMax="32dp"
-        app:snowflakeSizeMin="8dp"
-        app:snowflakeSpeedMax="6"
-        app:snowflakeSpeedMin="2"
+        app:snowflakeSizeMax="9dp"
+        app:snowflakeSizeMin="3dp"
+        app:snowflakeSpeedMax="5"
+        app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="250" />
+        app:snowflakesNum="100" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,6 +60,7 @@
                         android:id="@+id/Label_Jardi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="@string/titol_jardi"
                         android:textColor="@color/white"
                         android:textSize="34sp"
@@ -70,14 +71,15 @@
                     <!-- APARADOR Arbres, Flors i Plantes -->
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="208dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/rounded_corner"
                         android:backgroundTint="#8A334D57"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="10dp"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Label_Jardi">
@@ -90,6 +92,7 @@
 
                             <!-- CARD 1 (arbre: avet)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Avet"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -109,6 +112,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/avet"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
 
                                         app:layout_constraintStart_toStartOf="parent"
@@ -116,12 +120,14 @@
                                         tools:ignore="TooDeepLayout" />
 
                                     <TextView
+                                        android:id="@+id/mesInfo_Avet"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard1"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -149,6 +155,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 2 (arbre: palmera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Palmera"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -168,6 +175,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/palmera"
                                         android:textColor="#FEC442"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
 
                                         app:layout_constraintStart_toStartOf="parent"
@@ -176,10 +184,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FEC442"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard2"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -205,6 +214,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 3 (arbre: olivera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Olivera"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -224,6 +234,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/olivera"
                                         android:textColor="#FD565E"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -231,10 +242,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FD565E"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard3"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -262,6 +274,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 4 (flor: girasol)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Girasol"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -281,6 +294,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/girasol"
                                         android:textColor="#3dd598"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -288,10 +302,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#3dd598"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard4"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -316,6 +331,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 5 (flor: rosa)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Rosa"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -335,6 +351,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/rosa"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -342,10 +359,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard5"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -370,6 +388,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 6 (arbre: lavanda)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Lavanda"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -389,6 +408,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/lavanda"
                                         android:textColor="#FEC442"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -396,10 +416,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FEC442"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard6"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -424,6 +445,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 7 (arbre: aloe vera)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Aloe"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -443,6 +465,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/aloe_vera"
                                         android:textColor="#FD565E"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -450,10 +473,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#FD565E"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard7"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -479,6 +503,7 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 8 (flor: bambú)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_bambu"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="10dp"
@@ -498,6 +523,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/bambu"
                                         android:textColor="#3dd598"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
@@ -505,10 +531,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#3dd598"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard8"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -533,9 +560,9 @@
                             </androidx.cardview.widget.CardView>
                             <!-- CARD 9 (arbre: cactus)  -->
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView_Cactus"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginEnd="10dp"
                                 app:cardBackgroundColor="@android:color/transparent"
                                 app:cardElevation="0dp">
 
@@ -552,6 +579,7 @@
                                         android:fontFamily="@font/open_sans_bold"
                                         android:text="@string/cactus"
                                         android:textColor="#00A2E7"
+                                        android:textSize="18sp"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
@@ -560,10 +588,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="8dp"
+                                        android:layout_marginBottom="10dp"
                                         android:fontFamily="@font/open_sans"
                                         android:text="@string/label_jardi_descripcio_item"
                                         android:textColor="#00A2E7"
+                                        android:textSize="11sp"
                                         app:layout_constraintBottom_toTopOf="@+id/img_upperCard9"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent" />
@@ -596,6 +625,7 @@
                         android:id="@+id/Aconseguides"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:text="@string/aconseguides"
                         android:textColor="@color/white"
@@ -608,9 +638,9 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/rounded_corner"
-                        android:backgroundTint="#293E46"
+                        android:backgroundTint="#8A334D57"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Aconseguides">
@@ -623,7 +653,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -680,6 +710,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView1"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -691,7 +737,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView"
@@ -748,6 +794,22 @@
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle2"
                                     app:layout_constraintTop_toTopOf="parent" />
 
+                                <TextView
+                                    android:id="@+id/quantitat1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FEC442"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -759,7 +821,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView2"
@@ -817,6 +879,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FD565E"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -828,7 +906,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView3"
@@ -886,6 +964,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#3dd598"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -897,7 +991,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView4"
@@ -923,7 +1017,8 @@
 
                                     app:layout_constraintEnd_toStartOf="@+id/txt_ArbresTitle5"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="ImageContrastCheck" />
 
                                 <TextView
                                     android:id="@+id/txt_ArbresTitle5"
@@ -938,7 +1033,8 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/textView5"
                                     app:layout_constraintStart_toEndOf="@+id/imageView5"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TooManyViews" />
 
                                 <TextView
                                     android:id="@+id/textView5"
@@ -955,6 +1051,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TooManyViews,TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView5"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -966,7 +1078,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView5"
@@ -1022,6 +1134,22 @@
                                     app:layout_constraintStart_toEndOf="@+id/txt_ArbresTitle6"
                                     app:layout_constraintTop_toTopOf="parent" />
 
+                                <TextView
+                                    android:id="@+id/quantitat5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FEC442"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1033,7 +1161,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView6"
@@ -1046,7 +1174,7 @@
                                 android:backgroundTint="@color/fondo">
 
                                 <ImageView
-                                    android:id="@+id/imageView7"
+                                    android:id="@+id/item_image"
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
                                     android:layout_marginStart="8dp"
@@ -1073,7 +1201,7 @@
                                     app:autoSizeTextType="uniform"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toStartOf="@+id/textView7"
-                                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                                    app:layout_constraintStart_toEndOf="@+id/item_image"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
@@ -1091,6 +1219,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#FD565E"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1102,7 +1246,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView7"
@@ -1159,6 +1303,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#3dd598"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView8"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1171,7 +1331,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="9dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -1230,6 +1390,22 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:ignore="TextContrastCheck" />
 
+                                <TextView
+                                    android:id="@+id/quantitat8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="0"
+                                    android:textColor="#00A2E7"
+                                    android:textSize="11sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.15"
+                                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="TextContrastCheck" />
+
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.cardview.widget.CardView>
@@ -1241,6 +1417,5 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>
