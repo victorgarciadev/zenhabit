@@ -131,7 +131,7 @@
                     android:layout_marginEnd="16dp"
                     android:textSize="28sp"
                     android:gravity="center"
-                    android:backgroundTint="#3dd598"
+                    android:backgroundTint="@color/verd_zenhabit"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/boton"
                     app:cornerRadius="100dp"

@@ -216,7 +216,7 @@
                     android:layout_width="250dp"
                     android:layout_height="75dp"
                     android:layout_marginTop="24dp"
-                    android:backgroundTint="#1DBE7D"
+                    android:backgroundTint="@color/verd_zenhabit"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/registrar_se"
                     android:textSize="16sp"
