@@ -153,7 +153,7 @@
                     android:layout_width="250dp"
                     android:layout_height="75dp"
                     android:layout_marginTop="48dp"
-                    android:backgroundTint="#1DBE7D"
+                    android:backgroundTint="@color/verd_zenhabit"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/entrar"
                     android:textSize="20sp"
