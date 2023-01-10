@@ -43,6 +43,12 @@ class RepteUsuari(repte: Repte, aconseguit: Boolean) {
             return ret
         }
 
+        /***
+         * Retorna un sol RepteUsuari
+         * @return RepteUsuari RepteUsuari
+         * @param DocumentSnapshot reultat del Firebase
+         * @author Izan Jimenez
+         */
         fun dataFirebaseReptestoReptesUsuaris(document: DocumentSnapshot): RepteUsuari {
             return RepteUsuari(
                 Repte(

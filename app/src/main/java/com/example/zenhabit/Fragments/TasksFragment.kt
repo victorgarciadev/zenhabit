@@ -80,45 +80,8 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
         shimmerFrameLayoutObjDiari.startShimmer()
 
-        //obtenir els reptes diaris
-        FirebaseFirestore.getInstance().collection("Usuaris")
-            .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
-                val llista = RepteUsuari.dataFirebasetoReptes(result)
-                Log.d("PRUEBA", llista[1].aconseguit.toString())
-                Log.d("PRUEBA", llista.size.toString())
-
-
-//nomes agafem els 3 primers
-                for (i in 1..3) {
-                    //val j = (0..llista.size).random()
-
-                    if (i == 1) {
-                        binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
-                        binding.Obj1.titolRepte.text = llista[0].repte.titol
-                        binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
-                    }
-                    if (i == 2) {
-                        binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
-                        binding.Obj2.titolRepte.text = llista[1].repte.titol
-                        binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
-                    }
-                    if (i == 3) {
-                        binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
-                        binding.Obj3.titolRepte.text = llista[2].repte.titol
-                        binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
-                    }
-                }
-            }
-
-
-        //Mostrar reptes
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.listObjDiari.visibility = View.VISIBLE
-            shimmerFrameLayoutObjDiari.stopShimmer()
-            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
-            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
-
-        }, 1000)
+        //omplim els checkBoxes de reptes daris
+        getReptes()
 
         //canviar de color els checkboxes
         binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -148,8 +111,6 @@ class TasksFragment : Fragment() {
 
         return view
     }
-
-
 
 
     /***
@@ -206,6 +167,60 @@ class TasksFragment : Fragment() {
                     FirebaseFirestore.getInstance().collection("Usuaris")
                         .document(auth.currentUser!!.uid).update("llistaReptes", llista)
                 }
+        }
+    }
+
+    /**
+     * Omple els reptes amb les dades que hi ha a la BBDD si aquesta esta disponible
+     * @author Izan Jimenez
+     */
+    private fun getReptes() {
+
+        var llista: ArrayList<RepteUsuari>
+
+        val docref = db.collection("Usuaris").document(auth.currentUser!!.uid)
+        docref.get().addOnSuccessListener { document ->
+            if (document != null) {
+                llista = RepteUsuari.dataFirebasetoReptes(document)
+                if (!llista.isEmpty()) {
+                    for (i in 1..3) {
+                        //val j = (0..llista.size).random()
+
+                        if (i == 1) {
+                            binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
+                            binding.Obj1.titolRepte.text = llista[0].repte.titol
+                            binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
+                        }
+                        if (i == 2) {
+                            binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
+                            binding.Obj2.titolRepte.text = llista[1].repte.titol
+                            binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
+                        }
+                        if (i == 3) {
+                            binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
+                            binding.Obj3.titolRepte.text = llista[2].repte.titol
+                            binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
+                        }
+
+                        //Mostrar reptes
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.listObjDiari.visibility = View.VISIBLE
+                            shimmerFrameLayoutObjDiari.stopShimmer()
+                            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+                            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
+                        }, 1000)
+                    }
+                } else {
+                    Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO LA LISTA")
+                }
+            } else {
+                //ERROR
+                Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO EL DOCUMENTO")
+            }
+
+        }.addOnFailureListener { exception ->
+            Log.d("TAG", "ERROR AL OBTENER ${exception}")
+
         }
     }
 
@@ -376,7 +391,8 @@ class TasksFragment : Fragment() {
                     index++
                 }
                 db.collection("Usuaris")
-                    .document(Firebase.auth.currentUser!!.uid).update("llistaObjectius", objectius)
+                    .document(Firebase.auth.currentUser!!.uid)
+                    .update("llistaObjectius", objectius)
 
                 val numRandom = (1..9).random()
 
