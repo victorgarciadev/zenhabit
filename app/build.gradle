@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.zenhabit'
+    namespace 'com.projectegrupd.zenhabit'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.zenhabit"
+        applicationId "com.projectegrupd.zenhabit"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -23,7 +23,7 @@
         app:snowflakeSpeedMin="1"
         app:snowflakesAlreadyFalling="false"
         app:snowflakesFadingEnabled="true"
-        app:snowflakesNum="100" />
+        app:snowflakesNum="80" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -399,7 +399,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -456,7 +456,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -514,7 +514,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -570,7 +570,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/shape_jardi_upper_card_background"
-                                    android:backgroundTint="@color/fondo">
+                                    android:backgroundTint="#B31A2A30">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -653,6 +653,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -661,9 +663,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView1"
@@ -737,6 +737,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -745,9 +747,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView2"
@@ -821,6 +821,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -829,9 +831,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView3"
@@ -906,6 +906,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -914,9 +916,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView4"
@@ -991,6 +991,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -999,9 +1001,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView5"
@@ -1078,6 +1078,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -1086,9 +1088,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView6"
@@ -1161,6 +1161,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -1169,9 +1171,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/item_image"
@@ -1246,6 +1246,8 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -1254,9 +1256,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView8"
@@ -1331,6 +1331,8 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
+                            app:cardBackgroundColor="#B31A2A30"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="9dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -1340,9 +1342,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/fondo"
-                                android:backgroundTint="@color/fondo">
+                                android:layout_height="match_parent">
 
                                 <ImageView
                                     android:id="@+id/imageView9"
@@ -1419,3 +1419,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
+

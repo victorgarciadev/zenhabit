@@ -5,7 +5,7 @@
     app:startDestination="@id/homeActivity">
     <fragment
         android:id="@+id/tasksFragment2"
-        android:name="com.example.zenhabit.Fragments.TasksFragment"
+        android:name="com.projectegrupd.zenhabit.Fragments.TasksFragment"
         android:label="fragment_tasks"
         tools:layout="@layout/fragment_tasks" >
         <action
@@ -17,17 +17,17 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.zenhabit.Fragments.SettingsFragment"
+        android:name="com.projectegrupd.zenhabit.Fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/jardiFragment"
-        android:name="com.example.zenhabit.Fragments.JardiFragment"
+        android:name="com.projectegrupd.zenhabit.Fragments.JardiFragment"
         android:label="JardiFragment"
         tools:layout="@layout/fragment_jardi"/>
     <fragment
         android:id="@+id/createEditHabitFragment"
-        android:name="com.example.zenhabit.Fragments.CreateEditHabitFragment"
+        android:name="com.projectegrupd.zenhabit.Fragments.CreateEditHabitFragment"
         android:label="fragment_create_edit_habit"
         tools:layout="@layout/fragment_create_edit_habit" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/createEditTaskFragment"
-        android:name="com.example.zenhabit.Fragments.CreateEditTaskFragment"
+        android:name="com.projectegrupd.zenhabit.Fragments.CreateEditTaskFragment"
         android:label="fragment_create_edit_task"
         tools:layout="@layout/fragment_create_edit_task" >
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeActivity"
-        android:name="com.example.zenhabit.Fragments.home"
+        android:name="com.projectegrupd.zenhabit.Fragments.home"
         android:label="home"
         tools:layout="@layout/fragment_home">
         <action
