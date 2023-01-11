@@ -263,8 +263,8 @@ class CreateEditHabitFragment : Fragment() {
     }
 
     /**
-     * Mostra un dialog de temps i agafa la hora seleccionada
-     * @author Izan Jimenez
+     * Mostra un dialog de temps i agafa l'hora seleccionada  per l'usuari
+     * @author Izan Jimenez, Txell Llanas
      */
     class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
@@ -289,7 +289,8 @@ class CreateEditHabitFragment : Fragment() {
             // Do something with the time chosen by the user
 
             val selectedDateBundle = Bundle()
-            selectedDateBundle.putString("SELECTED_HOUR", "$hourOfDay:$minute")
+            val selectedTime = String.format("%02d:%02d", hourOfDay, minute)
+            selectedDateBundle.putString("SELECTED_HOUR", "$selectedTime")
 
             setFragmentResult("REQUEST_KEY", selectedDateBundle)
 
