@@ -3,11 +3,31 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="fondo">#22343c</color>
     <color name="verde">#4CAF50</color>
     <color name="shimmer_color">#bfbdbd</color>
     <color name="yellow">#FFEB3B</color>
     <color name="red">#F44336</color>
     <color name="purple_200">#0F9D58</color>
-    <color name="verd_zenhabit">#0ea862</color>
+    <color name="zenhabit_fons">#22343C</color>
+    <color name="zenhabit_fons_mig">#30444E</color>
+    <color name="zenhabit_fons_fosc">#142024</color>
+    <color name="zenhabit_header">#1D2C32</color>
+    <color name="zenhabit_fons_dashboard_tasques">#324B55</color>
+    <color name="zenhabit_fons_clar_semitransparent">#8A334D57</color>
+    <color name="zenhabit_fons_fosc_semitransparent">#B31A2A30</color>
+    <color name="zenhabit_verd">#0ea862</color>
+    <color name="zenhabit_verd_clar">#3dd598</color>
+    <color name="zenhabit_verd_clar2">#94EFCA</color>
+    <color name="zenhabit_verd_fosc">#286053</color>
+    <color name="zenhabit_blau">#00A2E7</color>
+    <color name="zenhabit_blau_clar">#27BCFC</color>
+    <color name="zenhabit_blau_fosc">#146080</color>
+    <color name="zenhabit_vermell">#FD565E</color>
+    <color name="zenhabit_vermell_clar">#FE7D83</color>
+    <color name="zenhabit_vermell_fosc">#603941</color>
+    <color name="zenhabit_groc">#FEC442</color>
+    <color name="zenhabit_groc_clar">#FFDD90</color>
+    <color name="zenhabit_groc_fosc">#625B39</color>
+    <color name="zenhabit_txt_dialegs">#22353c</color>
+
 </resources>

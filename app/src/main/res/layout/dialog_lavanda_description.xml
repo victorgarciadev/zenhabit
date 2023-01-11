@@ -26,7 +26,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_rounded_corner_rectangle"
-                    android:backgroundTint="#FEC442"
+                    android:backgroundTint="@color/zenhabit_groc"
                     android:padding="32dp">
 
                     <ImageView
@@ -34,7 +34,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:background="@drawable/bg_rounded_corner_rectangle"
-                        android:backgroundTint="#FFDD90"
+                        android:backgroundTint="@color/zenhabit_groc_clar"
                         android:contentDescription="@string/icona_lavanda"
                         android:padding="5dp"
                         android:src="@drawable/jardi_flor_lavanda"
@@ -52,7 +52,7 @@
                         android:fontFamily="@font/open_sans"
                         android:text="@string/lavanda"
                         android:textAlignment="center"
-                        android:textColor="#22353c"
+                        android:textColor="@color/zenhabit_txt_dialegs"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:autoSizeTextType="uniform"
@@ -69,7 +69,7 @@
                         android:fontFamily="@font/open_sans"
                         android:text="@string/descripcio_lavanda"
                         android:textAlignment="center"
-                        android:textColor="#22353c"
+                        android:textColor="@color/zenhabit_txt_dialegs"
                         android:textSize="18sp"
                         app:autoSizeTextType="uniform"
                         app:layout_constraintEnd_toEndOf="parent"
