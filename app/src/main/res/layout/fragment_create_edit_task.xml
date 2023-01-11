@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@color/zenhabit_fons"
     tools:context=".Fragments.CreateEditTaskFragment">
 
     <ScrollView
@@ -20,13 +20,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/fondo"
+            android:background="@color/zenhabit_fons"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="#30444E"
+                android:background="@color/zenhabit_fons_mig"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -37,13 +37,13 @@
                     android:layout_height="110dp"
                     android:layout_marginBottom="48dp"
                     android:alpha="0.3"
-                    android:backgroundTint="#FFC542"
+                    android:backgroundTint="@color/zenhabit_groc"
                     android:drawableTop="@drawable/ic_baseline_calendar_zen"
                     android:fontFamily="@font/open_sans_bold"
                     android:padding="10dp"
                     android:text="@string/habit_txt_btn"
                     android:textAllCaps="false"
-                    android:textColor="@color/fondo"
+                    android:textColor="@color/zenhabit_fons"
                     android:textSize="18sp"
                     app:cornerRadius="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +59,7 @@
                     android:layout_marginBottom="48dp"
                     android:alpha="1"
                     android:fontFamily="@font/open_sans_bold"
-                    android:backgroundTint="#00A2E7"
+                    android:backgroundTint="@color/zenhabit_blau"
                     android:drawableTop="@drawable/ic_tasca"
                     android:padding="10dp"
                     android:text="@string/tasca_txt_btn"
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="200dp"
                     android:background="@drawable/layout_bg"
-                    android:backgroundTint="#00A2E7"
+                    android:backgroundTint="@color/zenhabit_blau"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="80dp"
                     android:background="@drawable/layout_bg"
-                    android:backgroundTint="#22343C"
+                    android:backgroundTint="@color/zenhabit_fons"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,8 +125,8 @@
                         android:inputType="textCapSentences"
                         android:fontFamily="@font/open_sans"
                         android:hint="@string/nom_de_la_tasca"
-                        android:textColor="#000000"
-                        android:textColorHint="#000000"
+                        android:textColor="@color/zenhabit_fons"
+                        android:textColorHint="@drawable/selector_inputobjectius"
                         android:textSize="30sp"
                         app:boxStrokeWidth="0dp"
                         app:boxStrokeWidthFocused="0dp" />
@@ -140,8 +140,8 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="32dp"
-                    android:background="#22343C"
-                    android:backgroundTint="#22343C"
+                    android:background="@color/zenhabit_fons"
+                    android:backgroundTint="@color/zenhabit_fons"
                     android:hint="@string/descripcio_opcional"
                     android:textColorHint="#FFF"
                     app:hintTextColor="#FFF"
@@ -152,10 +152,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#22343C"
+                        android:backgroundTint="@color/zenhabit_fons"
                         android:fontFamily="@font/open_sans"
                         android:textColor="#FFF"
-                        android:textColorHint="#FFF" />
+                        android:textColorHint="#FFF"
+                        android:inputType="textCapSentences"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,7 +221,7 @@
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:background="@drawable/bg_rounded_corner_rectangle"
-                    android:backgroundTint="#30444E"
+                    android:backgroundTint="@color/zenhabit_fons_mig"
                     android:orientation="horizontal"
                     android:paddingHorizontal="32dp"
                     android:paddingVertical="24dp"
