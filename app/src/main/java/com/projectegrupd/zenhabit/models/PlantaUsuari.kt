@@ -6,9 +6,7 @@ import java.util.ArrayList
 /**
  * @author Pablo Morante
  */
-class PlantaUsuari(planta: String, quantitat: Int) {
-    val planta = planta
-    var quantitat = quantitat
+class PlantaUsuari(val planta: String, var quantitat: Int) {
 
     companion object {
         fun dataFirebaseToPlanta(document: DocumentSnapshot): ArrayList<PlantaUsuari> {

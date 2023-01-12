@@ -4,15 +4,11 @@ package com.projectegrupd.zenhabit.models
  * @author Pablo Morante
  */
 class Usuari(
-    nom: String,
-    email: String,
-    llistaReptes: ArrayList<RepteUsuari>?,
-    llistaPlantes: ArrayList<PlantaUsuari>?,
-    llistaObjectius: ArrayList<Objectius>?
+    val nom: String,
+    val email: String,
+    val llistaReptes: ArrayList<RepteUsuari>?,
+    val llistaPlantes: ArrayList<PlantaUsuari>?,
+    val llistaObjectius: ArrayList<Objectius>?
 ) {
-    val nom = nom
-    val email = email
-    val llistaReptes = llistaReptes
-    val llistaPlantes = llistaPlantes
-    val llistaObjectius = llistaObjectius
+
 }
