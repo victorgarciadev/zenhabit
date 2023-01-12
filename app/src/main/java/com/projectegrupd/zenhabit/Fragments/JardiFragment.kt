@@ -33,7 +33,7 @@ class JardiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentJardiBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.garden_title))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.garden_title)
         val view = binding.root
         christmasSpecial()
 
@@ -58,11 +58,11 @@ class JardiFragment : Fragment() {
         val d2 = "02/01/2023"
 
         val sdf = SimpleDateFormat("MM/dd/yyyy")
-        val firstDate: Date = sdf.parse(d1)
-        val secondDate: Date = sdf.parse(d2)
+        val firstDate = sdf.parse(d1) as Date
+        val secondDate = sdf.parse(d2) as Date
 
-        if (actualDay.compareTo(firstDate) > 0) {
-            if (actualDay.compareTo(secondDate) < 0) {
+        if (actualDay > firstDate) {
+            if (actualDay < secondDate) {
                 binding.snowfall.isVisible = true
             }
         }
@@ -165,8 +165,7 @@ class JardiFragment : Fragment() {
             .document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val plantes = PlantaUsuari.dataFirebaseToPlanta(result)
-                var i = 0
-                for (planta in plantes) {
+                for ((i, planta) in plantes.withIndex()) {
                     when (i) {
                         0 -> binding.quantitat0.text = planta.quantitat.toString()
                         1 -> binding.quantitat1.text = planta.quantitat.toString()
@@ -178,7 +177,6 @@ class JardiFragment : Fragment() {
                         7 -> binding.quantitat7.text = planta.quantitat.toString()
                         8 -> binding.quantitat8.text = planta.quantitat.toString()
                     }
-                    i++
                 }
             }
 

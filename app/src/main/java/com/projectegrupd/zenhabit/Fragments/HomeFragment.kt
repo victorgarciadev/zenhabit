@@ -34,7 +34,7 @@ class home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle("ZenHabit")
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "ZenHabit"
         val view = binding.root
         binding.btnVeureJardi.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_jardiFragment)

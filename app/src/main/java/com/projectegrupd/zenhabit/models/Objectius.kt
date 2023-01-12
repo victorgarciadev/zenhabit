@@ -30,7 +30,7 @@ class Objectius(
 
             var ret: ArrayList<Objectius> = ArrayList()
             val d: Map<String, String> = document.data as Map<String, String>
-            val a = d.get("llistaObjectius") as List<*>
+            val a = d["llistaObjectius"] as List<*>
             for (i in a) {
                 i as HashMap<String, String?>
                 val nom = i["nom"]
@@ -55,7 +55,7 @@ class Objectius(
                 val udf = i["ultimaDataFet"]
                 var ultimaDataFet: Date? = null
                 if (udf != null) {
-                    val format: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy'");
+                    val format = SimpleDateFormat("dd-MM-yyyy'");
                     ultimaDataFet = format.parse(udf);
                 }
                 val tipus: Boolean = i["tipus"] as Boolean

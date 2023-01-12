@@ -163,7 +163,7 @@ class RegisterActivity : AppCompatActivity() {
      */
     private fun validateForm(): Boolean {
         var valid = true
-        val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}\$".toRegex()
+        val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}\$".toRegex()
 
         val email = bin.inputCreateEmail.text.toString().trim()
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -174,7 +174,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val password = bin.inputCreatePsw.text.toString().trim()
-        if (!password.matches(PASSWORD_REGEX)) {
+        if (!password.matches(passwordRegex)) {
             bin.inputCreatePsw.error = getString(R.string.error_password_created)
             valid = false
         } else {
