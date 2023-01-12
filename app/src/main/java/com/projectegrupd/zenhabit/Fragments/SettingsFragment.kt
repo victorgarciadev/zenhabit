@@ -36,7 +36,7 @@ class SettingsFragment : Fragment() {
 
         binding.btnSaveNewPsw.setOnClickListener {
             val actualPsw = binding.inputActualPsw.text.toString()
-            if (!actualPsw.isEmpty()) {
+            if (actualPsw.isNotEmpty()) {
                 changePassword(actualPsw)
             }
         }

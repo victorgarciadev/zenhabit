@@ -42,7 +42,7 @@ class Dies(
         fun fromBooleanArray(booleanArray: BooleanArray): ArrayList<Dies> {
             val diesList = ArrayList<Dies>()
 
-            for (i in 0 until booleanArray.size) {
+            for (i in booleanArray.indices) {
                 val dies = Dies(
                     booleanArray[0],
                     booleanArray[1],

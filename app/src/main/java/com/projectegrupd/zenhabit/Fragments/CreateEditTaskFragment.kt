@@ -44,14 +44,14 @@ class CreateEditTaskFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditTaskBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_task))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.create_task)
         val view = binding.root
 
         val name = arguments?.get("Name").toString()
         if (name != "null") {
             editantTasca = true
             binding.nomTascaEdit.setText(name)
-            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.edit_task))
+            (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.edit_task)
             binding.btnCrearEditarHabit.isVisible = false
         }
         val categoria = arguments?.get("categoria").toString()
@@ -88,15 +88,13 @@ class CreateEditTaskFragment : Fragment() {
                         if (!editantTasca) {
                             valors.add(tasca)
                         } else {
-                            var index = 0
-                            for (valor in valors) {
+                            for ((index, valor) in valors.withIndex()) {
                                 if (!valor.tipus && valor.nom == arguments?.get("Name")
                                         .toString() && valor.dataLimit == arguments?.get("time")
                                         .toString()
                                 ) {
-                                    valors.set(index, tasca)
+                                    valors[index] = tasca
                                 }
-                                index++
                             }
                         }
                         db.collection("Usuaris")
@@ -149,7 +147,7 @@ class CreateEditTaskFragment : Fragment() {
         }
         val hora = arguments?.get("time").toString()
         if (hora != "null") {
-            binding.etPlannedDate.hint = "$hora"
+            binding.etPlannedDate.hint = hora
         } else {
             binding.etPlannedDate.hint = "$initialDay-$initialMonth-$initialYear"
         }
@@ -287,7 +285,7 @@ class CreateEditTaskFragment : Fragment() {
         val currentDate = Calendar.getInstance()
         currentDate.add(Calendar.DATE, -1)
         val plannedDateCalendar = Calendar.getInstance()
-        plannedDateCalendar.setTime(plannedDate)
+        plannedDateCalendar.time = plannedDate!!
         if (plannedDateCalendar.before(currentDate)) {
             binding.etPlannedDate.error = getString(R.string.formulari_date)
             valid = false

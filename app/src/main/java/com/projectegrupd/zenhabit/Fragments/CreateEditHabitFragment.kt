@@ -44,7 +44,7 @@ class CreateEditHabitFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment (View Binding)
         _binding = FragmentCreateEditHabitBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.create_habit))
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.create_habit)
         val view = binding.root
 
         // editar habit
@@ -52,7 +52,7 @@ class CreateEditHabitFragment : Fragment() {
         if (name != "null") {
             editantHabit = true
             binding.nomHabitEdit.setText(name)
-            (activity as AppCompatActivity?)!!.supportActionBar?.setTitle(getString(R.string.edit_habit))
+            (activity as AppCompatActivity?)!!.supportActionBar?.title = getString(R.string.edit_habit)
             binding.btnCrearEditarTasca.isVisible = false
         }
         val categoria = arguments?.get("Categoria").toString()
@@ -187,7 +187,7 @@ class CreateEditHabitFragment : Fragment() {
         }
         val hora = arguments?.get("Hora").toString()
         if (hora != "null") {
-            binding.etPlannedHour.hint = "$hora"
+            binding.etPlannedHour.hint = hora
         }
         binding.apply {
             etPlannedDate.hint
@@ -290,7 +290,7 @@ class CreateEditHabitFragment : Fragment() {
 
             val selectedDateBundle = Bundle()
             val selectedTime = String.format("%02d:%02d", hourOfDay, minute)
-            selectedDateBundle.putString("SELECTED_HOUR", "$selectedTime")
+            selectedDateBundle.putString("SELECTED_HOUR", selectedTime)
 
             setFragmentResult("REQUEST_KEY", selectedDateBundle)
 
@@ -329,7 +329,7 @@ class CreateEditHabitFragment : Fragment() {
         val currentDate = Calendar.getInstance()
         currentDate.add(Calendar.DATE, -1)
         val plannedDateCalendar = Calendar.getInstance()
-        plannedDateCalendar.setTime(plannedDate)
+        plannedDateCalendar.time = plannedDate!!
         if (plannedDateCalendar.before(currentDate)) {
             binding.etPlannedDate.error = getString(R.string.formulari_date)
             valid = false

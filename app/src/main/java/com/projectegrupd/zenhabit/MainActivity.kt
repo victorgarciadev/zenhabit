@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
 
         val actionBar: ActionBar? = supportActionBar
-        actionBar?.setTitle("ZenHabit")
+        actionBar?.title = "ZenHabit"
 
         bottomNavigation = bin.bottomNavigationView
         bottomNavigation.setOnItemSelectedListener { item ->
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.itemIconTintList = null
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onStop() {
         // l'aplicació entra aqui quan l'usuari ja no la veu
         super.onStop()
@@ -189,6 +191,7 @@ class MainActivity : AppCompatActivity() {
      *
      * @author Pablo Morante, Víctor García
      */
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun launchNotification() {
         FirebaseFirestore.getInstance().collection("Usuaris")
             .document(auth.currentUser!!.uid).get()
@@ -201,12 +204,10 @@ class MainActivity : AppCompatActivity() {
                     createNotificationChannel()
                     val pendingIntent: PendingIntent =
                         PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-                    if (numeroPendents == 1) {
-                        text =
-                            getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
+                    text = if (numeroPendents == 1) {
+                        getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_singular)
                     } else {
-                        text =
-                            getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
+                        getString(R.string.pendents_primera) + " $numeroPendents " + getString(R.string.label_notificacio_getNewItem_plural)
                     }
                     // 1. Crear constructor per mostrar la notificació
                     val builder = NotificationCompat.Builder(this, canalID)
@@ -234,7 +235,7 @@ class MainActivity : AppCompatActivity() {
      * @author Pablo Morante
      */
     private fun resetNotification() {
-        val actualDay = Calendar.getInstance().getTime()// dia i hora actual
+        val actualDay = Calendar.getInstance().time// dia i hora actual
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
