@@ -370,6 +370,7 @@ class TasksFragment : Fragment() {
                         objectius.set(index, objectiuLlista)
                         val filteredList = objectius.filter { !it.complert }
                         setRecyclerView(filteredList)
+                        preparePieData()
                         break
                     }
                     index++

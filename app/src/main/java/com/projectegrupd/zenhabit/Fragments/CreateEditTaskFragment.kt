@@ -285,6 +285,7 @@ class CreateEditTaskFragment : Fragment() {
         val plannedDateString = binding.etPlannedDate.hint.toString()
         val plannedDate = sdf.parse(plannedDateString)
         val currentDate = Calendar.getInstance()
+        currentDate.add(Calendar.DATE, -1)
         val plannedDateCalendar = Calendar.getInstance()
         plannedDateCalendar.setTime(plannedDate)
         if (plannedDateCalendar.before(currentDate)) {
