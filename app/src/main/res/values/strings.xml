@@ -192,5 +192,6 @@
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
     <string name="pendents_tercera_singular">Hàbit pendent.</string>
     <string name="pendents_tercera_plural">Hàbits pendents.</string>
+    <string name="jardi_cap_item_aconseguit" translatable="false">0</string>
 
 </resources>

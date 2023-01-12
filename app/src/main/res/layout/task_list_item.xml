@@ -20,7 +20,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/fondo"
+        android:backgroundTint="@color/zenhabit_fons"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
@@ -30,7 +30,7 @@
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:background="@drawable/rounded_corner"
-            android:backgroundTint="#3dd598"
+            android:backgroundTint="@color/zenhabit_verd_clar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintHorizontal_bias="0.6"
@@ -126,7 +126,7 @@
             android:alpha="1"
             android:backgroundTint="#00FFFFFF"
             android:drawableTop="@drawable/ic_baseline_done"
-            android:drawableTint="#3dd598"
+            android:drawableTint="@color/zenhabit_verd_clar"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
