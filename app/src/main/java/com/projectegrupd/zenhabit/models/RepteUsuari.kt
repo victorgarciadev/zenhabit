@@ -7,9 +7,7 @@ import kotlin.collections.HashMap
 /**
  * @author Pablo Morante, Izan Jimenez
  */
-class RepteUsuari(repte: Repte, aconseguit: Boolean) {
-    var repte = repte
-    var aconseguit = aconseguit
+class RepteUsuari(var repte: Repte, var aconseguit: Boolean) {
 
     /***
      * Retorna una ArrayList de RepteUsuari

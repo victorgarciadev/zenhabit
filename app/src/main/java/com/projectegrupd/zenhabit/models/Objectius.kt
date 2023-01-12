@@ -8,26 +8,16 @@ import java.util.*
  * @author Pablo Morante, Izan Jimenez, Txell Llanas
  */
 class Objectius(
-    nom: String,
-    descripcio: String,
-    categoria: String,
-    dataLimit: String,
-    repetible: Dies?,
-    horari: String?,
-    complert: Boolean,
-    ultimaDataFet: Date?,
-    tipus: Boolean
+    val nom: String,
+    val descripcio: String,
+    val categoria: String,
+    val dataLimit: String,
+    val repetible: Dies?,
+    val horari: String?,
+    var complert: Boolean,
+    val ultimaDataFet: Date?,
+    val tipus: Boolean
 ) {
-    val nom = nom
-    val descripcio = descripcio
-    val categoria = categoria
-    val dataLimit = dataLimit
-    val repetible = repetible
-    val horari = horari
-    var complert = complert
-    val ultimaDataFet = ultimaDataFet
-    val tipus = tipus
-
 
     /**
      * Retorna una ArrayList d'objectius
