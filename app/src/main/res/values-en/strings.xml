@@ -130,7 +130,7 @@
     <string name="user_created">User created.</string>
     <string name="error_user_created">Authentication failed.</string>
     <string name="error_email_created">Wrong email format.</string>
-    <string name="error_password_created">Password must contain between 8 and 15 characters.</string>
+    <string name="error_password_created">Password must contain 8 characters minimum, a number and a capital letter.</string>
     <string name="error_username_created">Username must contain between 3 and 15 characters.</string>
     <string name="toast_change_password">Password changed successfully.</string>
     <string name="toast_change_email">Mail sent successfully.</string>

@@ -97,7 +97,7 @@ class TasksFragment : Fragment() {
         //----------------NEW RECYCLERVIEW-----------------
         //cargar shimmer
         mRecyclerView = binding.rvTasques
-        val mLayoutManager = LinearLayoutManager(this.getActivity())
+        val mLayoutManager = LinearLayoutManager(this.activity)
         shimmerFrameLayout = binding.shimmer
         shimmerFrameLayout.startShimmer()
         //cargar recyclerview
@@ -125,11 +125,9 @@ class TasksFragment : Fragment() {
         if (isChecked) {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#6B7477"))
-            objDiariAyoutBinding.checkboxDone.setButtonTintList(
-                ColorStateList.valueOf(
-                    Color.parseColor(
-                        "#6B7477"
-                    )
+            objDiariAyoutBinding.checkboxDone.buttonTintList = ColorStateList.valueOf(
+                Color.parseColor(
+                    "#6B7477"
                 )
             )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#6B7477"))
@@ -147,11 +145,9 @@ class TasksFragment : Fragment() {
         } else {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#3dd598"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#2E2E2E"))
-            objDiariAyoutBinding.checkboxDone.setButtonTintList(
-                ColorStateList.valueOf(
-                    Color.parseColor(
-                        "#2E2E2E"
-                    )
+            objDiariAyoutBinding.checkboxDone.buttonTintList = ColorStateList.valueOf(
+                Color.parseColor(
+                    "#2E2E2E"
                 )
             )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#2E2E2E"))
@@ -303,7 +299,7 @@ class TasksFragment : Fragment() {
             }
 
         }.addOnFailureListener { exception ->
-            Log.d("TAG", "ERROR AL OBTENER ${exception}")
+            Log.d("TAG", "ERROR AL OBTENER $exception")
 
         }
     }
@@ -330,7 +326,7 @@ class TasksFragment : Fragment() {
                 )
             })
 
-        mRecyclerView.setAdapter(mAdapter)
+        mRecyclerView.adapter = mAdapter
     }
 
     /**
@@ -373,18 +369,18 @@ class TasksFragment : Fragment() {
      * @author Izan Jimenez
      */
     private fun deleteItem(index: Int) {
-        var objectiuSeleccionat = mAdapter.getItem(index) as Objectius
+        val objectiuSeleccionat = mAdapter.getItem(index) as Objectius
         db.collection("Usuaris").document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val objectius = Objectius.dataFirebaseToObjectius(result)
                 var index = 0
                 for (objectiu in objectius) {
                     if (objectiu.nom == objectiuSeleccionat.nom && objectiu.categoria == objectiuSeleccionat.categoria && objectiu.dataLimit == objectiuSeleccionat.dataLimit && objectiu.horari == objectiuSeleccionat.horari) {
-                        val objectiuLlista = objectiu
-                        objectiuLlista.complert = true
-                        objectius.set(index, objectiuLlista)
+                        objectiu.complert = true
+                        objectius[index] = objectiu
                         val filteredList = objectius.filter { !it.complert }
                         setRecyclerView(filteredList)
+                        preparePieData()
                         break
                     }
                     index++
@@ -440,15 +436,15 @@ class TasksFragment : Fragment() {
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
         pieChart.setUsePercentValues(true)
-        pieChart.getDescription().setEnabled(false)
+        pieChart.description.isEnabled = false
         pieChart.setExtraOffsets(5f, 5f, 5f, 5f)
 
         // on below line we are setting drag for our pie chart
-        pieChart.setDragDecelerationFrictionCoef(0.35f)
+        pieChart.dragDecelerationFrictionCoef = 0.35f
 
         // on below line we are setting hole
         // and hole color for pie chart
-        pieChart.setDrawHoleEnabled(true)
+        pieChart.isDrawHoleEnabled = true
         pieChart.setHoleColor(Color.TRANSPARENT)
 
         // on below line we are setting circle color and alpha
@@ -456,19 +452,19 @@ class TasksFragment : Fragment() {
         pieChart.setTransparentCircleAlpha(110)
 
         // on  below line we are setting hole radius
-        pieChart.setHoleRadius(75f)
-        pieChart.setTransparentCircleRadius(33f)
+        pieChart.holeRadius = 75f
+        pieChart.transparentCircleRadius = 33f
 
         // on below line we are setting center text
         pieChart.setDrawCenterText(true)
 
         // on below line we are setting
         // rotation for our pie chart
-        pieChart.setRotationAngle(0f)
+        pieChart.rotationAngle = 0f
 
         // enable rotation of the pieChart by touch
-        pieChart.setRotationEnabled(true)
-        pieChart.setHighlightPerTapEnabled(false)
+        pieChart.isRotationEnabled = true
+        pieChart.isHighlightPerTapEnabled = false
 
         // on below line we are setting animation for our pie chart
         pieChart.animateY(800, Easing.EaseInOutQuad)
@@ -501,7 +497,7 @@ class TasksFragment : Fragment() {
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
 
-        // add a lot of colors to listwwssw
+        // add a lot of colors to list
         val colors: ArrayList<Int> = ArrayList()
         colors.add(Color.parseColor("#FD565E"))
         colors.add(Color.parseColor("#3dd598"))

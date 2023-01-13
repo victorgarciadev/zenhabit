@@ -173,7 +173,7 @@
     <string name="user_created">Usuari creat correctament.</string>
     <string name="error_user_created">L\'autentificació ha fallat.</string>
     <string name="error_email_created">El format d\'email és incorrecte.</string>
-    <string name="error_password_created">La contrasenya com a mínim ha de tenir 8 caràcters i un número.</string>
+    <string name="error_password_created">La contrasenya com a mínim ha de tenir 8 caràcters, una majúscula i un número.</string>
     <string name="error_username_created">El nom d\'usuari ha de ser d\'entre 3 i 15 caràcters.</string>
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
@@ -192,5 +192,6 @@
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
     <string name="pendents_tercera_singular">Hàbit pendent.</string>
     <string name="pendents_tercera_plural">Hàbits pendents.</string>
+    <string name="jardi_cap_item_aconseguit" translatable="false">0</string>
 
 </resources>

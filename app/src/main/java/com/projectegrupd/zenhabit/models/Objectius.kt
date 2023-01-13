@@ -8,26 +8,16 @@ import java.util.*
  * @author Pablo Morante, Izan Jimenez, Txell Llanas
  */
 class Objectius(
-    nom: String,
-    descripcio: String,
-    categoria: String,
-    dataLimit: String,
-    repetible: Dies?,
-    horari: String?,
-    complert: Boolean,
-    ultimaDataFet: Date?,
-    tipus: Boolean
+    val nom: String,
+    val descripcio: String,
+    val categoria: String,
+    val dataLimit: String,
+    val repetible: Dies?,
+    val horari: String?,
+    var complert: Boolean,
+    val ultimaDataFet: Date?,
+    val tipus: Boolean
 ) {
-    val nom = nom
-    val descripcio = descripcio
-    val categoria = categoria
-    val dataLimit = dataLimit
-    val repetible = repetible
-    val horari = horari
-    var complert = complert
-    val ultimaDataFet = ultimaDataFet
-    val tipus = tipus
-
 
     /**
      * Retorna una ArrayList d'objectius
@@ -40,7 +30,7 @@ class Objectius(
 
             var ret: ArrayList<Objectius> = ArrayList()
             val d: Map<String, String> = document.data as Map<String, String>
-            val a = d.get("llistaObjectius") as List<*>
+            val a = d["llistaObjectius"] as List<*>
             for (i in a) {
                 i as HashMap<String, String?>
                 val nom = i["nom"]
@@ -65,7 +55,7 @@ class Objectius(
                 val udf = i["ultimaDataFet"]
                 var ultimaDataFet: Date? = null
                 if (udf != null) {
-                    val format: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy'");
+                    val format = SimpleDateFormat("dd-MM-yyyy'");
                     ultimaDataFet = format.parse(udf);
                 }
                 val tipus: Boolean = i["tipus"] as Boolean

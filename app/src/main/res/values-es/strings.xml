@@ -130,7 +130,7 @@
     <string name="user_created">"Usuario creado de forma correcta. "</string>
     <string name="error_user_created">"La autenticación ha fallado. "</string>
     <string name="error_email_created">El formato de correo es incorrecto.</string>
-    <string name="error_password_created">"La contraseña tiene que tener como mínimo 8 caracteres y un número. "</string>
+    <string name="error_password_created">"La contraseña tiene que tener como mínimo 8 caracteres, un número y una mayúscula. "</string>
     <string name="error_username_created">El nombre de usuario tiene que tener entre 3 y 15 caracteres.</string>
     <string name="toast_change_password">"Contraseña cambiada correctamente. "</string>
     <string name="toast_change_email">Correo cambiado correctamente.</string>

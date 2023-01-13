@@ -4,21 +4,14 @@ package com.projectegrupd.zenhabit.models
  * @author Pablo Morante
  */
 class Dies(
-    dilluns: Boolean,
-    dimarts: Boolean,
-    dimecres: Boolean,
-    dijous: Boolean,
-    divendres: Boolean,
-    dissabte: Boolean,
-    diumenge: Boolean
+    val dilluns: Boolean,
+    val dimarts: Boolean,
+    val dimecres: Boolean,
+    val dijous: Boolean,
+    val divendres: Boolean,
+    val dissabte: Boolean,
+    val diumenge: Boolean
 ) {
-    val dilluns = dilluns
-    val dimarts = dimarts
-    val dimecres = dimecres
-    val dijous = dijous
-    val divendres = divendres
-    val dissabte = dissabte
-    val diumenge = diumenge
 
     /**
      * Converteix els dies de la setmanaen una matriu booleana.
@@ -49,7 +42,7 @@ class Dies(
         fun fromBooleanArray(booleanArray: BooleanArray): ArrayList<Dies> {
             val diesList = ArrayList<Dies>()
 
-            for (i in 0 until booleanArray.size) {
+            for (i in booleanArray.indices) {
                 val dies = Dies(
                     booleanArray[0],
                     booleanArray[1],
