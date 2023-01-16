@@ -7,7 +7,7 @@ import kotlin.collections.HashMap
 /**
  * @author Pablo Morante, Izan Jimenez
  */
-class RepteUsuari(var repte: Repte, var aconseguit: Boolean) {
+class RepteUsuari(var repte: Repte, var aconseguit: Boolean, var mostrant: Boolean) {
 
     /***
      * Retorna una ArrayList de RepteUsuari
@@ -25,6 +25,7 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean) {
             for (i in a) {
                 i as HashMap<String, String?>
                 val aconseguit = i["aconseguit"] as Boolean
+                val mostrant = i["mostrant"] as Boolean
                 val repte = i["repte"] as HashMap<String, String>
 
                 val r = RepteUsuari(
@@ -33,7 +34,8 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean) {
                         repte["descripcio"].toString(),
                         repte["titol"].toString()
                     ),
-                    aconseguit
+                    aconseguit,
+                    mostrant
                 )
                 ret.add(r)
             }
@@ -52,7 +54,7 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean) {
                     document.get("idRepte").toString().toInt(),
                     document.get("descripcio").toString(),
                     document.get("titol").toString()
-                ), false
+                ), false, false
             )
 
 
