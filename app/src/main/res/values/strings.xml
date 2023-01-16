@@ -100,7 +100,7 @@
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
-    <string name="configuracions_titol_perfil">Perfil d\'usuari</string>
+    <string name="configuracions_titol_perfil">Perfil per </string>
     <string name="configuracions_crear_contrasenya">Crear contrasenya</string>
     <string name="configs_canviar_contrasenya">Canviar contrasenya</string>
     <string name="configs_canviar_nom_usuari">Canviar nom</string>
