@@ -89,7 +89,6 @@ class TasksFragment : Fragment() {
             binding.listObjDiari.visibility = View.VISIBLE
             shimmerFrameLayoutObjDiari.stopShimmer()
             shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
-            getReptes()
         }, 3000)
 
         //canviar de color els checkboxes
@@ -195,20 +194,26 @@ class TasksFragment : Fragment() {
      */
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getReptes() {
-        val actualDay = Calendar.getInstance().time// dia i hora actual
+        val actualDay = Calendar.getInstance().time  // dia i hora actual
+        val actualDayCalendar = Calendar.getInstance()
+        actualDayCalendar.time = actualDay
+        actualDayCalendar.set(Calendar.HOUR_OF_DAY, 0)
+        actualDayCalendar.set(Calendar.MINUTE, 0)
+        actualDayCalendar.set(Calendar.SECOND, 0)
+        actualDayCalendar.set(Calendar.MILLISECOND, 0)
 
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
                 val lastDay = result.getTimestamp("lastDateReptes")!!
                     .toDate() // dia i hora que es van canviar els reptes
-                val difference: Long = actualDay.time - lastDay.time
-                val seconds = difference / 1000
-                val minutes = seconds / 60
-                val hours = minutes / 60
-                val days = hours / 24
-                Log.d("DAYS", days.toString())
-                if (days >= 1) {
+                val lastDayCalendar = Calendar.getInstance()
+                lastDayCalendar.time = lastDay
+                lastDayCalendar.set(Calendar.HOUR_OF_DAY, 0)
+                lastDayCalendar.set(Calendar.MINUTE, 0)
+                lastDayCalendar.set(Calendar.SECOND, 0)
+                lastDayCalendar.set(Calendar.MILLISECOND, 0)
+                if (actualDayCalendar.after(lastDayCalendar)) {
                     runBlocking {
                         obtenirReptes(true)
                     }
@@ -222,6 +227,12 @@ class TasksFragment : Fragment() {
                 }
             }
     }
+
+    /**
+     * Funció per obtenir els reptes que s'estan mostrant actualment o aquells que s'han de canviar
+     * @param canvi boolean per saber si s'han de canviar o no
+     * @author Izan Jimenez, Pablo Morante
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     private suspend fun obtenirReptes(canvi: Boolean) {
         val reptes = db.collection("Usuaris")
@@ -248,6 +259,11 @@ class TasksFragment : Fragment() {
         }
     }
 
+    /**
+     * Funció per mostrar els reptes actuals de l'usuari a l'interfície i saber si ja estan fets o no
+     * @param reptes array dels reptes actuals
+     * @author Izan Jimenez, Pablo Morante
+     */
     private suspend fun showReptes(reptes: ArrayList<RepteUsuari>) {
         var i = 1
         for (repte in reptes) {
@@ -299,12 +315,14 @@ class TasksFragment : Fragment() {
                 }
                 binding.Obj3.checkboxDone.isChecked = done
             }
-            Log.d("for","$i")
             i++
-            Log.d("for2","$i")
         }
     }
 
+    /**
+     * Funció per modificar els reptes que es mostren
+     * @param reptesUsuari array de tots els reptes que hi ha
+     */
     private suspend fun modificarMostrant(reptesUsuari: ArrayList<RepteUsuari>) {
         val reptesBD = db.collection("Usuaris")
             .document(auth.currentUser!!.uid).get().await()
