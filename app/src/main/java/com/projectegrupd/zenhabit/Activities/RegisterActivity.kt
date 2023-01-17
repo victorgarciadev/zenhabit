@@ -110,8 +110,14 @@ class RegisterActivity : AppCompatActivity() {
                                 )
                             }
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-                        val actualDay = Calendar.getInstance().getTime()
-                        val temporal = VerificacioNotificacio(actualDay, false)
+
+                        val actualDay = Calendar.getInstance().time
+                        val calendar = Calendar.getInstance()
+                        calendar.time = actualDay
+                        calendar.add(Calendar.DATE, -2)
+                        val previousDay = calendar.time
+
+                        val temporal = VerificacioNotificacio(previousDay, false)
                         db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)

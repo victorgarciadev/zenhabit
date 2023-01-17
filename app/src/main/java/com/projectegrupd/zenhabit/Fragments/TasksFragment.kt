@@ -60,6 +60,8 @@ class TasksFragment : Fragment() {
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
     private lateinit var pieChart: PieChart
+    private val language = Locale.getDefault().language
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,7 +82,8 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari.startShimmer()
 
         //omplim els checkBoxes de reptes daris
-        getReptes()
+        resetReptesDiaris()
+
 
         //canviar de color els checkboxes
         binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -177,34 +180,55 @@ class TasksFragment : Fragment() {
         docref.get().addOnSuccessListener { document ->
             if (document != null) {
                 llista = RepteUsuari.dataFirebasetoReptes(document)
-                if (!llista.isEmpty()) {
-                    for (i in 1..3) {
-                        //val j = (0..llista.size).random()
+                    .filter { it.mostrant } as ArrayList<RepteUsuari>
+                if (llista.isNotEmpty()) {
 
-                        if (i == 1) {
-                            binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
-                            binding.Obj1.titolRepte.text = llista[0].repte.titol
-                            binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
-                        }
-                        if (i == 2) {
-                            binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
-                            binding.Obj2.titolRepte.text = llista[1].repte.titol
-                            binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
-                        }
-                        if (i == 3) {
-                            binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
-                            binding.Obj3.titolRepte.text = llista[2].repte.titol
-                            binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
+                    FirebaseFirestore.getInstance().collection("Reptes").get()
+                        .addOnSuccessListener { result ->
+
+                            for (i in 0 until llista.size) {
+                                if (language == "en") {
+                                    llista[i].repte.titol =
+                                        result.documents[i].get("title").toString()
+                                    llista[i].repte.descripcio =
+                                        result.documents[i].get("description").toString()
+                                } else if (language == "es") {
+                                    llista[i].repte.titol =
+                                        result.documents[i].get("titulo").toString()
+                                    llista[i].repte.descripcio =
+                                        result.documents[i].get("descripcion").toString()
+                                }
+                            }
+                            for (i in 1..3) {
+
+                                if (i == 1) {
+
+                                    binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
+                                    binding.Obj1.titolRepte.text = llista[0].repte.titol
+                                    binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
+                                }
+                                if (i == 2) {
+                                    binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
+                                    binding.Obj2.titolRepte.text = llista[1].repte.titol
+                                    binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
+                                }
+                                if (i == 3) {
+                                    binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
+                                    binding.Obj3.titolRepte.text = llista[2].repte.titol
+                                    binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
+                                }
+
+                                //Mostrar reptes
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    binding.listObjDiari.visibility = View.VISIBLE
+                                    shimmerFrameLayoutObjDiari.stopShimmer()
+                                    shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+                                    // comprova si ja ha pasat un dia des de la actualització de reptes diaris
+                                }, 1000)
+                            }
                         }
 
-                        //Mostrar reptes
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.listObjDiari.visibility = View.VISIBLE
-                            shimmerFrameLayoutObjDiari.stopShimmer()
-                            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
-                            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
-                        }, 1000)
-                    }
+
                 } else {
                     Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO LA LISTA")
                 }
@@ -239,14 +263,51 @@ class TasksFragment : Fragment() {
                 Log.d("DAYS", " $days")
                 if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
                     checkChecked(false, binding.Obj1, 1)
-                    binding.Obj3.checkboxDone.isChecked = false
+//                    binding.Obj3.checkboxDone.isChecked = false
                     checkChecked(false, binding.Obj1, 2)
-                    binding.Obj3.checkboxDone.isChecked = false
+//                    binding.Obj3.checkboxDone.isChecked = false
                     checkChecked(false, binding.Obj1, 3)
-                    binding.Obj3.checkboxDone.isChecked = false
+                    //                   binding.Obj3.checkboxDone.isChecked = false
+
+
+                    val docref = db.collection("Usuaris").document(auth.currentUser!!.uid)
+                    docref.get().addOnSuccessListener { document ->
+                        if (document != null) {
+                            val llista = RepteUsuari.dataFirebasetoReptes(document)
+
+                            var novaLlistaReptes = llista.filter { !it.mostrant }
+
+                            novaLlistaReptes = novaLlistaReptes.shuffled().take(3).toList()
+
+                            llista.forEach { it.mostrant = false }
+
+                            for (i in 0 until llista.size) {
+                                llista[i].aconseguit = false
+
+                                for (repte in novaLlistaReptes) {
+                                    if (repte.repte.idRepte == llista[i].repte.idRepte) {
+                                        llista[i].mostrant = true
+                                    }
+                                }
+                            }
+
+                            FirebaseFirestore.getInstance().collection("Usuaris")
+                                .document(auth.currentUser!!.uid).update("llistaReptes", llista)
+
+                            getReptes()
+                        } else {
+                            //ERROR
+                            Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO EL DOCUMENTO")
+                        }
+
+                    }.addOnFailureListener { exception ->
+                        Log.d("TAG", "ERROR AL OBTENER $exception")
+
+                    }
 
 
                 }
+                getReptes()
             }
 
 
