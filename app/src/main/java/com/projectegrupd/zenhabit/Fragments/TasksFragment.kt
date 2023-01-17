@@ -253,7 +253,7 @@ class TasksFragment : Fragment() {
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val lastDay = result.getTimestamp("lastDate")!!
+                val lastDay = result.getTimestamp("checkReptesDiaris")!!
                     .toDate() // dia i hora que es va llençar l'última notificació
                 val difference: Long = actualDay.time - lastDay.time
                 val seconds = difference / 1000
@@ -294,6 +294,10 @@ class TasksFragment : Fragment() {
                             FirebaseFirestore.getInstance().collection("Usuaris")
                                 .document(auth.currentUser!!.uid).update("llistaReptes", llista)
 
+
+                            FirebaseFirestore.getInstance().collection("Verificacions").document(
+                                auth.currentUser!!.uid
+                            ).update("checkReptesDiaris", actualDay)
                             getReptes()
                         } else {
                             //ERROR
