@@ -68,7 +68,7 @@
     <string name="nom_tasca">Nombre Tarea</string>
     <string name="nom_habit">Nombre Hábito</string>
     <string name="settings_title">Configuración</string>
-    <string name="configuracions_titol_perfil">Perfil de usuario</string>
+    <string name="configuracions_titol_perfil">Perfil de </string>
     <string name="configuracions_crear_contrasenya">"Crear contraseña "</string>
     <string name="configs_canviar_contrasenya">Cambiar contraseña</string>
     <string name="configs_canviar_nom_usuari">Cambiar nombre</string>

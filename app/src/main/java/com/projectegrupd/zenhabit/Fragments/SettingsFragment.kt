@@ -31,6 +31,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        binding.textViewLabelProfile.text = getString(R.string.configuracions_titol_perfil) + " " +  FirebaseAuth.getInstance().currentUser?.displayName
         (activity as AppCompatActivity?)!!.supportActionBar?.title =
             getString(R.string.config_title)
 
@@ -130,6 +131,7 @@ class SettingsFragment : Fragment() {
             .update("nom", binding.inputChangeUserName.text.toString())
             .addOnSuccessListener {
                 Toast(activity).showCustomToast(getString(R.string.toast_change_name))
+                binding.textViewLabelProfile.text = getString(R.string.configuracions_titol_perfil) + " " + binding.inputChangeUserName.text
                 binding.inputChangeUserName.text.clear()
             }
     }
