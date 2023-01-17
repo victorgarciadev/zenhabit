@@ -3,6 +3,7 @@ package com.projectegrupd.zenhabit.Fragments
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,7 +62,9 @@ class TasksFragment : Fragment() {
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var shimmerFrameLayoutObjDiari: ShimmerFrameLayout
     private lateinit var pieChart: PieChart
+    private val language = Locale.getDefault().language
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,19 +83,31 @@ class TasksFragment : Fragment() {
         shimmerFrameLayoutObjDiari = binding.shimmerObjDiari
         shimmerFrameLayoutObjDiari.startShimmer()
 
-        //omplim els checkBoxes de reptes daris
         getReptes()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.listObjDiari.visibility = View.VISIBLE
+            shimmerFrameLayoutObjDiari.stopShimmer()
+            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
+        }, 3000)
 
         //canviar de color els checkboxes
         binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj1, 1)
+            runBlocking {
+                checkChecked(isChecked, binding.Obj1)
+            }
         }
         binding.Obj2.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj2, 2)
+            runBlocking {
+                checkChecked(isChecked, binding.Obj2)
+            }
         }
         binding.Obj3.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj3, 3)
+            runBlocking {
+                checkChecked(isChecked, binding.Obj3)
+            }
         }
+
 
 
         //----------------NEW RECYCLERVIEW-----------------
@@ -117,139 +133,215 @@ class TasksFragment : Fragment() {
      * Ho canvia també a la BBDD
      * @author Izan Jimenez, Víctor García
      */
-    private fun checkChecked(
+    private suspend fun checkChecked(
         isChecked: Boolean,
-        objDiariAyoutBinding: ObjDiariAyoutBinding,
-        obj: Int
+        objDiariAyoutBinding: ObjDiariAyoutBinding
     ) {
+        val reptes = db.collection("Usuaris")
+            .document(auth.currentUser!!.uid).get().await()
+        val llistaReptes: ArrayList<RepteUsuari> = RepteUsuari.dataFirebasetoReptes(reptes)
+        var text = objDiariAyoutBinding.titolRepte.text.toString()
+        if (language != "ca") {
+            if (text == "Teeth" || text == "Dientes") text = "Dents"
+            if (text == "Note") text = "Nota"
+        }
+
         if (isChecked) {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#6B7477"))
-            objDiariAyoutBinding.checkboxDone.buttonTintList = ColorStateList.valueOf(
-                Color.parseColor(
-                    "#6B7477"
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(
+                ColorStateList.valueOf(
+                    Color.parseColor(
+                        "#6B7477"
+                    )
                 )
             )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#6B7477"))
-            FirebaseFirestore.getInstance().collection("Usuaris")
-                .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
-                    val llista = RepteUsuari.dataFirebasetoReptes(result)
-                    for (i in 0..llista.size - 1) {
-                        if (llista[i].repte.titol.equals(objDiariAyoutBinding.titolRepte.text)) {
-                            llista[i].aconseguit = true
-                        }
-                    }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(auth.currentUser!!.uid).update("llistaReptes", llista)
+            for ((i, repte) in llistaReptes.withIndex()) {
+                if (repte.repte.titol == text) {
+                    llistaReptes[i].aconseguit = true
+                    break
                 }
+            }
         } else {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#3dd598"))
             objDiariAyoutBinding.textViewDesc.setTextColor(Color.parseColor("#2E2E2E"))
-            objDiariAyoutBinding.checkboxDone.buttonTintList = ColorStateList.valueOf(
-                Color.parseColor(
-                    "#2E2E2E"
+            objDiariAyoutBinding.checkboxDone.setButtonTintList(
+                ColorStateList.valueOf(
+                    Color.parseColor(
+                        "#2E2E2E"
+                    )
                 )
             )
             objDiariAyoutBinding.titolRepte.setTextColor(Color.parseColor("#2E2E2E"))
-            FirebaseFirestore.getInstance().collection("Usuaris")
-                .document(auth.currentUser!!.uid).get().addOnSuccessListener { result ->
-                    val llista = RepteUsuari.dataFirebasetoReptes(result)
-                    for (i in 0..llista.size - 1) {
-                        if (llista[i].repte.titol.equals(objDiariAyoutBinding.titolRepte.text)) {
-                            llista[i].aconseguit = false
-                        }
-                    }
-                    FirebaseFirestore.getInstance().collection("Usuaris")
-                        .document(auth.currentUser!!.uid).update("llistaReptes", llista)
+            for ((i, repte) in llistaReptes.withIndex()) {
+                if (repte.repte.titol == text) {
+                    llistaReptes[i].aconseguit = false
+                    break
                 }
+            }
         }
+
+        db.collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid)
+            .update("llistaReptes", llistaReptes).await()
     }
+
 
     /**
      * Omple els reptes amb les dades que hi ha a la BBDD si aquesta esta disponible
      * @author Izan Jimenez
      */
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun getReptes() {
-
-        var llista: ArrayList<RepteUsuari>
-
-        val docref = db.collection("Usuaris").document(auth.currentUser!!.uid)
-        docref.get().addOnSuccessListener { document ->
-            if (document != null) {
-                llista = RepteUsuari.dataFirebasetoReptes(document)
-                if (!llista.isEmpty()) {
-                    for (i in 1..3) {
-                        //val j = (0..llista.size).random()
-
-                        if (i == 1) {
-                            binding.Obj1.textViewDesc.text = llista[0].repte.descripcio
-                            binding.Obj1.titolRepte.text = llista[0].repte.titol
-                            binding.Obj1.checkboxDone.isChecked = llista[0].aconseguit
-                        }
-                        if (i == 2) {
-                            binding.Obj2.textViewDesc.text = llista[1].repte.descripcio
-                            binding.Obj2.titolRepte.text = llista[1].repte.titol
-                            binding.Obj2.checkboxDone.isChecked = llista[1].aconseguit
-                        }
-                        if (i == 3) {
-                            binding.Obj3.textViewDesc.text = llista[2].repte.descripcio
-                            binding.Obj3.titolRepte.text = llista[2].repte.titol
-                            binding.Obj3.checkboxDone.isChecked = llista[2].aconseguit
-                        }
-
-                        //Mostrar reptes
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.listObjDiari.visibility = View.VISIBLE
-                            shimmerFrameLayoutObjDiari.stopShimmer()
-                            shimmerFrameLayoutObjDiari.visibility = View.INVISIBLE
-                            resetReptesDiaris()  // comprova si ja ha pasat un dia des de la actualització de reptes diaris
-                        }, 1000)
-                    }
-                } else {
-                    Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO LA LISTA")
-                }
-            } else {
-                //ERROR
-                Log.d("TAG", "DocumentSnapshot data: NO SE ENCONTRO EL DOCUMENTO")
-            }
-
-        }.addOnFailureListener { exception ->
-            Log.d("TAG", "ERROR AL OBTENER ${exception}")
-
-        }
-    }
-
-    /***
-     * Reseteja els reptes diaris cada 24h
-     * * @author Izan Jimenez
-     */
-    private fun resetReptesDiaris() {
-        val actualDay = Calendar.getInstance().time// dia i hora actual
+        val actualDay = Calendar.getInstance().time  // dia i hora actual
+        val actualDayCalendar = Calendar.getInstance()
+        actualDayCalendar.time = actualDay
+        actualDayCalendar.set(Calendar.HOUR_OF_DAY, 0)
+        actualDayCalendar.set(Calendar.MINUTE, 0)
+        actualDayCalendar.set(Calendar.SECOND, 0)
+        actualDayCalendar.set(Calendar.MILLISECOND, 0)
 
         FirebaseFirestore.getInstance().collection("Verificacions")
             .document(auth.currentUser!!.uid).get()
             .addOnSuccessListener { result ->
-                val lastDay = result.getTimestamp("lastDate")!!
-                    .toDate() // dia i hora que es va llençar l'última notificació
-                val difference: Long = actualDay.time - lastDay.time
-                val seconds = difference / 1000
-                val minutes = seconds / 60
-                val hours = minutes / 60
-                val days = hours / 24
-                Log.d("DAYS", " $days")
-                if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
-                    checkChecked(false, binding.Obj1, 1)
-                    binding.Obj3.checkboxDone.isChecked = false
-                    checkChecked(false, binding.Obj1, 2)
-                    binding.Obj3.checkboxDone.isChecked = false
-                    checkChecked(false, binding.Obj1, 3)
-                    binding.Obj3.checkboxDone.isChecked = false
-
-
+                val lastDay = result.getTimestamp("lastDateReptes")!!
+                    .toDate() // dia i hora que es van canviar els reptes
+                val lastDayCalendar = Calendar.getInstance()
+                lastDayCalendar.time = lastDay
+                lastDayCalendar.set(Calendar.HOUR_OF_DAY, 0)
+                lastDayCalendar.set(Calendar.MINUTE, 0)
+                lastDayCalendar.set(Calendar.SECOND, 0)
+                lastDayCalendar.set(Calendar.MILLISECOND, 0)
+                if (actualDayCalendar.after(lastDayCalendar)) {
+                    runBlocking {
+                        obtenirReptes(true)
+                    }
+                    FirebaseFirestore.getInstance().collection("Verificacions")
+                        .document(auth.currentUser!!.uid)
+                        .update("vist", false, "lastDateReptes", actualDay)
+                } else {
+                    runBlocking {
+                        obtenirReptes(false)
+                    }
                 }
             }
+    }
 
+    /**
+     * Funció per obtenir els reptes que s'estan mostrant actualment o aquells que s'han de canviar
+     * @param canvi boolean per saber si s'han de canviar o no
+     * @author Izan Jimenez, Pablo Morante
+     */
+    @RequiresApi(Build.VERSION_CODES.N)
+    private suspend fun obtenirReptes(canvi: Boolean) {
+        val reptes = db.collection("Usuaris")
+            .document(auth.currentUser!!.uid).get().await()
 
+        val llistaReptes: ArrayList<RepteUsuari> = RepteUsuari.dataFirebasetoReptes(reptes)
+        if (canvi) {
+            val filteredList = llistaReptes.filter { !it.aconseguit } as ArrayList<RepteUsuari>
+            if (filteredList.size == 0) {
+                // si no queden reptes mostrar missatge
+            } else if (filteredList.size <= 3) {
+                modificarMostrant(filteredList)
+                showReptes(filteredList)
+            } else {
+                val randomReptes =
+                    filteredList.asSequence().shuffled().take(3).toList() as ArrayList<RepteUsuari>
+                filteredList.removeIf { i -> randomReptes.contains(i) }
+                modificarMostrant(randomReptes)
+                showReptes(randomReptes)
+            }
+        } else {
+            val mostrantReptes = llistaReptes.filter { it.mostrant } as ArrayList<RepteUsuari>
+            showReptes(mostrantReptes)
+        }
+    }
+
+    /**
+     * Funció per mostrar els reptes actuals de l'usuari a l'interfície i saber si ja estan fets o no
+     * @param reptes array dels reptes actuals
+     * @author Izan Jimenez, Pablo Morante
+     */
+    private suspend fun showReptes(reptes: ArrayList<RepteUsuari>) {
+        var i = 1
+        for (repte in reptes) {
+            val titol = repte.repte.titol
+            val desc = repte.repte.descripcio
+            val done = repte.aconseguit
+            if (i == 1) {
+                val result = FirebaseFirestore.getInstance().collection("Reptes")
+                    .document(repte.repte.idRepte.toString()).get().await()
+                if (language == "en") {
+                    binding.Obj1.textViewDesc.text = result.get("description").toString()
+                    binding.Obj1.titolRepte.text = result.get("title").toString()
+                } else if (language == "es") {
+                    binding.Obj1.textViewDesc.text = result.get("descripcion").toString()
+                    binding.Obj1.titolRepte.text = result.get("titulo").toString()
+                } else {
+                    binding.Obj1.textViewDesc.text = desc
+                    binding.Obj1.titolRepte.text = titol
+                }
+                binding.Obj1.checkboxDone.isChecked = done
+            }
+            if (i == 2) {
+                val result = FirebaseFirestore.getInstance().collection("Reptes")
+                    .document(repte.repte.idRepte.toString()).get().await()
+                if (language == "en") {
+                    binding.Obj2.textViewDesc.text = result.get("description").toString()
+                    binding.Obj2.titolRepte.text = result.get("title").toString()
+                } else if (language == "es") {
+                    binding.Obj2.textViewDesc.text = result.get("descripcion").toString()
+                    binding.Obj2.titolRepte.text = result.get("titulo").toString()
+                } else {
+                    binding.Obj2.textViewDesc.text = desc
+                    binding.Obj2.titolRepte.text = titol
+                }
+                binding.Obj2.checkboxDone.isChecked = done
+            }
+            if (i == 3) {
+                val result = FirebaseFirestore.getInstance().collection("Reptes")
+                    .document(repte.repte.idRepte.toString()).get().await()
+                if (language == "en") {
+                    binding.Obj3.textViewDesc.text = result.get("description").toString()
+                    binding.Obj3.titolRepte.text = result.get("title").toString()
+                } else if (language == "es") {
+                    binding.Obj3.textViewDesc.text = result.get("descripcion").toString()
+                    binding.Obj3.titolRepte.text = result.get("titulo").toString()
+                } else {
+                    binding.Obj3.textViewDesc.text = desc
+                    binding.Obj3.titolRepte.text = titol
+                }
+                binding.Obj3.checkboxDone.isChecked = done
+            }
+            i++
+        }
+    }
+
+    /**
+     * Funció per modificar els reptes que es mostren
+     * @param reptesUsuari array de tots els reptes que hi ha
+     */
+    private suspend fun modificarMostrant(reptesUsuari: ArrayList<RepteUsuari>) {
+        val reptesBD = db.collection("Usuaris")
+            .document(auth.currentUser!!.uid).get().await()
+
+        val llistaReptes: ArrayList<RepteUsuari> = RepteUsuari.dataFirebasetoReptes(reptesBD)
+        llistaReptes.onEach { it.mostrant = false }
+
+        for ((i, repte) in llistaReptes.withIndex()) {
+            for (repteUsuari in reptesUsuari) {
+                if (repte.repte.titol == repteUsuari.repte.titol) {
+                    repteUsuari.mostrant = true
+                    llistaReptes[i] = repteUsuari
+                }
+            }
+        }
+
+        db.collection("Usuaris")
+            .document(Firebase.auth.currentUser!!.uid)
+            .update("llistaReptes", llistaReptes).await()
     }
 
     /**
