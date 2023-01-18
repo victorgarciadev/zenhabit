@@ -165,4 +165,9 @@
     <string name="hint_correu">Nuevo correo electrónico</string>
     <string name="hint_contrasenya">Contraseña actual</string>
     <string name="hint_novaContresenya">Nueva contraseña</string>
+    <string name="title_review">¡Valóranos!</string>
+    <string name="description_review">Tu opinión es importante. Cuéntanos qué piensas de Zenhabit.</string>
+    <string name="closing_review">¡Gracias!</string>
+    <string name="btn_cancel_review">Ahora no</string>
+    <string name="btn_accept_review">Valorar</string>
 </resources>
