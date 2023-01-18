@@ -113,7 +113,7 @@ class home : Fragment() {
     }
 
     /**
-     * Mètode per mostrar en un 'Dialog' demanant una ressenya sobre l'App a l'usuari.     *
+     * Mètode per mostrar en un 'Dialog' per demanar-li  a l'usuari una ressenya sobre l'App.     *
      * @author Txell Llanas
      */
     private fun showReview() {
@@ -125,10 +125,14 @@ class home : Fragment() {
 
             dialog?.setContentView(R.layout.dialog_review)
             dialog?.show()
+            dialog?.setCanceledOnTouchOutside(false)
 
             val closeBtn = dialog?.findViewById<Button>(R.id.btn_tancar_dialeg)
             val reviewBtn = dialog?.findViewById<Button>(R.id.btn_deixar_ressenya)
+
+            // Tancar Diàleg
             closeBtn?.setOnClickListener { dialog.dismiss() }
+
             // Anar a Google Play
             reviewBtn?.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.projectegrupd.zenhabit"))

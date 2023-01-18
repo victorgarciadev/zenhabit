@@ -193,5 +193,10 @@
     <string name="pendents_tercera_singular">Hàbit pendent.</string>
     <string name="pendents_tercera_plural">Hàbits pendents.</string>
     <string name="jardi_cap_item_aconseguit" translatable="false">0</string>
+    <string name="title_review">Valora\'ns!</string>
+    <string name="description_review">La teva opinió és important. Explica\'ns què en penses de Zenhabit.</string>
+    <string name="closing_review">Gràcies!</string>
+    <string name="btn_cancel_review">Ara no</string>
+    <string name="btn_accept_review">Valorar</string>
 
 </resources>
