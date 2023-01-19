@@ -110,12 +110,13 @@ class RegisterActivity : AppCompatActivity() {
                                 )
                             }
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-                        val actualDay = Calendar.getInstance().getTime()
+
+                        val actualDay = Calendar.getInstance().time
                         val calendar = Calendar.getInstance()
-                        calendar.time = actualDay
-                        calendar.add(Calendar.DATE, -2)
-                        val previousDay = calendar.time
-                        val temporal = VerificacioNotificacio(actualDay, false, previousDay, actualDay)
+                        calendar.add(Calendar.DATE, -1)
+                        val yesterday = calendar.time
+
+                        val temporal = VerificacioNotificacio(actualDay, false, yesterday, actualDay)
                         db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)
@@ -251,8 +252,17 @@ class RegisterActivity : AppCompatActivity() {
         runBlocking {
             FirebaseFirestore.getInstance().collection("Reptes").get()
                 .addOnSuccessListener { result ->
+
+//                  metode per tranformar directament a objecte
+//                    val a = result.toObject<RepteUsuari>()
+//                    if (a != null) {
+//                        Log.d("REPTESObject", a.acosneguit.toString())
+//                    }
+
+
                     if (result != null) {
                         for (i in 0 until result.size()) {
+
                             val r =
                                 RepteUsuari.dataFirebaseReptestoReptesUsuaris(result.documents[i])
 
