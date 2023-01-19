@@ -32,7 +32,7 @@
                 <FrameLayout
                     android:layout_width="12dp"
                     android:layout_height="match_parent"
-                    android:background="#1DBE7D" />
+                    android:background="@color/zenhabit_verd_clar" />
 
                 <TextView
                     android:id="@+id/toast_text"

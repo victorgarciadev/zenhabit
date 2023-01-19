@@ -68,7 +68,7 @@
     <string name="nom_tasca">Task name</string>
     <string name="nom_habit">Habit name</string>
     <string name="settings_title">Settings</string>
-    <string name="configuracions_titol_perfil">User profile</string>
+    <string name="configuracions_titol_perfil">Profile for </string>
     <string name="configuracions_crear_contrasenya">Create password</string>
     <string name="configs_canviar_contrasenya">Change password</string>
     <string name="configs_canviar_nom_usuari">Change name</string>
@@ -95,7 +95,7 @@
     <string name="repeticio">Repetition</string>
     <string name="horari">Schedule</string>
     <string name="data_limit">Deadline Date</string>
-    <string name="about_versio">(Version 1.0)</string>
+    <string name="about_versio">(Version 1.1)</string>
     <string name="txell_llanas">Txell Llanas</string>
     <string name="izan_jimenez">Izan Jiménez</string>
     <string name="victor_garcia">Víctor García</string>
@@ -130,7 +130,7 @@
     <string name="user_created">User created.</string>
     <string name="error_user_created">Authentication failed.</string>
     <string name="error_email_created">Wrong email format.</string>
-    <string name="error_password_created">Password must contain between 8 and 15 characters.</string>
+    <string name="error_password_created">Password must contain 8 characters minimum, a number and a capital letter.</string>
     <string name="error_username_created">Username must contain between 3 and 15 characters.</string>
     <string name="toast_change_password">Password changed successfully.</string>
     <string name="toast_change_email">Mail sent successfully.</string>
@@ -165,4 +165,9 @@
     <string name="hint_correu">New email</string>
     <string name="hint_contrasenya">"Current password "</string>
     <string name="hint_novaContresenya">New password</string>
+    <string name="title_review">Rate us!</string>
+    <string name="description_review">Your opinion is important. Tell us what you think about Zenhabit.</string>
+    <string name="closing_review">Thanks!</string>
+    <string name="btn_cancel_review">Not now</string>
+    <string name="btn_accept_review">Do it</string>
 </resources>

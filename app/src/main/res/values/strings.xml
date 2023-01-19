@@ -100,7 +100,7 @@
 
     <!-- PANTALLA CONFIGURACIONS -->
     <string name="settings_title">Configuracions</string>
-    <string name="configuracions_titol_perfil">Perfil d\'usuari</string>
+    <string name="configuracions_titol_perfil">Perfil per </string>
     <string name="configuracions_crear_contrasenya">Crear contrasenya</string>
     <string name="configs_canviar_contrasenya">Canviar contrasenya</string>
     <string name="configs_canviar_nom_usuari">Canviar nom</string>
@@ -134,7 +134,7 @@
     <string name="data_limit">Data límit</string>
 
     <!-- DIÀLEG 'ABOUT' -->
-    <string name="about_versio">(Versió 1.0)</string>
+    <string name="about_versio">(Versió 1.1)</string>
     <string name="txell_llanas">Txell Llanas</string>
     <string name="izan_jimenez">Izan Jiménez</string>
     <string name="victor_garcia">Víctor García</string>
@@ -173,7 +173,7 @@
     <string name="user_created">Usuari creat correctament.</string>
     <string name="error_user_created">L\'autentificació ha fallat.</string>
     <string name="error_email_created">El format d\'email és incorrecte.</string>
-    <string name="error_password_created">La contrasenya com a mínim ha de tenir 8 caràcters i un número.</string>
+    <string name="error_password_created">La contrasenya com a mínim ha de tenir 8 caràcters, una majúscula i un número.</string>
     <string name="error_username_created">El nom d\'usuari ha de ser d\'entre 3 i 15 caràcters.</string>
     <string name="toast_change_password">Contrasenya canviada correctament.</string>
     <string name="toast_change_email">Email canviat correctament.</string>
@@ -192,5 +192,11 @@
     <string name="label_notificacio_getNewItem_plural">tasques o hàbits pendents.</string>
     <string name="pendents_tercera_singular">Hàbit pendent.</string>
     <string name="pendents_tercera_plural">Hàbits pendents.</string>
+    <string name="jardi_cap_item_aconseguit" translatable="false">0</string>
+    <string name="title_review">Valora\'ns!</string>
+    <string name="description_review">La teva opinió és important. Explica\'ns què en penses de Zenhabit.</string>
+    <string name="closing_review">Gràcies!</string>
+    <string name="btn_cancel_review">Ara no</string>
+    <string name="btn_accept_review">Valorar</string>
 
 </resources>

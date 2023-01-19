@@ -21,7 +21,7 @@
         android:layout_height="75dp"
         android:layout_gravity="bottom"
         android:background="@drawable/shape_bottom_nav_bar"
-        app:backgroundTint="#30444E"
+        app:backgroundTint="@color/zenhabit_fons_mig"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="#8697A0"
         app:itemIconSize="33dp"

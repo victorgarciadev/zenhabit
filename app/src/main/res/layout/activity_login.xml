@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22343C"
+    android:background="@color/zenhabit_fons"
     tools:context=".Activities.LoginActivity">
 
     <ScrollView
@@ -25,7 +25,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="#1D2C32"
+                    android:background="@color/zenhabit_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -153,7 +153,7 @@
                     android:layout_width="250dp"
                     android:layout_height="75dp"
                     android:layout_marginTop="48dp"
-                    android:backgroundTint="#1DBE7D"
+                    android:backgroundTint="@color/zenhabit_verd"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/entrar"
                     android:textSize="20sp"
