@@ -5,6 +5,6 @@ import java.util.Date
 /**
  * @author Pablo Morante
  */
-class VerificacioNotificacio(val lastDate: Date, val vist: Boolean, val checkReptesDiaris: Date) {
+class VerificacioNotificacio(val lastDate: Date, val vist: Boolean, val checkReptesDiaris: Date,val lastDateReview: Date) {
 
 }

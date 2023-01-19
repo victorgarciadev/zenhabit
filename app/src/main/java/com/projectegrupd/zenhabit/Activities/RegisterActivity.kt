@@ -116,7 +116,7 @@ class RegisterActivity : AppCompatActivity() {
                         calendar.add(Calendar.DATE, -1)
                         val yesterday = calendar.time
 
-                        val temporal = VerificacioNotificacio(actualDay, false, yesterday)
+                        val temporal = VerificacioNotificacio(actualDay, false, yesterday, actualDay)
                         db.collection("Verificacions")
                             .document(auth.currentUser!!.uid).set(temporal)
                         Toast(this).showCustomToast(getString(R.string.user_created), this)

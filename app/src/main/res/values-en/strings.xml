@@ -165,4 +165,9 @@
     <string name="hint_correu">New email</string>
     <string name="hint_contrasenya">"Current password "</string>
     <string name="hint_novaContresenya">New password</string>
+    <string name="title_review">Rate us!</string>
+    <string name="description_review">Your opinion is important. Tell us what you think about Zenhabit.</string>
+    <string name="closing_review">Thanks!</string>
+    <string name="btn_cancel_review">Not now</string>
+    <string name="btn_accept_review">Do it</string>
 </resources>
