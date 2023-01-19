@@ -1,5 +1,6 @@
 package com.projectegrupd.zenhabit.Fragments
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
@@ -89,13 +90,13 @@ class TasksFragment : Fragment() {
 
         //canviar de color els checkboxes
         binding.Obj1.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj1, 1)
+            checkChecked(isChecked, binding.Obj1)
         }
         binding.Obj2.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj2, 2)
+            checkChecked(isChecked, binding.Obj2)
         }
         binding.Obj3.checkboxDone.setOnCheckedChangeListener { buttonView, isChecked ->
-            checkChecked(isChecked, binding.Obj3, 3)
+            checkChecked(isChecked, binding.Obj3)
         }
 
 
@@ -125,7 +126,6 @@ class TasksFragment : Fragment() {
     private fun checkChecked(
         isChecked: Boolean,
         objDiariAyoutBinding: ObjDiariAyoutBinding,
-        obj: Int
     ) {
         if (isChecked) {
             objDiariAyoutBinding.repteDiariRow1.background.setTint(Color.parseColor("#2E4751"))
@@ -189,16 +189,28 @@ class TasksFragment : Fragment() {
                         .addOnSuccessListener { result ->
 
                             for (i in 0 until llista.size) {
+
                                 if (language == "en") {
                                     llista[i].repte.titol =
-                                        result.documents[i].get("title").toString()
+                                        result.documents[llista[i].repte.idRepte- 1].get("title")
+                                            .toString()
                                     llista[i].repte.descripcio =
-                                        result.documents[i].get("description").toString()
+                                        result.documents[llista[i].repte.idRepte- 1].get("description")
+                                            .toString()
                                 } else if (language == "es") {
                                     llista[i].repte.titol =
-                                        result.documents[i].get("titulo").toString()
+                                        result.documents[llista[i].repte.idRepte - 1].get("titulo")
+                                            .toString()
                                     llista[i].repte.descripcio =
-                                        result.documents[i].get("descripcion").toString()
+                                        result.documents[llista[i].repte.idRepte- 1].get("descripcion")
+                                            .toString()
+                                } else if (language == "ca") {
+                                    llista[i].repte.titol =
+                                        result.documents[llista[i].repte.idRepte- 1].get("titol")
+                                            .toString()
+                                    llista[i].repte.descripcio =
+                                        result.documents[llista[i].repte.idRepte- 1].get("descripcio")
+                                            .toString()
                                 }
                             }
                             for (i in 1..3) {
@@ -264,11 +276,11 @@ class TasksFragment : Fragment() {
                 val days = hours / 24
                 Log.d("DAYS", " $days")
                 if (days >= 1) { // si ja ha passat un dia canvia els colors i isChecked dels checkboxes
-                    checkChecked(false, binding.Obj1, 1)
+                    checkChecked(false, binding.Obj1)
 //                    binding.Obj3.checkboxDone.isChecked = false
-                    checkChecked(false, binding.Obj1, 2)
+                    checkChecked(false, binding.Obj2)
 //                    binding.Obj3.checkboxDone.isChecked = false
-                    checkChecked(false, binding.Obj1, 3)
+                    checkChecked(false, binding.Obj3)
                     //                   binding.Obj3.checkboxDone.isChecked = false
 
 
@@ -323,6 +335,7 @@ class TasksFragment : Fragment() {
      * Omple el recyclerView amb les dades que hi ha a la BBDD si aquesta esta disponible
      * @author Izan Jimenez
      */
+    @SuppressLint("SimpleDateFormat")
     private fun loadData() {
 
         var ret: ArrayList<Objectius>
@@ -594,9 +607,9 @@ class TasksFragment : Fragment() {
      */
     suspend fun getDataFromFirestore(): Float {
         var perT = 0f
-        var total = 0f
+        val total : Float
         var oComplets = 0f
-        var objectius: ArrayList<Objectius> = ArrayList()
+        val objectius: ArrayList<Objectius>
 
         val result = db.collection("Usuaris")
             .document(Firebase.auth.currentUser!!.uid).get().await()

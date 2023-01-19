@@ -11,14 +11,14 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean, var mostrant: Boole
 
     /***
      * Retorna una ArrayList de RepteUsuari
-     * @param documnt resultat de la consulta a la BBDD (DocumentSnapshot)
+     * @param document resultat de la consulta a la BBDD (DocumentSnapshot)
      * @author Izan Jimenez
      */
     companion object {
 
         fun dataFirebasetoReptes(document: DocumentSnapshot): ArrayList<RepteUsuari> {
 
-            var ret: ArrayList<RepteUsuari> = ArrayList()
+            val ret: ArrayList<RepteUsuari> = ArrayList()
 
             val d: Map<String, String> = document.data as Map<String, String>
             val a = d["llistaReptes"] as List<*>
@@ -44,7 +44,7 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean, var mostrant: Boole
         /***
          * Retorna un sol RepteUsuari
          * @return RepteUsuari RepteUsuari
-         * @param DocumentSnapshot reultat del Firebase
+         * @param document reultat del Firebase
          * @author Izan Jimenez
          */
         fun dataFirebaseReptestoReptesUsuaris(document: DocumentSnapshot): RepteUsuari {
@@ -53,7 +53,7 @@ class RepteUsuari(var repte: Repte, var aconseguit: Boolean, var mostrant: Boole
                     document.get("idRepte").toString().toInt(),
                     document.get("descripcio").toString(),
                     document.get("titol").toString()
-                ), false, false
+                ), aconseguit = false, mostrant = false
             )
 
 
